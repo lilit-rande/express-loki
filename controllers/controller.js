@@ -1,4 +1,3 @@
-//The salles controller
 var mongoose = require('mongoose'),
 	Deferred = require('JQDeferred'),
 	fs = require('fs'),
@@ -20,7 +19,7 @@ function getModelDetails(model) {
 	
 	var modelFile = '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
 		modelName = model.toLowerCase() + 's',						// ex.: salles
-		modelReferenceName = model.toLowerCase()+'reference',			// ex.: sallereference
+//		modelReferenceName = model.toLowerCase()+'reference',			// ex.: sallereference
 		modelGenre = '',
 		suffix = '',
 		articleDef = 'le ',
@@ -35,7 +34,7 @@ function getModelDetails(model) {
 			modelGenre = 'm';
 		}
 	
-	return {'modelFile': modelFile, 'modelName': modelName, 'modelReferenceName': modelReferenceName, 'modelGenre': modelGenre, 'articleDef': articleDef, 'articleIndef': articleIndef, 'suffix': suffix};
+	return {'modelFile': modelFile, 'modelName': modelName, 'modelGenre': modelGenre, 'articleDef': articleDef, 'articleIndef': articleIndef, 'suffix': suffix};
 }
 
 function firstToUpper(str) {
@@ -86,7 +85,7 @@ exports.index = function(req, res, model){
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),		// voir comment mieux factoriser pour faire require qu'une fois dans ce fichier
 		modelName = modelDetails.modelName,
-		refName = modelDetails.modelReferenceName,
+//		refName = modelDetails.modelReferenceName,
 		foreignModels = new Array();
 	var obj = {};
 	Model.find({}, function(err, docs) {
@@ -96,55 +95,7 @@ exports.index = function(req, res, model){
 		
 		//http://fr.slideshare.net/kbanker/mongodb-schema-design
 		
-	//		console.log(docs);
-			var obj = {};
-			
-			for (d in docs) {
-				
-				for(p in docs[d]) {
-					var doc = docs[d];
-							console.log('DOC ' + doc);
-					if ( p == "sallereference") {
-						
-						obj[p] = docs[d][p];
-						
-						var mD = getModelDetails('Salle');
-						var M = require(mD.modelFile);
-						
-						
-						M.findOne(obj, function(err, salle){
-					//		console.log('SALLE ' + salle);
-							res.render(modelName+'/index', { title: firstToUpper(modelName), docs:docs, salle: salle});
-						});
-					}
-				
-		//			console.log(p);
-		//			console.log(docs[0][p]);
-					
-				}
-			}
-	
-	//	GENERIQUE A REFAIRE
-	/*		for (p in docs) {
-				var doc = docs[p];
-				for ( d in doc) {
-					if ( d.indexOf("reference") !== -1 ) {
-						var collectionName = d.substring(0, d.indexOf("reference"));
-						if ( collectionName != model.toLowerCase() ) {
-							foreignModels.push(collectionName);							
-							mD = getModelDetails(firstToUpper(collectionName));
-							M = require(mD.modelFile);							
-							obj[d] = doc[d];
-							
-							M.findOne(obj, function(err, document){
-								console.log(document);
-								console.log("************************");
-							});
-						}
-					}
-				}
-			}*/
-		//	res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 		}
@@ -158,7 +109,6 @@ exports.new = function(req, res, model) {
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
 		modelLower = model.toLowerCase(),
-		refName = modelDetails.modelReferenceName,
 		articleIndef = modelDetails.articleIndef;
 		
 	var content =  renderTpl('views/forms/form-'+ modelLower +'.jade', ""), 		// TODO: A voir
@@ -174,13 +124,21 @@ exports.create = function(req, res, model, obj) {
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
-		refName = modelDetails.modelReferenceName,
 		suffix = modelDetails.suffix,
 		articleDef = modelDetails.articleDef
-		modelToLower = model.toLowerCase();
-	
-		test = refName.toString();		
+		modelToLower = model.toLowerCase(),
+		modelObj = new Model(obj);
 		
+		modelObj.save(function(err, data){
+			if(err) {
+			//	console.log(err);
+				res.render('error', {title: "Echec de création", body: "Il n'est pas possible de créér " + articleDef + model.toLowerCase() + " ! Message : " + err.message});
+			} else {
+				res.render('generals/modified', {title: model + ' ajouté'+ suffix, body: firstToUpper(articleDef) + model.toLowerCase() +" a bien été ajouté" + suffix + "."});
+			}
+		});
+		
+/*
 	Model.findOne().sort("-" + modelToLower + "reference").exec(function(err, doc) {	//find the maximum reference number
 	//	console.log(doc[refName]);
 		
@@ -196,6 +154,7 @@ exports.create = function(req, res, model, obj) {
 			}
 		});
 	});
+	*/
 };
 
 //display delete form, route: /models/delete/id (post)
@@ -203,12 +162,11 @@ exports.delete = function(req, res, model) {
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
-		refName = modelDetails.modelReferenceName,
 		articleIndef = modelDetails.articleIndef,
 		reference = req.params.id;
 		modelLower = model.toLowerCase();
 		
-	Model.findOne({refName: reference}, function(err, doc){
+	Model.findOne({'_id': reference}, function(err, doc){
 		if (err) {
 			res.render('error', {title: "Echec", body: err});
 		} else {
@@ -217,21 +175,20 @@ exports.delete = function(req, res, model) {
 	});
 };
 
-//delete a {model}, route; /models/destroy/id
+//delete a {model}, route; /models/destroy/_id
 exports.destroy = function(req, res, model) {
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
-		refName = modelDetails.modelReferenceName,
 		ref = req.params.id,
 		articleDef = modelDetails.articleDef,
 		modelLower = model.toLowerCase()
 		suffix = modelDetails.suffix;
-		
+		/*
 		modelObject = {};
 		modelObject[ refName ] = ref;
-		
-	Model.remove(modelObject, function(err){
+		*/
+	Model.remove({'_id': ref}, function(err){
 		if(err) {
 			res.render('error', {title: "Echec de suppression", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
 		} else {
@@ -246,15 +203,12 @@ exports.edit = function(req, res, model, imagePath) {
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
 		modelFile = modelDetails.modelFile,
-		refName = modelDetails.modelReferenceName,
 		ref = req.params.id,
 		modelLower = model.toLowerCase(),
 		articleDef = modelDetails.articleDef,
 		content =  renderTpl('views/forms/form-'+ modelLower +'.jade', req.body); 		// TODO: A voir
 		
-	var modelObj = {};
-		modelObj[ refName ] = ref;
-	Model.findOne(modelObj, function(err, doc){
+	Model.findOne({'_id': ref}, function(err, doc){
 		if (err) {
 			res.render('error', {title: "Echec de modification", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
 		} else {
@@ -283,7 +237,7 @@ exports.update = function(req, res, model, obj) {
 	var modelObj = {};
 	modelObj[ refName ] = ref;
 //	console.log(obj);
-	Model.update(modelObj, obj, function(err) {
+	Model.update({'_id': ref}, obj, function(err) {
 		if (err) {
 			res.send("Problème avec la mise à jour: " + err);
 		} else {

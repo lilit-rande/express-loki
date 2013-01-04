@@ -1,6 +1,7 @@
 //The salles controller
 var superController = require('../controllers/controller.js'),
-	model = 'Salle';
+	model = 'Salle',
+	Salle  = require('../models/salles.js');
 		
 //index listing of salles at :  /salles/
 exports.index = function(req, res){

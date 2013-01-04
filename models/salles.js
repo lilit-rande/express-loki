@@ -1,10 +1,9 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	ObjectId = Schema.ObjectId;
+	ObjectId = Schema.Types.ObjectId;
 
 //create Salle model
 var salleSchema = new Schema({
-	sallereference: {type: Number, require: true, trim: true, unique: true},
 	title: {type: String, require: true, trim: true},
 	adresse: {type: String, require: true, trim: true},
 	ville: {type: String, require: true, trim: true},

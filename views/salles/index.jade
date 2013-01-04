@@ -5,7 +5,7 @@ div.delete.popup.draggable
 div.one-column
 	- if (docs != null)
 		- each salle in docs
-			div.annonce-bloc(data-id="#{salle.sallereference}", data-model="salle")
+			div.annonce-bloc(data-id="#{salle._id}", data-model="salle")
 				h2 #{salle.title}
 				img.left-block(src="../images/vignettes/#{salle.image}")
 				p 

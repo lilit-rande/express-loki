@@ -1,15 +1,14 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	ObjectId = Schema.ObjectId;
+	ObjectId = Schema.Types.ObjectId;
 
 //create Produit model
 
 var produitSchema = new Schema({
-	sallereference: {type: Schema.ObjectId, ref: 'Salles'},
-	produitreference: {type: Number, require: true, trim: true, unique: true},
 	arrive: {type: Date, require: true, trim: true},
-	depart: {type: Date, require: true, trim: true},	
-	promotionreference: {type: Number, ref: 'Promotions'},
+	depart: {type: Date, require: true, trim: true},
+	sallereference: {type: ObjectId, ref: 'Salles'},	
+	promotionreference: {type: ObjectId, ref: 'Promotions'},
 	prix: {type: Number, require: true, trim: true},
 	etat: {type: Number, require: true, trim: true},
 
