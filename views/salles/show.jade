@@ -1,0 +1,56 @@
+-if (data != null)
+	div.row
+		div.span12			
+			h1= title			
+			div.annonce-bloc.one-column
+				img(src="../../images/vignettes/#{data.image}", width="80px", height="80px")
+				h2 #{data.title}
+				span.italic {1/10 moyenne sur 1 avis}
+				p #{data.description}
+				span.italic Capacité: #{data.capacite}. Catégorie: salle de #{data.categorie}
+	div.row
+		div.span6
+			div.annonce-bloc
+				h2 Informations complémentaires
+				p
+					span.titre Pays : 
+					span.valeur #{data.pays}
+				p
+					span.titre Ville :
+					span.valeur #{data.ville}
+				p
+					span.titre Adresse : 
+					span.valeur #{data.adresse}
+				p
+					span.titre Code postale : 
+					span.valeur #{data.cp}
+				p
+					span.titre Date d'arrivée : 
+					span.valeur {Date d'arrivée}
+				p
+					span.titre Date de départ : 
+					span.valeur {Date de départ}
+				p
+					span.titre Prix : 
+					span.valeur {Prix}
+				p.italic *Ce prix est hors taxes.
+		div.span6
+			div.annonce-bloc
+				h2 Avis
+				form
+					div.pull-left
+						label(for="commentaire") Ajouter un commentaire
+						textarea(name="commentaire", id="commentaire")
+					div.pull-left(style="margin-left:40px;")
+						label(for="note") Note
+						select
+							-for(var i=1; i<=10; i++)
+								option=i+'/10'
+						<br />
+						input.btn.btn-primary(value="Sousmettre", name="sousmettre-avis")
+					div.clear
+-else 
+	div.row
+		div.span12					
+			div.error-message
+				span La salle avec identifiant #{id} n'existe pas !

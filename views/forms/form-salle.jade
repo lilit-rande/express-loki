@@ -1,0 +1,39 @@
+h2 {title}
+form.form-salle-edit(method="post", action="{action}", name="form-salle-edit")
+	fieldset
+	input#sallereference(type="hidden", name="sallereference")		
+	label(for="salle-title") Titre
+	input#salle-title(type="text", name="salletitle")
+	br
+	label(for="salle-description") Description
+	textarea#salle-description(name="salledescription")
+	br
+	label(for="salle-pays") Pays
+	input#salle-pays(type="text", name="sallepays")
+	br
+	label(for="salle-ville") Ville							
+	input#salle-ville(type="text", name="salleville")
+	br
+	label(for="salle-adresse") Adresse
+	input#salle-adresse(type="text", name="salleadresse")
+	br
+	label(for="salle-cp") Code postale
+	input#salle-cp(type="text", name="sallecp")
+	br
+	div.input-file-visible
+		label(for="salle-image-visible") Photo
+		input#salle-image-visible(type="text", name="salleimagevisible")
+		input#bt-salle-edit.btn.btn-primary(type="button", value="Parcourir")
+		img(src="{image}")
+	div.input-file-hidden
+		input#salle-image(type="file", name="salleimage")
+	br					
+	label(for="salle-capacite") Capacité
+	input#salle-capacite(type="text", name="sallecapacite")
+	br		
+	label(for="salle-categorie") Catégorie
+	input#salle-categorie(type="text", name="sallecategorie")
+	br			
+	div.align-center
+		input.bt-cancel.btn(type="button", name="bt-cancel", value="Annuler")
+		input#bt-salle-edit.btn.btn-primary(type="submit", name="bt-salle-edit", value="{type}")			

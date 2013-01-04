@@ -1,0 +1,17 @@
+- if (salles[0] != null)
+	- each salle in salles		
+		div.annonce-bloc
+			h2 #{salle.title}
+			img.left-block(src="../images/vignettes/#{salle.image}")
+			p.italic.text Du {Start date} au {End Date}
+				br
+				span.normal #{salle.ville} - #{salle.cp}
+				br
+				{prix} euros* pour #{salle.capacite} personnes
+				p.text #{salle.description}
+				a(href="salles/#{salle.sallereference}") >Voir la fiche détaillée
+				br
+				a(href="/connexion/{id-produit}") >Connectez-vous pour l'ajouter au panier
+- else 
+	div.annonce-bloc 
+		p Pas de produit à afficher

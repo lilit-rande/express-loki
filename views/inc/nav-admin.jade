@@ -1,0 +1,38 @@
+div.row
+	div.span12
+		ul.nav.nav-pills
+			li.dropdown
+				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des salles
+					b.caret
+				ul.dropdown-menu
+					li
+						a(href="/salles/new") Ajouter une salle
+					li
+						a(href="/salles") Afficher les salles
+			li.dropdown
+				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des produits
+					b.caret
+				ul.dropdown-menu
+					li
+						a(href="/produits/new") Ajouter un produit
+					li
+						a(href="/produits") Afficher les produits
+			li
+				a(href="/") Gestion des membres
+			li
+				a(href="/") Gestion des commandes
+		ul.nav.nav-pills
+			li
+				a(href="/") Gestion des avis
+			li.dropdown
+				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion codes promo
+					b.caret
+				ul.dropdown-menu
+					li
+						a(href="/promotions/new") Ajouter un code promo
+					li
+						a(href="/promotions") Afficher les codes promo
+			li
+				a(href="/") Statistiques
+			li
+				a(href="/") Envoyer la newsletter

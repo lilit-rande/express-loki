@@ -1,0 +1,26 @@
+-if (salle != null)
+	h2 Modifier la salle
+	form.form-salle-edit(method="post", action="salles/#{salle.sallereference}", name="form-salle-edit")
+		!=partial("inc/form-salle", { type: "Modifier", image: "../../images/vignettes/" + salle.image})		
+	script
+		var data = {
+			"sallereference":"#{salle.sallereference}",
+			"salletitle": "#{salle.title}",
+			"salledescription": "#{salle.description}",
+			"sallepays": "#{salle.pays}",
+			"salleville": "#{salle.ville}",
+			"salleadresse": "#{salle.adresse}",
+			"sallecp": "#{salle.cp}",
+			"salleimagevisible": "#{salle.image}",
+			"sallecapacite": "#{salle.capacite}",
+			"sallecategorie": "#{salle.categorie}"
+		};
+		
+		$('.form-salle-edit').autofill(data);
+		
+		
+-else 
+	div.row
+		div.span12					
+			div.error-message
+				span Cette salle n'existe pas !

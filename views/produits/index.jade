@@ -1,0 +1,32 @@
+h1=title
+div.background
+div.produit-edit.popup.draggable
+div.delete.popup.draggable
+div.one-column
+	- if (salle != null)
+		table(broder="1").center-block
+			tr
+				th Date d'arrivée
+				th Date de départ
+				th Salle
+				th Image salle
+				th Promotion
+				th Réduction
+				th Prix
+				th Etat
+				th Supprimer
+				- each produit in docs
+					tr.model-edit-link(data-id="#{produit.produitreference}", data-model="produit")
+						td #{produit.arrive.toDateString()} #{produit.arrive.toLocaleTimeString()}
+						td #{produit.depart.toDateString()} #{produit.depart.toLocaleTimeString()}
+						td #{salle.title}
+						td image
+						td #{produit.promotionreference}
+						td promo
+						td #{produit.prix}
+						td #{produit.etat}
+						td.model-delete-link
+							input( type="button", value="X")
+	-else
+		p.error-message(colspan="3") Pas de code produit à afficher
+
