@@ -170,7 +170,7 @@ exports.delete = function(req, res, model) {
 		if (err) {
 			res.render('error', {title: "Echec", body: err});
 		} else {
-			res.partial('generals/deletePopup', {title: "Suppression d'" + articleIndef + modelLower, type: modelLower, id: reference, type_datas: doc});
+			res.render('generals/deletePopup', {title: "Suppression d'" + articleIndef + modelLower, type: modelLower, id: reference, type_datas: doc});
 		}
 	});
 };
@@ -258,9 +258,8 @@ exports.show = function(req, res, model) {
 			modelLower = model.toLowerCase(),
 			articleDef = modelDetails.articleDef
 		;
-	var modelObj = {};
-	modelObj[refName] = ref;
-	Model.findOne(modelObj, function(err, doc){	
+		
+	Model.findOne({'_id': ref}, function(err, doc){	
 		if(err) {
 			throw err;
 		} else {

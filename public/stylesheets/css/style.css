@@ -536,6 +536,9 @@ nav .nav-user {
   margin-top: 0;
   padding-left: 10px;
 }
+#main h2 a {
+  font-size: inherit;
+}
 #main .titre {
   font-weight: bold;
   color: #e78626;

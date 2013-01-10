@@ -7,11 +7,10 @@ var mongoose = require('mongoose'),
 var produitSchema = new Schema({
 	arrive: {type: Date, require: true, trim: true},
 	depart: {type: Date, require: true, trim: true},
-	sallereference: {type: ObjectId, ref: 'Salles'},	
-	promotionreference: {type: ObjectId, ref: 'Promotions'},
+	salle_id: {type: ObjectId, ref: 'Salles'},	
+	promotion_id: {type: ObjectId, ref: 'Promotions'},
 	prix: {type: Number, require: true, trim: true},
 	etat: {type: Number, require: true, trim: true},
-
 });
 /*
 http://mongoosejs.com/docs/populate.html

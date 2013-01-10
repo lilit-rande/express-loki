@@ -1,20 +1,23 @@
-h1=title
-div.background
-div.promotion-edit.popup.draggable
-div.delete.popup.draggable
-div.one-column
-	- if (docs != null)
-		table(broder="1").center-block
-			tr
-				th Code Promotion
-				th Réduction
-				th Supprimer
-				- each promo in docs
-					tr(data-id="#{promo.promotionreference}", data-model="promotion")
-						td.model-edit-link #{promo.code}
-						td #{promo.reduction}
-						td.model-delete-link
-							input( type="button", value="X")
-	-else
-		p.error-message(colspan="3") Pas de code promotion à afficher
+extends ../layout
 
+block content
+	h1=title
+	div.background
+	div.promotion-edit.popup.draggable
+	div.delete.popup.draggable
+	div.one-column
+		- if (docs != null)
+			table(broder="1").center-block
+				tr
+					th Code Promotion
+					th Réduction
+					th Supprimer
+					- each promo in docs
+						tr(data-id="#{promo._id}", data-model="promotion")
+							td.model-edit-link #{promo.code}
+							td #{promo.reduction}
+							td.model-delete-link
+								input( type="button", value="X")
+		-else
+			p.error-message(colspan="3") Pas de code promotion à afficher
+	

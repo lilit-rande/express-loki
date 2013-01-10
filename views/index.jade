@@ -1,41 +1,44 @@
-div.row
-	div.span12
-		h1= title
-div.two-columns
+extends layout
+
+block content
 	div.row
-		div.span6
-			div.background-style
-				p.text Pour vos réunions, vos séminaires, vos formations, Lokisalle vous ouvre des espaces "centres d’affaires" dédiés spécialement aux entreprises.
-			
-				p.text
-					span.underlined-text Accueil personnalisé 
-					span de vos visiteurs, équipements et aménagements sur mesure des salles de réunion ou salles de formation, services de confort pour les pauses et repas… La qualité des espaces et le professionnalisme des équipes vous assurent la réussite de vos évènements.
-			
-				p.text Tous les centres d’affaires Lokisalle sont situés à des adresses stratégiques, 
-					span.underlined-text valorisantes 
-					span pour votre entreprise et facile d’accès.
-			
-				p.text Sur simple réservation, Lokisalle vous prépare une salle de réunion adaptée au nombre de vos participants. Les équipes assurent la mise en place de votre salle et appliquent vos consignes pour l’accueil de vos visiteurs.
-			
-				p.text Vous disposez chez Lokisalle des conditions optimales au bon déroulement de vos réunions avec des 
-					span.underlined-text équipements sur mesure : 
-					span ligne téléphonique, Internet haut débit, paperboard, rétroprojecteur, vidéoprojecteur, conférence téléphonique et visioconférence…
-			
-				p.text 
-					span.underlined-text Pour votre confort, 
-					span nos équipes organisent : pauses et collations, service de plateaux-repas ou vous réservent un restaurant à proximité.
-			
-				p.text A partir d’une heure, pour une 1/2 journée ou plus, l’ensemble des centres d’affaires Lokisalle tient à votre disposition des bureaux équipés disponibles sur simple réservation.
-			
-				p.text Idéal pour recevoir vos visiteurs ou travailler partout en France, dans un espace professionnel avec accès à tous les services sur mesure : espace bureautique, ligne téléphonique, accès Internet Haut-Débit, visioconférence…
-			
-				p.text Chez Lokisalle, vous êtes dans un 
-					span.underlined-text espace professionnel 
-					span pour les entreprises, vous avez accès aux services exclusifs d’un centre d’affaires : accueil téléphonique personnalisé, secrétariat bilingue ou trilingue, photocopie, fax…
-			
-				p.text Les centres d’affaires Lokisalle sont toujours implantés de manière idéale pour recevoir des visiteurs : adresses prestigieuses, accès transports, parking…	
-		div.span6
-			div.row
-				div.span6
-					h2.title.background-style Nos trois dernières offres
-					!=partial('salles/new-products')
+		div.span12
+			h1= title
+	div.two-columns
+		div.row
+			div.span6
+				div.background-style
+					p.text Pour vos réunions, vos séminaires, vos formations, Lokisalle vous ouvre des espaces "centres d’affaires" dédiés spécialement aux entreprises.
+				
+					p.text
+						span.underlined-text Accueil personnalisé 
+						span de vos visiteurs, équipements et aménagements sur mesure des salles de réunion ou salles de formation, services de confort pour les pauses et repas… La qualité des espaces et le professionnalisme des équipes vous assurent la réussite de vos évènements.
+				
+					p.text Tous les centres d’affaires Lokisalle sont situés à des adresses stratégiques, 
+						span.underlined-text valorisantes 
+						span pour votre entreprise et facile d’accès.
+				
+					p.text Sur simple réservation, Lokisalle vous prépare une salle de réunion adaptée au nombre de vos participants. Les équipes assurent la mise en place de votre salle et appliquent vos consignes pour l’accueil de vos visiteurs.
+				
+					p.text Vous disposez chez Lokisalle des conditions optimales au bon déroulement de vos réunions avec des 
+						span.underlined-text équipements sur mesure : 
+						span ligne téléphonique, Internet haut débit, paperboard, rétroprojecteur, vidéoprojecteur, conférence téléphonique et visioconférence…
+				
+					p.text 
+						span.underlined-text Pour votre confort, 
+						span nos équipes organisent : pauses et collations, service de plateaux-repas ou vous réservent un restaurant à proximité.
+				
+					p.text A partir d’une heure, pour une 1/2 journée ou plus, l’ensemble des centres d’affaires Lokisalle tient à votre disposition des bureaux équipés disponibles sur simple réservation.
+				
+					p.text Idéal pour recevoir vos visiteurs ou travailler partout en France, dans un espace professionnel avec accès à tous les services sur mesure : espace bureautique, ligne téléphonique, accès Internet Haut-Débit, visioconférence…
+				
+					p.text Chez Lokisalle, vous êtes dans un 
+						span.underlined-text espace professionnel 
+						span pour les entreprises, vous avez accès aux services exclusifs d’un centre d’affaires : accueil téléphonique personnalisé, secrétariat bilingue ou trilingue, photocopie, fax…
+				
+					p.text Les centres d’affaires Lokisalle sont toujours implantés de manière idéale pour recevoir des visiteurs : adresses prestigieuses, accès transports, parking…	
+			div.span6
+				div.row
+					div.span6
+						h2.title.background-style Nos trois dernières offres
+						include salles/new-products

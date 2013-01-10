@@ -20,7 +20,8 @@ html
 					include inc/nav-user
 				div.nav-admin
 					include inc/nav-admin
-			section#main!= body
+			section#main
+				block content
 			footer
 				include inc/footer
 		script(src="/js/vendor/jquery-1.8.0.min.js")

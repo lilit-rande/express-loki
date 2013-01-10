@@ -1,8 +1,16 @@
 var Salle = require('../models/salles.js'),
 	Produit = require('../models/produits.js');
 
-var salles = new Salle([{ 
-		"_id" : 1, 
+var produitSchema = new Schema({
+	arrive: {type: Date, require: true, trim: true},
+	depart: {type: Date, require: true, trim: true},
+	salle_id: {type: ObjectId, ref: 'Salles'},	
+	promotion_id: {type: ObjectId, ref: 'Promotions'},
+	prix: {type: Number, require: true, trim: true},
+	etat: {type: Number, require: true, trim: true},
+	
+});
+var s20 = new Salle({  
 		"title" : "Salle Langlois", 
 		"pays" : "France",
 		"ville" : "Paris",
@@ -12,9 +20,22 @@ var salles = new Salle([{
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_20.jpg" 
-	},
+	});
+
+s20.save(function(err){
+	if (err) return handleError(err);
+	
+	var produit = new Produit({
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": s20._id,
+		"prix": 1000,
+		"etat": 1
+	});
+});
+	
+s = [
 	{ 
-		"_id" : 2, 
 		"title" : "Salle Grimaud", 
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -26,7 +47,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_19.jpg" 
 	},
 	{ 
-		"_id" :3, 
 		"title" : "Salle Jouvenet", 
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -38,7 +58,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_18.jpg" 
 	},
 	{ 
-		"_id" : 4, 
 		"title" : "Salle Latour", 
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -50,7 +69,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_17.jpg" 
 	},
 	{ 
-		"_id" : 5, 
 		"title" : "Salle Demanche", 
 		"pays" : "France", 
 		"ville" : "Marseille", 
@@ -61,8 +79,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_16.jpg" 
 	},
-	{ 
-		"_id" : 6, 
+	{
 		"title" : "Salle Delaroche", 
 		"pays" : "France", 
 		"ville" : "Paris", 
@@ -73,8 +90,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_15.jpg" 
 	},
-	{ 
-		"_id" : 7, 
+	{
 		"title" : "Salle Delacoix", 
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -85,8 +101,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_14.jpg" 
 	},
-	{ 
-		"_id" : 8, 
+	{
 		"title" : "Salle Daubigny", 
 		"pays" : "France", 
 		"ville" : "Paris", 
@@ -97,8 +112,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_13.jpg"
 	},
-	{ 
-		"_id" : 9, 
+	{
 		"title" : "Salle Couture", 
 		"pays" : "France", 
 		"ville" : "Marseille", 
@@ -109,8 +123,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_12.jpg"
 	},
-	{ 
-		"_id" : 10, 
+	{
 		"title" : "Salle Clesinger", 
 		"pays" : "France", 
 		"ville" : "Paris", 
@@ -121,8 +134,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
 		"image" : "vignette_ph_11.jpg" 
 	},
-	{ 
-		"_id" : 11, 
+	{
 		"title" : "Salle Cezanne", 
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -133,8 +145,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_10.jpg"
 	},
-	{ 
-		"_id" : 12,
+	{
 		"title" : "Salle Carriere",
 		"pays" : "France",
 		"ville" : "Marseille",
@@ -146,7 +157,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_9.jpg"
 	},
 	{
-		"_id" : 13,
 		"title" : "Salle Cabat",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -157,8 +167,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_8.jpg" 
 	},
-	{ 
-		"_id" : 14,
+	{
 		"title" : "Salle Ballerat",
 		"pays" : "France", 
 		"ville" : "Lyon", 
@@ -169,8 +178,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_7.jpg" 
 	},
-	{ 
-		"_id" :15, 
+	{
 		"title" : "Salle Victoire", 
 		"pays" : "France",
 		"ville" : "Marseille",
@@ -181,8 +189,7 @@ var salles = new Salle([{
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_6.jpg"
 	},
-	{ 
-		"_id" : 16,
+	{
 		"title" : "Salle Ballerat Paris",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -194,7 +201,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_5.jpg"
 	},
 	{
-		"_id" : 17,
 		"title" : "Salle Balle",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -206,7 +212,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_4.jpg"
 	},
 	{
-		"_id" : 18,
 		"title" : "Salle Bardin",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -218,7 +223,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_3.jpg"
 	},
 	{
-		"_id" : 19,
 		"title" : "Salle Baron",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -230,7 +234,6 @@ var salles = new Salle([{
 		"image" : "vignette_ph_2.jpg"
 	},
 	{
-		"_id" : 20,
 		"title" : "Salle Duval",
 		"pays" : "France",
 		"ville" : "Paris",
@@ -240,7 +243,68 @@ var salles = new Salle([{
 		"categorie" : "réunion",
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_1.jpg"
-	}]);
+	}];
+	
+	
+p = [{
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": 3,
+		"prix": 1000,
+		"etat": 1
+	},
+	{
+		"arrive": new Date('Jan 31, 2020 09:00:00'),
+		"depart": new Date('Mar 01, 2020 18:00:00'),
+		"salle_id": 1,
+		"promotion_id": 1,
+		"prix": 600,
+		"etat": 0
+	},
+	{
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 14,
+		"promotion_id": null,
+		"prix": 500,
+		"etat": 1
+	},
+	{
+		"arrive": new Date('Dec 30, 2012 09:00:00'),
+		"depart": new Date('Dec 28, 2013 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": 7,
+		"prix": 500,
+		"etat": 0
+	},
+	{
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 08, 2020 18:00:00'),
+		"salle_id": 18,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
+	},
+	{
+		"arrive": new Date('May 31, 2012 09:00:00'),
+		"depart": new Date('Dec 01, 2012 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
+	},
+	{
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 2,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
+	},
+];
+	
+var salles = new Salle(s);
 
 /*	
 	salles.save(function(err){

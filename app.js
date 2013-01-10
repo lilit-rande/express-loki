@@ -22,7 +22,7 @@ mongoose.connection.on('open', function(err){
 	}
 });
 
-var app = module.exports = express.createServer();
+var app = module.exports = express();
 //var app = module.exports = express.createServer(form({ keepExtensions: true, uploadDir:'./uploads' }));
 
 // Configuration
@@ -148,4 +148,5 @@ app.get('/contact/*', function(req, res){
 
 //mongoose.connection.close();
 app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//http.createServer(app).listen(3000);
+console.log("Express server listening on port %d in %s mode", app.adress, app.settings.env);

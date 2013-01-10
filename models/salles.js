@@ -12,7 +12,8 @@ var salleSchema = new Schema({
 	capacite: Number,
 	categorie: {type: String, require: true, trim: true},
 	image: String,
-	description: String
+	description: String,
+	produits: [{ type: Schema.Types.ObjectId, ref: 'Produit' }]
 });
 
 

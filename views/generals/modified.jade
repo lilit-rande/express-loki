@@ -1,6 +1,8 @@
 // extends layout	//va chercher le fichier salles/layout.jade
+extends ../layout
 
-h1=title
-p.ok-message=body
-//
-	history.go(-1);
+block content
+	h1=title
+	p.ok-message=body
+	//
+		history.go(-1);

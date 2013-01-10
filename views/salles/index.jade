@@ -1,36 +1,40 @@
-h1=title
-div.background
-div.salle-edit.popup.draggable
-div.delete.popup.draggable
-div.one-column
-	- if (docs != null)
-		- each salle in docs
-			div.annonce-bloc(data-id="#{salle._id}", data-model="salle")
-				h2 #{salle.title}
-				img.left-block(src="../images/vignettes/#{salle.image}")
-				p 
-					span.titre Pays : 
-					span.valeur #{salle.pays}
-				p 
-					span.titre Ville : 
-					span.valeur #{salle.ville}
-				p 
-					span.titre Adresse : 
-					span.valeur #{salle.adresse}
-				p 
-					span.titre Code Postale : 
-					span.valeur #{salle.cp}
-				p 
-					span.titre Capacité : 
-					span.valeur #{salle.capacite}
-				p 
-					span.titre Catégorie : 
-					span.valeur #{salle.categorie}
-				p 
-					span.titre Description : 
-					span.valeur #{salle.description}
-				a.model-edit-link(href="") >Modifier
-				br
-				a.model-delete-link(href="") >Supprimer
-	-else 
-		p.error-message Pas de salle à afficher
+extends ../layout
+
+block content
+	h1=title
+	div.background
+	div.salle-edit.popup.draggable
+	div.delete.popup.draggable
+	div.one-column
+		- if (docs != null)
+			- each salle in docs
+				div.annonce-bloc(data-id="#{salle._id}", data-model="salle")
+					h2 
+						a(href="salles/#{salle._id}") #{salle.title}
+					img.left-block(src="../images/vignettes/#{salle.image}")
+					p 
+						span.titre Pays : 
+						span.valeur #{salle.pays}
+					p 
+						span.titre Ville : 
+						span.valeur #{salle.ville}
+					p 
+						span.titre Adresse : 
+						span.valeur #{salle.adresse}
+					p 
+						span.titre Code Postale : 
+						span.valeur #{salle.cp}
+					p 
+						span.titre Capacité : 
+						span.valeur #{salle.capacite}
+					p 
+						span.titre Catégorie : 
+						span.valeur #{salle.categorie}
+					p 
+						span.titre Description : 
+						span.valeur #{salle.description}
+					a.model-edit-link(href="") >Modifier
+					br
+					a.model-delete-link(href="") >Supprimer
+		-else 
+			p.error-message Pas de salle à afficher
