@@ -1,25 +1,5 @@
-// https://github.com/LearnBoost/mongoose/blob/master/test/model.ref.test.js#L1109
-var mongoose =require('mongoose');
-var Schema = mongoose.Schema;
-
-var promotionSchema = new Schema({
-	code: {type: String, require:true, trim:true, unique:true },
-	reduction: {type: Number, require: true, trim:true},
-	produits : [{type: Schema.Types.ObjectId, ref:'Produit'}]
-});
-
-var salleSchema = new Schema({
-	title: {type: String, require: true, trim: true},
-	adresse: {type: String, require: true, trim: true},
-	ville: {type: String, require: true, trim: true},
-	cp: {type: Number, require: true, trim: true},
-	pays: {type: String, require: true, trim: true},
-	capacite: Number,
-	categorie: {type: String, require: true, trim: true},
-	image: String,
-	description: String,
-	produits : [{type: Schema.Types.ObjectId, ref:'Produit'}]
-});
+var Salle = require('../models/salles.js'),
+	Produit = require('../models/produits.js');
 
 var produitSchema = new Schema({
 	arrive: {type: Date, require: true, trim: true},
@@ -28,51 +8,33 @@ var produitSchema = new Schema({
 	promotion_id: {type: ObjectId, ref: 'Promotions'},
 	prix: {type: Number, require: true, trim: true},
 	etat: {type: Number, require: true, trim: true},
-});
-
-var Salle = mongoose.model('Salles', salleSchema),
-	Produit = mongoose.model('Produits', produitSchema),
-	Promotion = mongoose.model('Promotions', promotionSchema);
 	
-Salle.create({  
-				"title" : "Salle Langlois", 
-				"pays" : "France",
-				"ville" : "Paris",
-				"adresse" : "10 rue Adresse",
-				"cp" : 75754, 
-				"capacite" : 50, 
-				"categorie" : "réunion", 
-				"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-				"image" : "vignette_ph_20.jpg"}, 
-				function(err, salle){
-					Promotion.create({
-										"code":"TK623R",
-										"reduction":"40"
-									}, 
-									function(err, promotion){
-										Produit.create({
-											"arrive": new Date('May 31, 2020 09:00:00'),
-											"depart": new Date('Dec 28, 2020 18:00:00'),
-											"prix": 1000,
-											"etat": 1
-										}, 
-										function(err, produit){
-											Produit
-												.findById(produit._id)
-												.populate('salle_id')
-												.exec(function(){
-													'salle_id':salle._id,
-													'promotion_id':promotion._id 
-												});
-									});
-				});
 });
+var s20 = new Salle({  
+		"title" : "Salle Langlois", 
+		"pays" : "France",
+		"ville" : "Paris",
+		"adresse" : "10 rue Adresse",
+		"cp" : 75754, 
+		"capacite" : 50, 
+		"categorie" : "réunion", 
+		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
+		"image" : "vignette_ph_20.jpg" 
+	});
 
-
-
-
-/*
-s = [,
+s20.save(function(err){
+	if (err) return handleError(err);
+	
+	var produit = new Produit({
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": s20._id,
+		"prix": 1000,
+		"etat": 1
+	});
+});
+	
+s = [
 	{ 
 		"title" : "Salle Grimaud", 
 		"pays" : "France", 
@@ -82,7 +44,7 @@ s = [,
 		"capacite" : 60, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_19.jpg"
+		"image" : "vignette_ph_19.jpg" 
 	},
 	{ 
 		"title" : "Salle Jouvenet", 
@@ -93,7 +55,7 @@ s = [,
 		"capacite" : 30, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_18.jpg"
+		"image" : "vignette_ph_18.jpg" 
 	},
 	{ 
 		"title" : "Salle Latour", 
@@ -104,7 +66,7 @@ s = [,
 		"capacite" : 20, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_17.jpg"
+		"image" : "vignette_ph_17.jpg" 
 	},
 	{ 
 		"title" : "Salle Demanche", 
@@ -115,7 +77,7 @@ s = [,
 		"capacite" : 20, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_16.jpg"
+		"image" : "vignette_ph_16.jpg" 
 	},
 	{
 		"title" : "Salle Delaroche", 
@@ -126,7 +88,7 @@ s = [,
 		"capacite" : 20, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_15.jpg"
+		"image" : "vignette_ph_15.jpg" 
 	},
 	{
 		"title" : "Salle Delacoix", 
@@ -137,7 +99,7 @@ s = [,
 		"capacite" : 20, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_14.jpg"
+		"image" : "vignette_ph_14.jpg" 
 	},
 	{
 		"title" : "Salle Daubigny", 
@@ -170,7 +132,7 @@ s = [,
 		"capacite" : 45, 
 		"categorie" : "réunion", 
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi", 
-		"image" : "vignette_ph_11.jpg"
+		"image" : "vignette_ph_11.jpg" 
 	},
 	{
 		"title" : "Salle Cezanne", 
@@ -203,7 +165,7 @@ s = [,
 		"capacite" : 25,
 		"categorie" : "réunion",
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
-		"image" : "vignette_ph_8.jpg"
+		"image" : "vignette_ph_8.jpg" 
 	},
 	{
 		"title" : "Salle Ballerat",
@@ -214,7 +176,7 @@ s = [,
 		"capacite" : 30,
 		"categorie" : "réunion",
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
-		"image" : "vignette_ph_7.jpg"
+		"image" : "vignette_ph_7.jpg" 
 	},
 	{
 		"title" : "Salle Victoire", 
@@ -282,33 +244,73 @@ s = [,
 		"description" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
 		"image" : "vignette_ph_1.jpg"
 	}];
-	p = [{
-		"code":"AF689H",
-		"reduction":"80"
+	
+	
+p = [{
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": 3,
+		"prix": 1000,
+		"etat": 1
 	},
 	{
-		"code":"DG567M",
-		"reduction":"90"
+		"arrive": new Date('Jan 31, 2020 09:00:00'),
+		"depart": new Date('Mar 01, 2020 18:00:00'),
+		"salle_id": 1,
+		"promotion_id": 1,
+		"prix": 600,
+		"etat": 0
 	},
 	{
-		"code":"TK623R",
-		"reduction":"40"
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 14,
+		"promotion_id": null,
+		"prix": 500,
+		"etat": 1
 	},
 	{
-		"code":"ZE098T",
-		"reduction":"20"
+		"arrive": new Date('Dec 30, 2012 09:00:00'),
+		"depart": new Date('Dec 28, 2013 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": 7,
+		"prix": 500,
+		"etat": 0
 	},
 	{
-		"code":"HJ456Y",
-		"reduction":"50"
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 08, 2020 18:00:00'),
+		"salle_id": 18,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
 	},
 	{
-		"code":"KL214J",
-		"reduction":"60"
+		"arrive": new Date('May 31, 2012 09:00:00'),
+		"depart": new Date('Dec 01, 2012 18:00:00'),
+		"salle_id": 20,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
 	},
 	{
-		"code":"MP705L",
-		"reduction":"20"
-	}
+		"arrive": new Date('May 31, 2020 09:00:00'),
+		"depart": new Date('Dec 28, 2020 18:00:00'),
+		"salle_id": 2,
+		"promotion_id": null,
+		"prix": 1000,
+		"etat": 1
+	},
 ];
-	*/
+	
+var salles = new Salle(s);
+
+/*	
+	salles.save(function(err){
+		if (err) return handleError(err);
+		
+		
+	});
+	
+*/
