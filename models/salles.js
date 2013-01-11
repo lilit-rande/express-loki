@@ -13,29 +13,8 @@ var salleSchema = new Schema({
 	categorie: {type: String, require: true, trim: true},
 	image: String,
 	description: String,
-	produits: [{ type: Schema.Types.ObjectId, ref: 'Produit' }]
+	produits : [{type: Schema.Types.ObjectId, ref:'Produits'}],
+	avis : [{type: Schema.Types.ObjectId, ref:'Avis'}]
 });
-
-
-/*
-http://mongoosejs.com/docs/populate.html
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-  
-var PersonSchema = new Schema({
-  name    : String,
-  age     : Number,
-  stories : [{ type: Schema.Types.ObjectId, ref: 'Story' }]
-});
-
-var StorySchema = new Schema({
-  _creator : { type: Schema.Types.ObjectId, ref: 'Person' },
-  title    : String,
-  fans     : [{ type: Schema.Types.ObjectId, ref: 'Person' }]
-});
-
-var Story  = mongoose.model('Story', StorySchema);
-var Person = mongoose.model('Person', PersonSchema);
-*/
 
 module.exports = mongoose.model('Salles', salleSchema);

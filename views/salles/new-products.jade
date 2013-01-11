@@ -1,10 +1,9 @@
-extends ../layout
-
 block content
 	- if (salles[0] != null)
 		- each salle in salles		
 			div.annonce-bloc
-				h2 #{salle.title}
+				a(href="salles/#{salle._id}")
+					h2 #{salle.title}
 				img.left-block(src="../images/vignettes/#{salle.image}")
 				p.italic.text Du {Start date} au {End Date}
 					br
@@ -12,7 +11,7 @@ block content
 					br
 					{prix} euros* pour #{salle.capacite} personnes
 					p.text #{salle.description}
-					a(href="salles/#{salle.sallereference}") >Voir la fiche détaillée
+					a(href="salles/#{salle._id}") >Voir la fiche détaillée
 					br
 					a(href="/connexion/{id-produit}") >Connectez-vous pour l'ajouter au panier
 	- else 

@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
 	ObjectId = Schema.ObjectId;
 
 //create Promotion model
-var promoSchema = new Schema({
+var promotionSchema = new Schema({
 	code: {type: String, require:true, trim:true, unique:true },
 	reduction: {type: Number, require: true, trim:true},
-	produits: [{ type: Schema.Types.ObjectId, ref: 'Produit' }]
+	produits : [{type: Schema.Types.ObjectId, ref:'Produits'}]
 });
 
-module.exports = mongoose.model('Promotions', promoSchema);
+module.exports = mongoose.model('Promotions', promotionSchema);

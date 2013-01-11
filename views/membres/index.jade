@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+	h1=title
+	div.background
+	div.promotion-edit.popup.draggable
+	div.delete.popup.draggable
+	div.one-column
+		- if (docs != null)
+			table(broder="1").center-block
+				tr
+					th Pseudo
+					th Mot de passe
+					th Nom
+					th Prénom
+					th Email
+					th Sexe
+					th Adresse
+					th Code postale
+					th Ville
+					th Statut
+					th Supprimer
+					- each member in docs
+						tr.model-edit-link(data-id="#{member._id}", data-model="membre")
+							td #{member.pseudo}
+							td #{member.mdp}
+							td #{member.nom}
+							td #{member.prenom}
+							td #{member.email}
+							td #{member.sexe}
+							td #{member.adresse}
+							td #{member.cp}
+							td #{member.ville}
+							td #{member.statut}
+							td.model-delete-link
+								input( type="button", value="X")
+		-else
+			p.error-message(colspan="3") Pas de code promotion à afficher

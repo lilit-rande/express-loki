@@ -17,8 +17,14 @@ div.row
 						a(href="/produits/new") Ajouter un produit
 					li
 						a(href="/produits") Afficher les produits
-			li
-				a(href="/") Gestion des membres
+			li.dropdown
+				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des membres
+					b.caret
+				ul.dropdown-menu
+					li
+						a(href="/membres/new") Ajouter un membre
+					li
+						a(href="/membres") Afficher les membres
 			li
 				a(href="/") Gestion des commandes
 		ul.nav.nav-pills

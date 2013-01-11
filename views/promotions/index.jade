@@ -13,8 +13,8 @@ block content
 					th Réduction
 					th Supprimer
 					- each promo in docs
-						tr(data-id="#{promo._id}", data-model="promotion")
-							td.model-edit-link #{promo.code}
+						tr.model-edit-link(data-id="#{promo._id}", data-model="promotion")
+							td #{promo.code}
 							td #{promo.reduction}
 							td.model-delete-link
 								input( type="button", value="X")

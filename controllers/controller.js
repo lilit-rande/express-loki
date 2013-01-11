@@ -88,18 +88,42 @@ exports.index = function(req, res, model){
 //		refName = modelDetails.modelReferenceName,
 		foreignModels = new Array();
 	var obj = {};
-	Model.find({}, function(err, docs) {
+	
+	if (modelName == 'produits') { 	
+	
+		console.log(modelName);
+		
+		
+		Model
+		.find({})
+		.populate('salle_id')
+		.populate('promotion_id')
+		.exec(function(err, docs) {
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
-		
-		//http://fr.slideshare.net/kbanker/mongodb-schema-design
-		
+			console.log(docs);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 		}
 	});
+	
+	
+	} else {	
+		Model.find({}, function(err, docs) {
+			if(err) {
+				throw err;
+			} else if( (docs) && (docs.length) ) {
+			
+			//http://fr.slideshare.net/kbanker/mongodb-schema-design
+			//	console.log(docs);
+				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+			} else {
+				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
+			}
+		});
+	}
 }
 
 //display new model form - route : /models/new 

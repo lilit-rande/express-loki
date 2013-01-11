@@ -6,7 +6,7 @@ block content
 	div.produit-edit.popup.draggable
 	div.delete.popup.draggable
 	div.one-column
-		- if (salle != null)
+		- if (docs != null)
 			table(broder="1").center-block
 				tr
 					th Date d'arrivée
@@ -22,8 +22,9 @@ block content
 						tr.model-edit-link(data-id="#{produit.produitreference}", data-model="produit")
 							td #{produit.arrive.toDateString()} #{produit.arrive.toLocaleTimeString()}
 							td #{produit.depart.toDateString()} #{produit.depart.toLocaleTimeString()}
-							td #{salle.title}
-							td image
+							td #{produit.salle_id.title}
+							td 
+								img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 							td #{produit.promotionreference}
 							td promo
 							td #{produit.prix}
