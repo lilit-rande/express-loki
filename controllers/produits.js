@@ -2,7 +2,8 @@
 var superController = require('../controllers/controller.js'),
 	model = 'Produit',	
 	Salle = require('../models/salles.js'),
-	Produit = require('../models/produits.js');
+	Produits = require('../models/produits.js'),
+	Promotion = require('../models/promotions.js');
 
 //index listing of produit at :  /produits/
 // AFFICHAGE OK. TODO VOIR POUR LES CLES ETRANGERES

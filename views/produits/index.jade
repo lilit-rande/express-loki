@@ -19,14 +19,22 @@ block content
 					th Etat
 					th Supprimer
 					- each produit in docs
-						tr.model-edit-link(data-id="#{produit.produitreference}", data-model="produit")
+						tr.model-edit-link(data-id="#{produit._id}", data-model="produit")
 							td #{produit.arrive.toDateString()} #{produit.arrive.toLocaleTimeString()}
 							td #{produit.depart.toDateString()} #{produit.depart.toLocaleTimeString()}
-							td #{produit.salle_id.title}
-							td 
-								img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
-							td #{produit.promotionreference}
-							td promo
+							- if (produit.salle_id != null)
+								td #{produit.salle_id.title}
+								td 
+									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
+							- else
+								td
+								td
+							- if (produit.promotion_id != null) 
+								td #{produit.promotion_id.code}
+								td #{produit.promotion_id.reduction}
+							- else
+								td
+								td
 							td #{produit.prix}
 							td #{produit.etat}
 							td.model-delete-link

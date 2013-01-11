@@ -13,17 +13,31 @@ function inArray(needle, arr) {
 	return false;
 }
 
+function getForeignModelNames(docs, model) {
+	var foreignModels = new Array();
+	for ( d in docs[0]) {
+		if ( d.indexOf("_id") !== -1 ) {
+			var collectionName = d.substring(0, d.indexOf("_id"));
+			if ((collectionName != model) && (collectionName != '_') && (collectionName != '_')) {
+				foreignModels.push(collectionName);
+			}
+		}
+	}
+	return foreignModels;
+}
+
 function getModelDetails(model) {
 	var femModels = ['salles','promotions', 'commandes'],
-		mascModels = ['produits', 'membres', 'avis'];
-	
-	var modelFile = '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
+		mascModels = ['produits', 'membres', 'avis'],
+//		modelsWithForeignKeys = ['produits', 'commandes', 'avis'],
+		modelFile = '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
 		modelName = model.toLowerCase() + 's',						// ex.: salles
 //		modelReferenceName = model.toLowerCase()+'reference',			// ex.: sallereference
 		modelGenre = '',
 		suffix = '',
 		articleDef = 'le ',
-		articleIndef = 'un ';
+		articleIndef = 'un ',
+		hasForeignKey = false;
 				
 		if (inArray(modelName, femModels)) {
 			modelGenre = 'f';
@@ -33,8 +47,20 @@ function getModelDetails(model) {
 		} else if (inArray(modelName, mascModels)) {
 			modelGenre = 'm';
 		}
-	
-	return {'modelFile': modelFile, 'modelName': modelName, 'modelGenre': modelGenre, 'articleDef': articleDef, 'articleIndef': articleIndef, 'suffix': suffix};
+		/*
+		if (inArray(modelName, modelsWithForeignKeys)) {
+			hasForeignKey = true;
+			getForeignModelNames(, )
+		}
+	*/
+	return {
+				'modelFile': modelFile, 
+				'modelName': modelName, 
+				'modelGenre': modelGenre, 
+				'articleDef': articleDef, 
+				'articleIndef': articleIndef, 
+				'suffix': suffix
+			};
 }
 
 function firstToUpper(str) {
@@ -57,18 +83,6 @@ function personiliseTpl(tpl,obj) {
 	return tpl;
 }
 
-function getForeignModelNames(docs, model) {
-	var foreignModels = new Array();
-	for ( d in docs[0]) {
-		if ( d.indexOf("reference") !== -1 ) {
-			var collectionName = d.substring(0, d.indexOf("reference"));
-			if (collectionName != model) {
-				foreignModels.push(collectionName);
-			}
-		}
-	}
-	return foreignModels;
-}
 
 function getModelInfo(model, ref, callback) {
 	
@@ -84,9 +98,10 @@ exports.index = function(req, res, model){
 
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),		// voir comment mieux factoriser pour faire require qu'une fois dans ce fichier
-		modelName = modelDetails.modelName,
+		modelName = modelDetails.modelName
 //		refName = modelDetails.modelReferenceName,
-		foreignModels = new Array();
+	//	foreignModels = new Array()
+		
 	var obj = {};
 	
 	if (modelName == 'produits') { 	
@@ -95,14 +110,13 @@ exports.index = function(req, res, model){
 		
 		
 		Model
-		.find({})
+		.find()
 		.populate('salle_id')
 		.populate('promotion_id')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
-			console.log(docs);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
@@ -110,20 +124,20 @@ exports.index = function(req, res, model){
 	});
 	
 	
-	} else {	
+	} else {
 		Model.find({}, function(err, docs) {
 			if(err) {
 				throw err;
 			} else if( (docs) && (docs.length) ) {
-			
-			//http://fr.slideshare.net/kbanker/mongodb-schema-design
-			//	console.log(docs);
+		//		console.log(docs);				
+				console.log(foreignModels);
+				
 				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 			} else {
 				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 			}
 		});
-	}
+	}	//fin else
 }
 
 //display new model form - route : /models/new 
