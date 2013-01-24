@@ -17,9 +17,11 @@ form.form-produit-edit(method="post", action="{action}", name="form-produit-edit
 	label(for="prix") Prix
 	input#prix(type="text", name="produitprix")
 	label.petit-label €
+	label(for="etat") Etat
+	input#prix(type="text", name="produitetat")
 	label.choix(for="promotion-reference") Choisir une promotion parmi les promotions existantes : 
 	br
-	select#select-promotion(name="produitpromotionreference")
+	select#select-promotion(name="promotion_id")
 		option
 	br			
 	div.align-center

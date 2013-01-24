@@ -94,22 +94,16 @@ $(document).ready(function() {
 						for (var salle=0; salle <salles.length; salle++) {
 							var s = salles[salle];
 							var prod = s.produits;
-							for ( p in prod) {
-								console.log(prod[p]);
+							
+							var $option = $("<option>")
+								.attr("value", s._id)
+								.text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays);
+								
+							if ($.inArray(thisId, s.produits) != -1) {
+								$option.attr("selected", "selected");
 							}
-							console.log(thisId);
-							if ( $.inArray(thisId, prod) != -1 ) {
-								console.log(thisId);
-							}
-//							console.log(prod);
-							selectSalle.append($("<option></option>")
-										.attr({"value": s._id, "selected": selected})
-										.text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays));
 							
-							
-							
-							
-//							selectSalle.append($("<option></option>").attr("value", s._id).text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays));
+							selectSalle.append($option);
 						}
 					}		
 					if (data.foreignModels.promotion) {
@@ -119,7 +113,16 @@ $(document).ready(function() {
 					
 						for (var promo=0; promo < promotion.length; promo++) {
 							var p = promotion[promo];
-							selectPromo.append($("<option></option>").attr("value", p._id).text(p.code + ' - ' + p.reduction));
+							console.log(p);
+							var $option = $("<option>")
+								.attr("value", p._id)
+								.text(p.code + ' - ' + p.reduction);
+								
+							if ($.inArray(thisId, p.produits) != -1) {
+								$option.attr("selected", "selected");
+							}
+							
+							selectPromo.append($option);
 						}
 					}	
 				}	

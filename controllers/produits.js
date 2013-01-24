@@ -51,37 +51,64 @@ function renderTpl(tplName, tplBody){
 exports.edit = function(req, res) {
 	imagePath = '';
 	superController.edit(req, res, model, imagePath);
-/*	
-	var
-	ref = req.params.id,
-	content =  renderTpl('views/forms/form-produit.jade', req.body); 
-	
-var modelObj = {};
-	modelObj[ refName ] = ref;
-Model.findOne(modelObj, function(err, doc){
-	if (err) {
-		res.render('error', {title: "Echec de modification", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
-	} else {
-		var options = {'title':'Modifier produit', 'action': 'produit/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
-		html = personiliseTpl(content, options);
-		res.data = doc;
-		res.html = html;
-		res.send({data: doc, html: html});
-	}
-});*/
 };
 
 //update a produit
 exports.update = function(req, res) {
-	var promotion = {
-		code: req.body.promotioncode,
-		reduction: req.body.promotionreduction
+		
+	produit = {
+		arrive: req.body.produitarrive,
+		depart: req.body.produitdepart,
+		salle_id: req.body.salle_id,	
+		promotion_id: (req.body.promotion_id)?req.body.promotion_id:null,
+		prix: req.body.produitprix,
+		etat: req.body.produitetat,
 	};
-
-	superController.update(req, res, model, promotion);
+	superController.update(req, res, model, produit);
 };
 
 //show a produit
 exports.show = function(req, res) {
 	superController.show(req, res, model);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

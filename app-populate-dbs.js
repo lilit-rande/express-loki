@@ -5,8 +5,8 @@ var Salle = require('./models/salles.js'),
 	Promotion = require('./models/promotions.js'),
 	Membre = require('./models/membres.js'),
 	Avis = require('./models/avis.js'),
-	Commande = require('./models/commandes.js'),
-	;
+	Commande = require('./models/commandes.js');
+	
 mongoose.connect('mongodb://localhost/lokisalle');
 
 mongoose.connection.on('open', function(err){

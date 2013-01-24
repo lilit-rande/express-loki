@@ -7,8 +7,8 @@ var mongoose = require('mongoose'),
 var produitSchema = new Schema({
 	arrive: {type: Date, require: true, trim: true},
 	depart: {type: Date, require: true, trim: true},
-	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null},	
-	promotion_id: {type: Schema.Types.ObjectId, ref: 'Promotions', default: null},
+	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null, require: true},	
+	promotion_id: {type: Schema.Types.ObjectId, ref: 'Promotions', default: null, require: false},
 	prix: {type: Number, require: true, trim: true},
 	etat: {type: Number, require: true, trim: true},
 });

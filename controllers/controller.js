@@ -380,7 +380,6 @@ exports.edit = function(req, res, model, imagePath) {
 					res.send({data: doc, html: html, foreignModels: foreignModels});
 				});	//end async parallel
 			} else {
-//				console.log("doc" + doc + " model-" + model);
 				res.send({data: doc, html: html});	
 			}	// fin else
 		}	//fin else
@@ -389,7 +388,13 @@ exports.edit = function(req, res, model, imagePath) {
 
 //update a {model}, route /models/id (post)
 exports.update = function(req, res, model, obj) {
-
+	function replaceValueInArray(array, oldValue, newValue) {
+		if (inArray(oldValue, array)) {
+			var oldValueIndex = array.indexOf(oldValue);
+			array[oldValueIndex] = newValue;
+			return array;
+		} else return false;
+	}
 	var modelDetails = getModelDetails(model),
 			Model = require(modelDetails.modelFile),
 			modelName = modelDetails.modelName,
@@ -398,15 +403,57 @@ exports.update = function(req, res, model, obj) {
 			ref = req.params.id,
 			modelLower = model.toLowerCase(),
 			articleDef = modelDetails.articleDef;
-
+	
 	obj[refName] = ref;
 	var modelObj = {};
 	modelObj[ refName ] = ref;
-//	console.log(obj);
+	
 	Model.update({'_id': ref}, obj, function(err) {
 		if (err) {
 			res.send("Problème avec la mise à jour: " + err);
 		} else {
+			if(modelName == 'produits') {
+				var Salle = require('../models/salles.js'),
+					Promotion = require('../models/promotions.js');
+				console.log("salle id= " + req.body.salle_id);
+				Salle.findOne({"_id": req.body.salle_id}, function(err, data){
+					console.log("salle produits = " + data.produits);
+					
+					data.produits = replaceValueInArray(data.produits, ref, req.body.salle_id);
+					data.save(function(err){
+						if(err) {
+							console.log(err);
+						}
+					});
+					
+					// une fois on click sur modifier
+					// recuperer le id de la salle choisi ainsi que le id du produit en cours
+					// Salle.findOne(by id) verifier si le produit id n'est pas dans l'array produits alors faire push
+					// enlever le produit id du tableau de l'ancienne salle
+					
+			//		var arr = data.produits;
+			//		var a = replaceValueInArray(data.produits, ref, req.body.salle_id);
+			//		console.log("new = " + a);
+			//		data.produits = replaceValueInArray(data.produits, ref, req.body.salle_id);
+			//		data.save(function(err){
+			//			if(err) {
+			//				console.log(err);
+			//			}
+			//		});
+					/*
+					if (inArray(ref, arr)) {
+						var index = arr.indexOf(ref);
+						console.log(index);
+						console.log(arr[index]);
+					}
+					console.log(data.produits);
+					*/
+				});
+				
+			}
+		
+		
+		
 			res.render('generals/modified', {title: model + " modifié" + suffix, body: firstToUpper(articleDef) + modelLower + " a bien été modifié" + suffix + "."});
 		}
 	});
@@ -437,6 +484,8 @@ exports.show = function(req, res, model) {
 		}
 	});
 }
+
+
 
 
 
