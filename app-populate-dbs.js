@@ -1,11 +1,11 @@
 var mongoose =require('mongoose');
 var Schema = mongoose.Schema;
 var Salle = require('./models/salles.js'),
-	Produit = require('./models/produits.js');
-	Promotion = require('./models/promotions.js');
-	Membre = require('./models/membres.js');
-	Avis = require('./models/avis.js');
-	Commande = require('./models/commandes.js')
+	Produit = require('./models/produits.js'),
+	Promotion = require('./models/promotions.js'),
+	Membre = require('./models/membres.js'),
+	Avis = require('./models/avis.js'),
+	Commande = require('./models/commandes.js'),
 	;
 mongoose.connect('mongodb://localhost/lokisalle');
 

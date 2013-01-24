@@ -56,9 +56,10 @@ $(document).ready(function() {
 	$("body").on("click", ".model-edit-link", function(e){
 		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
 			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
-			url = modelName + "s/edit/" + thisId;
-		console.log(modelName);
-		console.log(url);
+			url = modelName + "s/edit/" + thisId
+			;
+//		console.log(modelName);
+//		console.log(url);
 		
 		e.preventDefault();
 		popup_show(modelName + '-edit');
@@ -68,8 +69,9 @@ $(document).ready(function() {
 			} else {	
 				var modelData = data.data;
 				var modelObj = {};
-				
+	
 				for ( d in modelData) {
+			//		console.log(d);
 					if ( ( d != '_id') && ( d.indexOf('reference') == -1 ) && (d != 'image') ) {
 						modelObj[ modelName + d] = modelData[d];
 					}
@@ -82,9 +84,45 @@ $(document).ready(function() {
 				}
 			
 				$('.' + modelName + '-edit').html(data.html);
-				$('.form-' + modelName + '-edit').autofill(modelObj);
+				$('.form-' + modelName + '-edit').autofill(modelObj);		// autofill permet de remplir automatiquement les champs d'un forumlaire dans le variable data.html par les données data.data, envoyés par le serveur dans notre cas
+				if (modelName == 'produit') {
+					if (data.foreignModels.salle) {
 				
-				console.log(modelData);
+						var salles = data.foreignModels.salle;
+						var selectSalle = $('#select-salle');
+					
+						for (var salle=0; salle <salles.length; salle++) {
+							var s = salles[salle];
+							var prod = s.produits;
+							for ( p in prod) {
+								console.log(prod[p]);
+							}
+							console.log(thisId);
+							if ( $.inArray(thisId, prod) != -1 ) {
+								console.log(thisId);
+							}
+//							console.log(prod);
+							selectSalle.append($("<option></option>")
+										.attr({"value": s._id, "selected": selected})
+										.text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays));
+							
+							
+							
+							
+//							selectSalle.append($("<option></option>").attr("value", s._id).text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays));
+						}
+					}		
+					if (data.foreignModels.promotion) {
+				
+						var promotion = data.foreignModels.promotion;
+						var selectPromo = $('#select-promotion');
+					
+						for (var promo=0; promo < promotion.length; promo++) {
+							var p = promotion[promo];
+							selectPromo.append($("<option></option>").attr("value", p._id).text(p.code + ' - ' + p.reduction));
+						}
+					}	
+				}	
 			}
 		});
 	});

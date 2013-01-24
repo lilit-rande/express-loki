@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
 	Deferred = require('JQDeferred'),
 	fs = require('fs'),
-	jade = require('jade');
+	jade = require('jade'),
+	async = require('async');
 //http://docs.mongodb.org/manual/tutorial/create-an-auto-incrementing-field/
 
 function inArray(needle, arr) {
@@ -15,7 +16,9 @@ function inArray(needle, arr) {
 
 function getForeignModelNames(docs, model) {
 	var foreignModels = new Array();
-	for ( d in docs[0]) {
+	var docs = (docs[0]) ? docs[0] : docs;
+	
+	for ( d in docs) {
 		if ( d.indexOf("_id") !== -1 ) {
 			var collectionName = d.substring(0, d.indexOf("_id"));
 			if ((collectionName != model) && (collectionName != '_') && (collectionName != '_')) {
@@ -104,11 +107,111 @@ exports.index = function(req, res, model){
 		
 	var obj = {};
 	
-	if (modelName == 'produits') { 	
+//	var Salle = require('../models/salles.js');
+
+ /*
+	var performers = {};
+async.parallel([
+  function(callback) {
+    return Salle.findOne({}, function(err, result) {
+      performers.salle = result;
+      return callback(err);
+    });
+  }, function(callback) {
+    return Model.findOne({}, function(err, result) {
+      performers.produit = result;
+      return callback(err);
+    });
+  }
+], function(err) {
+  return res.json(performers);
+  console.log(performers);
+});
+*
+//	 .done(callback).when(callback)
+Deferred.when([
+  function(callback) {
+    return Salle.findOne({}, function(err, result) {
+      performers.salle = result;
+      return callback(err);
+    });
+  }, function(callback) {
+    return Model.findOne({}, function(err, result) {
+      performers.produit = result;
+      return callback(err);
+    });
+  }
+], function(err) {
+  return res.json(performers);
+  console.log(performers);
+}).then(function(){});
+*/
+ /*
+ 	Model.find({}, function(err, docs){
+			forModels = getForeignModelNames(docs, model);
+			
+			Model.find()
+			.populate(function(){
+				return 
+			})		
+			for (var m=0; m<forModels.length; m++){
+				if (forModels[m]) {
+					var s = forModels[m]+'_id';
+					.populate(s)
+				}
+			}
+			.exec(function(err, docs) {
+				if(err) {
+					throw err;
+				} else if( (docs) && (docs.length) ) {
+				//	console.log(docs);
+					res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+				} else {
+					res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
+				}
+			});					
+	});			
+				
+					
+					
+					
+					
+				} else {
+					Model.find({}, function(err, docs) {
+						if(err) {
+							throw err;
+						} else if( (docs) && (docs.length) ) {
+					//		console.log(docs);			
+							
+							res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+						} else {
+							res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
+						}
+					});
+				}
+			}
+	});
+*/
+
+		Model
+		.find()
+		.populate('salle_id')
+		.populate('promotion_id')
+		.populate('membres_id')
+		.exec(function(err, docs) {
+		if(err) {
+			throw err;
+		} else if( (docs) && (docs.length) ) {
+		//	forModels = getForeignModelNames(docs, model);
+		//	console.log(forModels);
+			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+		} else {
+			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
+		}
+	});
 	
-		console.log(modelName);
-		
-		
+/*
+	if (modelName == 'produits') { 	
 		Model
 		.find()
 		.populate('salle_id')
@@ -117,20 +220,18 @@ exports.index = function(req, res, model){
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
+		//	console.log(docs);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 		}
 	});
-	
-	
 	} else {
 		Model.find({}, function(err, docs) {
 			if(err) {
 				throw err;
 			} else if( (docs) && (docs.length) ) {
-		//		console.log(docs);				
-				console.log(foreignModels);
+		//		console.log(docs);			
 				
 				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 			} else {
@@ -138,6 +239,7 @@ exports.index = function(req, res, model){
 			}
 		});
 	}	//fin else
+	*/
 }
 
 //display new model form - route : /models/new 
@@ -176,8 +278,8 @@ exports.create = function(req, res, model, obj) {
 			}
 		});
 		
-/*
-	Model.findOne().sort("-" + modelToLower + "reference").exec(function(err, doc) {	//find the maximum reference number
+
+/*	Model.findOne().sort("-" + modelToLower + "reference").exec(function(err, doc) {	//find the maximum reference number
 	//	console.log(doc[refName]);
 		
 		obj[refName] = doc[refName] + 1;
@@ -237,14 +339,15 @@ exports.destroy = function(req, res, model) {
 
 //display edit form, route : /models/edit/id
 exports.edit = function(req, res, model, imagePath) {
-	var modelDetails = getModelDetails(model),
+	var modelDetails = getModelDetails(model),	//ex Salle
 		Model = require(modelDetails.modelFile),
-		modelName = modelDetails.modelName,
-		modelFile = modelDetails.modelFile,
+		modelName = modelDetails.modelName,// ex.: salles
+		modelFile = modelDetails.modelFile,	// ex.: /models/salles.js
 		ref = req.params.id,
 		modelLower = model.toLowerCase(),
 		articleDef = modelDetails.articleDef,
 		content =  renderTpl('views/forms/form-'+ modelLower +'.jade', req.body); 		// TODO: A voir
+		
 		
 	Model.findOne({'_id': ref}, function(err, doc){
 		if (err) {
@@ -254,8 +357,33 @@ exports.edit = function(req, res, model, imagePath) {
 			html = personiliseTpl(content, options);
 			res.data = doc;
 			res.html = html;
-			res.send({data: doc, html: html});
-		}
+
+			if (modelName == 'produits'){
+				var Salle = require('../models/salles.js'),
+					Promotion = require('../models/promotions.js'),
+					foreignModels = {};
+				async.parallel([
+					function(callback) {
+						return Salle.find({}, function(err, result) {
+							foreignModels.salle = result;
+								return callback(err);
+						});
+					}, function(callback) {
+						return Promotion.find({}, function(err, result) {
+							foreignModels.promotion = result;
+							return callback(err);
+						});
+					}
+				], function(err) {
+				// return res.json(foreignModels);
+					res.foreignModels = foreignModels;
+					res.send({data: doc, html: html, foreignModels: foreignModels});
+				});	//end async parallel
+			} else {
+//				console.log("doc" + doc + " model-" + model);
+				res.send({data: doc, html: html});	
+			}	// fin else
+		}	//fin else
 	});
 };
 
