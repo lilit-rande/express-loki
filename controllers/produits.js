@@ -16,15 +16,6 @@ exports.new = function(req, res) {
 	superController.new(req, res, model);
 }
 
-//add a produit
-exports.create = function(req, res) {
-	var promotion = {
-		code: req.body.promotioncode,
-		reduction: req.body.promotionreduction
-	};
-
-	superController.create(req, res, model, promotion);
-};
 
 //OK
 //display delete form
@@ -56,15 +47,17 @@ exports.edit = function(req, res) {
 //update a produit
 exports.update = function(req, res) {
 		
-	produit = {
+	var produit = {
 		arrive: req.body.produitarrive,
 		depart: req.body.produitdepart,
-		salle_id: req.body.salle_id,	
-		promotion_id: (req.body.promotion_id)?req.body.promotion_id:null,
+		salle_id: req.body.new_salle_id,	
+		promotion_id: (req.body.new_promotion_id) ? req.body.new_promotion_id : null,
 		prix: req.body.produitprix,
 		etat: req.body.produitetat,
-	};
-	superController.update(req, res, model, produit);
+	},
+		foreignModels = ['Salle', 'Promotion'];
+	console.log(req.body);
+	superController.update(req, res, model, produit, foreignModels);
 };
 
 //show a produit
@@ -73,7 +66,15 @@ exports.show = function(req, res) {
 }
 
 
+//add a produit
+exports.create = function(req, res) {
+	var promotion = {
+		code: req.body.promotioncode,
+		reduction: req.body.promotionreduction
+	};
 
+	superController.create(req, res, model, promotion);
+};
 
 
 

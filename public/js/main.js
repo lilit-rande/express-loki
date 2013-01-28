@@ -90,7 +90,8 @@ $(document).ready(function() {
 				
 						var salles = data.foreignModels.salle;
 						var selectSalle = $('#select-salle');
-					
+						var $old_salle_id = $('#old_salle_id');
+						
 						for (var salle=0; salle <salles.length; salle++) {
 							var s = salles[salle];
 							var prod = s.produits;
@@ -101,18 +102,28 @@ $(document).ready(function() {
 								
 							if ($.inArray(thisId, s.produits) != -1) {
 								$option.attr("selected", "selected");
+								$old_salle_id.attr("value", s._id);
 							}
 							
-							selectSalle.append($option);
+							selectSalle.append($option);							
 						}
+						
+						//recuperer le value (donc le id de la nouvelle salle) pour ensuite le passer en post
+						selectSalle.on('change', function(){
+							var val = $(this).attr("value");							
+						//	$old_salle_id.attr("value", val);
+						//	console.log(val);
+						});
+						
 					}		
 					if (data.foreignModels.promotion) {
 				
-						var promotion = data.foreignModels.promotion;
+						var promotions = data.foreignModels.promotion;
 						var selectPromo = $('#select-promotion');
+						var $old_promotion_id = $('#old_promotion_id');
 					
-						for (var promo=0; promo < promotion.length; promo++) {
-							var p = promotion[promo];
+						for (var promo=0; promo < promotions.length; promo++) {
+							var p = promotions[promo];
 							console.log(p);
 							var $option = $("<option>")
 								.attr("value", p._id)
@@ -120,6 +131,7 @@ $(document).ready(function() {
 								
 							if ($.inArray(thisId, p.produits) != -1) {
 								$option.attr("selected", "selected");
+								$old_promotion_id.attr("value", p._id);
 							}
 							
 							selectPromo.append($option);

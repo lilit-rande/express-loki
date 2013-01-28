@@ -58,9 +58,10 @@ exports.update = function(req, res) {
 		categorie: req.body.sallecategorie,
 		image: req.body.salleimagevisible,
 		description: req.body.salledescription
-	};
-
-	superController.update(req, res, model, salle);
+	},
+		foreignModels = [];
+	
+	superController.update(req, res, model, salle, foreignModels);
 };
 
 //show a salle

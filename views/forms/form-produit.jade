@@ -1,10 +1,10 @@
 h2 {title}
 form.form-produit-edit(method="post", action="{action}", name="form-produit-edit")
 	fieldset
-	input#produitreference(type="hidden", name="produitreference")
-	label.choix(for="salle_id") Choisir une salle parmi les salles existantes : 
+	input#old_salle_id(type="hidden", name="old_salle_id")
+	label.choix(for="select-salle") Choisir une salle parmi les salles existantes : 
 	br
-	select#select-salle(name="salle_id")			
+	select#select-salle(name="new_salle_id")			
 	br
 	label(for="date-arrive") Date d'arrivée
 	input#date-arrive(type="text", name="produitarrive")
@@ -19,9 +19,10 @@ form.form-produit-edit(method="post", action="{action}", name="form-produit-edit
 	label.petit-label €
 	label(for="etat") Etat
 	input#prix(type="text", name="produitetat")
-	label.choix(for="promotion-reference") Choisir une promotion parmi les promotions existantes : 
+	input#old_promotion_id(type="hidden", name="old_promotion_id")
+	label.choix(for="select-promotion") Choisir une promotion parmi les promotions existantes : 
 	br
-	select#select-promotion(name="promotion_id")
+	select#select-promotion(name="new_promotion_id")
 		option
 	br			
 	div.align-center

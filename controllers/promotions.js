@@ -44,9 +44,10 @@ exports.update = function(req, res) {
 	var promotion = {
 		code: req.body.promotioncode,
 		reduction: req.body.promotionreduction
-	};
-
-	superController.update(req, res, model, promotion);
+	},
+		foreignModels = [];
+	
+	superController.update(req, res, model, promotion, foreignModels);
 };
 
 //show a promotion

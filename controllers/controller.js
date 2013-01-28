@@ -6,12 +6,18 @@ var mongoose = require('mongoose'),
 //http://docs.mongodb.org/manual/tutorial/create-an-auto-incrementing-field/
 
 function inArray(needle, arr) {
-	for (var k in arr) {
-		if (arr[k] == needle) {
-			return true;
-		}
-	}
-	return false;
+	var index = arr.indexOf(needle);
+	var result = (index > -1) ? true : false;
+	
+	return result;
+}
+
+function delFromArray(needle, arr) {
+	if (inArray(needle, arr)) {
+		var index = arr.indexOf(needle);		
+		arr.splice(index, 1);
+		return arr;
+	} else return false;	
 }
 
 function getForeignModelNames(docs, model) {
@@ -21,7 +27,7 @@ function getForeignModelNames(docs, model) {
 	for ( d in docs) {
 		if ( d.indexOf("_id") !== -1 ) {
 			var collectionName = d.substring(0, d.indexOf("_id"));
-			if ((collectionName != model) && (collectionName != '_') && (collectionName != '_')) {
+			if ((collectionName != model) && (collectionName != '_')) {
 				foreignModels.push(collectionName);
 			}
 		}
@@ -297,6 +303,156 @@ exports.create = function(req, res, model, obj) {
 	*/
 };
 
+//display edit form, route : /models/edit/id
+exports.edit = function(req, res, model, imagePath) {
+	var modelDetails = getModelDetails(model),	//ex Salle
+		Model = require(modelDetails.modelFile),
+		modelName = modelDetails.modelName,// ex.: salles
+		modelFile = modelDetails.modelFile,	// ex.: /models/salles.js
+		ref = req.params.id,
+		modelLower = model.toLowerCase(),
+		articleDef = modelDetails.articleDef,
+		content =  renderTpl('views/forms/form-'+ modelLower +'.jade', req.body); 		// TODO: A voir
+		
+		
+	Model.findOne({'_id': ref}, function(err, doc){
+		if (err) {
+			res.render('error', {title: "Echec de modification", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
+		} else {
+			var options = {'title':'Modifier '+ articleDef + modelLower, 'action': modelName + '/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
+			html = personiliseTpl(content, options);
+			res.data = doc;
+			res.html = html;
+
+			if (modelName == 'produits'){
+				var Salle = require('../models/salles.js'),
+					Promotion = require('../models/promotions.js'),
+					foreignModels = {};
+				async.parallel([
+					function(callback) {
+						return Salle.find({}, function(err, result) {	//la liste de toutes les salles existantes
+							foreignModels.salle = result;
+								return callback(err);
+						});
+					}, function(callback) {
+						return Promotion.find({}, function(err, result) {	//la liste de toutes les promotions existantes
+							foreignModels.promotion = result;
+							return callback(err);
+						});
+					}
+				], function(err) {
+				// return res.json(foreignModels);
+					res.foreignModels = foreignModels;
+					res.send({data: doc, html: html, foreignModels: foreignModels});
+				});	//end async parallel
+			} else {
+				res.send({data: doc, html: html});	
+			}	// fin else
+		}	//fin else
+	});
+};
+
+//update a {model}, route /models/id (post)
+exports.update = function(req, res, model, obj, foreignModels) {
+	var modelDetails = getModelDetails(model),
+		Model = require(modelDetails.modelFile),
+		modelName = modelDetails.modelName,
+		suffix = modelDetails.suffix,
+		refName = modelDetails.modelReferenceName,
+		ref = req.params.id,
+		modelLower = model.toLowerCase(),
+		articleDef = modelDetails.articleDef;
+	
+	obj[refName] = ref;
+	var modelObj = {};
+	modelObj[ refName ] = ref;
+	
+	Model.update({'_id': ref}, obj, function(err, docs) {
+		if (err) {
+			res.send("Problème avec la mise à jour: " + err);
+		} else {
+			if (foreignModels) {
+				for (var fm in foreignModels) {
+					subModel = foreignModels[fm];
+					SMDetails = getModelDetails(subModel);
+
+					//	exemple pour le model Produit les submodels sont Salle, Promotion
+					var SM = require(SMDetails.modelFile),	//	ex. SM = require('../models/salles.js) et ensuite SM = require('../models/promotions.js)
+						SMLower = subModel.toLowerCase(),	//	ex. SMLower = salles, ensuite promotions
+						SMOld = "old_" + SMLower + "_id",	//  ex. SMOld = old_salle_id, et old_promotion_id
+						SMNew = "new_" + SMLower + "_id";	//  ex. SMNew = new_salle_id, et new_promotion_id
+					var old_object = {};
+					var new_object = {};
+					var docs = req.body;
+					
+					// creer deux objets à partir du req.body pour ensuite les utiliser dans findOne
+					// en cas d'un seul model on aurait fait: req.body.old_salle_id et req.body.new_salle_id et dans le findOne:
+					// Salle.findOne({'_id': req.body.old_salle_id}, callback)
+					for ( d in docs) {
+						if ( d == SMOld ) {
+							old_object["_id"] = docs[d];
+						}
+						if ( d == SMNew ) {
+							new_object["_id"] = docs[d];
+						}
+					}
+
+					if (new_object["_id"] !== old_object["_id"] ) {	// si il ya a eu un changement du foreign model id
+						if (old_object["_id"]) {	// cette verification est util notemment pour un produit auquel aucun promotion n'était associé
+							SM.findOne(old_object, function(err, data){
+								// de la liste des produits de cette salle enlever le id (le ref) de ce produit
+								delFromArray(ref, data[modelName]);	// ex. data.produits
+								data.save();
+							});
+						}
+						
+						// enregistrer le id de la salle passée en parametre (TODO faire la verif si il y a changement de l id de la salle avant de faire ca
+						if (new_object["_id"]) {	// cette verification est utile notemment pour un produit auquel on n'asscie plus de promotion
+						console.log(new_object["_id"]);
+							SM.findOne(new_object, function(err, data){
+							//	var produits = data.produits;
+								if (!inArray(ref, data[modelName])) {
+									data[modelName].push(ref);
+								}
+								data.save();
+							});
+						}
+					}
+				}	//endOf for
+			}
+			res.render('generals/modified', {title: model + " modifié" + suffix, body: firstToUpper(articleDef) + modelLower + " a bien été modifié" + suffix + "."});
+		}
+	});
+};
+
+//show a {model}, route /models/id (get)
+exports.show = function(req, res, model) {
+	var ref = req.params.id,
+		modelDetails = getModelDetails(model),
+		Model = require(modelDetails.modelFile),
+		modelName = modelDetails.modelName,
+			suffix = modelDetails.suffix,
+			refName = modelDetails.modelReferenceName,
+			ref = req.params.id,
+			modelLower = model.toLowerCase(),
+			articleDef = modelDetails.articleDef
+		;
+		
+	Model.findOne({'_id': ref}, function(err, doc){	
+		if(err) {
+			throw err;
+		} else {
+			if (!doc) {
+				res.render(modelName + '/show', {id: ref, title:'Détailles de ' + articleDef + modelLower, data:doc});
+			} else {
+				res.render(modelName + '/show', {title: 'Détailles de ' + articleDef + modelLower, data: doc});
+			}
+		}
+	});
+}
+
+
+
 //display delete form, route: /models/delete/id (post)
 exports.delete = function(req, res, model) {
 	var modelDetails = getModelDetails(model),
@@ -336,156 +492,6 @@ exports.destroy = function(req, res, model) {
 		}
 	});
 };
-
-//display edit form, route : /models/edit/id
-exports.edit = function(req, res, model, imagePath) {
-	var modelDetails = getModelDetails(model),	//ex Salle
-		Model = require(modelDetails.modelFile),
-		modelName = modelDetails.modelName,// ex.: salles
-		modelFile = modelDetails.modelFile,	// ex.: /models/salles.js
-		ref = req.params.id,
-		modelLower = model.toLowerCase(),
-		articleDef = modelDetails.articleDef,
-		content =  renderTpl('views/forms/form-'+ modelLower +'.jade', req.body); 		// TODO: A voir
-		
-		
-	Model.findOne({'_id': ref}, function(err, doc){
-		if (err) {
-			res.render('error', {title: "Echec de modification", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
-		} else {
-			var options = {'title':'Modifier '+ articleDef + modelLower, 'action': modelName + '/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
-			html = personiliseTpl(content, options);
-			res.data = doc;
-			res.html = html;
-
-			if (modelName == 'produits'){
-				var Salle = require('../models/salles.js'),
-					Promotion = require('../models/promotions.js'),
-					foreignModels = {};
-				async.parallel([
-					function(callback) {
-						return Salle.find({}, function(err, result) {
-							foreignModels.salle = result;
-								return callback(err);
-						});
-					}, function(callback) {
-						return Promotion.find({}, function(err, result) {
-							foreignModels.promotion = result;
-							return callback(err);
-						});
-					}
-				], function(err) {
-				// return res.json(foreignModels);
-					res.foreignModels = foreignModels;
-					res.send({data: doc, html: html, foreignModels: foreignModels});
-				});	//end async parallel
-			} else {
-				res.send({data: doc, html: html});	
-			}	// fin else
-		}	//fin else
-	});
-};
-
-//update a {model}, route /models/id (post)
-exports.update = function(req, res, model, obj) {
-	function replaceValueInArray(array, oldValue, newValue) {
-		if (inArray(oldValue, array)) {
-			var oldValueIndex = array.indexOf(oldValue);
-			array[oldValueIndex] = newValue;
-			return array;
-		} else return false;
-	}
-	var modelDetails = getModelDetails(model),
-			Model = require(modelDetails.modelFile),
-			modelName = modelDetails.modelName,
-			suffix = modelDetails.suffix,
-			refName = modelDetails.modelReferenceName,
-			ref = req.params.id,
-			modelLower = model.toLowerCase(),
-			articleDef = modelDetails.articleDef;
-	
-	obj[refName] = ref;
-	var modelObj = {};
-	modelObj[ refName ] = ref;
-	
-	Model.update({'_id': ref}, obj, function(err) {
-		if (err) {
-			res.send("Problème avec la mise à jour: " + err);
-		} else {
-			if(modelName == 'produits') {
-				var Salle = require('../models/salles.js'),
-					Promotion = require('../models/promotions.js');
-				console.log("salle id= " + req.body.salle_id);
-				Salle.findOne({"_id": req.body.salle_id}, function(err, data){
-					console.log("salle produits = " + data.produits);
-					
-					data.produits = replaceValueInArray(data.produits, ref, req.body.salle_id);
-					data.save(function(err){
-						if(err) {
-							console.log(err);
-						}
-					});
-					
-					// une fois on click sur modifier
-					// recuperer le id de la salle choisi ainsi que le id du produit en cours
-					// Salle.findOne(by id) verifier si le produit id n'est pas dans l'array produits alors faire push
-					// enlever le produit id du tableau de l'ancienne salle
-					
-			//		var arr = data.produits;
-			//		var a = replaceValueInArray(data.produits, ref, req.body.salle_id);
-			//		console.log("new = " + a);
-			//		data.produits = replaceValueInArray(data.produits, ref, req.body.salle_id);
-			//		data.save(function(err){
-			//			if(err) {
-			//				console.log(err);
-			//			}
-			//		});
-					/*
-					if (inArray(ref, arr)) {
-						var index = arr.indexOf(ref);
-						console.log(index);
-						console.log(arr[index]);
-					}
-					console.log(data.produits);
-					*/
-				});
-				
-			}
-		
-		
-		
-			res.render('generals/modified', {title: model + " modifié" + suffix, body: firstToUpper(articleDef) + modelLower + " a bien été modifié" + suffix + "."});
-		}
-	});
-};
-
-//show a {model}, route /models/id (get)
-exports.show = function(req, res, model) {
-	var ref = req.params.id,
-		modelDetails = getModelDetails(model),
-		Model = require(modelDetails.modelFile),
-		modelName = modelDetails.modelName,
-			suffix = modelDetails.suffix,
-			refName = modelDetails.modelReferenceName,
-			ref = req.params.id,
-			modelLower = model.toLowerCase(),
-			articleDef = modelDetails.articleDef
-		;
-		
-	Model.findOne({'_id': ref}, function(err, doc){	
-		if(err) {
-			throw err;
-		} else {
-			if (!doc) {
-				res.render(modelName + '/show', {id: ref, title:'Détailles de ' + articleDef + modelLower, data:doc});
-			} else {
-				res.render(modelName + '/show', {title: 'Détailles de ' + articleDef + modelLower, data: doc});
-			}
-		}
-	});
-}
-
-
 
 
 
