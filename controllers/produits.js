@@ -29,15 +29,6 @@ exports.destroy = function(req, res) {
 	superController.destroy(req, res, model);
 };
 
-
-function renderTpl(tplName, tplBody){
-	var jadefile = fs.readFileSync(tplName),
-		jadetemplate = jade.compile(jadefile),
-		content = jadetemplate(tplBody);
-	return content;
-}
-
-
 //display edit form
 exports.edit = function(req, res) {
 	imagePath = '';
@@ -68,12 +59,16 @@ exports.show = function(req, res) {
 
 //add a produit
 exports.create = function(req, res) {
-	var promotion = {
-		code: req.body.promotioncode,
-		reduction: req.body.promotionreduction
+		
+	var produit = {
+		arrive: req.body.produitarrive,
+		depart: req.body.produitdepart,
+		salle_id: req.body.new_salle_id,	
+		promotion_id: (req.body.new_promotion_id) ? req.body.new_promotion_id : null,
+		prix: req.body.produitprix,
+		etat: req.body.produitetat,
 	};
-
-	superController.create(req, res, model, promotion);
+	superController.create(req, res, model, produit);
 };
 
 

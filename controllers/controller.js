@@ -85,13 +85,13 @@ function renderTpl(tplName, tplBody){
 
 function personiliseTpl(tpl,obj) {
 	for (var p in obj) {
+	
 		var k='{'+p+'}';
 		var v=obj[p];
 		tpl = tpl.replace(k, v);
 	}
 	return tpl;
 }
-
 
 function getModelInfo(model, ref, callback) {
 	
@@ -255,13 +255,39 @@ exports.new = function(req, res, model) {
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
 		modelLower = model.toLowerCase(),
-		articleIndef = modelDetails.articleIndef;
+		articleIndef = modelDetails.articleIndef,
+		options = {};
 		
-	var content =  renderTpl('views/forms/form-'+ modelLower +'.jade', ""), 		// TODO: A voir
-		options = {'title':'Ajouter '+ articleIndef + model.toLowerCase(),'action':'create','image':'', 'type': 'Ajouter'},
-		html = personiliseTpl(content,options);
-	
-	res.render(modelName+'/new', {title: 'Ajouter ' + articleIndef + model.toLowerCase(), body: html});
+//	var content =  renderTpl('views/forms/form-'+ modelLower +'.jade', ""); 		// TODO: A voir
+//		html = personiliseTpl(content,options);
+		
+	if (modelName == 'produits') {
+		var Salle = require('../models/salles.js'),
+			Promotion = require('../models/promotions.js'),
+			foreignModels = {};
+		async.parallel([
+			function (callback) {
+				return Salle.find({}, function(err, result){	// la liste de toutes les salles
+					foreignModels.salle = result;
+					return callback(err);
+				});
+			}, function(callback) {
+				return Promotion.find({}, function(err, result){	// la liste de toutes les promotions
+					foreignModels.promotion = result;
+					return callback(err);
+				});
+			}
+		], function(err) {
+			options = {'title':'Ajouter '+ articleIndef + model.toLowerCase(),'action':'create','image':'', 'type': 'Ajouter', 'foreignModels':foreignModels};
+			html =  renderTpl('views/forms/form-'+ modelLower +'.jade', options);
+			res.render(modelName+'/new', {title: 'Ajouter ' + articleIndef + model.toLowerCase(), body: html, foreignModels:foreignModels});
+		});
+		
+	} else {
+		var options = {'title':'Ajouter '+ articleIndef + model.toLowerCase(),'action':'create','image':'', 'type': 'Ajouter'},
+			html =  renderTpl('views/forms/form-'+ modelLower +'.jade', options);
+			res.render(modelName+'/new', {title: 'Ajouter ' + articleIndef + model.toLowerCase(), body: html});
+	}
 }
 
 //add a {model}, route : /models/create	(post)
@@ -312,18 +338,14 @@ exports.edit = function(req, res, model, imagePath) {
 		ref = req.params.id,
 		modelLower = model.toLowerCase(),
 		articleDef = modelDetails.articleDef,
-		content =  renderTpl('views/forms/form-'+ modelLower +'.jade', req.body); 		// TODO: A voir
-		
+		options = {};
 		
 	Model.findOne({'_id': ref}, function(err, doc){
 		if (err) {
 			res.render('error', {title: "Echec de modification", body: "Il n'y a pas de " + modelLower + " avec un identifient " + ref});
 		} else {
-			var options = {'title':'Modifier '+ articleDef + modelLower, 'action': modelName + '/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
-			html = personiliseTpl(content, options);
 			res.data = doc;
-			res.html = html;
-
+			
 			if (modelName == 'produits'){
 				var Salle = require('../models/salles.js'),
 					Promotion = require('../models/promotions.js'),
@@ -341,11 +363,17 @@ exports.edit = function(req, res, model, imagePath) {
 						});
 					}
 				], function(err) {
-				// return res.json(foreignModels);
+				var	options = {'title':'Modifier '+ articleDef + modelLower, 'action': modelName + '/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier', 'foreignModels':foreignModels},
+					html = renderTpl('views/forms/form-'+ modelLower +'.jade', options);
+					res.html = html;
 					res.foreignModels = foreignModels;
 					res.send({data: doc, html: html, foreignModels: foreignModels});
 				});	//end async parallel
 			} else {
+			var	options = {'title':'Modifier '+ articleDef + modelLower, 'action': modelName + '/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
+		//		html = renderTpl('views/forms/form-'+ modelLower +'.jade', req.body);
+				html = renderTpl('views/forms/form-'+ modelLower +'.jade', options);
+				res.html = html;
 				res.send({data: doc, html: html});	
 			}	// fin else
 		}	//fin else
@@ -408,7 +436,7 @@ exports.update = function(req, res, model, obj, foreignModels) {
 						
 						// enregistrer le id de la salle passée en parametre (TODO faire la verif si il y a changement de l id de la salle avant de faire ca
 						if (new_object["_id"]) {	// cette verification est utile notemment pour un produit auquel on n'asscie plus de promotion
-						console.log(new_object["_id"]);
+	//					console.log(new_object["_id"]);
 							SM.findOne(new_object, function(err, data){
 							//	var produits = data.produits;
 								if (!inArray(ref, data[modelName])) {

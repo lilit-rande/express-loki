@@ -303,16 +303,18 @@ nav {
 				line-height: 20px;
 			}
 		}
-	}	
-	
-
+	}
 }
 
-table, tr, td, th{
+table.main-table{
 	border: 1px solid @border-color;
 	text-align: center;
+	tr, td, th {
+		border: 1px solid @border-color;
+		text-align: center;
+	}
 }
-table {
+table.main-table {
 	.form-block-background-style;
 	margin: 0 auto;
 	.model-edit-link:hover {

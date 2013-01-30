@@ -50,7 +50,7 @@ $(document).ready(function() {
 		$('.background').fadeOut("slow");
 		$('body').css('overflow', 'auto');
 	}
-	
+		
 	//generique
 	//click sur le lien "Modifier {le model}"	
 	$("body").on("click", ".model-edit-link", function(e){
@@ -95,52 +95,33 @@ $(document).ready(function() {
 						for (var salle=0; salle <salles.length; salle++) {
 							var s = salles[salle];
 							var prod = s.produits;
-							
-							var $option = $("<option>")
-								.attr("value", s._id)
-								.text(s.title + ' - ' + s.adresse + ' - ' + s.ville + ' - ' + s.pays);
 								
-							if ($.inArray(thisId, s.produits) != -1) {
-								$option.attr("selected", "selected");
+							if ($.inArray(thisId, prod) > -1) {
+								$("option[value=" + s._id + "]")
+									.attr("selected", "selected");								
 								$old_salle_id.attr("value", s._id);
-							}
-							
-							selectSalle.append($option);							
+							}					
 						}
-						
-						//recuperer le value (donc le id de la nouvelle salle) pour ensuite le passer en post
-						selectSalle.on('change', function(){
-							var val = $(this).attr("value");							
-						//	$old_salle_id.attr("value", val);
-						//	console.log(val);
-						});
-						
 					}		
 					if (data.foreignModels.promotion) {
-				
 						var promotions = data.foreignModels.promotion;
 						var selectPromo = $('#select-promotion');
 						var $old_promotion_id = $('#old_promotion_id');
-					
+						
 						for (var promo=0; promo < promotions.length; promo++) {
 							var p = promotions[promo];
-							console.log(p);
-							var $option = $("<option>")
-								.attr("value", p._id)
-								.text(p.code + ' - ' + p.reduction);
-								
 							if ($.inArray(thisId, p.produits) != -1) {
-								$option.attr("selected", "selected");
+								$("option[value=" + p._id + "]")
+									.attr("selected", "selected");
 								$old_promotion_id.attr("value", p._id);
 							}
-							
-							selectPromo.append($option);
 						}
 					}	
 				}	
 			}
 		});
 	});
+
 
 	// generique
 //Dans le popup "Modifier {le model}" :

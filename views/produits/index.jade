@@ -7,7 +7,7 @@ block content
 	div.delete.popup.draggable
 	div.one-column
 		- if (docs != null)
-			table(broder="1").center-block
+			table(broder="1").center-block.main-table
 				tr
 					th Date d'arrivée
 					th Date de départ
@@ -19,24 +19,28 @@ block content
 					th Etat
 					th Supprimer
 					- each produit in docs
-						tr.model-edit-link(data-id="#{produit._id}", data-model="produit")
-							td #{produit.arrive.toDateString()} #{produit.arrive.toLocaleTimeString()}
-							td #{produit.depart.toDateString()} #{produit.depart.toLocaleTimeString()}
+						tr(data-id="#{produit._id}", data-model="produit")
+							td.model-edit-link #{produit.arrive.toDateString()} 
+							//
+								#{produit.arrive.toLocaleTimeString()}
+							td.model-edit-link #{produit.depart.toDateString()} 
+							//
+								#{produit.depart.toLocaleTimeString()}
 							- if (produit.salle_id != null)
-								td #{produit.salle_id.title}
-								td 
+								td.model-edit-link #{produit.salle_id.title}
+								td.model-edit-link
 									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 							- else
-								td
-								td
+								td.model-edit-link
+								td.model-edit-link
 							- if (produit.promotion_id != null) 
-								td #{produit.promotion_id.code}
-								td #{produit.promotion_id.reduction}
+								td.model-edit-link #{produit.promotion_id.code}
+								td.model-edit-link #{produit.promotion_id.reduction}
 							- else
-								td
-								td
-							td #{produit.prix}
-							td #{produit.etat}
+								td.model-edit-link
+								td.model-edit-link
+							td.model-edit-link #{produit.prix}
+							td.model-edit-link #{produit.etat}
 							td.model-delete-link
 								input( type="button", value="X")
 		-else
