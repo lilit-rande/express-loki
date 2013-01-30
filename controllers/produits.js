@@ -56,7 +56,6 @@ exports.show = function(req, res) {
 	superController.show(req, res, model);
 }
 
-
 //add a produit
 exports.create = function(req, res) {
 		

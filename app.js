@@ -9,7 +9,9 @@ var express = require('express'),
 	http = require('http'),
 	mongoose = require('mongoose'),
 	Deferred = require ('JQDeferred'),
-	fs = require('fs');
+	fs = require('fs'),
+	superController = require('./controllers/controller.js'),
+	model = 'Produit';
 // var	form = require('connect-form');
 
 mongoose.connect('mongodb://localhost/lokisalle');
@@ -68,8 +70,20 @@ prefixes.forEach(function(prefix) {
 
 app.get('/reservation/*', function(req, res){
 	//res.send(req.params);
-	res.render('reservation', {
-		title: 'Réservation'
+	Produit = require('./models/produits.js');
+	Produit
+		.find({'etat': 1})
+		.populate('salle_id')
+		.populate('promotion_id')
+		.exec(function(err, docs) {
+		if(err) {
+			throw err;
+		} else if( (docs) && (docs.length) ) {
+			res.render('reservation', { title: 'Réservation', docs: docs});
+			console.log(docs);
+		} else {
+			res.render('reservation', { title: 'Réservation', docs: null});
+		}
 	});
 });
 

@@ -122,7 +122,14 @@ $(document).ready(function() {
 		});
 	});
 
-
+	//click sur le lien "View {le model}"
+	$("body").on("click", ".model-view-link", function(e){
+		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
+			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
+			url = modelName + "s/show/" + thisId
+			;
+	});
+	
 	// generique
 //Dans le popup "Modifier {le model}" :
 	// bouton Annuler:

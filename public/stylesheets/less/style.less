@@ -68,7 +68,8 @@
 	}
 	
 	&.one-column {
-		margin: 20px auto;			
+		margin: 20px auto;
+		min-height: 250px;		
 		img{
 			float: left;
 			vertical-align: top;
@@ -79,7 +80,8 @@
 			line-height: 20px; 
 		}
 		span.italic{
-			color:@lokiOrange;				
+			color:@lokiOrange;
+			margin-bottom: 10px;
 		}	
 	}		
 }.annonce-bloc:hover {
@@ -317,10 +319,17 @@ table.main-table{
 table.main-table {
 	.form-block-background-style;
 	margin: 0 auto;
-	.model-edit-link:hover {
+	.model-view-link:hover, .model-edit-link:hover, .model-delete-link:hover {
 		cursor: pointer;
 	}
+	.model-view-link a {
+		display: inline-block;
+		.size(100%, 100%);
+	}
 	
+	.model-edit-link img, .model-delete-link img {
+		.size(14px, 14px);
+	}
 	.border-radius(5px);
 		th{
 			#gradient .vertical(@backGradStartColor, @backGradEndColor);

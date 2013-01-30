@@ -1,0 +1,65 @@
+extends ../layout
+
+block content
+	-if (data != null)
+		div.row
+			div.span12			
+				h1= title			
+				div.annonce-bloc.one-column
+					img(src="../../images/vignettes/#{data.salle_id.image}", width="200px", height="200px", class="img-polaroid")
+					h2 #{data.salle_id.title}
+					span.italic {1/10 moyenne sur 1 avis}
+					p #{data.salle_id.description}
+					span.italic Capacité: #{data.salle_id.capacite}. Catégorie: salle de #{data.salle_id.categorie}
+		div.row
+			div.span6
+				div.annonce-bloc
+					h2 Informations complémentaires
+					p
+						span.titre Pays : 
+						span.valeur #{data.salle_id.pays}
+					p
+						span.titre Ville :
+						span.valeur #{data.salle_id.ville}
+					p
+						span.titre Adresse : 
+						span.valeur #{data.salle_id.adresse}
+					p
+						span.titre Code postale : 
+						span.valeur #{data.salle_id.cp}
+					p
+						span.titre Date d'arrivée : 
+						span.valeur #{data.arrive.toDateString()}
+					p
+						span.titre Date de départ : 
+						span.valeur #{data.depart.toDateString()}
+					p
+						span.titre Prix : 
+						span.valeur #{data.prix}*
+					p
+						span.titre Etat :
+						- if (data.etat == 1)
+							- etat = "En location"
+						- else etat = "A louer" 
+						span.valeur #{etat}
+					p.italic *Ce prix est hors taxes.
+			div.span6
+				div.annonce-bloc
+					h2 Avis
+					form
+						div.pull-left
+							label(for="commentaire") Ajouter un commentaire
+							textarea(name="commentaire", id="commentaire")
+						div.pull-left(style="margin-left:40px;")
+							label(for="note") Note
+							select
+								-for(var i=1; i<=10; i++)
+									option=i+'/10'
+							<br />
+							input.btn.btn-primary(value="Sousmettre", name="sousmettre-avis")
+						div.clear
+	-else 
+		div.row
+			div.span12					
+				div.error-message
+					span La salle avec identifiant #{id} n'existe pas !

@@ -465,8 +465,12 @@ exports.show = function(req, res, model) {
 			modelLower = model.toLowerCase(),
 			articleDef = modelDetails.articleDef
 		;
-		
-	Model.findOne({'_id': ref}, function(err, doc){	
+
+	Model.findOne({'_id': ref})
+		.populate('salle_id')
+		.populate('promotion_id')
+		.populate('membres_id')
+		.exec(function(err, doc){	
 		if(err) {
 			throw err;
 		} else {
@@ -478,8 +482,6 @@ exports.show = function(req, res, model) {
 		}
 	});
 }
-
-
 
 //display delete form, route: /models/delete/id (post)
 exports.delete = function(req, res, model) {
