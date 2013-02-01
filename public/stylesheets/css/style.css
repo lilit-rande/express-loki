@@ -265,6 +265,25 @@ span.underlined-text {
   background: none repeat scroll 0 0 #000000;
   display: none;
 }
+form.well {
+  border: 1px solid #CCCCCC;
+  margin-left: 0;
+}
+form.login-form {
+  margin: 0 auto;
+}
+form.login-form .checkbox {
+  margin: 23px 0 0 180px;
+}
+form.login-form button {
+  float: left;
+  margin-top: 15px;
+  padding: 6px 40px;
+  width: 150px;
+}
+form.login-form button i {
+  padding-left: 18px;
+}
 .edit-block {
   background-color: #f6f6f6;
   background-image: -moz-linear-gradient(top, #f4f4f4, #f9f9f9);
@@ -323,6 +342,19 @@ span.underlined-text {
 }
 .edit-block form .radio-label {
   width: 5em;
+}
+.edit-block form.login-form {
+  background-color: red !important;
+}
+.edit-block form.login-form .checkbox {
+  margin: 23px 0 0 180px;
+}
+.edit-block form.login-form button {
+  float: left;
+  margin-top: 15px;
+  padding: 6px 40px;
+  width: 150px !important;
+  background-color: red;
 }
 .edit-block form.form-produit-edit label.choix {
   width: 100%;
@@ -414,6 +446,19 @@ span.underlined-text {
 }
 .popup form .radio-label {
   width: 5em;
+}
+.popup form.login-form {
+  background-color: red !important;
+}
+.popup form.login-form .checkbox {
+  margin: 23px 0 0 180px;
+}
+.popup form.login-form button {
+  float: left;
+  margin-top: 15px;
+  padding: 6px 40px;
+  width: 150px !important;
+  background-color: red;
 }
 .popup form.form-produit-edit label.choix {
   width: 100%;

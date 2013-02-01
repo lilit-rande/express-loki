@@ -1,5 +1,17 @@
-form(method="", action="")
+form.login-form.well.span4(method="post")
 	fieldset
-		input(type="text", placeholder="Identifiant", name="connexion[id]", id="connexion-id")
-		input(type="password", placeholder="Mot de passe", name="connexion[password]", id="connexion-password")
-		input(type="submit", name="connexion[submit]", id="connexion-submit", value="OK")
+		h1 Bonjour
+		p.subheading Connectez-vous s'il vous plaît
+		label Login
+		input#user-tf.class.span4.required(type="text", name="user")
+		label Mot de passe
+		input#pass-tf.span4.required(type="password",name="mdp")
+		button#btn-login.btn.btn-primary(type="submit")
+			i.icon-lock.icon-white Connexion
+		label#remember-me.checkbox Se souvenir de moi
+			input(type="checkbox", checked="checked")
+		div.clear-fix
+		hr
+		div.btm-links
+			a#forgot-password(href="#") Forgot Your Password?
+			a#create-account(href="/inscription/") Créer un compte

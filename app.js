@@ -124,6 +124,19 @@ app.get('/inscription/*', function(req, res){
 	});
 });
 
+app.get('/connexion/*', function(req, res){
+	res.render('connexion', {
+		title: 'Connexion'
+	});
+});
+
+app.get('/deconnexion/*', function(req, res){
+	res.render('deconnexion', {
+		title: 'Déconnexion'
+	});
+});
+
+
 app.get('/profil/*', function(req, res){
 	res.render('profil', {
 		title: 'Votre profil'

@@ -98,6 +98,27 @@
 	background: none repeat scroll 0 0 @black;
 	.hide;
 }
+form {
+	&.well {
+	    border: 1px solid #CCCCCC;
+	    margin-left: 0;
+	}
+	&.login-form {
+		margin: 0 auto;
+		.checkbox {
+		    margin: 23px 0 0 180px;
+		}
+		button {
+		    float: left;
+		    margin-top: 15px;
+		    padding: 6px 40px;
+		    width: 150px;
+		    i {
+			    padding-left: 18px;
+    		}
+		}
+	}
+}
 .edit-block{
 	.form-block-background-style;
 	padding: 0;
@@ -137,6 +158,19 @@
 		}
 		.radio-label {
 			width: 5em;
+		}
+		&.login-form {
+			.checkbox {
+			    margin: 23px 0 0 180px;
+			}
+			background-color:red !important;
+			button {
+			    float: left;
+			    margin-top: 15px;
+			    padding: 6px 40px;
+			    width: 150px !important;
+			    background-color: red;
+			}
 		}
 	}
 	form.form-produit-edit {
