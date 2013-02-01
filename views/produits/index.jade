@@ -21,42 +21,34 @@ block content
 					th Supprimer
 					- each produit in docs
 						tr(data-id="#{produit._id}", data-model="produit")
-							td.model-view-link 
-								a(href="produits/#{produit._id}") #{produit.arrive.toDateString()} 
+							td.model-view-link #{produit.arrive.toDateString()} 
 							//
 								#{produit.arrive.toLocaleTimeString()}
-							td.model-view-link 
-								a(href="produits/#{produit._id}") #{produit.depart.toDateString()} 
+							td.model-view-link #{produit.depart.toDateString()} 
 							//
 								#{produit.depart.toLocaleTimeString()}
 							- if (produit.salle_id != null)
-								td.model-view-link 
+								td
 									a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
-								td.model-view-link
+								td
 									a(href="salles/#{produit.salle_id._id}") 
 										img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 							- else
+								td.model-view-link 
 								td.model-view-link
-									a(href="produits/#{produit._id}") 
-								td.model-view-link
-									a(href="produits/#{produit._id}") 
 							- if (produit.promotion_id != null) 
-								td.model-view-link 
+								td 
 									a(href="produits/#{produit._id}") #{produit.promotion_id.code}
-								td.model-view-link 
+								td
 									a(href="produits/#{produit._id}") #{produit.promotion_id.reduction}
 							- else
 								td.model-view-link
-									a(href="produits/#{produit._id}") 
 								td.model-view-link
-									a(href="produits/#{produit._id}") 
-							td.model-view-link
-								a(href="produits/#{produit._id}") #{produit.prix}
+							td.model-view-link #{produit.prix}
 							- if (produit.etat == 1) 
 								- etat = "En location"
 							- else etat = "A louer"
-							td.model-view-link
-								a(href="produits/show/#{produit._id}")=etat
+							td.model-view-link=etat
 							td.model-edit-link
 								img(src="images/icons/modify.png")
 							td.model-delete-link

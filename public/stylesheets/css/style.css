@@ -310,12 +310,19 @@ span.underlined-text {
   display: inline-block;
   width: 7em;
 }
+.edit-block form input[type="radio"] {
+  vertical-align: top;
+  margin-right: 18px;
+}
 .edit-block form .petit-label {
   font-size: 10px;
   font-style: italic;
   color: #000000;
   width: 32% !important;
   margin-left: 10px;
+}
+.edit-block form .radio-label {
+  width: 5em;
 }
 .edit-block form.form-produit-edit label.choix {
   width: 100%;
@@ -394,12 +401,19 @@ span.underlined-text {
   display: inline-block;
   width: 7em;
 }
+.popup form input[type="radio"] {
+  vertical-align: top;
+  margin-right: 18px;
+}
 .popup form .petit-label {
   font-size: 10px;
   font-style: italic;
   color: #000000;
   width: 32% !important;
   margin-left: 10px;
+}
+.popup form .radio-label {
+  width: 5em;
 }
 .popup form.form-produit-edit label.choix {
   width: 100%;

@@ -3,11 +3,11 @@ extends ../layout
 block content
 	h1=title
 	div.background
-	div.promotion-edit.popup.draggable
+	div.membre-edit.popup.draggable
 	div.delete.popup.draggable
 	div.one-column
 		- if (docs != null)
-			table(broder="1").center-block
+			table(broder="1").center-block.main-table
 				tr
 					th Pseudo
 					th Mot de passe
@@ -19,20 +19,23 @@ block content
 					th Code postale
 					th Ville
 					th Statut
+					th Editer
 					th Supprimer
 					- each member in docs
-						tr.model-edit-link(data-id="#{member._id}", data-model="membre")
-							td #{member.pseudo}
-							td #{member.mdp}
-							td #{member.nom}
-							td #{member.prenom}
-							td #{member.email}
-							td #{member.sexe}
-							td #{member.adresse}
-							td #{member.cp}
-							td #{member.ville}
-							td #{member.statut}
+						tr(data-id="#{member._id}", data-model="membre")
+							td.model-view-link #{member.pseudo}
+							td.model-view-link #{member.mdp}
+							td.model-view-link #{member.nom}
+							td.model-view-link #{member.prenom}
+							td.model-view-link #{member.email}
+							td.model-view-link #{member.sexe}
+							td.model-view-link #{member.adresse}
+							td.model-view-link #{member.cp}
+							td.model-view-link #{member.ville}
+							td.model-view-link #{member.statut}
+							td.model-edit-link
+								img(src="images/icons/modify.png")
 							td.model-delete-link
-								input( type="button", value="X")
+								img(src="images/icons/erase.png")
 		-else
-			p.error-message(colspan="3") Pas de code promotion à afficher
+			p.error-message(colspan="3") Pas de membres à afficher

@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+	h1=title
+	div.background
+	div.avis-edit.popup.draggable
+	div.delete.popup.draggable
+	div.one-column
+		- if (docs != null)
+			table(broder="1").center-block.main-table
+				tr
+					th Membre
+					th Salle
+					th Date
+					th Note					
+					th Commentaire					
+					th Supprimer
+					- each avis in docs
+						tr(data-id="#{avis._id}", data-model="avis")
+							td
+								a(href="membres/#{avis.membre_id}") #{avis.membre_id.pseudo}
+							td
+								a(href="salles/#{avis.salle_id._id}") #{avis.salle_id.title}
+							td #{avis.date.toDateString()}  
+							td #{avis.note}
+							td #{avis.comment}
+							td.model-delete-link
+								img(src="images/icons/erase.png")
+		-else
+			p.error-message(colspan="3") Pas d'avis à afficher

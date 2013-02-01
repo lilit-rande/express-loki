@@ -30,8 +30,8 @@ $(document).ready(function() {
 		element.css({top:topElement, left:leftElement});	
 		element.show();
 		
-		var currentPosition = element.position();
-		var currentTop = currentPosition.top;
+//		var currentPosition = element.position();
+//		var currentTop = currentPosition.top;
 		 
 		$('.background').css({
 			"opacity" : "0.7"
@@ -126,8 +126,9 @@ $(document).ready(function() {
 	$("body").on("click", ".model-view-link", function(e){
 		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
 			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
-			url = modelName + "s/show/" + thisId
+			url = modelName + "s/" + thisId
 			;
+			$(location).attr('href',url);
 	});
 	
 	// generique

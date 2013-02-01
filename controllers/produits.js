@@ -6,7 +6,6 @@ var superController = require('../controllers/controller.js'),
 	Promotion = require('../models/promotions.js');
 
 //index listing of produit at :  /produits/
-// AFFICHAGE OK. TODO VOIR POUR LES CLES ETRANGERES
 exports.index = function(req, res){	
 	superController.index(req, res, model);
 }

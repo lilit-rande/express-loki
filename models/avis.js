@@ -5,8 +5,8 @@ var mongoose = require('mongoose'),
 //create Avis model
 var avisSchema = new Schema({
 	date: {type: Date, require: true, trim: true},
-	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null},	
-	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres', default: null},
+	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null, require: true},	
+	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres', default: null, require: true},
 	note: {type: Number, require: true, trim: true},
 	comment: {type: String, require: true, trim: true},
 });/*

@@ -1,0 +1,41 @@
+h2 #{title}
+form.form-membre-edit(method="post", action="#{action}", name="form-membre-edit")
+	fieldset	
+	label(for="membre-pseudo") Pseudo
+	input#membre-pseudo(type="text", name="membrepseudo")
+	br
+	label(for="membre-mdp") Mot de passe
+	input#membre-mdp(type="text", name="membremdp")
+	br
+	label(for="membre-nom") Nom
+	input#membre-nom(type="text", name="membrenom")
+	br
+	label(for="membre-prenom") Prénom
+	input#membre-prenom(type="text", name="membreprenom")
+	br
+	label(for="membre-email") Email
+	input#membre-email(type="text", name="membreemail")
+	br
+	label() Sexe
+	label(for="membre-masc", class="radio-label") Masculin
+	input#membre-masc(type="radio", name="membresexe", value="m")
+	label(for="membre-fem", class="radio-label") Féminin
+	input#membre-fem(type="radio", name="membresexe", value="f")
+	br
+	label(for="membre-adresse") Adresse
+	input#membre-adresse(type="text", name="membreadresse")
+	br
+	label(for="membre-cp") Code Postale
+	input#membre-cp(type="text", name="membrecp")
+	br
+	label(for="membre-ville") Ville
+	input#membre-ville(type="text", name="membreville")
+	br
+	label(for="membre-statut") Statut
+	select#select-membre-statut(name="membrestatut")
+		option(value="admin") Administrateur
+		option(value="membre") Membre
+	br			
+	div.align-center
+		input.bt-cancel.btn(type="button", name="bt-cancel", value="Annuler")
+		input#bt-promotion-edit.btn.btn-primary(type="submit", name="bt-promotion-edit", value="#{type}")

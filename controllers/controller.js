@@ -39,8 +39,9 @@ function getModelDetails(model) {
 	var femModels = ['salles','promotions', 'commandes'],
 		mascModels = ['produits', 'membres', 'avis'],
 //		modelsWithForeignKeys = ['produits', 'commandes', 'avis'],
-		modelFile = '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
-		modelName = model.toLowerCase() + 's',						// ex.: salles
+		lastChar = model.slice(-1),
+		modelFile = (lastChar == 's') ? '../models/' + model.toLowerCase() + '.js' : '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
+		modelName = (lastChar == 's') ? model.toLowerCase() : model.toLowerCase() + 's',						// ex.: salles
 //		modelReferenceName = model.toLowerCase()+'reference',			// ex.: sallereference
 		modelGenre = '',
 		suffix = '',
@@ -203,7 +204,7 @@ Deferred.when([
 		.find()
 		.populate('salle_id')
 		.populate('promotion_id')
-		.populate('membres_id')
+		.populate('membre_id')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
@@ -211,6 +212,7 @@ Deferred.when([
 		//	forModels = getForeignModelNames(docs, model);
 		//	console.log(forModels);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
+			console.log(docs);
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 		}

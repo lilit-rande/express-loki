@@ -10,8 +10,9 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	Deferred = require ('JQDeferred'),
 	fs = require('fs'),
-	superController = require('./controllers/controller.js'),
-	model = 'Produit';
+	Validations = require('validations');
+
+//	model = 'Produit';
 // var	form = require('connect-form');
 
 mongoose.connect('mongodb://localhost/lokisalle');
@@ -61,7 +62,7 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', routes.index);
-var prefixes = ['salles','promotions', 'produits'];
+var prefixes = ['salles','promotions','produits','avis','membres'];
 
 //map route to controller
 prefixes.forEach(function(prefix) {
