@@ -309,6 +309,7 @@ var membre1 = new Membre ({
 		promotion3.save(function(err){
 			promotion7.save(function(err){
 				var produit1 = new Produit({
+						"title": "Produit1",
 						"arrive": new Date('May 31, 2020 09:00:00'),
 						"depart": new Date('Dec 28, 2020 18:00:00'),
 						"prix": 1000,
@@ -332,7 +333,8 @@ var membre1 = new Membre ({
 							promotion3.save();							
 						});
 				});
-				var produit4 = new Produit({						
+				var produit4 = new Produit({
+						"title": "Produit4",
 						"arrive": new Date('Dec 30, 2012 09:00:00'),
 						"depart": new Date('Dec 28, 2013 18:00:00'),
 						"prix": 500,
@@ -358,6 +360,7 @@ var membre1 = new Membre ({
 				});
 				
 				var produit6 = new Produit({
+						"title": "Produit6",
 						"arrive": new Date('May 31, 2012 09:00:00'),
 						"depart": new Date('Dec 01, 2012 18:00:00'),
 						"prix": 1000,
@@ -388,26 +391,7 @@ var membre1 = new Membre ({
 	});
 
 	salle18.save(function(err){
-		var produit5 = new Produit({
-					"arrive": new Date('May 31, 2020 09:00:00'),
-					"depart": new Date('Dec 08, 2020 18:00:00'),
-					"prix": 1000,
-					"etat": 1,
-					"salle_id": salle18._id
-				});//produit5
-				
-			produit5.save(function(err){
-				if (err) console.log(err);
-				Produit
-					.findOne({'_id': produit5._id})
-					.populate('salle_id')
-					.exec(function(err, produit){
-						if(err) return handleError(err);
-						console.log(produit.salle_id.title);
-						salle18.produits.push(produit);
-						salle18.save();
-					});
-			});
+
 	});//salle18
 	
 			
@@ -424,27 +408,8 @@ var membre1 = new Membre ({
 	});
 	
 	salle14.save(function(err){
-		var produit5 = new Produit({
-					"arrive": new Date('May 31, 2020 09:00:00'),
-					"depart": new Date('Dec 28, 2020 18:00:00'),
-					"prix": 500,
-					"etat": 1,
-					"salle_id": salle14._id
-				});//produit5
-				
-			produit5.save(function(err){
-				if (err) console.log(err);
-				Produit
-					.findOne({'_id': produit5._id})
-					.populate('salle_id')
-					.exec(function(err, produit){
-						if(err) return handleError(err);
-						console.log(produit.salle_id.title);
-						salle14.produits.push(produit);
-						salle14.save();
-					});
-			});
-	});//salle14
+		if (err) console.log(err);
+	});
 	
 		
 	salle13.save(function(err){
@@ -459,7 +424,8 @@ var membre1 = new Membre ({
 		if (err) console.log(err);
 	});
 	
-	salle10.save(function(err){		
+/******************************/	
+	salle10.save(function(err){	
 		membre2.save(function(err){
 			var avis2 = new Avis({				
 				'comment':'magnifique',
@@ -482,45 +448,103 @@ var membre1 = new Membre ({
 						
 						membre2.avis.push(avis);
 						membre2.save();
-					});				
+					});
 			});	
+			
+			var produit5 = new Produit({
+				"title": "Produit5",
+				"arrive": new Date('May 31, 2020 09:00:00'),
+				"depart": new Date('Dec 28, 2020 18:00:00'),
+				"prix": 500,
+				"etat": 1,
+				"salle_id": salle10._id
+			});//produit5
+			
+			produit5.save(function(err){
+				if (err) console.log(err);
+				Produit
+					.findOne({'_id': produit5._id})
+					.populate('salle_id')
+					.exec(function(err, produit){
+						if(err) return handleError(err);
+						console.log(produit.salle_id.title);
+						salle10.produits.push(produit);
+						salle10.save();
+					});
 		
-			var commande1 = new Commande({
-				'ref' : 'C0001',
-				'montant':'1000',
-				'membre_id':membre2._id
-			});
 			
-			commande1.save(function(err){
+				var commande1 = new Commande({
+					'ref' : 'C0001',
+					'montant':'1000',
+					'date':new Date('July 31, 2012 09:00:00'),
+					'membre_id':membre2._id,
+					'produit_id':produit5._id,
+					'etat':1
+				});
+				
+				commande1.save(function(err){
+					if (err) console.log(err);
+					Commande
+						.findOne({'_id': commande1._id})
+						.populate('membre_id')
+						.populate('produit_id')
+						.exec(function(err, commande){
+							if(err) return handleError(err);						
+							membre2.commandes.push(commande);
+							membre2.save();
+							
+							produit5.commandes.push(commande);
+							produit5.save();
+						});				
+				});
+			});	//produit5
+
+		var produit7 = new Produit({
+					"title": "Produit7",
+					"arrive": new Date('May 31, 2020 09:00:00'),
+					"depart": new Date('Dec 08, 2020 18:00:00'),
+					"prix": 1000,
+					"etat": 1,
+					"salle_id": salle10._id
+				});//produit5
+				
+			produit7.save(function(err){
 				if (err) console.log(err);
-				Commande
-					.findOne({'_id': commande1._id})
-					.populate('membre_id')
-					.exec(function(err, commande){
-						if(err) return handleError(err);						
-						membre2.commandes.push(commande);
-						membre2.save();
-					});				
-			});
-			
-			var commande2 = new Commande({
-				'ref' : 'C0002',
-				'montant':'650',
-				'membre_id':membre2._id
-			});
-			
-			commande2.save(function(err){
-				if (err) console.log(err);
-				Commande
-					.findOne({'_id': commande2._id})
-					.populate('membre_id')
-					.exec(function(err, commande){
-						if(err) return handleError(err);						
-						membre2.commandes.push(commande);
-						membre2.save();
-					});				
-			});
-			
+				Produit
+					.findOne({'_id': produit7._id})
+					.populate('salle_id')
+					.exec(function(err, produit){
+						if(err) return handleError(err);
+						console.log(produit.salle_id.title);
+						salle10.produits.push(produit);
+						salle10.save();
+					});
+				
+				var commande2 = new Commande({
+					'ref' : 'C0002',
+					'montant':'650',
+					'date':new Date('July 31, 2012 09:00:00'),
+					'membre_id':membre2._id,
+					'produit_id':produit7._id,
+					'etat':1
+				});
+				
+				commande2.save(function(err){
+					if (err) console.log(err);
+					Commande
+						.findOne({'_id': commande2._id})
+						.populate('membre_id')
+						.populate('produit_id')
+						.exec(function(err, commande){
+							if(err) return handleError(err);						
+							membre2.commandes.push(commande);
+							membre2.save();
+							
+							produit7.commandes.push(commande);
+							produit7.save();
+						});				
+				});	//commande2
+			});	//produit7
 		});//membre2
 	});//salle10
 
@@ -547,7 +571,10 @@ var membre1 = new Membre ({
 		if (err) console.log(err);
 	});	
 	salle2.save(function(err){
+		if (err) console.log(err);
+		
 		var produit2 = new Produit({
+				"title": "Produit2",
 				"arrive": new Date('May 31, 2020 09:00:00'),
 				"depart": new Date('Dec 28, 2020 18:00:00'),
 				"prix": 1000,
@@ -565,68 +592,78 @@ var membre1 = new Membre ({
 					salle2.produits.push(produit);
 					salle2.save();
 				});
-		});	
 		
-		membre3.save(function(err){
-			var avis2 = new Avis({				
-				'comment':'Tout ce que j\'attendais. Merci',
-				'note':4,
-				'date':new Date('January 31, 2012 09:00:00'),
-				'membre_id': membre3._id,
-				'salle_id' : salle2._id
-			});//avis2
-			
-			avis2.save(function(err){
-				if (err) console.log(err);
-				Avis
-					.findOne({'_id': avis2._id})
-					.populate('salle_id')
-					.exec(function(err, avis){
-						if(err) return handleError(err);
-						console.log(avis.salle_id.title);
-						salle2.avis.push(avis);
-						salle2.save();
-						
-						membre3.avis.push(avis);
-						membre3.save();
-					});				
-			});
-			
-			var commande3 = new Commande({
-				'ref' : 'C0003',
-				'montant':'1350',
-				'membre_id':membre3._id
-			});
-			
-			commande3.save(function(err){
-				if (err) console.log(err);
-				Commande
-					.findOne({'_id': commande3._id})
-					.populate('membre_id')
-					.exec(function(err, commande){
-						if(err) return handleError(err);						
-						membre3.commandes.push(commande);
-						membre3.save();
-					});				
-			});
-			
-		});//membre3
+			membre3.save(function(err){
+				var avis2 = new Avis({				
+					'comment':'Tout ce que j\'attendais. Merci',
+					'note':4,
+					'date':new Date('January 31, 2012 09:00:00'),
+					'membre_id': membre3._id,
+					'salle_id' : salle2._id
+				});//avis2
+				
+				avis2.save(function(err){
+					if (err) console.log(err);
+					Avis
+						.findOne({'_id': avis2._id})
+						.populate('salle_id')
+						.exec(function(err, avis){
+							if(err) return handleError(err);
+							console.log(avis.salle_id.title);
+							salle2.avis.push(avis);
+							salle2.save();
+							
+							membre3.avis.push(avis);
+							membre3.save();
+						});				
+				});
+				
+				var commande3 = new Commande({
+					'ref' : 'C0003',
+					'montant':'1350',
+					'date':new Date('July 31, 2012 09:00:00'),
+					'membre_id':membre3._id,
+					'produit_id':produit2._id,
+					'etat':1
+				});
+				
+				commande3.save(function(err){
+					if (err) console.log(err);
+					Commande
+						.findOne({'_id': commande3._id})
+						.populate('membre_id')
+						.populate('produit_id')
+						.exec(function(err, commande){
+							if(err) return handleError(err);						
+							membre3.commandes.push(commande);
+							membre3.save();
+							
+							produit2.commandes.push(commande);
+							produit2.save();
+						});				
+				});
+				
+			});//membre3
+		
+		});	//produit2
 	});//salle2
+	
 	salle1.save(function(err){
 		promotion1.save(function(err){
-			var produit2 = new Produit({
+			var produit3 = new Produit({
+					"title": "Produit3",
 					"arrive": new Date('Jan 31, 2020 09:00:00'),
 					"depart": new Date('Mar 01, 2020 18:00:00'),
 					"prix": 600,
 					"etat": 0,
 					"salle_id": salle1._id,
 					"promotion_id": promotion1._id
-				});//produit1
+				});//produit3
 				
-			produit2.save(function(err){
+			produit3.save(function(err){
 				if (err) console.log(err);
 				Produit
-					.findOne({'_id': produit2._id})
+					.findOne({'_id': produit3._id})
 					.populate('salle_id')
 					.exec(function(err, produit){
 						if(err) return handleError(err);

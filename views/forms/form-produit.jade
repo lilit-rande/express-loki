@@ -1,27 +1,27 @@
 h2 #{title}
-form.form-produit-edit(method="post", action="#{action}", name="form-produit-edit")
+form.form-produit-edit#form-produit(method="post", action="#{action}", name="form-produit-edit")
 	fieldset
 	input#old_salle_id(type="hidden", name="old_salle_id")
 	label.choix(for="select-salle") Choisir une salle parmi les salles existantes : 
 	br
-	select#select-salle(name="new_salle_id")
+	select#select-salle(name="new_salle_id").required
 		- if (foreignModels.salle != null)
 			- each salle in foreignModels.salle
 				option(value="#{salle._id}") #{salle.title} - #{salle.adresse} - #{salle.ville} - #{salle.pays} 
 	br
 	label(for="date-arrive", name="") Date d'arrivée
-	input#date-arrive.datepicker(type="text", name="produitarrive")
+	input#date-arrive.datepicker(type="text", name="produitarrive").required
 	label.petit-label (format 'aaaa-mm-jj hh:mm')
 	br
 	label(for="date-depart") Date de départ
-	input#date-depart.datepicker(type="text", name="produitdepart")
+	input#date-depart.datepicker(type="text", name="produitdepart").required
 	label.petit-label (format 'aaaa-mm-jj hh:mm')
 	br
 	label(for="prix") Prix
-	input#prix(type="text", name="produitprix")
+	input#prix(type="text", name="produitprix").required
 	label.petit-label €
 	label(for="etat") Etat
-	input#prix(type="text", name="produitetat")
+	input#prix(type="text", name="produitetat").required
 	input#old_promotion_id(type="hidden", name="old_promotion_id")
 	label.choix(for="select-promotion") Choisir une promotion parmi les promotions existantes : 
 	br

@@ -1,0 +1,32 @@
+!!!
+html
+	head
+		title= title
+		link(href='/css/main.css', rel='stylesheet')
+		link(href='/css/main-responsive.css', rel='stylesheet')
+		link(href="/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
+		link(href="/favicon.ico", rel="shortcut icon", type="text/css")
+		link(href="/apple-touch-icon-144-precomposed.png", rel="apple-touch-icon-precomposed", sizes="144x144")
+		link(href="/apple-touch-icon-114-precomposed.png", rel="apple-touch-icon-precomposed", sizes="114x114")
+		link(href="/apple-touch-icon-72-precomposed.png", rel="apple-touch-icon-precomposed", sizes="72x72")
+		link(href="/apple-touch-icon-57-precomposed.png", rel="apple-touch-icon-precomposed", sizes="57x57")
+	body
+		section.container
+			header
+				include inc/header
+			nav		
+				div.nav-user
+					include inc/nav-user
+				div.nav-admin
+					include inc/nav-admin
+			section#main
+				block content
+			footer
+				include inc/footer
+		script(src="/js/vendor/jquery-1.9.0.min.js")		
+		script(src="/js/vendor/jquery-ui-1.10.0.custom.min.js")
+		script(src="/js/vendor/jquery.validate.min.js")
+		script(src="/js/vendor/jquery.formautofill.min.js")
+		script(src="/js/vendor/bootstrap.min.js")
+		script(src="/js/plugins.js")
+		script(src="/js/main.js")

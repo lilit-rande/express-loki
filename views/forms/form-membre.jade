@@ -1,20 +1,20 @@
 h2 #{title}
-form.form-membre-edit(method="post", action="#{action}", name="form-membre-edit")
+form.form-membre-edit.form-horizontal#form-membre(method="post", action="#{action}", name="form-membre-edit")
 	fieldset	
 	label(for="membre-pseudo") Pseudo
-	input#membre-pseudo(type="text", name="membrepseudo")
+	input#membre-pseudo(type="text", name="membrepseudo").required
 	br
 	label(for="membre-mdp") Mot de passe
-	input#membre-mdp(type="text", name="membremdp")
+	input#membre-mdp(type="text", name="membremdp").required
 	br
 	label(for="membre-nom") Nom
-	input#membre-nom(type="text", name="membrenom")
+	input#membre-nom(type="text", name="membrenom").required
 	br
 	label(for="membre-prenom") Prénom
-	input#membre-prenom(type="text", name="membreprenom")
+	input#membre-prenom(type="text", name="membreprenom").required
 	br
 	label(for="membre-email") Email
-	input#membre-email(type="text", name="membreemail")
+	input#membre-email(type="text", name="membreemail").required
 	br
 	label() Sexe
 	label(for="membre-masc", class="radio-label") Masculin
@@ -26,13 +26,13 @@ form.form-membre-edit(method="post", action="#{action}", name="form-membre-edit"
 	input#membre-adresse(type="text", name="membreadresse")
 	br
 	label(for="membre-cp") Code Postale
-	input#membre-cp(type="text", name="membrecp")
+	input#membre-cp(type="text", name="membrecp").required
 	br
 	label(for="membre-ville") Ville
 	input#membre-ville(type="text", name="membreville")
 	br
 	label(for="membre-statut") Statut
-	select#select-membre-statut(name="membrestatut")
+	select#select-membre-statut(name="membrestatut").required
 		option(value="admin") Administrateur
 		option(value="membre") Membre
 	br			

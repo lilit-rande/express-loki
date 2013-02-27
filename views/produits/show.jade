@@ -48,13 +48,13 @@ block content
 			div.span6
 				div.annonce-bloc
 					h2 Avis
-					form
+					form(action="avis/new", method="post")
 						div.pull-left
 							label(for="commentaire") Ajouter un commentaire
-							textarea(name="commentaire", id="commentaire")
+							textarea#commentaire(name="commentaire")
 						div.pull-left(style="margin-left:40px;")
 							label(for="note") Note
-							select
+							select#note(name="note")
 								-for(var i=1; i<=10; i++)
 									option=i+'/10'
 							<br />

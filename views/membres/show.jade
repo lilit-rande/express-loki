@@ -3,57 +3,84 @@ extends ../layout
 block content
 	-if (data != null)
 		div.row
-			div.span12			
-				h1= title			
-				div.annonce-bloc.one-column
-					img(src="../../images/vignettes/#{data.image}", width="80px", height="80px")
-					h2 #{data.title}
-					span.italic {1/10 moyenne sur 1 avis}
-					p #{data.description}
-					span.italic Capacité: #{data.capacite}. Catégorie: salle de #{data.categorie}
-		div.row
+			div.span12	
+				h1= title		
+				div.one-column
+					h2 Commandes
+					table(broder="1").center-block.main-table
+						tr
+							th Réference
+							th Date
+							th Montant
+							th Etat
+						- if(data.commandes == '')
+							tr
+								td(colspan="4")	Pas de commande à afficher
+						- each commande in data.commandes
+							tr.(data-id="#{commande._id}", data-model="commande")
+								td.model-view-link #{commande.ref}
+								td.model-view-link #{commande.date.toDateString()}
+								td.model-view-link #{commande.montant} €
+								- if (commande.etat == 1)
+									etat = "Payé" 
+								- else
+									etat = "En attente de payement"
+								td.model-view-link=etat	
+		div.row	
 			div.span6
 				div.annonce-bloc
-					h2 Informations complémentaires
+					h2 Informations profil
 					p
-						span.titre Pays : 
-						span.valeur #{data.pays}
+						span.titre Pseudo : 
+						span.valeur #{data.pseudo}
 					p
-						span.titre Ville :
-						span.valeur #{data.ville}
+						span.titre Nom : 
+						span.valeur #{data.nom}
+					p
+						span.titre Prénom : 
+						span.valeur #{data.prenom}
+					p
+						span.titre Email : 
+						span.valeur #{data.email}
+					p
+						span.titre Sexe :
+						if (data.sexe == 'f')
+							sexe = 'feminin'
+						else
+							sexe = 'masculin'
+						span.valeur #{sexe}
 					p
 						span.titre Adresse : 
 						span.valeur #{data.adresse}
 					p
+						span.titre Ville :
+						span.valeur #{data.ville}
+					p
 						span.titre Code postale : 
 						span.valeur #{data.cp}
 					p
-						span.titre Date d'arrivée : 
-						span.valeur {Date d'arrivée}
+						span.titre Pays : 
+						span.valeur #{data.pays}
 					p
-						span.titre Date de départ : 
-						span.valeur {Date de départ}
-					p
-						span.titre Prix : 
-						span.valeur {Prix}
-					p.italic *Ce prix est hors taxes.
+						span.titre Statut : 
+						span.valeur #{data.statut}
 			div.span6
 				div.annonce-bloc
 					h2 Avis
-					form
-						div.pull-left
-							label(for="commentaire") Ajouter un commentaire
-							textarea(name="commentaire", id="commentaire")
-						div.pull-left(style="margin-left:40px;")
-							label(for="note") Note
-							select
-								-for(var i=1; i<=10; i++)
-									option=i+'/10'
-							<br />
-							input.btn.btn-primary(value="Sousmettre", name="sousmettre-avis")
-						div.clear
+					div
+						- each avis in data.avis
+							p
+								span.titre Note : 
+								span.valeur #{avis.note}
+							p
+								span.titre Date : 
+								span.valeur #{avis.date.toDateString()}
+							p
+								span.titre Comment : 
+								span.valeur #{avis.comment}
+							hr
 	-else 
 		div.row
 			div.span12					
 				div.error-message
-					span La salle avec identifiant #{id} n'existe pas !
+					span Il n'existe pas de membre avec cet identifiant !

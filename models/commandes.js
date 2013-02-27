@@ -6,8 +6,11 @@ var mongoose = require('mongoose'),
 
 var commandeSchema = new Schema({
 	ref: {type: String, require: true, trim: true, unique: true},
-	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres', default: null},
-	montant: {type: Number, require: true, trim: true}
+	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres'},
+	produit_id: {type: Schema.Types.ObjectId, ref: 'Produits'},
+	date: {type: Date, require: true, trim: true},
+	montant: {type: Number, require: true, trim: true},
+	etat: {type: Number, require: true, trim: true}	//1:payé, 0: non payé, 2:annulé 
 });
 /*
 http://mongoosejs.com/docs/populate.html

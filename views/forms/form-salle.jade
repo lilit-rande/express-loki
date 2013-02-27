@@ -1,24 +1,24 @@
 h2 #{title}
-form.form-salle-edit(method="post", action="#{action}", name="form-salle-edit")
+form.form-salle-edit(method="post", action="#{action}", name="form-salle-edit")#form-salle
 	fieldset
-	input#sallereference(type="hidden", name="sallereference")		
+	input#sallereference(type="hidden", name="sallereference")
 	label(for="salle-title") Titre
-	input#salle-title(type="text", name="salletitle")
+	input#salle-title(type="text", name="salletitle").required
 	br
 	label(for="salle-description") Description
 	textarea#salle-description(name="salledescription")
 	br
 	label(for="salle-pays") Pays
-	input#salle-pays(type="text", name="sallepays")
+	input#salle-pays(type="text", name="sallepays").required
 	br
 	label(for="salle-ville") Ville							
-	input#salle-ville(type="text", name="salleville")
+	input#salle-ville(type="text", name="salleville").required
 	br
 	label(for="salle-adresse") Adresse
 	input#salle-adresse(type="text", name="salleadresse")
 	br
 	label(for="salle-cp") Code postale
-	input#salle-cp(type="text", name="sallecp")
+	input#salle-cp(type="text", name="sallecp").required
 	br
 	div.input-file-visible
 		label(for="salle-image-visible") Photo
@@ -29,10 +29,10 @@ form.form-salle-edit(method="post", action="#{action}", name="form-salle-edit")
 		input#salle-image(type="file", name="salleimage")
 	br					
 	label(for="salle-capacite") Capacité
-	input#salle-capacite(type="text", name="sallecapacite")
+	input#salle-capacite(type="text", name="sallecapacite").required
 	br		
 	label(for="salle-categorie") Catégorie
-	input#salle-categorie(type="text", name="sallecategorie")
+	input#salle-categorie(type="text", name="sallecategorie").required
 	br			
 	div.align-center
 		input.bt-cancel.btn(type="button", name="bt-cancel", value="Annuler")

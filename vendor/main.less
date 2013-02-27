@@ -1,0 +1,169 @@
+@import "bootstrap/less/bootstrap.less";
+
+//Lokisalle variables
+
+@background-color		:#F6F6F6;
+@navbar-grad-st-color	:#43464A;
+@active-color			:#111;
+
+//Green
+@green-lighter			:#DBF1EC;
+@green-light			:#ADE0DA;
+@green					:#488979;
+@green-dark				:#417064;
+@green-darker			:#2B6462;
+
+@gray-dark				:#D9D9D9;
+@gray					:#D2D2D2;
+@gray-light				:#DFDFDF;
+
+@body-text-color		:#919191;
+@heading-text-color		:#6e6e6e;
+
+@border-color			:@gray-dark;
+.active{
+	background-color: @active-color;
+	color:@white;
+}
+
+.italic{font-style: italic;}
+
+.separated-text {
+	color:@green;
+	font-style: italic;
+}
+.separated-header-text {
+	color:@green-dark;
+	font-weight: bold;
+}
+.main-box-shadow {
+	.box-shadow(0px 0px 5px 2px  rgba(0, 0, 0, 0.1));
+}
+
+.annonce {
+	border-bottom: 1px solid @border-color;
+	h2 {
+		border:1px solid @gray-dark;
+		background-color: @gray-light;
+		color:@heading-text-color;
+		padding-left: 10px;
+		font-size: 14px;
+		line-height: 30px;
+		
+		.heading-a {
+			.pull-right;
+			text-align: right;
+			font-size: 14px;
+			margin-right: 10px;
+		}
+	}
+	
+	p {
+		img {
+			border: 8px solid @gray-dark;
+			vertical-align: top;
+			margin-right: 10px;
+		}
+	}
+}
+
+body{
+	background: url("../images/bgr_main.jpg") repeat-x scroll 0 0 @background-color;
+	color:@body-text-color;
+	
+	h1, h2, h3, h4, h5, h6 {
+		color:@grayDark;
+	}
+	h1 {
+		font-size: 22px;
+	}
+	
+	h2 {
+		font-size: 18px;
+	}
+	
+	a {
+		text-decoration: none;
+		display: inline-block;
+		color:@green;
+		
+		&:hover {
+			text-decoration: underline;
+			color: inherit;
+			cursor: pointer;
+		}
+	
+		&.heading-a {
+			color:@green-darker;
+			font-weight: bold;
+		}
+	
+	}
+	
+	
+	header {
+		margin-top: 20px;
+		h1 {
+			text-align: right;
+			color:@green-darker;
+			
+			p.tagline{
+				font-size: 16px;
+				
+			}
+		}
+		
+		#header-form {
+			input {
+				margin-right: 2px;
+			}
+		}
+	}
+	
+	#main {
+		min-height: 500px;
+		background-color: @white;
+		padding: 20px;
+		.main-box-shadow;
+		
+		.navbar {
+			margin-bottom: 0;
+			&.navbar-inverse{
+				.navbar-inner{
+					.border-radius(0px);
+					#gradient .vertical(@navbar-grad-st-color, @black);
+				}
+			}
+			
+			.nav {
+				li {
+					&:hover {
+						.active;
+					}
+				}
+			}
+			
+			.dropdown-menu {
+				li > a {
+					
+					&:hover, &:focus {
+						#gradient .vertical(@green-lighter, @green-light);
+						color: @green-dark;
+					}
+				}
+			}
+		}
+		
+		.hero-unit {
+			.border-radius(0px);
+			padding: 10px;
+			text-align: center;
+			background-color: @gray-dark;
+			margin-bottom: 0;
+		}
+	}
+	aside {
+		margin-top: 220px;
+	}
+	
+}

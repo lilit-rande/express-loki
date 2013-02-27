@@ -1,4 +1,4 @@
-//The promotions controller
+//The avis controller
 var superController = require('../controllers/controller.js'),
 	model = 'Avis';
 

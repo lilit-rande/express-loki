@@ -2,32 +2,146 @@
 html
 	head
 		title= title
-		link(href='/stylesheets/css/style.css', rel='stylesheet')		
-		link(href='/stylesheets/css/responsive.css', rel='stylesheet')
-		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet", type="text/css", media="screen")
-		link(href="/bootstrap/css/bootstrap-responsive.min.css", rel="stylesheet", type="text/css")
-		link(href="/stylesheets/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
+		link(href='/css/main.css', rel='stylesheet')
+		link(href='/css/main-responsive.css', rel='stylesheet')
+		link(href="/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
 		link(href="/favicon.ico", rel="shortcut icon", type="text/css")
 		link(href="/apple-touch-icon-144-precomposed.png", rel="apple-touch-icon-precomposed", sizes="144x144")
 		link(href="/apple-touch-icon-114-precomposed.png", rel="apple-touch-icon-precomposed", sizes="114x114")
 		link(href="/apple-touch-icon-72-precomposed.png", rel="apple-touch-icon-precomposed", sizes="72x72")
 		link(href="/apple-touch-icon-57-precomposed.png", rel="apple-touch-icon-precomposed", sizes="57x57")
 	body
-		section.container
+		div.container
 			header
-				include inc/header
-			nav		
-				div.nav-user
-					include inc/nav-user
-				div.nav-admin
-					include inc/nav-admin
-			section#main
-				block content
+				h1#header-logo.pull-left
+					a Lokisalle
+						p.tagline Location de salles de réunion
+				div#header-form.pull-right
+					form.form-inline(method="post", action="")
+						input.input-small(type='text', placeholder="login")
+						input.input-small(type='text', placeholder="password")
+						button.btn.btn-inverse(type="submit") OK
+				div.clearfix
+			div.row
+				div.span8
+					div#main
+						div.navbar.navbar-inverse
+							div.navbar-inner
+								div.container
+									a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+										span.icon-bar
+										span.icon-bar
+										span.icon-bar
+									div.nav-collapse.collapse
+										ul.nav
+											li.active
+												a(href="#") Home
+											li
+												a(href="#about") About
+											li.dropdown
+												a.dropdown-toggle(href="#", data-toggle="dropdown")
+													Dropdown 
+													b.caret
+												ul.dropdown-menu
+													li
+														a(href="#") Action
+													li
+														a(href="#") Another action
+													li.divider
+						div.hero-unit
+							p
+								img(src="../images/hero-unit.png")
+						div
+							h1 Accueil
+							p Pour vos réunions, vos séminaires, vos formations, Lokisalle vous ouvre des espaces "centres d’affaires" dédiés spécialement aux entreprises.
+							p 
+								span.separated-text Accueil personnalisé 
+								de vos visiteurs, équipements et aménagements sur mesure des salles de réunion ou salles de formation, services de confort pour les pauses et repas… La qualité des espaces et le professionnalisme des équipes vous assurent la réussite de vos évènements.
+							p Tous les centres d’affaires Lokisalle sont situés à des adresses stratégiques, 
+								span.separated-text valorisantes 
+								pour votre entreprise et facile d’accès.
+							h2 Nos trois derniers offres
+							div.annonce
+								h2 Salle title
+									a.heading-a Voir les détailles > 
+								p
+									img.pull-left(src="../images/vignettes/vignette_ph_1.jpg")
+									span
+										span.separated-header-text Disponibilités :  
+										Du {Start date} au {End date}
+									br
+									span 
+										span.separated-header-text Ville :  
+										{ville} - {cp} 
+									br
+									span 
+										span.separated-header-text Prix :  
+										{prix} euros* pour {capacite} personnes
+									br
+									span {desc} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori
+									br
+									a.heading-a Ajouter au panier >
+									p.clearfix
+							div.annonce
+								h2 Salle title
+									a.heading-a Voir les détailles > 
+								p
+									img.pull-left(src="../images/vignettes/vignette_ph_2.jpg")
+									span
+										span.separated-header-text Disponibilités :  
+										Du {Start date} au {End date}
+									br
+									span 
+										span.separated-header-text Ville :  
+										{ville} - {cp} 
+									br
+									span 
+										span.separated-header-text Prix :  
+										{prix} euros* pour {capacite} personnes
+									br
+									span {desc} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori
+									br
+									a.heading-a Ajouter au panier >
+									p.clearfix
+							div.annonce
+								h2 Salle title
+									a.heading-a Voir les détailles > 
+								p
+									img.pull-left(src="../images/vignettes/vignette_ph_3.jpg")
+									span
+										span.separated-header-text Disponibilités :  
+										Du {Start date} au {End date}
+									br
+									span 
+										span.separated-header-text Ville :  
+										{ville} - {cp} 
+									br
+									span 
+										span.separated-header-text Prix :  
+										{prix} euros* pour {capacite} personnes
+									br
+									span {desc} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori
+									br
+									a.heading-a Ajouter au panier >
+									p.clearfix
+				div.span4
+					aside
+						h1 aside				
 			footer
-				include inc/footer
+			
+					
+				
+				
+				
+				
+				
+				
+				
+				
 		script(src="/js/vendor/jquery-1.9.0.min.js")		
 		script(src="/js/vendor/jquery-ui-1.10.0.custom.min.js")
+		script(src="/js/vendor/jquery.validate.min.js")
 		script(src="/js/vendor/jquery.formautofill.min.js")
-		script(src="/bootstrap/js/bootstrap.min.js")
+		script(src="/js/vendor/bootstrap.min.js")
 		script(src="/js/plugins.js")
 		script(src="/js/main.js")

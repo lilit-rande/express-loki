@@ -151,6 +151,13 @@ $(document).ready(function() {
 			$('.delete').html(data);
 		});
 	});
+	
+// validate 
+	$('#form-salle').validate();
+	$('#form-produit').validate();
+	$('#form-promotion').validate();
+	$('#form-membre').validate();
+
 
 
 });

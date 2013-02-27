@@ -209,10 +209,7 @@ Deferred.when([
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
-		//	forModels = getForeignModelNames(docs, model);
-		//	console.log(forModels);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
-			console.log(docs);
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
 		}
@@ -463,23 +460,27 @@ exports.show = function(req, res, model) {
 		modelName = modelDetails.modelName,
 			suffix = modelDetails.suffix,
 			refName = modelDetails.modelReferenceName,
-			ref = req.params.id,
 			modelLower = model.toLowerCase(),
-			articleDef = modelDetails.articleDef
+			articleDef = modelDetails.articleDef,
+			article = (articleDef == 'le ') ? 'du ' : 'de la '
 		;
 
 	Model.findOne({'_id': ref})
 		.populate('salle_id')
 		.populate('promotion_id')
 		.populate('membres_id')
+		.populate('avis')
+		.populate('commandes')
+		.populate('produit_id')
 		.exec(function(err, doc){	
 		if(err) {
 			throw err;
 		} else {
 			if (!doc) {
-				res.render(modelName + '/show', {id: ref, title:'Détailles de ' + articleDef + modelLower, data:doc});
+				res.render(modelName + '/show', {id: ref, title:'Détailles ' + article + modelLower, data:doc});
 			} else {
-				res.render(modelName + '/show', {title: 'Détailles de ' + articleDef + modelLower, data: doc});
+		//		console.log(doc);
+				res.render(modelName + '/show', {title: 'Détailles ' + article + modelLower, data: doc});
 			}
 		}
 	});

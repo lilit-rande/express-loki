@@ -1,33 +1,36 @@
 //The salles controller
 var superController = require('../controllers/controller.js'),
 	model = 'Membre',
-	Membre  = require('../models/membres.js');
+	Membre  = require('../models/membres.js'),
+	Avis = require('../models/avis.js'),
+	Commandes = require('../models/commandes.js');
 		
 //index listing of members at :  /membres/
 exports.index = function(req, res){
 	superController.index(req, res, model);
 }
 
-//display new salle form
+//display new member form
 exports.new = function(req, res) {	
 	superController.new(req, res, model);
 }
 
-//add a salle
+//add a member
 exports.create = function(req, res) {
-	var salle = {
-		title: req.body.salletitle,
-		adresse: req.body.salleadresse,
-		ville: req.body.salleville,
-		cp: req.body.sallecp,
-		pays: req.body.sallepays,
-		capacite: req.body.sallecapacite,
-		categorie: req.body.sallecategorie,
-		image: req.body.salleimagevisible,
-		description: req.body.salledescription
+	var membre = {	
+		pseudo: req.body.membrepseudo,
+		mdp: req.body.membremdp,
+		nom: req.body.membrenom,	
+		prenom: req.body.membreprenom,
+		email: req.body.membreemail,
+		sexe: req.body.membresexe,
+		ville: req.body.membreville,
+		cp: req.body.membrecp,
+		adresse: req.body.membreadresse,
+		statut: req.body.membrestatut
 	};
 	
-	superController.create(req, res, model, salle);
+	superController.create(req, res, model, membre);
 };
 
 //display delete form
@@ -35,7 +38,7 @@ exports.delete = function(req, res) {
 	superController.delete(req, res, model);
 };
 
-//delete a salle
+//delete a member
 exports.destroy = function(req, res) {
 	superController.destroy(req, res, model);
 };
@@ -46,25 +49,80 @@ exports.edit = function(req, res) {
 	superController.edit(req, res, model, imagePath);	
 };
 
-//update a salle
+//update a member
 exports.update = function(req, res) {
-	var salle = {
-		title: req.body.salletitle,
-		adresse: req.body.salleadresse,
-		ville: req.body.salleville,
-		cp: req.body.sallecp,
-		pays: req.body.sallepays,
-		capacite: req.body.sallecapacite,
-		categorie: req.body.sallecategorie,
-		image: req.body.salleimagevisible,
-		description: req.body.salledescription
+	var membre = {	
+		pseudo: req.body.membrepseudo,
+		mdp: req.body.membremdp,
+		nom: req.body.membrenom,	
+		prenom: req.body.membreprenom,
+		email: req.body.membreemail,
+		sexe: req.body.membresexe,
+		ville: req.body.membreville,
+		cp: req.body.membrecp,
+		adresse: req.body.membreadresse,
+		statut: req.body.membrestatut
 	},
 	foreignModels = ['Avis', 'Commandes'];
 	
 	superController.update(req, res, model, membre, foreignModels);
 };
 
-//show a salle
+//show member info
 exports.show = function(req, res) {
 	superController.show(req, res, model);
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

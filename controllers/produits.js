@@ -38,6 +38,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
 		
 	var produit = {
+		title: req.body.produittitle,
 		arrive: req.body.produitarrive,
 		depart: req.body.produitdepart,
 		salle_id: req.body.new_salle_id,	
@@ -46,7 +47,6 @@ exports.update = function(req, res) {
 		etat: req.body.produitetat,
 	},
 		foreignModels = ['Salle', 'Promotion'];
-	console.log(req.body);
 	superController.update(req, res, model, produit, foreignModels);
 };
 
@@ -59,6 +59,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
 		
 	var produit = {
+		title: req.body.produittitle,
 		arrive: req.body.produitarrive,
 		depart: req.body.produitdepart,
 		salle_id: req.body.new_salle_id,	

@@ -1,12 +1,12 @@
 h2 #{title}
-form.form-promotion-edit(method="post", action="#{action}", name="form-promotion-edit")
+form.form-promotion-edit(method="post", action="#{action}", name="form-promotion-edit")#form-promotion
 	fieldset
 	input#promotion-reference(type="hidden", name="promotionreference")		
 	label(for="promotion-code") Code promotion
-	input#promotion-code(type="text", name="promotioncode")
+	input#promotion-code(type="text", name="promotioncode").required
 	br
 	label(for="promotion-reduction") Réduction
-	input#promotion-reduction(type="text", name="promotionreduction")
+	input#promotion-reduction(type="text", name="promotionreduction").required
 	br			
 	div.align-center
 		input.bt-cancel.btn(type="button", name="bt-cancel", value="Annuler")

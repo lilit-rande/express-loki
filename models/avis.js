@@ -5,11 +5,13 @@ var mongoose = require('mongoose'),
 //create Avis model
 var avisSchema = new Schema({
 	date: {type: Date, require: true, trim: true},
-	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null, require: true},	
-	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres', default: null, require: true},
+	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles'},	
+	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres'},
 	note: {type: Number, require: true, trim: true},
-	comment: {type: String, require: true, trim: true},
-});/*
+	comment: {type: String, require: true, trim: true}
+});
+
+/*
 http://mongoosejs.com/docs/populate.html
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
