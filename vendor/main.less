@@ -16,11 +16,13 @@
 @gray-dark				:#D9D9D9;
 @gray					:#D2D2D2;
 @gray-light				:#DFDFDF;
+@gray-link				:#949494;
 
 @body-text-color		:#919191;
 @heading-text-color		:#6e6e6e;
 
 @border-color			:@gray-dark;
+
 .active{
 	background-color: @active-color;
 	color:@white;
@@ -37,16 +39,55 @@
 	font-weight: bold;
 }
 .main-box-shadow {
-	.box-shadow(0px 0px 5px 2px  rgba(0, 0, 0, 0.1));
+//	.box-shadow(0px 0px 5px 2px  rgba(0, 0, 0, 0.1));
+}
+
+.gray-block {
+	border:1px solid @gray-dark;
+	background-color: @gray-light;
+	color:@heading-text-color;
+	padding-left: 10px;
+}
+
+.green-block {
+	border:1px solid @green-dark;
+	background-color: @green;
+	color:@green-darker;
+
+	padding-left: 10px;
+	
+	a {
+		background-color: @green;
+		border:none;
+		.border-radius(0);
+		padding: 0;
+		color:@green-darker;
+		font-weight: bold;
+		
+		&:hover, &:focus {
+			color: @white;
+		background-color: @green;
+		}
+	}
+	
+	.pred {
+		.pull-left;
+		margin-right: 10px;
+		color: @white;
+	}	
+	.next {
+		.pull-right;
+		margin-left: 10px;
+		margin-right: 10px;
+		color: @white;
+	}
 }
 
 .annonce {
 	border-bottom: 1px solid @border-color;
 	h2 {
-		border:1px solid @gray-dark;
-		background-color: @gray-light;
+		.gray-block;
 		color:@heading-text-color;
-		padding-left: 10px;
 		font-size: 14px;
 		line-height: 30px;
 		
@@ -89,8 +130,8 @@ body{
 		
 		&:hover {
 			text-decoration: underline;
-			color: inherit;
 			cursor: pointer;
+			color:@green;
 		}
 	
 		&.heading-a {
@@ -162,8 +203,62 @@ body{
 			margin-bottom: 0;
 		}
 	}
+	.pager{
+		.green-block;
+		text-align: left;
+		a {
+			display: inline-block;
+			margin-right: 20px;
+		}
+	}
 	aside {
 		margin-top: 220px;
+		.dropdown-menu{
+			display: block;
+		}
+		.aside-block {			
+			.gray-block;
+			margin-bottom: 20px;
+			p.comment {
+				margin-bottom: 10px;
+			}
+		}
+		
+		div {
+		
+			p.social-networks{
+				text-align: center
+			}
+		}
+	}
+	
+	footer {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		text-align: center;
+		
+		#footer {
+		//	vertical-align: middle;
+			.gray-block;
+			min-height: 100px;
+			ul {
+				li {
+					font-weight: bold;
+					display: inline-block;
+					list-style: none;
+					margin-right: 20px;
+					margin-left: 20px;
+					line-height: 100px;
+					
+				}
+			}
+		}
+		
+		#copyright {
+			font-size: 8px;
+			
+		}
 	}
 	
 }
+
