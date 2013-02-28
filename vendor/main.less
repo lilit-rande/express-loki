@@ -85,6 +85,7 @@
 
 .annonce {
 	border-bottom: 1px solid @border-color;
+	padding-bottom: 10px;
 	h2 {
 		.gray-block;
 		color:@heading-text-color;
@@ -99,11 +100,15 @@
 		}
 	}
 	
-	p {
+	div {
 		img {
 			border: 8px solid @gray-dark;
 			vertical-align: top;
 			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+		.pull-left{
+			margin-right: 20px;
 		}
 	}
 }
@@ -155,8 +160,17 @@ body{
 		}
 		
 		#header-form {
-			input {
-				margin-right: 2px;
+			form {
+				margin-bottom: 2px;
+				input {
+					margin-right: 2px;
+				}
+			}
+			
+			a {
+				display: inline-block;
+				font-size: 12px;
+				margin-right: 5px;
 			}
 		}
 	}
@@ -183,15 +197,14 @@ body{
 					}
 				}
 			}
-			
-			.dropdown-menu {
-				li > a {
-					
-					&:hover, &:focus {
-						#gradient .vertical(@green-lighter, @green-light);
-						color: @green-dark;
-					}
-				}
+
+			// Hover state
+			// -----------
+			.dropdown-menu li > a:hover,
+			.dropdown-menu li > a:focus,
+			.dropdown-submenu:hover > a {
+			  color: @green-dark;
+			  #gradient > .vertical(@green-lighter, @green-light);
 			}
 		}
 		
@@ -255,10 +268,153 @@ body{
 		}
 		
 		#copyright {
-			font-size: 8px;
+			font-size: 10px;
 			
 		}
 	}
 	
 }
 
+//popups
+//background-gradient colors
+@backGradStartColor:	#f4f4f4;
+@backGradEndColor:		#f9f9f9;
+@lokiGray:				#e1e1e1;
+@lokiGrayDarker:		#D9D6D6;
+.background-style { 
+	#gradient .vertical(@backGradStartColor, @backGradEndColor);
+	.border-radius(5px);
+	border: 1px solid @border-color;
+	.box-shadow(0px 0px 1px 1px rgba(215,215,215,0.5));
+}
+.form-block-background-style {
+	.background-style;
+	.box-shadow(0px 0px 5px 5px rgba(215,215,215,0.5));
+	
+}
+.background {
+	.size(100%, 100%);
+	position: fixed;
+	left:0;
+	top:0;
+	z-index: 1;
+	background: none repeat scroll 0 0 @black;
+	.hide;
+}
+form {
+	&.well {
+	    border: 1px solid #CCCCCC;
+	    margin-left: 0;
+	}
+	&.login-form {
+		margin: 0 auto;
+		.checkbox {
+		    margin: 23px 0 0 180px;
+		}
+		button {
+		    float: left;
+		    margin-top: 15px;
+		    padding: 6px 40px;
+		    width: 150px;
+		    i {
+			    padding-left: 18px;
+    		}
+		}
+	}
+}
+.edit-block{
+	.form-block-background-style;
+	padding: 0;
+	margin:0 auto;
+	width: 500px;	//TODO: width pour chaque media
+	padding-bottom: 10px;	
+	.btn {
+		margin-left: 10px; 
+	}
+	p {
+		margin: 10px !important;
+	}
+	h2 {
+		background-color: @lokiGrayDarker;
+		width: 100%;
+		text-align: center;
+		padding: 0 !important;
+	}	
+	form {
+		position: relative;
+		margin: 20px auto;
+		width: 80%;
+		label {
+			display: inline-block;
+			width: 7em;
+		}
+		input[type="radio"] {
+			vertical-align: top;
+			margin-right: 18px; 
+		}
+		.petit-label {
+			font-size: 10px;
+			font-style: italic;
+			color:@black;
+			width: 32% !important;
+			margin-left: 10px;
+		}
+		.radio-label {
+			width: 5em;
+		}
+		&.login-form {
+			.checkbox {
+			    margin: 23px 0 0 180px;
+			}
+			background-color:red !important;
+			button {
+			    float: left;
+			    margin-top: 15px;
+			    padding: 6px 40px;
+			    width: 150px !important;
+			    background-color: red;
+			}
+		}
+	}
+	form.form-produit-edit {
+		label.choix{
+			width:100%;
+		}
+		select{
+			width: 100%;
+		}
+		input {
+			width:20%;
+		}
+	}
+	img{
+		margin: 0 0 0 10px;
+		.size(40px,40px);
+	}
+	.input-file-hidden {
+		top: 276px;
+		position: absolute;	
+		opacity:0;
+		z-index:50;
+		margin-left: 7em;
+		cursor: pointer !important;			
+	}
+	.input-file-visible {
+		input[type="text"] {
+			vertical-align: top;
+			width: 36%;
+		}
+		.btn {
+			vertical-align: top;
+		}
+	}
+}
+.popup {
+	.hide;
+	.edit-block;
+	h2 {
+		cursor: move;
+	}
+	position: absolute;
+	z-index: 100;
+}

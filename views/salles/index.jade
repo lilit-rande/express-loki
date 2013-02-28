@@ -5,36 +5,47 @@ block content
 	div.background
 	div.salle-edit.popup.draggable
 	div.delete.popup.draggable
-	div.one-column
-		- if (docs != null)
-			- each salle in docs
-				div.annonce-bloc(data-id="#{salle._id}", data-model="salle")
-					h2 
-						a(href="salles/#{salle._id}") #{salle.title}
-					img.left-block(src="../images/vignettes/#{salle.image}")
-					p 
-						span.titre Pays : 
-						span.valeur #{salle.pays}
-					p 
-						span.titre Ville : 
-						span.valeur #{salle.ville}
-					p 
-						span.titre Adresse : 
-						span.valeur #{salle.adresse}
-					p 
-						span.titre Code Postale : 
-						span.valeur #{salle.cp}
-					p 
-						span.titre Capacité : 
-						span.valeur #{salle.capacite}
-					p 
-						span.titre Catégorie : 
-						span.valeur #{salle.categorie}
-					p 
-						span.titre Description : 
-						span.valeur #{salle.description}
-					a.model-edit-link(href="") >Modifier
-					br
-					a.model-delete-link(href="") >Supprimer
-		-else 
-			p.error-message Pas de salle à afficher
+	- if (docs != null)
+		- each salle in docs
+			div.annonce(data-id="#{salle._id}", data-model="salle")
+				h2 #{salle.title}
+					a.heading-a(href="salles/#{salle._id}") Voir les détailles >>
+				div
+					img.pull-left(src="../images/vignettes/#{salle.image}")
+					div.pull-left
+						p
+							span.separated-header-text Pays : 
+							span #{salle.pays}
+						p 
+							span.separated-header-text Ville : 
+							span #{salle.ville}
+						p 
+							span.separated-header-text Adresse : 
+							span #{salle.adresse}
+					div.pull-left
+						p 
+							span.separated-header-text Code Postale : 
+							span #{salle.cp}
+						p 
+							span.separated-header-text Capacité : 
+							span #{salle.capacite}
+						p 
+							span.separated-header-text Catégorie : 
+							span #{salle.categorie}
+					div.clearfix
+					div
+						span.separated-header-text Description : 
+						span #{salle.description}
+				a.separated-header-text.model-edit-link(href="") Modifier >>
+				br
+				a.separated-header-text.model-delete-link(href="") Supprimer >>
+		div.pager
+			a.pred <<
+			a 1
+			a 2					
+			a.next >> 
+	-else 
+		div.alert.alert-error
+			p Pas de salle à afficher
+
+

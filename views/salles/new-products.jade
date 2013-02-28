@@ -1,19 +1,29 @@
 block content
 	- if (salles[0] != null)
 		- each salle in salles		
-			div.annonce-bloc
-				a(href="salles/#{salle._id}")
-					h2 #{salle.title}
-				img.left-block(src="../images/vignettes/#{salle.image}")
-				p.italic.text Du {Start date} au {End Date}
-					br
-					span.normal #{salle.ville} - #{salle.cp}
-					br
-					{prix} euros* pour #{salle.capacite} personnes
-					p.text #{salle.description}
-					a(href="salles/#{salle._id}") >Voir la fiche détaillée
-					br
-					a(href="/connexion/{id-produit}") >Connectez-vous pour l'ajouter au panier
-	- else 
-		div.annonce-bloc 
+			div.annonce
+				//
+					a(href="salles/#{salle._id}")
+				h2 #{salle.title}
+					a.heading-a(href="salles/#{salle._id}") Voir les détailles >
+				div
+					img.pull-left(src="../images/vignettes/#{salle.image}")
+					p
+						span.separated-header-text Disponibilités :  
+						span Du {Start date} au {End date}
+					p 
+						span.separated-header-text Ville :  
+						span {ville} - {cp} 
+					p 
+						span.separated-header-text Prix :  
+						span {prix} euros* pour #{salle.capacite} personnes
+					p #{salle.description}					
+					a.heading-a(href="/connexion/{id-produit}") Connectez-vous pour l'ajouter au panier >
+					p.clearfix
+		div.pager
+			a.pred <<
+			a 1
+			a 2					
+			a.next >> 
+		div.alert.alert-info
 			p Pas de produit à afficher

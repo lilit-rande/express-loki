@@ -1,4 +1,9 @@
-div.row
-	div.span12					
-		section#connexion
-			include ../forms/form-connexion-inline
+header
+	h1#header-logo.pull-left
+		a Lokisalle
+			p.tagline Location de salles de réunion
+	div#header-form.pull-right
+		include ../forms/form-connexion-inline
+		a(href="/inscription/") Pas encore membre?
+		a(href="") Mot de passe oublié...
+	div.clearfix

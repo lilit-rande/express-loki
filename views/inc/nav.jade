@@ -1,17 +1,16 @@
-nav
-	ul
-		li
-			a(href="/") Accueil
-		li.divider
-		li
-			a(href="/reservation/") R&eacute;servation
-		li.divider
-		li
-			a(href="/recherche/") Recherche
-		li.divider
-		li
-			a(href="/inscription/") S'inscrire
-		li.divider
-		li
-			a(href="/connexion/") Se connecter
-		li.divider
+div.navbar.navbar-inverse
+	div.navbar-inner
+		div.container
+			a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			div.nav-collapse.collapse
+				ul.nav
+					li.active
+						a(href="/") Accueil
+					li
+						a(href="/reservation/") Réservation
+					li
+						a(href="/recherche/") Recherche
+					include nav-admin

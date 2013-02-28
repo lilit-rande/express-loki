@@ -153,11 +153,24 @@ $(document).ready(function() {
 	});
 	
 // validate 
-	$('#form-salle').validate();
-	$('#form-produit').validate();
-	$('#form-promotion').validate();
-	$('#form-membre').validate();
+	var validate_options = {
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass){
+			$(element).parents('.control-group').removeClass('success');
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass)	{
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	};
 
+	$('#form-salle').validate(validate_options);
+	$('#form-produit').validate(validate_options);
+	$('#form-promotion').validate(validate_options);
+	$('#form-membre').validate(validate_options);
+	$('#form-inscription').validate(validate_options);
 
 
 });

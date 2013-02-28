@@ -1,5 +1,43 @@
-form(method="", action="")
-	fieldset
-		input(type="text", placeholder="Identifiant", name="connexion[id]", id="connexion-id")
-		input(type="password", placeholder="Mot de passe", name="connexion[password]", id="connexion-password")
-		input(type="submit", name="connexion[submit]", id="connexion-submit", value="OK")
+form.form-horizontal#form-inscription
+	div.control-group
+		label.control-label(for="pseudo") Pseudo
+		div.controls
+			input#pseudo.required(type="text", placeholder="Pseudo")
+	div.control-group
+		label.control-label(for="mdp") Mot de passe
+		div.controls
+			input#mdp.required(type="text", placeholder="Mot de passe")
+	div.control-group
+		label.control-label(for="email") Email
+		div.controls
+			input#email.required.email(type="text", placeholder="Email")
+	div.control-group
+		label.control-label(for="nom") Nom
+		div.controls
+			input#nom.required(type="text", placeholder="Nom")
+	div.control-group
+		label.control-label(for="prenom") Prénom
+		div.controls
+			input#prenom.required(type="text", placeholder="Prénom")
+	div.control-group
+		label.control-label(for="fem") Sexe
+		div.controls
+			label.radio Femme
+				input#fem(type="radio", name="sexe", value="fem")
+			label.radio Homme
+				input#masc(type="radio", name="sexe", value="masc")
+	div.control-group
+		label.control-label(for="ville") Ville
+		div.controls
+			input#ville.required(type="text", placeholder="Ville")
+	div.control-group
+		label.control-label(for="cp") Code postale
+		div.controls
+			input#cp.required(type="text", placeholder="Code postale")
+	div.control-group
+		label.control-label(for="adresse") Adresse
+		div.controls
+			input#adresse.required(type="text", placeholder="Adresse")
+	div.control-group
+		div.controls
+			button.btn.btn-info(type="submit") S'inscrire

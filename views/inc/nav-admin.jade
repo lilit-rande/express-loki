@@ -1,44 +1,41 @@
-div.row
-	div.span12
-		ul.nav.nav-pills
-			li.dropdown
-				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des salles
-					b.caret
-				ul.dropdown-menu
-					li
-						a(href="/salles/new") Ajouter une salle
-					li
-						a(href="/salles") Afficher les salles
-			li.dropdown
-				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des produits
-					b.caret
-				ul.dropdown-menu
-					li
-						a(href="/produits/new") Ajouter un produit
-					li
-						a(href="/produits") Afficher les produits
-			li.dropdown
-				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion des membres
-					b.caret
-				ul.dropdown-menu
-					li
-						a(href="/membres/new") Ajouter un membre
-					li
-						a(href="/membres") Afficher les membres
-			li
-				a(href="/") Gestion des commandes
-		ul.nav.nav-pills
-			li
-				a(href="/avis") Gestion des avis
-			li.dropdown
-				a.dropdown-toggle(href="/",data-toggle="dropdown") Gestion codes promo
-					b.caret
-				ul.dropdown-menu
-					li
-						a(href="/promotions/new") Ajouter un code promo
-					li
-						a(href="/promotions") Afficher les codes promo
-			li
-				a(href="/") Statistiques
-			li
-				a(href="/") Envoyer la newsletter
+li.dropdown.clearfix#nav-admin
+	a.dropdown-toggle(href="#", data-toggle="dropdown") Administration 
+		b.caret
+	ul.dropdown-menu(aria-labelledby="dropdownMenu", role="menu")
+		li.dropdown-submenu
+			a(href="/", tabindex="-1") Gestion des salles
+			ul.dropdown-menu
+				li
+					a(href="/salles/new") Ajouter une salle
+				li
+					a(href="/salles") Afficher les salles
+		li.dropdown-submenu
+			a(href="/", tabindex="-1") Gestion des produits
+			ul.dropdown-menu
+				li
+					a(href="/produits/new") Ajouter un produit
+				li
+					a(href="/produits") Afficher les produits
+		li.dropdown-submenu
+			a(href="/", tabindex="-1") Gestion des membres
+			ul.dropdown-menu
+				li
+					a(href="/membres/new") Ajouter un membre
+				li
+					a(href="/membres") Afficher les membres
+		li.dropdown-submenu
+			a(href="/", tabindex="-1") Gestion des codes promo
+			ul.dropdown-menu
+				li
+					a(href="/promotions/new") Ajouter un code promo
+				li
+					a(href="/promotions") Afficher les codes promo
+		li
+			a(href="/") Gestion des commandes
+		li
+			a(href="/avis") Gestion des avis
+		li.divider
+		li
+			a(href="/") Envoyer la newsletter
+		li
+			a(href="/") Statistiques
