@@ -5195,6 +5195,17 @@ a.badge:hover {
 .annonce div .pull-left {
   margin-right: 20px;
 }
+.title-style {
+  color: #417064;
+  background-color: #c9eae5;
+  background-image: -moz-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dbf1ec), to(#ade0da));
+  background-image: -webkit-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: -o-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: linear-gradient(to bottom, #dbf1ec, #ade0da);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdbf1ec', endColorstr='#ffade0da', GradientType=0);
+}
 body {
   background: url("../images/bgr_main.jpg") repeat-x scroll 0 0 #f6f6f6;
   color: #919191;
@@ -5295,6 +5306,9 @@ body #main .hero-unit {
   background-color: #d9d9d9;
   margin-bottom: 0;
 }
+body #main .detailles {
+  margin-right: 20px;
+}
 body .pager {
   border: 1px solid #417064;
   background-color: #488979;
@@ -5374,277 +5388,22 @@ body footer #footer ul li {
 body footer #copyright {
   font-size: 10px;
 }
-.background-style {
-  background-color: #f6f6f6;
-  background-image: -moz-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -o-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: linear-gradient(to bottom, #f4f4f4, #f9f9f9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff4f4f4', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-}
-.form-block-background-style {
-  background-color: #f6f6f6;
-  background-image: -moz-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -o-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: linear-gradient(to bottom, #f4f4f4, #f9f9f9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff4f4f4', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-}
-.background {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  background: none repeat scroll 0 0 #000000;
-  display: none;
-}
-form.well {
-  border: 1px solid #CCCCCC;
-  margin-left: 0;
-}
-form.login-form {
-  margin: 0 auto;
-}
-form.login-form .checkbox {
-  margin: 23px 0 0 180px;
-}
-form.login-form button {
-  float: left;
-  margin-top: 15px;
-  padding: 6px 40px;
-  width: 150px;
-}
-form.login-form button i {
-  padding-left: 18px;
-}
-.edit-block {
-  background-color: #f6f6f6;
-  background-image: -moz-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -o-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: linear-gradient(to bottom, #f4f4f4, #f9f9f9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff4f4f4', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  padding: 0;
-  margin: 0 auto;
-  width: 500px;
-  padding-bottom: 10px;
-}
-.edit-block .btn {
-  margin-left: 10px;
-}
-.edit-block p {
-  margin: 10px !important;
-}
-.edit-block h2 {
-  background-color: #d9d6d6;
-  width: 100%;
-  text-align: center;
-  padding: 0 !important;
-}
-.edit-block form {
-  position: relative;
-  margin: 20px auto;
-  width: 80%;
-}
-.edit-block form label {
-  display: inline-block;
-  width: 7em;
-}
-.edit-block form input[type="radio"] {
-  vertical-align: top;
-  margin-right: 18px;
-}
-.edit-block form .petit-label {
-  font-size: 10px;
-  font-style: italic;
-  color: #000000;
-  width: 32% !important;
-  margin-left: 10px;
-}
-.edit-block form .radio-label {
-  width: 5em;
-}
-.edit-block form.login-form {
-  background-color: red !important;
-}
-.edit-block form.login-form .checkbox {
-  margin: 23px 0 0 180px;
-}
-.edit-block form.login-form button {
-  float: left;
-  margin-top: 15px;
-  padding: 6px 40px;
-  width: 150px !important;
-  background-color: red;
-}
-.edit-block form.form-produit-edit label.choix {
-  width: 100%;
-}
-.edit-block form.form-produit-edit select {
-  width: 100%;
-}
-.edit-block form.form-produit-edit input {
-  width: 20%;
-}
-.edit-block img {
-  margin: 0 0 0 10px;
-  width: 40px;
-  height: 40px;
-}
-.edit-block .input-file-hidden {
-  top: 276px;
-  position: absolute;
-  opacity: 0;
-  z-index: 50;
-  margin-left: 7em;
-  cursor: pointer !important;
-}
-.edit-block .input-file-visible input[type="text"] {
-  vertical-align: top;
-  width: 36%;
-}
-.edit-block .input-file-visible .btn {
-  vertical-align: top;
-}
-.popup {
-  display: none;
-  background-color: #f6f6f6;
-  background-image: -moz-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#f9f9f9));
-  background-image: -webkit-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: -o-linear-gradient(top, #f4f4f4, #f9f9f9);
-  background-image: linear-gradient(to bottom, #f4f4f4, #f9f9f9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff4f4f4', endColorstr='#fff9f9f9', GradientType=0);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid #d9d9d9;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 1px 1px rgba(215, 215, 215, 0.5);
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  -moz-box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  box-shadow: 0px 0px 5px 5px rgba(215, 215, 215, 0.5);
-  padding: 0;
-  margin: 0 auto;
-  width: 500px;
-  padding-bottom: 10px;
-  position: absolute;
-  z-index: 100;
-}
-.popup .btn {
-  margin-left: 10px;
-}
-.popup p {
-  margin: 10px !important;
-}
-.popup h2 {
-  background-color: #d9d6d6;
-  width: 100%;
-  text-align: center;
-  padding: 0 !important;
-}
-.popup form {
-  position: relative;
-  margin: 20px auto;
-  width: 80%;
-}
-.popup form label {
-  display: inline-block;
-  width: 7em;
-}
-.popup form input[type="radio"] {
-  vertical-align: top;
-  margin-right: 18px;
-}
-.popup form .petit-label {
-  font-size: 10px;
-  font-style: italic;
-  color: #000000;
-  width: 32% !important;
-  margin-left: 10px;
-}
-.popup form .radio-label {
-  width: 5em;
-}
-.popup form.login-form {
-  background-color: red !important;
-}
-.popup form.login-form .checkbox {
-  margin: 23px 0 0 180px;
-}
-.popup form.login-form button {
-  float: left;
-  margin-top: 15px;
-  padding: 6px 40px;
-  width: 150px !important;
-  background-color: red;
-}
-.popup form.form-produit-edit label.choix {
-  width: 100%;
-}
-.popup form.form-produit-edit select {
-  width: 100%;
-}
-.popup form.form-produit-edit input {
-  width: 20%;
-}
-.popup img {
-  margin: 0 0 0 10px;
-  width: 40px;
-  height: 40px;
-}
-.popup .input-file-hidden {
-  top: 276px;
-  position: absolute;
-  opacity: 0;
-  z-index: 50;
-  margin-left: 7em;
-  cursor: pointer !important;
-}
-.popup .input-file-visible input[type="text"] {
-  vertical-align: top;
-  width: 36%;
-}
-.popup .input-file-visible .btn {
-  vertical-align: top;
-}
-.popup h2 {
+.draggable .modal-header {
   cursor: move;
+}
+.modal .modal-header {
+  color: #417064;
+  background-color: #c9eae5;
+  background-image: -moz-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dbf1ec), to(#ade0da));
+  background-image: -webkit-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: -o-linear-gradient(top, #dbf1ec, #ade0da);
+  background-image: linear-gradient(to bottom, #dbf1ec, #ade0da);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdbf1ec', endColorstr='#ffade0da', GradientType=0);
+}
+.modal .modal-header h2,
+.modal .modal-header h3 {
+  font-size: 18px;
+  color: #417064;
 }

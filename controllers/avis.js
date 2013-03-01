@@ -1,19 +1,48 @@
 //The avis controller
 var superController = require('../controllers/controller.js'),
-	model = 'Avis';
+	Model = require('../models/avis.js'),
+	Salle = require('../models/salles.js'),	
+	fs = require('fs'),
+	jade = require('jade'),
+	async = require('async');
+
+function renderTpl(tplName, tplBody){
+	var jadefile = fs.readFileSync(tplName),
+		jadetemplate = jade.compile(jadefile),
+		content = jadetemplate(tplBody);
+	return content;
+}
 
 //index listing of promos at :  /avis/
 exports.index = function(req, res){	
-	superController.index(req, res, model);
+	Model
+		.find()
+		.populate('salle_id')
+		.populate('membre_id')
+		.exec(function(err, docs) {
+		if(err) {
+			throw err;
+		} else if( (docs) && (docs.length) ) {
+			res.render('avis/index', { title: 'Avis', docs: docs});
+		} else {
+			res.render('avis/index', { title: 'Avis', docs: null});
+		}
+	});
 }
 
 //display new promo form
 exports.new = function(req, res) {	
-	superController.new(req, res, model);
+	/*
+	var options = {'title':'Ajouter une salle','action':'create','image':'', 'type': 'Ajouter'},
+		html =  renderTpl('views/forms/form-avis.jade', options);
+	
+	res.render('salles/new', {title: 'Ajouter Ajouter une salle', body: html});
+	*/
 }
 
 //add a promotion
 exports.create = function(req, res) {
+/*
 	var avis = {
 			date: req.body.avisdate,
 			salle_id: req.body.new_salle_id,
@@ -22,42 +51,71 @@ exports.create = function(req, res) {
 			comment: req.body.aviscomment
 		};
 	
-	superController.create(req, res, model, avis);
+	modelObj = new Model(avis);
+	
+	modelObj.save(function(err, data){
+		if(err) {
+			//	console.log(err);
+			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér cet avis ! Message : " + err.message});
+		} else {
+			res.render('generals/modified', {title: 'Avis ajouté', body: "L'avis a bien été ajouté."});
+		}
+	});
+	*/
 };
 
 //display delete form
 exports.delete = function(req, res) {
-	superController.delete(req, res, model);
+	var	reference = req.params.id;
+		
+	Model.findOne({'_id': reference}, function(err, doc){
+		if (err) {
+			res.render('generals/error', {title: "Echec", body: err});
+		} else {
+			res.render('generals/deletePopup', {title: "Suppression d'un avis", type: 'avis', id: reference, type_datas: doc});
+		}
+	});
 };
 
 //delete a promotion
 exports.destroy = function(req, res) {
-	superController.destroy(req, res, model);
+	var ref = req.params.id;
+	
+	Model.remove({'_id': ref}, function(err){
+		if(err) {
+			res.render('generals/error', {title: "Echec de suppression", body: "Il n'y a pas d'avis avec un identifient " + ref});
+		} else {
+			res.render('generals/modified', {title: "Avis supprimé", body: "L'avis a bien été supprimé."});
+		}
+	});
 };
 
 
 //display edit form
 exports.edit = function(req, res) {
-	imagePath = '';
-	superController.edit(req, res, model, imagePath);	
 };
 
 //update a promotion
 exports.update = function(req, res) {
-	var avis = {
-			date: req.body.avisdate,
-			salle_id: req.body.new_salle_id,
-			salle_id: req.body.membre_id,
-			note: req.body.avisnote,
-			comment: req.body.aviscomment
-		},
-		foreignModels = ['Salle', 'Membre'];
-	
-	superController.update(req, res, model, avis, foreignModels);
 };
 
 //show a promotion
 exports.show = function(req, res) {
-	superController.show(req, res, model);
+	var	ref = req.params.id;
+
+	Model.findOne({'_id': ref})
+		.populate('salle_id')
+		.populate('membre_id')
+		.exec(function(err, doc){	
+		if(err) {
+			throw err;
+		} else {
+			if (!doc) {
+				res.render('avis/show', {id: ref, title:'Détailles de l\'avis', data:doc});
+			} else {
+				res.render('avis/show', {title: 'Détailles de l\'avis', data: doc});
+			}
+		}
+	});
 }
 

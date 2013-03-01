@@ -200,7 +200,7 @@ Deferred.when([
 	});
 */
 
-		Model
+	Model
 		.find()
 		.populate('salle_id')
 		.populate('promotion_id')
@@ -454,15 +454,15 @@ exports.update = function(req, res, model, obj, foreignModels) {
 
 //show a {model}, route /models/id (get)
 exports.show = function(req, res, model) {
-	var ref = req.params.id,
-		modelDetails = getModelDetails(model),
+	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
 			suffix = modelDetails.suffix,
 			refName = modelDetails.modelReferenceName,
 			modelLower = model.toLowerCase(),
 			articleDef = modelDetails.articleDef,
-			article = (articleDef == 'le ') ? 'du ' : 'de la '
+			article = (articleDef == 'le ') ? 'du ' : 'de la ',
+			ref = req.params.id
 		;
 
 	Model.findOne({'_id': ref})
@@ -492,8 +492,8 @@ exports.delete = function(req, res, model) {
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
 		articleIndef = modelDetails.articleIndef,
+		modelLower = model.toLowerCase(),
 		reference = req.params.id;
-		modelLower = model.toLowerCase();
 		
 	Model.findOne({'_id': reference}, function(err, doc){
 		if (err) {
@@ -509,10 +509,10 @@ exports.destroy = function(req, res, model) {
 	var modelDetails = getModelDetails(model),
 		Model = require(modelDetails.modelFile),
 		modelName = modelDetails.modelName,
-		ref = req.params.id,
 		articleDef = modelDetails.articleDef,
 		modelLower = model.toLowerCase()
-		suffix = modelDetails.suffix;
+		suffix = modelDetails.suffix,
+		ref = req.params.id;
 		/*
 		modelObject = {};
 		modelObject[ refName ] = ref;

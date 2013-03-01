@@ -1,10 +1,27 @@
 extends ../layout
 
 block content
+	<!-- Modal edit-->
+	div#modal-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modifier la salle		
+		div.modal-body.salle-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
+	
+	<!-- Modal delete-->	
+	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Supprimer la salle
+		div.modal-body
+			p Êtes-vous sûr de vouloir supprimer cette salle ?
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
-	div.background
-	div.salle-edit.popup.draggable
-	div.delete.popup.draggable
 	- if (docs != null)
 		- each salle in docs
 			div.annonce(data-id="#{salle._id}", data-model="salle")
@@ -36,9 +53,13 @@ block content
 					div
 						span.separated-header-text Description : 
 						span #{salle.description}
-				a.separated-header-text.model-edit-link(href="") Modifier >>
+				//
+					a.separated-header-text.model-edit-link(href="") Modifier >>
+				a.separated-header-text.model-edit-link(href="#modal-edit", role="button", data-toggle="modal") Modifier >>				
 				br
-				a.separated-header-text.model-delete-link(href="") Supprimer >>
+				//
+					a.separated-header-text.model-delete-link(href="") Supprimer >>
+				a.separated-header-text.model-delete-link(href="#modal-delete", role="button", data-toggle="modal") Supprimer >>
 		div.pager
 			a.pred <<
 			a 1

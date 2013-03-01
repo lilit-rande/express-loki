@@ -57,27 +57,21 @@ $(document).ready(function() {
 		$('.background').fadeOut("slow");
 		$('body').css('overflow', 'auto');
 	}
-	
-	//click sur le lien "View {le model}"
-	$("body").on("click", ".model-view-link", function(e){
-		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
-			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
-			url = modelName + "s/" + thisId
-			;
-			$(location).attr('href',url);
-	});
-
-//click sur le lien "Modifier {le model}"	
+		
+	//generique
+	//click sur le lien "Modifier {le model}"	
 	$("body").on("click", ".model-edit-link", function(e){
 		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
-			id = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
-			url = modelName + "s/edit/" + id;
-//		var id = $(this).parent().data("id");
+			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
+			url = modelName + "s/edit/" + thisId
+			;
+			
+			console.log(modelName);
 		
-			$('#modal-edit').data('id', id);
-			$('#modal-edit').data('model', modelName);
-					
-			$.get(url, function(data) {
+		e.preventDefault();
+		popup_show(modelName + '-edit');
+		
+		$.get(url, function(data) {
 			if ( data.error ) {
 			} else {	
 				var modelData = data.data;
@@ -132,33 +126,38 @@ $(document).ready(function() {
 					}	
 				}	
 			}
-		});		//endOf get
-			
-	}).on('click',	'.edit-model-btn', function(){
-		var id = $('#modal-edit').data("id");
-		var model =  $('#modal-edit').data("model");
-		
-		$('#form-'+model).submit();
-		alert('edit');
-	});	//edit bouton clicked
-
-//Supprimer le {model}
-	$("body").on("click", ".model-delete-link", function(e){
-		var id = $(this).parent().data("id");
-		var modelName = $(this).parent().data("model");
-		
-		$('#modal-delete').data('id', id);
-		$('#modal-delete').data('model', modelName);
-		
-	}).on('click', '.delete-confirm', function(){
-		var id = $('#modal-delete').data("id");
-		var	url = $('#modal-delete').data("model") + "s/destroy/" + id;
-		
-		$.post(url, function(){
-			location.reload();
 		});
-	});;
+	});
+
+	//click sur le lien "View {le model}"
+	$("body").on("click", ".model-view-link", function(e){
+		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
+			thisId = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
+			url = modelName + "s/" + thisId
+			;
+			$(location).attr('href',url);
+	});
 	
+	// generique
+//Dans le popup "Modifier {le model}" :
+	// bouton Annuler:
+	$("body").on("click", ".bt-cancel", function(e) {
+		popup_hide();
+	});
+	
+//click sur le lien Supprimer la salle	
+	$("body").on("click", ".model-delete-link", function(e){	
+		e.preventDefault();
+		popup_show('delete');
+		var modelName = $(this).parent().data("model"),
+			url = modelName + "s/delete/" + $(this).parent().data("id");
+		
+		console.log(modelName);
+		
+		$.get(url, function(data) {
+			$('.delete').html(data);
+		});
+	});
 	
 // validate 
 	var validate_options = {

@@ -2,32 +2,32 @@ extends ../layout
 
 block content
 	-if (data != null)
-		div.row
-			div.span12			
-				h1= title			
-				div.annonce-bloc.one-column
-					img(src="../../images/vignettes/#{data.image}", width="200px", height="200px", class="img-polaroid")
-					h2 #{data.title}
-					p #{data.description}
-					span.italic Capacité: #{data.capacite}. Catégorie: salle de #{data.categorie}
-					br
-					br
-					h2 Informations complémentaires
-					p
-						span.titre Pays : 
-						span.valeur #{data.pays}
-					p
-						span.titre Ville :
-						span.valeur #{data.ville}
-					p
-						span.titre Adresse : 
-						span.valeur #{data.adresse}
-					p
-						span.titre Code postale : 
-						span.valeur #{data.cp}
-					div.clear
-	-else 
-		div.row
-			div.span12					
-				div.error-message
-					span La salle avec identifiant #{id} n'existe pas !
+		h1= title
+		div.pull-left.detailles
+			img(src="../../images/vignettes/#{data.image}", width="200px", height="200px", class="img-polaroid")
+		div.pull-left
+			p
+				span.separated-header-text Pays : 
+				span.valeur #{data.pays}
+			p
+				span.separated-header-text Ville :
+				span.valeur #{data.ville}
+			p
+				span.separated-header-text Adresse : 
+				span.valeur #{data.adresse}
+			p
+				span.separated-header-text Code postale : 
+				span.valeur #{data.cp}
+			p
+				span.separated-header-text Capacité : 
+				span #{data.capacite} personnes
+			p
+				span.separated-header-text Catégorie : 
+				span Salle de #{data.categorie}
+		div.clearfix
+		div
+			h2 #{data.title}
+			p #{data.description}
+	-else
+		div.alert.alert-error
+			span La salle avec identifiant #{id} n'existe pas !
