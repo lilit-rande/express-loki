@@ -388,8 +388,8 @@ exports.update = function(req, res, model, obj, foreignModels) {
 		refName = modelDetails.modelReferenceName,
 		ref = req.params.id,
 		modelLower = model.toLowerCase(),
-		articleDef = modelDetails.articleDef;
-	
+		articleDef = modelDetails.articleDef,
+		obj = {};
 	obj[refName] = ref;
 	var modelObj = {};
 	modelObj[ refName ] = ref;

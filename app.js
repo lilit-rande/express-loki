@@ -1,16 +1,15 @@
-
-//test
 /**
  * Module dependencies.
  */
 var express = require('express'),
-	routes = require('./routes'),
-	map = require('./controllers/maproutecontroller'),
+	route = require('./routes'),
 	http = require('http'),
 	mongoose = require('mongoose'),
 	Deferred = require ('JQDeferred'),
 	fs = require('fs'),
 	Validations = require('validations');
+
+const port = process.env.PORT || 3000;
 
 //	model = 'Produit';
 // var	form = require('connect-form');
@@ -31,24 +30,51 @@ var app = module.exports = express();
 
 // Configuration
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser({uploadDir:'./uploads'}));
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.cookieParser());
-  app.use(express.session({ secret: 'your secret here' }));
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-  app.use(function(req, res, next){
-	  throw new Error(req.url + ' not found');
-  });
-  app.use(function(err, req, res, next){
-  	console.log(err);
-  	res.send(err.message);
-  });
+  this.set('views', __dirname + '/views');
+  this.set('view engine', 'jade');
 });
+
+/*
+Les sessions avec Express fonctionnent de manière habituelle: 
+	un ID de session est affecté à un visiteur et stocké dans un cookie. 
+	Côté serveur, on stocke des données dans un « store » variable (mémoire, fichiers, base de données…) affectées à cet ID, avec un petit garbage collector qui va bien. 
+	Rien de d'étonnant, néanmoins comme par défaut il n’y a aucun parsing des headers de la requête HTTP, il faut tout de même prévoir quelques opérations ne serait-ce que pour savoir lire le cookie.
+	
+	On va donc utiliser deux « middlewares »: un pour parser les cookies, un autre pour gérer les sessions: express.cookieParser et express.session
+*/
+app.configure(function(){
+	// Allow parsing form data
+	this.use(express.bodyParser({uploadDir:'./uploads'}));
+  
+	// Allow parsing cookies from request headers
+	this.use(express.cookieParser());
+  
+	// Session management
+	this.use(express.session({ 
+			// Grâce à ça chaque requête est enrichie d’un objet « session » qu’on peut manipuler. 
+		  	// Private crypting key
+		  	'secret' : 'your secret here',
+		  	
+		  	// Internal session data storage engine, this is the default engine embedded with connect.
+		    // Much more can be found as external modules (Redis, Mongo, Mysql, file...). look at "npm search connect session store"
+		    'store' : new express.session.MemoryStore({ reapInterval : 60000 * 10})
+		})
+	);
+	
+	this.use(express.methodOverride());
+	this.use(app.router);
+	this.use(require('stylus').middleware({ src: __dirname + '/public' }));
+	this.use(express.static(__dirname + '/public'));
+	this.use(function(req, res, next){
+	  throw new Error(req.url + ' not found');
+	});
+	this.use(function(err, req, res, next){
+		console.log(err);
+		res.send(err.message);
+	});
+});
+
+
 
 app.configure('development', function(){
 	app.use(express.errorHandler({ 
@@ -61,121 +87,18 @@ app.configure('production', function(){
 });
 
 // Routes
-app.get('/', routes.index);
-var prefixes = ['salles','promotions','produits','avis','membres'];
-
-//map route to controller
-prefixes.forEach(function(prefix) {
-	map.mapRoute(app, prefix);
-});
-
-app.get('/reservation/*', function(req, res){
-	//res.send(req.params);
-	Produit = require('./models/produits.js');
-	Produit
-		.find({'etat': 1})
-		.populate('salle_id')
-		.populate('promotion_id')
-		.exec(function(err, docs) {
-		if(err) {
-			throw err;
-		} else if( (docs) && (docs.length) ) {
-			res.render('reservation', { title: 'Réservation', docs: docs});
-			console.log(docs);
-		} else {
-			res.render('reservation', { title: 'Réservation', docs: null});
-		}
-	});
-});
-
-/*
-app.get("/products/:id/:operation?", function(req,res) { 
-	console.log(req);
-	res.send(req.params.operation + ' ' + req.params.id); 
-});
-*/
-
-// Get method
-/*
-app.get('/location', function(req, res) {
-  var id = ObjectID.createFromHexString(req.body.id);
-  db.collection('locations', function(err, collection) {
-
-    collection.findOne({_id:id}, function(err, item) {
-
-      // Fetch all docs for rendering of list
-      collection.find({}).toArray(function(err, items) {            
-        res.render('./basic.jade', {locals: {locations:items, location:item}});
-      })            
-    })
-  });
-});
-*/
-
-app.get('/recherche/*', function(req, res){
-	res.render('recherche', {
-		title: 'Recherche'
-	});
-});
-
-app.get('/inscription/*', function(req, res){
-	res.render('inscription', {
-		title: 'Inscription'
-	});
-});
-
-app.get('/connexion/*', function(req, res){
-	res.render('connexion', {
-		title: 'Connexion'
-	});
-});
-
-app.get('/deconnexion/*', function(req, res){
-	res.render('deconnexion', {
-		title: 'Déconnexion'
-	});
-});
 
 
-app.get('/profil/*', function(req, res){
-	res.render('profil', {
-		title: 'Votre profil'
-	});
-});
+route.routes(app);
 
-//routes footer
-app.get('/mentions/*', function(req, res){
-	res.render('mentions', {
-		title: 'Mentions légales'
-	});
-});
-
-app.get('/cgv/*', function(req, res){
-	res.render('cgv', {
-		title: 'Conditions générales de vente'
-	});
-});
-
-app.get('/plan/*', function(req, res){
-	res.render('plan', {
-		title: 'Plan du site'
-	});
-});
-
-app.get('/inscription-newsletter/*', function(req, res){
-	res.render('inscription-newsletter', {
-		title: 'Inscription à la newsletter'
-	});
-}); 
-
-app.get('/contact/*', function(req, res){
-	res.render('contact', {
-		title: 'Contact'
-	});
-}); 
 
 
 //mongoose.connection.close();
-app.listen(3000);
+app.listen(port);
 //http.createServer(app).listen(3000);
-console.log("Express server listening on port %d in %s mode", app.adress, app.settings.env);
+console.log("Express server listening on port %d in %s mode", port, app.settings.env);
+
+
+
+
+

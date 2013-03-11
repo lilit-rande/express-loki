@@ -15,6 +15,21 @@ function renderTpl(tplName, tplBody){
 	return content;
 }
 
+function inArray(needle, arr) {
+	var index = arr.indexOf(needle);
+	var result = (index > -1) ? true : false;
+	
+	return result;
+}
+
+function delFromArray(needle, arr) {
+	if (inArray(needle, arr)) {
+		var index = arr.indexOf(needle);		
+		arr.splice(index, 1);
+		return arr;
+	} else return false;	
+}
+
 //index listing of produit at :  /produits/
 exports.index = function(req, res){	
 	Model
@@ -83,8 +98,9 @@ exports.create = function(req, res) {
 };
 
 
-//OK
-//display delete form
+/* display delete form 
+
+// Plus d'actualité, le modal du bootstrap s'en charge
 exports.delete = function(req, res) {
 	var	reference = req.params.id;
 		
@@ -96,8 +112,9 @@ exports.delete = function(req, res) {
 		}
 	});
 };
+*/
 
-//OK
+
 //delete a produit
 exports.destroy = function(req, res) {
 	var ref = req.params.id;
@@ -111,6 +128,7 @@ exports.destroy = function(req, res) {
 	});
 };
 
+//OK
 //display edit form
 exports.edit = function(req, res) {
 	var ref = req.params.id,
@@ -118,7 +136,7 @@ exports.edit = function(req, res) {
 	
 	Model.findOne({'_id': ref}, function(err, doc){
 		if (err) {
-			res.render('error', {title: "Echec de modification", body: "Il n'y a pas de produit avec un identifient " + ref});
+			res.render('generals/error', {title: "Echec de modification", body: "Il n'y a pas de produit avec un identifient " + ref});
 		} else {
 			res.data = doc;
 			
@@ -137,12 +155,11 @@ exports.edit = function(req, res) {
 				}
 			], function(err) {
 			var	options = {'title':'Modifier le produit', 'action': 'produits/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier', 'foreignModels':foreignModels},
-				html = renderTpl('views/forms/form-produit.jade', options);
+				html = renderTpl('views/forms/produits/edit.jade', options);
 				res.html = html;
 				res.foreignModels = foreignModels;
 				res.send({data: doc, html: html, foreignModels: foreignModels});
 			});	//end async parallel
-
 		}	//fin else
 	});
 };
@@ -151,32 +168,28 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
 		
 	var produit = {
-		title: req.body.produittitle,
-		arrive: req.body.produitarrive,
-		depart: req.body.produitdepart,
-		salle_id: req.body.new_salle_id,	
-		promotion_id: (req.body.new_promotion_id) ? req.body.new_promotion_id : null,
-		prix: req.body.produitprix,
-		etat: req.body.produitetat,
-	},
+			arrive: req.body.produitarrive,
+			depart: req.body.produitdepart,
+			salle_id: req.body.new_salle_id,	
+			promotion_id: (req.body.new_promotion_id) ? req.body.new_promotion_id : null,
+			prix: req.body.produitprix,
+			etat: req.body.produitetat,
+		},
 		foreignModels = ['Salle', 'Promotion'],
 		ref = req.params.id;
-		obj[refName] = ref;
-	var modelObj = {};
-	modelObj[ refName ] = ref;
+	
 	
 	Model.update({'_id': ref}, produit, function(err, docs) {
 		if (err) {
-			res.send("Problème avec la mise à jour: " + err);
+			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
 		} else {
 			if (foreignModels) {
 				for (var fm in foreignModels) {
 					subModel = foreignModels[fm];
-					SMDetails = getModelDetails(subModel);
 
 					//	exemple pour le model Produit les submodels sont Salle, Promotion
-					var SM = require(SMDetails.modelFile),	//	ex. SM = require('../models/salles.js) et ensuite SM = require('../models/promotions.js)
-						SMLower = subModel.toLowerCase(),	//	ex. SMLower = salles, ensuite promotions
+					var SMLower = subModel.toLowerCase(),	//	ex. SMLower = salle, ensuite promotion
+						SM = require('../models/' + SMLower +'s.js'),	//	ex. SM = require('../models/salles.js) et ensuite SM = require('../models/promotions.js)
 						SMOld = "old_" + SMLower + "_id",	//  ex. SMOld = old_salle_id, et old_promotion_id
 						SMNew = "new_" + SMLower + "_id";	//  ex. SMNew = new_salle_id, et new_promotion_id
 					var old_object = {};
@@ -199,7 +212,7 @@ exports.update = function(req, res) {
 						if (old_object["_id"]) {	// cette verification est util notemment pour un produit auquel aucun promotion n'était associé
 							SM.findOne(old_object, function(err, data){
 								// de la liste des produits de cette salle enlever le id (le ref) de ce produit
-								delFromArray(ref, data[modelName]);	// ex. data.produits
+								delFromArray(ref, data['produits']);	// ex. data.produits
 								data.save();
 							});
 						}
@@ -209,8 +222,8 @@ exports.update = function(req, res) {
 	//					console.log(new_object["_id"]);
 							SM.findOne(new_object, function(err, data){
 							//	var produits = data.produits;
-								if (!inArray(ref, data[modelName])) {
-									data[modelName].push(ref);
+								if (!inArray(ref, data['produits'])) {
+									data['produits'].push(ref);
 								}
 								data.save();
 							});

@@ -1,0 +1,50 @@
+form.form-horizontal#form-inscription(method="post", action="#{action}", name="form-membre-edit")
+	div.control-group
+		label.control-label(for="pseudo") Pseudo
+		div.controls
+			input#pseudo.required(type="text", placeholder="Pseudo", name="pseudo")
+	div.control-group
+		label.control-label(for="mdp") Mot de passe
+		div.controls
+			input#mdp.required(type="text", placeholder="Mot de passe", name="mdp")
+	div.control-group
+		label.control-label(for="email") Email
+		div.controls
+			input#email.required.email(type="text", placeholder="Email", name="email")
+	div.control-group
+		label.control-label(for="nom") Nom
+		div.controls
+			input#nom.required(type="text", placeholder="Nom", name="nom")
+	div.control-group
+		label.control-label(for="prenom") Prénom
+		div.controls
+			input#prenom.required(type="text", placeholder="Prénom", name="prenom")
+	div.control-group
+		label.control-label(for="fem") Sexe
+		div.controls
+			label.radio Femme
+				input#fem(type="radio", name="sexe", value="f")
+			label.radio Homme
+				input#masc(type="radio", name="sexe", value="m")
+	div.control-group
+		label.control-label(for="ville") Ville
+		div.controls
+			input#ville.required(type="text", placeholder="Ville", name="ville")
+	div.control-group
+		label.control-label(for="cp") Code postale
+		div.controls
+			input#cp.required(type="text", placeholder="Code postale", name="cp")
+	div.control-group
+		label.control-label(for="adresse") Adresse
+		div.controls
+			input#adresse.required(type="text", placeholder="Adresse", name="adresse")
+	div.control-group
+		label.control-label(for="statut") Statut
+		div.controls
+			select#statut(name="statut")
+				option(value="user") Utilisateur
+				option(value="admin") Administrateur
+				option(value="moder") Modérateur
+	div.control-group
+		div.controls
+			button.btn.btn-primary(type="submit", name="submit-inscription") S'inscrire

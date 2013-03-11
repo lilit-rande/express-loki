@@ -1,0 +1,16 @@
+form.login-form.well.span4(method="post", action="connextion")
+	fieldset
+		p.subheading Connectez-vous s'il vous plaît
+		label(for="login") Login
+		input#login.class.span4.required(type="text", name="user")
+		label(for="password") Mot de passe
+		input#password.span4.required(type="password",name="mdp")
+		button#btn-login.btn.btn-primary(type="submit") Connexion
+		label#remember-me.checkbox Se souvenir de moi
+			input(type="checkbox", checked="checked")
+		div.clear-fix
+		hr
+		div.btm-links
+			a#forgot-password(href="#") Mot de passe oublié ?
+			a#create-account(href="/membres/new") Créer un compte
+div.clearfix

@@ -32,33 +32,33 @@ exports.index = function(req, res){
 }
 
 //display new member form
-exports.new = function(req, res) {	
-	var options = {'title':'Ajouter un membre','action':'create','image':'', 'type': 'Ajouter'},
-		html =  renderTpl('views/forms/form-membre.jade', options);
-	
-	res.render('membres/new', {title: 'Ajouter Ajouter un membre', body: html});
+exports.new = function(req, res) {
+	var options = {'title':'Inscription','action':'create', 'type': 'Ajouter'},
+		html =  renderTpl('views/forms/membres/new.jade', options);
+
+	res.render('membres/new', {title: 'Inscription', body: html});
 }
 
 //add a member
 exports.create = function(req, res) {
-	var membre = {	
-		pseudo: req.body.membrepseudo,
-		mdp: req.body.membremdp,
-		nom: req.body.membrenom,	
-		prenom: req.body.membreprenom,
-		email: req.body.membreemail,
-		sexe: req.body.membresexe,
-		ville: req.body.membreville,
-		cp: req.body.membrecp,
-		adresse: req.body.membreadresse,
-		statut: req.body.membrestatut
+	membre = { 
+			pseudo : req.body.pseudo,
+			mdp : req.body.mdp,
+			email : req.body.email,
+			nom : req.body.nom,
+			prenom : req.body.prenom,
+			sexe : req.body.sexe,	// 'f' ou 'm'
+			ville : req.body.ville,
+			cp : req.body.cp,
+			adresse : req.body.adresse,
+			statut : req.body.statut
 	};
 	modelObj = new Model(membre);
-	
+
 	modelObj.save(function(err, data){
 		if(err) {
 			//	console.log(err);
-			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér ce membre ! Message : " + err.message});
+			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créer ce membre ! Message : " + err.message});
 		} else {
 			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});
 		}

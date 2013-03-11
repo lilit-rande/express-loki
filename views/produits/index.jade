@@ -1,57 +1,94 @@
 extends ../layout
 
 block content
+	<!-- Modal edit-->
+	div#modal-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modifier le produit		
+		div.modal-body.produit-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
+				
+	<!-- Modal delete-->	
+	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Supprimer le produit
+		div.modal-body
+			p Êtes-vous sûr de vouloir supprimer ce produit ?
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
-	div.background
-	div.produit-edit.popup.draggable
-	div.delete.popup.draggable
-	div.one-column
-		- if (docs != null)
-			table(broder="1").center-block.main-table
-				tr
-					th Date d'arrivée
-					th Date de départ
-					th Salle
-					th Image salle
-					th Promotion
-					th Réduction
-					th Prix
-					th Etat
-					th Modifier
-					th Supprimer
-					- each produit in docs
-						tr(data-id="#{produit._id}", data-model="produit")
-							td.model-view-link #{produit.arrive.toDateString()} 
-							//
-								#{produit.arrive.toLocaleTimeString()}
-							td.model-view-link #{produit.depart.toDateString()} 
-							//
-								#{produit.depart.toLocaleTimeString()}
-							- if (produit.salle_id != null)
-								td
-									a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
-								td
-									a(href="salles/#{produit.salle_id._id}") 
-										img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
-							- else
-								td.model-view-link 
-								td.model-view-link
-							- if (produit.promotion_id != null) 
-								td 
-									a(href="produits/#{produit._id}") #{produit.promotion_id.code}
-								td
-									a(href="produits/#{produit._id}") #{produit.promotion_id.reduction}
-							- else
-								td.model-view-link
-								td.model-view-link
-							td.model-view-link #{produit.prix}
-							- if (produit.etat == 1) 
-								- etat = "En location"
-							- else etat = "A louer"
-							td.model-view-link=etat
-							td.model-edit-link
+	- if (docs != null)
+		table.table.table-condensed.table-hover.listing
+			tr
+				th Date d'arrivée
+				th Date de départ
+				th Salle
+				th Image salle
+				th Promotion
+				th Réduction
+				th Prix
+				th Etat
+				th Modifier
+				th Supprimer
+				- each produit in docs
+					tr(data-id="#{produit._id}", data-model="produit")
+						td.model-view-link #{produit.arrive.toDateString()} 
+						//
+							#{produit.arrive.toLocaleTimeString()}
+						td.model-view-link #{produit.depart.toDateString()} 
+						//
+							#{produit.depart.toLocaleTimeString()}
+						- if (produit.salle_id != null)
+							td
+								a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
+							td
+								a(href="salles/#{produit.salle_id._id}") 
+									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
+						- else
+							td.model-view-link 
+							td.model-view-link
+						- if (produit.promotion_id != null) 
+							td 
+								a(href="produits/#{produit._id}") #{produit.promotion_id.code}
+							td
+								a(href="produits/#{produit._id}") #{produit.promotion_id.reduction}
+						- else
+							td.model-view-link
+							td.model-view-link
+						td.model-view-link #{produit.prix}
+						- if (produit.etat == 1) 
+							- etat = "Loué"
+						- else etat = "Libre"
+						td.model-view-link=etat
+						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
 								img(src="images/icons/modify.png")
-							td.model-delete-link
-								img(src="images/icons/erase.png")
-		-else
-			p.error-message(colspan="3") Pas de produit à afficher
+						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
+								img(src="images/icons/erase.png")				
+	-else
+		div.alert.alert-info Pas de produit à afficher
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

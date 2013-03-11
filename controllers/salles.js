@@ -65,7 +65,9 @@ exports.create = function(req, res) {
 	});
 };
 
-//display delete form
+/* display delete form 
+
+// Plus d'actualité, le modal du bootstrap s'en charge
 exports.delete = function(req, res) {
 	var	reference = req.params.id;
 		
@@ -77,7 +79,7 @@ exports.delete = function(req, res) {
 		}
 	});
 };
-
+*/
 //delete a salle
 exports.destroy = function(req, res) {
 	var ref = req.params.id;
@@ -124,7 +126,6 @@ exports.update = function(req, res) {
 			description: req.body.salledescription
 		},		
 		ref = req.params.id;
-	console.log(salle);
 	Model.update({'_id': ref}, salle, function(err, docs) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});

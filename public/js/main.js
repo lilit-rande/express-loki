@@ -109,7 +109,7 @@ $(document).ready(function() {
 							var s = salles[salle];
 							var prod = s.produits;
 								
-							if ($.inArray(thisId, prod) > -1) {
+							if ($.inArray(id, prod) > -1) {
 								$("option[value=" + s._id + "]")
 									.attr("selected", "selected");								
 								$old_salle_id.attr("value", s._id);
@@ -123,7 +123,7 @@ $(document).ready(function() {
 						
 						for (var promo=0; promo < promotions.length; promo++) {
 							var p = promotions[promo];
-							if ($.inArray(thisId, p.produits) != -1) {
+							if ($.inArray(id, p.produits) != -1) {
 								$("option[value=" + p._id + "]")
 									.attr("selected", "selected");
 								$old_promotion_id.attr("value", p._id);
@@ -160,25 +160,10 @@ $(document).ready(function() {
 	});;
 	
 	
-// validate 
-	var validate_options = {
-		errorClass: "help-inline",
-		errorElement: "span",
-		highlight:function(element, errorClass, validClass){
-			$(element).parents('.control-group').removeClass('success');
-			$(element).parents('.control-group').addClass('error');
-		},
-		unhighlight: function(element, errorClass, validClass)	{
-			$(element).parents('.control-group').removeClass('error');
-			$(element).parents('.control-group').addClass('success');
-		}
-	};
-
-	$('#form-salle').validate(validate_options);
-	$('#form-produit').validate(validate_options);
-	$('#form-promotion').validate(validate_options);
-	$('#form-membre').validate(validate_options);
-	$('#form-inscription').validate(validate_options);
 
 
+    // Datepicker
+    $('.datepicker').datepicker({
+    	inline: true
+    });
 });
