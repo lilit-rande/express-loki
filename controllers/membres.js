@@ -136,6 +136,24 @@ exports.update = function(req, res) {
 	});
 };
 
+exports.pseudo = function(req, res) {
+//	console.log('here');
+/*
+	res.contentType('json');
+	res.send({ some: JSON.stringify({response:'json'}) });
+	
+	
+	Model.count({'pseudo' : 'pseudo'}, function(err, count){
+		if (err) {
+			res.send(err);
+		} else { 
+			console.log(count);
+			res.send(count);
+		}
+	});
+	*/
+};
+
 //show member info
 exports.show = function(req, res) {			
 	var ref = req.params.id

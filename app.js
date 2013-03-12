@@ -11,9 +11,6 @@ var express = require('express'),
 
 const port = process.env.PORT || 3000;
 
-//	model = 'Produit';
-// var	form = require('connect-form');
-
 mongoose.connect('mongodb://localhost/lokisalle');
 
 mongoose.connection.on('open', function(err){
@@ -74,8 +71,6 @@ app.configure(function(){
 	});
 });
 
-
-
 app.configure('development', function(){
 	app.use(express.errorHandler({ 
 		dumpExceptions: true, showStack: true 
@@ -87,11 +82,7 @@ app.configure('production', function(){
 });
 
 // Routes
-
-
 route.routes(app);
-
-
 
 //mongoose.connection.close();
 app.listen(port);

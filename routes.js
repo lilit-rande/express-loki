@@ -1,22 +1,40 @@
 exports.routes = function(app) {
-
+	
 	// Middleware for limited access
 	function requireLogin (req, res, next) {
+	/*
 		if (req.session.pseudo) {
 			// User is authenticated, let him in
 			next();
 		} else {
 			res.redirect('/membres/new/');
 		}
+		
+		*/
 	}
 	
+	
+	
+	var prefixes = ['salles','promotions','produits','avis','membres'];
+	
+	//map route to controller
+	prefixes.forEach(function(prefix) {
+		mapRoute(app, prefix);
+	});
+	
+	
+	
+	
+
+		
+	// mapping route and controller for models
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
 		var prefixObj = require('./controllers' + prefix);
 		
 		//index
-		app.get(prefix, [requireLogin], prefixObj.index);
+		app.get(prefix, prefixObj.index);
 		
 		//add
 		app.get(prefix + '/new', prefixObj.new);
@@ -26,7 +44,7 @@ exports.routes = function(app) {
 		
 		//edit
 		app.get(prefix + '/edit/:id', [requireLogin], prefixObj.edit);
-				
+		
 		//edit
 	//	app.get(prefix + '/delete/:id', prefixObj.delete);
 		
@@ -37,7 +55,7 @@ exports.routes = function(app) {
 		app.post(prefix + '/destroy/:id', [requireLogin], prefixObj.destroy);
 		
 		//show
-		app.get(prefix + '/:id', [requireLogin], prefixObj.show);
+		app.get(prefix + '/:id', [requireLogin], prefixObj.show);		
 	};
 	
 	app.get('/', function(){
@@ -55,6 +73,28 @@ exports.routes = function(app) {
 			}		
 		});
 		*/
+	});
+	
+		
+	app.post('/pseudo', function(req, res) {
+		
+		var Membre = require('./models/membres.js'),
+			pseudo = req.body.pseudo;
+		
+		Membre.count({'pseudo': pseudo}, function(err, count){
+			if (err) {
+				res.send(JSON.stringify({response:'error', msg: err}));
+			} else {
+				if(count) {
+					res.send(JSON.stringify({response: true, msg: 'Ce pseudo existe déjà.'}));
+				} else {
+					res.send(JSON.stringify({response: false, msg: 'Ce pseudo est libre.'}));
+				}
+			}
+		});
+		
+		
+		
 	});
 	
 	app.get('/inscription/*', function(req, res) {
@@ -91,6 +131,7 @@ exports.routes = function(app) {
 		
 	});
 	
+
 
 	/*
 	// Login form
@@ -202,11 +243,6 @@ exports.routes = function(app) {
 		});
 	}); 
 	
-	var prefixes = ['salles','promotions','produits','avis','membres'];
-	
-	//map route to controller
-	prefixes.forEach(function(prefix) {
-		mapRoute(app, prefix);
-	});
+
 
 };
