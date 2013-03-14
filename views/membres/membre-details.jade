@@ -1,0 +1,79 @@
+-if (data != null)
+	h1= title
+	h2 Commandes
+	table.table.table-hover(broder="1")
+		tr
+			th Réference
+			th Date
+			th Montant
+			th Etat
+		- if(data.commandes == '')
+			tr.warning
+				td(colspan="4")	Pas de commande à afficher
+		- each commande in data.commandes
+			tr.(data-id="#{commande._id}", data-model="commande")
+				td.model-view-link #{commande.ref}
+				td.model-view-link #{commande.date.toDateString()}
+				td.model-view-link #{commande.montant} €
+				- if (commande.etat == 1)
+					etat = "Payé" 
+				- else
+					etat = "En attente de payement"
+				td.model-view-link=etat	
+	h2 Informations profil
+	div.well.pull-left
+		table.table.table-condensed
+			tr
+				th Pseudo :
+				td #{data.pseudo}
+			tr
+				th Nom :
+				td #{data.nom}				
+			tr
+				th Prénom :
+				td #{data.prenom}
+			tr
+				th Email :
+				td #{data.email}
+			tr
+				th Sexe :
+				if (data.sexe == 'f')
+					sexe = 'feminin'
+				else
+					sexe = 'masculin'			
+				td #{sexe}
+			tr
+				th Adresse :
+				td #{data.adresse}
+			tr
+				th Ville :
+				td #{data.ville}
+			tr
+				th Code postale :
+				td #{data.cp}
+			tr
+				th Pays :
+				td #{data.pays}
+			tr
+				th Statut :
+				td #{data.statut}
+	div.well.pull-right
+		h2 Commentaires
+		div
+			- each avis in data.avis
+				p
+					span.titre Note : 
+					span.valeur #{avis.note}
+				p
+					span.titre Date : 
+					span.valeur #{avis.date.toDateString()}
+				p
+					span.titre Comment : 
+					span.valeur #{avis.comment}
+				hr
+	div.clearfix
+-else 
+	div.row
+		div.span12					
+			div.error-message
+				span Il n'existe pas de membre avec cet identifiant !

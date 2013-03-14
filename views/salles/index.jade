@@ -22,6 +22,7 @@ block content
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
+	h2=session.pseudo
 	- if (docs != null)
 		- each salle in docs
 			div.annonce(data-id="#{salle._id}", data-model="salle")

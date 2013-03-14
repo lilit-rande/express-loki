@@ -10,9 +10,14 @@ div.navbar.navbar-inverse
 					li.active
 						a(href="/") Accueil
 					li
-						a(href="/reservation/") Réservation
+						a(href="/reservation") Réservation
 					li
-						a(href="/recherche/") Recherche
-					li
-						a(href="/membres/new") Inscription
-					include nav-admin
+						a(href="/recherche") Recherche
+					- if (!session.pseudo)
+						li
+							a(href="/inscription") Inscription
+					- else
+						li
+							a(href="/logout") Déconnexion
+						if (session.pseudo == 'admin')
+							include nav-admin

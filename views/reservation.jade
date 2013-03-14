@@ -1,32 +1,4 @@
 extends layout
 block content
 	h1= title
-	- if (docs != null)	
-		- each data in docs		
-			div.annonce(data-model="produit", data-id="#{data._id}")
-				h2 #{data.salle_id.title}
-					a.heading-a(href="/produits/#{data._id}") Voir les détailles >
-				div
-					img.pull-left(src="../images/vignettes/#{data.salle_id.image}")
-					//
-						img.pull-left(src="../../images/vignettes/#{data.salle_id.image}", width="80px", height="80px", class="img-polaroid")	
-					p
-						span.separated-header-text Disponibilités :  
-						span #{data.arrive.toDateString()} au #{data.depart.toDateString()}
-					p 
-						span.separated-header-text Ville :  
-						span #{data.salle_id.ville} - #{data.salle_id.cp}
-					p
-						span.separated-header-text Prix : 
-						span #{data.prix} euros* pour #{data.salle_id.capacite} personnes
-					p #{data.salle_id.description.substr(0,100)} ...
-					a.heading-a(href="/connexion/{id-produit}") Ajouter au panier >
-					p.clearfix
-		div.pager
-			a.pred <<
-			a 1
-			a 2					
-			a.next >> 
-	- else
-		div.alert.alert-error
-			p Pas de réservations disponibles
+	include listing

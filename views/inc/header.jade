@@ -3,7 +3,11 @@ header
 		a Lokisalle
 			p.tagline Location de salles de réunion
 	div#header-form.pull-right
-		include ../forms/form-connexion-inline
-		a(href="/inscription/") Pas encore membre?
-		a(href="") Mot de passe oublié...
+		- if (!session.pseudo)
+			include ../forms/connexion
+			a(href="/inscription") Pas encore membre?
+			a(href="") Mot de passe oublié...
+		- else
+			p Bonjour, #{session.pseudo}
+			a(href="/logout") Déconnexion
 	div.clearfix

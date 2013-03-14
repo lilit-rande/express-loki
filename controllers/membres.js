@@ -33,10 +33,10 @@ exports.index = function(req, res){
 
 //display new member form
 exports.new = function(req, res) {
-	var options = {'title':'Inscription','action':'create', 'type': 'Ajouter'},
+	var options = {'title':'Ajouter un membre','action':'create', 'type': 'Ajouter'},
 		html =  renderTpl('views/forms/membres/new.jade', options);
 
-	res.render('membres/new', {title: 'Inscription', body: html});
+	res.render('membres/new', {title: 'Ajouter un membre', body: html});
 }
 
 //add a member
@@ -136,23 +136,6 @@ exports.update = function(req, res) {
 	});
 };
 
-exports.pseudo = function(req, res) {
-//	console.log('here');
-/*
-	res.contentType('json');
-	res.send({ some: JSON.stringify({response:'json'}) });
-	
-	
-	Model.count({'pseudo' : 'pseudo'}, function(err, count){
-		if (err) {
-			res.send(err);
-		} else { 
-			console.log(count);
-			res.send(count);
-		}
-	});
-	*/
-};
 
 //show member info
 exports.show = function(req, res) {			
