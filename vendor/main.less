@@ -224,12 +224,14 @@ body{
 			margin-right: 20px;
 		}
 		table {
+			font-size: 12px;
 			&.listing {
 				&:hover {
 					cursor: pointer;
 				}
 			}
-			&.table {
+			&.table, &.table-centered-text {
+				
 				th, td {
 					vertical-align: middle;
 					text-align: center;
@@ -329,6 +331,14 @@ body{
 			color: @green-dark;
 		}
 		.title-style;
+	}
+	a {
+		&.fine-texte{
+			color: @green;
+			font-style: italic;
+			font-size: smaller;
+			margin-right: 10px;
+		}
 	}
 }
 

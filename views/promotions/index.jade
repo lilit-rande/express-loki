@@ -2,22 +2,23 @@ extends ../layout
 
 block content
 	h1=title
-	div.background
-	div.promotion-edit.popup.draggable
-	div.delete.popup.draggable
-	div.one-column
-		- if (docs != null)
-			table(broder="1").center-block.main-table
+	- if (docs != null)
+		table.cf.table-condensed.table-hover.table-striped.listing.span7#flip-scroll.table-centered-text
+			thead
 				tr
 					th Code Promotion
 					th Réduction
 					th Supprimer
-					- each promo in docs
-						tr.model-edit-link(data-id="#{promo._id}", data-model="promotion")
-							td #{promo.code}
-							td #{promo.reduction}
-							td.model-delete-link
-								img(src="images/icons/erase.png")
-		-else
-			p.error-message(colspan="3") Pas de code promotion à afficher
-	
+			tbody
+				- each promo in docs
+					tr.model-edit-link(data-id="#{promo._id}", data-model="promotion")
+						td #{promo.code}
+						td #{promo.reduction}
+						td.model-delete-link
+							img(src="images/icons/erase.png")
+		div.clearfix
+	- else
+		div.alert.alert-info
+			p Pas de code de promotion à afficher
+
+

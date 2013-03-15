@@ -270,8 +270,8 @@ var	promotion1 = new Promotion({
 var membre1 = new Membre ({
 		'pseudo' : 'admin',
 		'mdp':'admin',
-		'nom':'Lilit',
-		'prenom':'Randé',
+		'nom':'Randé',
+		'prenom':'Lilit',
 		'email':'liluxm@yahoo.fr',
 		'sexe':'f',
 		'ville':'Paris',
@@ -727,3 +727,14 @@ var membre1 = new Membre ({
 			salle20.produits.push(produit);
 			
 		});*/
+/*
+
+drop all collections
+> use database_name;
+
+> db.getCollectionNames().forEach(function(c) {
+    if(c != 'system.indexes') { 
+        db.getCollection(c).drop();
+    }
+  });
+  */

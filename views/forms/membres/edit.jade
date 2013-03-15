@@ -1,0 +1,46 @@
+form.form-membre-edit.form-horizontal#form-membre(method="post", action="#{action}", name="form-membre-edit")
+	div.control-group
+		label.control-label(for="membre-pseudo") Pseudo
+		div.controls
+			input#membre-pseudo(type="text", name="membrepseudo").required
+	div.control-group
+		label.control-label(for="membre-mdp") Mot de passe
+		div.controls
+			input#membre-mdp(type="text", name="membremdp").required
+	div.control-group
+		label.control-label(for="membre-nom") Nom
+		div.controls
+			input#membre-nom(type="text", name="membrenom").required
+	div.control-group
+		label.control-label(for="membre-prenom") Prénom
+		div.controls
+			input#membre-prenom(type="text", name="membreprenom").required
+	div.control-group
+		label.control-label(for="membre-email") Email
+		div.controls
+			input#membre-email(type="text", name="membreemail").required
+	div.control-group
+		label.control-label(for="fem") Sexe
+		div.controls
+			label.radio Femme
+				input#fem(type="radio", name="sexe", value="f")
+			label.radio Homme
+				input#masc(type="radio", name="sexe", value="m")
+	div.control-group
+		label.control-label(for="ville") Ville
+		div.controls
+			input#ville.required(type="text", placeholder="Ville", name="ville")
+	div.control-group
+		label.control-label(for="cp") Code postale
+		div.controls
+			input#cp.required(type="text", placeholder="Code postale", name="cp")
+	div.control-group
+		label.control-label(for="adresse") Adresse
+		div.controls
+			input#adresse.required(type="text", placeholder="Adresse", name="adresse")
+	div.control-group
+		label.control-label(for="membre-statut") Statut :
+		div.controls
+			select#select-membre-statut(name="membrestatut").required
+				option(value="admin") Administrateur
+				option(value="membre") Membre

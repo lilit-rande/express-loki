@@ -1,3 +1,14 @@
+<!-- Modal connection-->
+div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div.modal-header
+		button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+		h3 Connexion
+	div.modal-body
+		p Connectez-vous pour l'ajouter au panier
+		include ../forms/connetion-modal
+	div.modal-footer
+		button.btn(data-dismiss="modal", aria-hidden="true") Close
+		button.btn.btn-info.submit Connexion
 - if (docs != null)	
 	- each data in docs		
 		div.annonce(data-model="produit", data-id="#{data._id}")
@@ -19,6 +30,8 @@
 				p #{data.salle_id.description.substr(0,100)} ...
 				- if (session.pseudo)
 					a.heading-a(href="/connexion/{id-produit}") Ajouter au panier >
+				- else
+					a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Ajouter au panier >
 				p.clearfix
 	div.pager
 		a.pred <<

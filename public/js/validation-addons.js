@@ -15,7 +15,7 @@ $(document).ready(function() {
 		}
 	};
 
-	membre_validate_rules = {
+	var membre_validate_rules = {
 		rules : {
 			'pseudo' : {'validate_pseudo' : true},
 			'email': {'validate_email' : true}
@@ -33,14 +33,13 @@ $(document).ready(function() {
 		    type: 'post',
 		    data: {fieldName: value},
 		    success: function(data){
-			    var data = JSON.parse(data);
+			    var datas = JSON.parse(data);
 			    
-			    if (data.response === 'error') {
-				    console.log(data.msg);
-//				    errorMessage = data.error;
+			    if (datas.response === 'error') {
+				    console.log(datas.msg);
 				    return false;
 			    } else {
-				    if (data.response) {				    	
+				    if (datas.response) {				    	
 					    retVal = false;
 				    } else {
 					    retVal = true;					    

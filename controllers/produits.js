@@ -251,7 +251,7 @@ exports.show = function(req, res) {
 			if (!doc) {
 				res.render('produits/show', {id: ref, title:'Détailles du produit', data:doc});
 			} else {
-				res.render('produit/show', {title: 'Détailles du produit', data: doc});
+				res.render('produits/show', {title: 'Détailles du produit', data: doc});
 			}
 		}
 	});

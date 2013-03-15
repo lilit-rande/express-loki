@@ -10,7 +10,6 @@ block content
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
-				
 	<!-- Modal delete-->	
 	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
@@ -23,18 +22,20 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table.table.table-condensed.table-hover.listing
-			tr
-				th Date d'arrivée
-				th Date de départ
-				th Salle
-				th Image salle
-				th Promotion
-				th Réduction
-				th Prix
-				th Etat
-				th Modifier
-				th Supprimer
+		table.cf.table-condensed.table-hover.table-striped.listing.span7#flip-scroll
+			thead
+				tr
+					th Date d'arrivée
+					th Date de départ
+					th Salle
+					th Image salle
+					th Promotion
+					th Réduction
+					th Prix
+					th Etat
+					th Modifier
+					th Supprimer
+			tbody
 				- each produit in docs
 					tr(data-id="#{produit._id}", data-model="produit")
 						td.model-view-link #{produit.arrive.toDateString()} 
@@ -68,10 +69,11 @@ block content
 						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
 								img(src="images/icons/modify.png")
 						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
-								img(src="images/icons/erase.png")				
-	-else
-		div.alert.alert-info Pas de produit à afficher
-		
+								img(src="images/icons/erase.png")
+		div.clearfix
+	- else
+		div.alert.alert-info
+			p Pas de produit à afficher	
 		
 		
 		

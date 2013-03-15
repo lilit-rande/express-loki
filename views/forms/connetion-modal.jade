@@ -1,0 +1,14 @@
+form.form-horizontal#modal-connexion-form(method="post", action="connexion")
+	input#id(name="produit-id", type="hidden", value="produit id a inserer ici")
+	div.control-group
+		label.control-label(for="pseudo") Pseudo
+		div.controls
+			input#pseudo.required(type="text", placeholder="Pseudo", name="pseudo")
+	div.control-group
+		label.control-label(for="mdp") Mot de passe
+		div.controls
+			input#mdp.required(type="text", placeholder="Mot de passe", name="mdp")
+			p
+				a.fine-texte(href="/inscription") Pas encore membre?
+				a.fine-texte(href="") Mot de passe oublié..
+				

@@ -103,7 +103,7 @@ exports.edit = function(req, res) {
 			res.data = doc;
 			
 			var	options = {'title':'Modifier les donnés du membre', 'action': 'membres/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
-				html = renderTpl('views/forms/form-membre.jade', options);
+				html = renderTpl('views/forms/membres/edit.jade', options);
 				res.html = html;
 				res.send({data: doc, html: html});	
 		}	//fin else

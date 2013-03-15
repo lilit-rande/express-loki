@@ -1,41 +1,58 @@
 extends ../layout
 
 block content
+	<!-- Modal edit-->
+	div#modal-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modification de donnés utilisateur		
+		div.modal-body.membre-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
+	<!-- Modal delete-->	
+	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Supprimer le produit
+		div.modal-body
+			p Êtes-vous sûr de vouloir supprimer cet utilisateur ?
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
-	div.background
-	div.membre-edit.popup.draggable
-	div.delete.popup.draggable
-	div.one-column
-		- if (docs != null)
-			table(broder="1").center-block.main-table
+	- if (docs != null)
+		table.cf.table-condensed.table-hover.table-striped.listing.span7#flip-scroll
+			thead
 				tr
 					th Pseudo
 					th Mot de passe
 					th Nom
 					th Prénom
 					th Email
-					th Sexe
 					th Adresse
-					th Code postale
+					th CP
 					th Ville
 					th Statut
 					th Editer
 					th Supprimer
-					- each member in docs
-						tr(data-id="#{member._id}", data-model="membre")
-							td.model-view-link #{member.pseudo}
-							td.model-view-link #{member.mdp}
-							td.model-view-link #{member.nom}
-							td.model-view-link #{member.prenom}
-							td.model-view-link #{member.email}
-							td.model-view-link #{member.sexe}
-							td.model-view-link #{member.adresse}
-							td.model-view-link #{member.cp}
-							td.model-view-link #{member.ville}
-							td.model-view-link #{member.statut}
-							td.model-edit-link
-								img(src="images/icons/modify.png")
-							td.model-delete-link
-								img(src="images/icons/erase.png")
-		-else
-			p.error-message(colspan="3") Pas de membres à afficher
+			tbody
+				- each member in docs			
+					tr(data-id="#{member._id}", data-model="membre")
+						td.model-view-link #{member.pseudo}
+						td.model-view-link #{member.mdp}
+						td.model-view-link #{member.nom}
+						td.model-view-link #{member.prenom}
+						td.model-view-link #{member.email}
+						td.model-view-link #{member.adresse}
+						td.model-view-link #{member.cp}
+						td.model-view-link #{member.ville}
+						td.model-view-link #{member.statut}
+						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
+							img(src="images/icons/modify.png")
+						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
+							img(src="images/icons/erase.png")
+		div.clearfix
+	- else
+		div.alert.alert-info
+			p Pas de membres à afficher

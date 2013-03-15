@@ -17,46 +17,10 @@ $(document).ready(function() {
 		$('#salle-image-visible').val($(this).val().replace("C:\\fakepath\\", ""));
 	});
 
-	
 	//draggable
 	$(function() {
 	    $( ".draggable" ).draggable();
 	});
-	
-	//generique		
-	function popup_show(popupName) {
-		var windowHeight = $(window).height();
-		var windowWidth = $(window).width();
-		var element = $(".popup."+popupName);
-
-		//centrer le popup
-		var topElement = (windowHeight - element.height())/4 + $(window).scrollTop();
-		var leftElement = (windowWidth - element.width())/2 + $(window).scrollLeft();
-//		var topBackground = $(window).scrollTop();
-	
-		element.css({top:topElement, left:leftElement});	
-		element.show();
-		
-//		var currentPosition = element.position();
-//		var currentTop = currentPosition.top;
-		 
-		$('.background').css({
-			"opacity" : "0.7"
-		}).fadeIn("slow");
-		
-		$(window).scroll(function(){
-			element.css({top: (windowHeight - element.height())/1.3 + $(window).scrollTop()});
-		});
-		
-		$('body').css('overflow', 'hidden');
-	}
-	
-	//generique
-	function popup_hide() {
-		$('.popup').hide();
-		$('.background').fadeOut("slow");
-		$('body').css('overflow', 'auto');
-	}
 	
 	//click sur le lien "View {le model}"
 	$("body").on("click", ".model-view-link", function(e){
@@ -79,12 +43,12 @@ $(document).ready(function() {
 					
 			$.get(url, function(data) {
 			if ( data.error ) {
+				console.log(data.error);
 			} else {	
 				var modelData = data.data;
 				var modelObj = {};
 	
-				for ( d in modelData) {
-			//		console.log(d);
+				for ( var d in modelData) {
 					if ( ( d != '_id') && ( d.indexOf('reference') == -1 ) && (d != 'image') ) {
 						modelObj[ modelName + d] = modelData[d];
 					}
@@ -98,39 +62,58 @@ $(document).ready(function() {
 			
 				$('.' + modelName + '-edit').html(data.html);
 				$('.form-' + modelName + '-edit').autofill(modelObj);		// autofill permet de remplir automatiquement les champs d'un forumlaire dans le variable data.html par les données data.data, envoyés par le serveur dans notre cas
-				if (modelName == 'produit') {
-					if (data.foreignModels.salle) {
 				
-						var salles = data.foreignModels.salle;
-						var selectSalle = $('#select-salle');
-						var $old_salle_id = $('#old_salle_id');
-						
-						for (var salle=0; salle <salles.length; salle++) {
-							var s = salles[salle];
-							var prod = s.produits;
-								
-							if ($.inArray(id, prod) > -1) {
-								$("option[value=" + s._id + "]")
-									.attr("selected", "selected");								
-								$old_salle_id.attr("value", s._id);
-							}					
-						}
-					}		
-					if (data.foreignModels.promotion) {
-						var promotions = data.foreignModels.promotion;
-						var selectPromo = $('#select-promotion');
-						var $old_promotion_id = $('#old_promotion_id');
-						
-						for (var promo=0; promo < promotions.length; promo++) {
-							var p = promotions[promo];
-							if ($.inArray(id, p.produits) != -1) {
-								$("option[value=" + p._id + "]")
-									.attr("selected", "selected");
-								$old_promotion_id.attr("value", p._id);
+				switch(modelName) {
+					case 'produit': {
+						if (data.foreignModels.salle) {
+					
+							var salles = data.foreignModels.salle;
+							var selectSalle = $('#select-salle');
+							var $old_salle_id = $('#old_salle_id');
+							
+							for (var salle=0; salle <salles.length; salle++) {
+								var s = salles[salle];
+								var prod = s.produits;
+									
+								if ($.inArray(id, prod) > -1) {
+									$("option[value=" + s._id + "]")
+										.attr("selected", "selected");								
+									$old_salle_id.attr("value", s._id);
+								}					
 							}
-						}
-					}	
-				}	
+						}		
+						if (data.foreignModels.promotion) {
+							var promotions = data.foreignModels.promotion;
+							var selectPromo = $('#select-promotion');
+							var $old_promotion_id = $('#old_promotion_id');
+							
+							for (var promo=0; promo < promotions.length; promo++) {
+								var p = promotions[promo];
+								if ($.inArray(id, p.produits) != -1) {
+									$("option[value=" + p._id + "]")
+										.attr("selected", "selected");
+									$old_promotion_id.attr("value", p._id);
+								}
+							}
+						}	
+					}
+					break;
+					case 'membre': {
+						$('input:radio[name="sexe"]').each(function(){
+							if ($(this).val() == data.data.sexe) {
+								$(this).attr("checked", "checked");
+							}
+						});
+						$("option[value=" + data.data.statut + "]").attr("selected", "selected");
+						console.log('test');
+					}
+					break;
+				}
+				
+				
+				
+				
+				
 			}
 		});		//endOf get
 			
@@ -139,8 +122,12 @@ $(document).ready(function() {
 		var model =  $('#modal-edit').data("model");
 		
 		$('#form-'+model).submit();
-		alert('edit');
 	});	//edit bouton clicked
+
+
+
+
+
 
 //Supprimer le {model}
 	$("body").on("click", ".model-delete-link", function(e){
@@ -159,11 +146,17 @@ $(document).ready(function() {
 		});
 	});;
 	
-	
+	$("#modal-connect").on("click", ".submit", function(e){
+//		e.preventDefault();
+		$('#modal-connexion-form').submit();
+//		window.location.href = history.back();
+	});
 
 
     // Datepicker
     $('.datepicker').datepicker({
     	inline: true
     });
+    
+    
 });

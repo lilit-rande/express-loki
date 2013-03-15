@@ -5309,11 +5309,16 @@ body #main .hero-unit {
 body #main .detailles {
   margin-right: 20px;
 }
+body #main table {
+  font-size: 12px;
+}
 body #main table.listing:hover {
   cursor: pointer;
 }
 body #main table.table th,
-body #main table.table td {
+body #main table.table-centered-text th,
+body #main table.table td,
+body #main table.table-centered-text td {
   vertical-align: middle;
   text-align: center;
 }
@@ -5432,4 +5437,10 @@ body footer #copyright {
 .modal .modal-header h3 {
   font-size: 18px;
   color: #417064;
+}
+.modal a.fine-texte {
+  color: #488979;
+  font-style: italic;
+  font-size: smaller;
+  margin-right: 10px;
 }

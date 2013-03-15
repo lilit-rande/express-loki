@@ -109,7 +109,7 @@ exports.routes = function(app) {
 		
 		//destroy
 		app.post(prefix + '/destroy/:id', [adminOnly], prefixObj.destroy);
-		console.log(prefix);
+		console.log(prefixObj);
 		//show
 		app.get(prefix + '/:id', [adminOnly], prefixObj.show);		
 	};
