@@ -29,6 +29,7 @@ exports.create = function(req, res) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
 			req.session.pseudo = req.body.pseudo;
+			console.log(req.session.currentPage);
 			res.redirect('profil/' + data._id);
 		}
 	});
@@ -38,15 +39,22 @@ exports.connect = function(req, res) {
 	var user = {
 		pseudo: req.body.pseudo,
 		mdp: req.body.mdp
-	};
+	},
+		url = 'profil/';
 	
 	Membre.find(user, 'pseudo mdp', function(err, data){
 		if (err) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
 			if (data && data.length) {
+				
 				req.session.pseudo = req.body.pseudo;
-				res.redirect('profil/' + data[0]._id);
+				if (req.session.currentPage) {
+					url = req.session.currentPage;
+					res.redirect(url);
+				} else {				
+					res.redirect(url + data[0]._id);
+				}
 			} else {
 				//TODO
 				res.send({message: 'Pseudo ou mot de passe érronés.'});
@@ -59,13 +67,12 @@ exports.profil = function(req, res) {
 	var ref = req.params.id;
 
 	Membre.findOne({'_id': ref})
-		.populate('avis')
+		.populate('commentaires')
 		.populate('commandes')
 		.exec(function(err, doc){	
 		if(err) {
 			throw err;
 		} else {
-			console.log(doc);
 			if (!doc) {
 				res.render('profil', {id: ref, title:'Bonjour ' + doc.pseudo, data:doc});
 			} else {

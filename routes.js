@@ -23,7 +23,6 @@ exports.routes = function(app) {
 				pseudo = req.session.pseudo;
 				
 			User.find({pseudo: pseudo}, function(err, data){
-				console.log(data);
 				if (data[0].statut == 'admin') {
 					// User is admin let him in
 					next();
@@ -36,9 +35,15 @@ exports.routes = function(app) {
 		}
 	}
 	
-	app.get('/', home.index);
+	// dans ce middleware on enregistre l'url en cours dans session pour rediriger correcement les pages en cas de connexion
+	function currentPage (req, res, next) {
+		req.session.currentPage  = req.url;
+		next();
+	}
 	
-	var prefixes = ['salles','promotions','produits','avis','membres'];
+	app.get('/', [currentPage], home.index);
+	
+	var prefixes = ['salles','promotions','produits','commentaires','membres', 'commandes'];
 	
 	//map route to controller
 	prefixes.forEach(function(prefix) {
@@ -49,7 +54,7 @@ exports.routes = function(app) {
 
 
 	// mapping route and controller for models
-	/*
+/*
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -80,8 +85,6 @@ exports.routes = function(app) {
 		app.get(prefix + '/:id', prefixObj.show);		
 	};
 	*/
-
-
 	
 	// Routes avec require login
 	function mapRoute(app, prefix) {
@@ -90,68 +93,72 @@ exports.routes = function(app) {
 		var prefixObj = require('./controllers' + prefix);
 		
 		//index
-		app.get(prefix, [adminOnly], prefixObj.index);
+		app.get(prefix, [adminOnly], [currentPage], prefixObj.index);
 		
 		//add
-		app.get(prefix + '/new', [adminOnly], prefixObj.new);
+		app.get(prefix + '/new', [adminOnly], [currentPage], prefixObj.new);
+		app.post(prefix + '/new', [adminOnly], [currentPage], prefixObj.create);
 		
-		//create
-		app.post(prefix + '/create', [adminOnly], prefixObj.create);
-		
-		//edit
-		app.get(prefix + '/edit/:id', [adminOnly], prefixObj.edit);
 		
 		//edit
-	//	app.get(prefix + '/delete/:id', prefixObj.delete);
+		app.get(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.edit);
+		app.post(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.update);
+		//edit
+	//	app.get(prefix + '/delete/:id', [currentPage], prefixObj.delete);
 		
 		//update
-		app.post(prefix +'/:id', [adminOnly], prefixObj.update);
+//		app.post(prefix +'/:id', [adminOnly], [currentPage], prefixObj.update);
 		
 		//destroy
-		app.post(prefix + '/destroy/:id', [adminOnly], prefixObj.destroy);
-		console.log(prefixObj);
+		app.post(prefix + '/destroy/:id', [adminOnly], [currentPage], prefixObj.destroy);
+
 		//show
-		app.get(prefix + '/:id', [adminOnly], prefixObj.show);		
+		if (prefix != '/produits') {
+			app.get(prefix + '/:id', [adminOnly], [currentPage], prefixObj.show);
+		} else {
+			produit = require('./controllers/produits');
+			app.get('/produits/:id', [currentPage], prefixObj.show);
+		}
 	};
 
-	
 	
 
 	
 	//form validation routes
 	app.post('/pseudo', formValidator.pseudo);
 	app.post('/email', formValidator.email);
+	app.post('/promocode', formValidator.promocode);
 	
 	// login / logout routes
-	app.get('/inscription', login.inscription);
-	app.get('/inscription/*', login.inscription);
-	app.post('/login/create', login.create);
+	app.get('/inscription', [currentPage], login.inscription);
+	app.get('/inscription/*', [currentPage], login.inscription);
+	app.post('/login/create', [currentPage], login.create);
 	
-	app.get('/logout', [requireLogin], login.logout);
-	app.get('/logout/*', [requireLogin], login.logout);
+	app.get('/logout', [requireLogin], [currentPage], login.logout);
+	app.get('/logout/*', [requireLogin], [currentPage], login.logout);
 	
 	app.post('/connexion/*', login.connect);
-	app.post('/connexion', login.connect);
+	app.post('/connexion',  login.connect);
 
-	app.get('/profil/:id', [requireLogin], login.profil);
+	app.get('/profil/:id', [requireLogin], [currentPage], login.profil);
 	
-	app.get('/reservation', reservation.reservation);
-	app.get('/recherche', search.search);
+	app.get('/reservation', [currentPage], reservation.reservation);
+	app.get('/recherche', [currentPage], search.search);
 
 	//routes footer
-	app.get('/mentions', function(req, res){
+	app.get('/mentions', [currentPage], function(req, res){
 		res.render('mentions', {title: 'Mentions légales'});
 	});	
-	app.get('/cgv', function(req, res){
+	app.get('/cgv', [currentPage], function(req, res){
 		res.render('cgv', {title: 'Conditions générales de vente'});
 	});	
-	app.get('/plan', function(req, res){
+	app.get('/plan', [currentPage], function(req, res){
 		res.render('plan', {title: 'Plan du site'});
 	});	
-	app.get('/inscription-newsletter', function(req, res){
+	app.get('/inscription-newsletter', [currentPage], function(req, res){
 		res.render('inscription-newsletter', {title: 'Inscription à la newsletter'});
 	}); 	
-	app.get('/contact', function(req, res){
+	app.get('/contact', [currentPage], function(req, res){
 		res.render('contact', {title: 'Contact'});
 	}); 
 	

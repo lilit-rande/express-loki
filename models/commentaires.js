@@ -2,14 +2,14 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-//create Avis model
-var avisSchema = new Schema({
-	date: {type: Date, require: true, trim: true},
-	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles'},	
-	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres'},
-	note: {type: Number, require: true, trim: true},
-	comment: {type: String, require: true, trim: true}
-});
+//create Commentaires model
+var commentaireSchema = new Schema({
+		date: {type: Date, require: true, trim: true},
+		salle_id: {type: Schema.Types.ObjectId, ref: 'Salles'},	
+		membre_id: {type: Schema.Types.ObjectId, ref: 'Membres'},
+		note: {type: Number, require: true, trim: true},
+		comment: {type: String, require: true, trim: true}
+	});
 
 /*
 http://mongoosejs.com/docs/populate.html
@@ -32,4 +32,4 @@ var Story  = mongoose.model('Story', StorySchema);
 var Person = mongoose.model('Person', PersonSchema);
 */
 
-module.exports = mongoose.model('Avis', avisSchema);
+module.exports = mongoose.model('Commentaires', commentaireSchema);

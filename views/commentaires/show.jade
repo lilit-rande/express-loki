@@ -8,7 +8,7 @@ block content
 				div.annonce-bloc.one-column
 					img(src="../../images/vignettes/#{data.salle_id.image}", width="200px", height="200px", class="img-polaroid")
 					h2 #{data.salle_id.title}
-					span.italic {1/10 moyenne sur 1 avis}
+					span.italic {1/10 moyenne sur 1 commentaire}
 					p #{data.salle_id.description}
 					span.italic Capacité: #{data.salle_id.capacite}. Catégorie: salle de #{data.salle_id.categorie}
 					br
@@ -58,7 +58,7 @@ block content
 								-for(var i=1; i<=10; i++)
 									option=i+'/10'
 							<br />
-							input.btn.btn-primary(value="Sousmettre", name="sousmettre-avis")
+							input.btn.btn-primary(value="Sousmettre", name="sousmettre-commentaire")
 						div.clear
 	-else 
 		div.row

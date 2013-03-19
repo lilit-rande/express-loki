@@ -14,7 +14,7 @@ var salleSchema = new Schema({
 	image: String,
 	description: String,
 	produits : [{type: Schema.Types.ObjectId, ref:'Produits'}],
-	avis : [{type: Schema.Types.ObjectId, ref:'Avis'}]
+	commentaires : [{type: Schema.Types.ObjectId, ref:'Commentaires'}]
 });
 
 module.exports = mongoose.model('Salles', salleSchema);

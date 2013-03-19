@@ -16,24 +16,27 @@ li.dropdown.clearfix#nav-admin
 					a(href="/produits/new") Ajouter un produit
 				li
 					a(href="/produits") Afficher les produits
-		li.dropdown-submenu
-			a(href="/", tabindex="-1") Gestion des membres
-			ul.dropdown-menu
-				li
-					a(href="/membres/new") Ajouter un membre
-				li
-					a(href="/membres") Afficher les membres
-		li.dropdown-submenu
-			a(href="/", tabindex="-1") Gestion des codes promo
-			ul.dropdown-menu
-				li
-					a(href="/promotions/new") Ajouter un code promo
-				li
-					a(href="/promotions") Afficher les codes promo
 		li
-			a(href="/") Gestion des commandes
+			a(href="/membres") Gestion des membres
+			//
+				a(href="/", tabindex="-1") Gestion des membres
+				ul.dropdown-menu
+					li
+						a(href="/membres/new") Ajouter un membre
+					li
+						a(href="/membres") Afficher les membres
 		li
-			a(href="/avis") Gestion des avis
+			a(href="/promotions") Gestion des codes promo
+			//
+				ul.dropdown-menu
+					li
+						a(href="/promotions/new") Ajouter un code promo
+					li
+						a(href="/promotions") Afficher les codes promo
+		li
+			a(href="/commandes") Gestion des commandes
+		li
+			a(href="/commentaires") Gestion des commentaires
 		li.divider
 		li
 			a(href="/") Envoyer la newsletter

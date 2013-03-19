@@ -94,10 +94,27 @@ exports.create = function(req, res) {
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér ce produit ! Message : " + err.message});
 		} else {
 		//	res.render('generals/modified', {title: 'Produit ajouté', body: "Le produit a bien été ajouté."});
-			res.redirect('/produits');
+			res.render('produits/index', {title: 'Produit ajouté', body: "Le produit a bien été ajouté."});
 		}
 	});
 };
+
+
+/* display delete form 
+
+// Plus d'actualité, le modal du bootstrap s'en charge
+exports.delete = function(req, res) {
+	var	reference = req.params.id;
+		
+	Model.findOne({'_id': reference}, function(err, doc){
+		if (err) {
+			res.render('generals/error', {title: "Echec", body: err});
+		} else {
+			res.render('generals/deletePopup', {title: "Suppression d'un produit", type: 'produits', id: reference, type_datas: doc});
+		}
+	});
+};
+*/
 
 
 //delete a produit
@@ -112,7 +129,6 @@ exports.destroy = function(req, res) {
 		}
 	});
 };
-
 
 //OK
 //display edit form
@@ -226,7 +242,7 @@ exports.update = function(req, res) {
 //show a produit
 exports.show = function(req, res) {			
 	ref = req.params.id;
-
+	console.log(ref);
 	Model.findOne({'_id': ref})
 		.populate('salle_id')
 		.populate('promotion_id')

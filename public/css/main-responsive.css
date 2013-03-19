@@ -1111,4 +1111,8 @@
   #flip-scroll td:last-child {
     border-bottom: 1px solid #babcbf;
   }
+  /*
+  	#flip-scroll td:nth-child(8),
+  	#flip-scroll table th:nth-child(8){display: none;}
+  	*/
 }

@@ -1,9 +1,7 @@
 //The promotions controller
-var superController = require('../controllers/controller.js'),
-	Model = require('../models/produits.js'),	
-	Salle = require('../models/salles.js'),
-	Promotion = require('../models/promotions.js'),
-	Commande = require('../models/commandes.js'),	
+var Model = require('../models/commandes.js'),	
+	Membre =require('../models/membres.js'),
+	Produit = require('../models/produits.js'),	
 	fs = require('fs'),
 	jade = require('jade'),
 	async = require('async');
@@ -30,20 +28,19 @@ function delFromArray(needle, arr) {
 	} else return false;	
 }
 
-//index listing of produit at :  /produits/
+
 exports.index = function(req, res){	
 	Model
 		.find()
-		.populate('salle_id')
-		.populate('promotion_id')
-		.populate('commandes')
+		.populate('membre_id')
+		.populate('produit_id')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
-			res.render('produits/index', { title: 'Produits', docs: docs});
+			res.render('commandes/index', { title: 'Commandes', docs: docs});
 		} else {
-			res.render('produits/index', { title: 'Produits', docs: null});
+			res.render('commandes/index', { title: 'Commandes', docs: null});
 			
 		}
 	});

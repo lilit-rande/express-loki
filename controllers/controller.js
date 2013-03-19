@@ -37,8 +37,8 @@ function getForeignModelNames(docs, model) {
 
 function getModelDetails(model) {
 	var femModels = ['salles','promotions', 'commandes'],
-		mascModels = ['produits', 'membres', 'avis'],
-//		modelsWithForeignKeys = ['produits', 'commandes', 'avis'],
+		mascModels = ['produits', 'membres', 'commentaires'],
+//		modelsWithForeignKeys = ['produits', 'commandes', 'commentaires'],
 		lastChar = model.slice(-1),
 		modelFile = (lastChar == 's') ? '../models/' + model.toLowerCase() + '.js' : '../models/' + model.toLowerCase() + 's.js',	// ex.: /models/salles.js
 		modelName = (lastChar == 's') ? model.toLowerCase() : model.toLowerCase() + 's',						// ex.: salles
@@ -469,7 +469,7 @@ exports.show = function(req, res, model) {
 		.populate('salle_id')
 		.populate('promotion_id')
 		.populate('membres_id')
-		.populate('avis')
+		.populate('commentaires')
 		.populate('commandes')
 		.populate('produit_id')
 		.exec(function(err, doc){	

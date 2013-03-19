@@ -1,0 +1,40 @@
+extends ../layout
+			
+block content
+	<!-- Modal delete-->	
+	div#modal-delete.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Supprimer le commentaire
+		div.modal-body
+			p Êtes-vous sûr de vouloir supprimer ce commentaire ?
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.delete-confirm Supprimer
+			
+	h1=title
+	- if (docs != null)
+		table.table.cf.table-condensed.table-hover.table-striped.listing#flip-scroll.table-centered-text
+			thead
+				tr
+					th Membre
+					th Salle
+					th Date
+					th Note					
+					th Commentaire					
+					th Supprimer
+			tbody
+				- each commentaire in docs
+					tr(data-id="#{commentaire._id}", data-model="commentaire")
+						td
+							a(href="membres/#{commentaire.membre_id}") #{commentaire.membre_id.pseudo}
+						td
+							a(href="salles/#{commentaire.salle_id._id}") #{commentaire.salle_id.title}
+						td #{commentaire.date.toDateString()}  
+						td #{commentaire.note}
+						td #{commentaire.comment}
+						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
+							img(src="images/icons/erase.png")
+	-else
+		div.alert.alert-info
+			p Pas de commentaires à afficher

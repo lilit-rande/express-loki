@@ -1,9 +1,40 @@
 extends ../layout
-
+			
 block content
+	<!-- Modal new-->
+	div#modal-new.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Ajouter un code promo	
+		div.modal-body
+			include ../forms/promotions/new
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.new-model-btn(data-model="promotion") Ajouter
+			
+	<!-- Modal edit-->
+	div#modal-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modification de code promo		
+		div.modal-body.promotion-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
+			
+	<!-- Modal delete-->	
+	div#modal-delete.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Supprimer le code promo
+		div.modal-body
+			p Êtes-vous sûr de vouloir supprimer ce code promo ?
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table.cf.table-condensed.table-hover.table-striped.listing.span7#flip-scroll.table-centered-text
+		table.table.cf.table-condensed.table-hover.table-striped.listing#flip-scroll.table-centered-text
 			thead
 				tr
 					th Code Promotion
@@ -12,13 +43,14 @@ block content
 			tbody
 				- each promo in docs
 					tr.model-edit-link(data-id="#{promo._id}", data-model="promotion")
-						td #{promo.code}
-						td #{promo.reduction}
-						td.model-delete-link
+						td(href="#modal-edit", role="button", data-toggle="modal") #{promo.code}
+						td(href="#modal-edit", role="button", data-toggle="modal") #{promo.reduction} €						
+						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
 							img(src="images/icons/erase.png")
 		div.clearfix
 	- else
 		div.alert.alert-info
 			p Pas de code de promotion à afficher
-
+	div.add-button
+		button.btn.btn-info.model-new-link(href="#modal-new", role="button", data-toggle="modal") Ajouter un code promo
 

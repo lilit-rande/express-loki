@@ -387,11 +387,11 @@ m = [{
 ];
 
 db.membres.save(m);
-/*************	AVIS	********************/
+/*************	commentaire	********************/
 
-db.avis.drop();
+db.commentaire.drop();
 
-db.createCollection("avis");
+db.createCollection("commentaire");
 a = [{
 		'id_membre': 1,
 		'id_salle' : 5,
@@ -415,7 +415,7 @@ a = [{
 	},
 ];
 
-db.avis.save(a);
+db.commentaire.save(a);
 /*************	COMMANDES	********************/
 db.commandes.drop();
 
@@ -446,7 +446,7 @@ db.produits.drop();
 db.salles.drop();
 db.promotions.drop();
 
-db.avis.drop();
+db.commentaire.drop();
 db.commandes.drop();
 db.membres.drop();
 

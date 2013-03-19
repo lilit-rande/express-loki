@@ -1,6 +1,18 @@
 extends ../layout
 
 block content
+	<!-- Modal connection-->
+	div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Connexion
+		div.modal-body
+			p Connectez-vous pour l'ajouter au panier
+			include ../forms/connetion-modal
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.submit Connexion
+		
 	-if (data != null)
 		h1= title
 		div.pull-left.detailles
@@ -37,17 +49,26 @@ block content
 		div.alert.alert-error
 			p Ce produit n'existe pas !
 	div.well
-		h2 Avis
-		form(action="avis/new", method="post")
-			div.pull-left
-				label(for="commentaire") Ajouter un commentaire
-				textarea#commentaire(name="commentaire")
-			div.pull-left(style="margin-left:40px;")
-				label(for="note") Note
-				select#note(name="note")
-					-for(var i=1; i<=10; i++)
-						option=i+'/10'
-				<br />
-				input.btn.btn-primary(value="Sousmettre", name="sousmettre-avis")
-			div.clearfix
-
+		h2 Commentaires
+		div 
+			h4 Commenteire de toto date etc
+			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			hr
+			h4 Commenteire de toto date etc
+			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			hr
+			- if (session.pseudo)
+				form(action="commentaires/new", method="post")
+					div.pull-left
+						label(for="commentaire") Ajouter un commentaire
+						textarea#commentaire(name="commentaire")
+					div.pull-left(style="margin-left:40px;")
+						label(for="note") Note
+						select#note(name="note")
+							-for(var i=1; i<=10; i++)
+								option=i+'/10'
+						br
+						input.btn.btn-primary(value="Sousmettre", name="sousmettre-commentaire")
+					div.clearfix
+			- else	
+				a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour laisser une commentaire >

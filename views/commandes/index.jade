@@ -1,0 +1,59 @@
+extends ../layout
+
+block content
+	h1=title
+	- if (docs != null)
+		table#flip-scroll.cf.table.table-condensed.table-hover.table-striped.listing.span7
+			thead
+				tr
+					th Référence
+					th Membre
+					th Produit (salle)
+					th Date
+					th Montant
+					th Etat
+					th Modifier
+					th Supprimer
+			tbody
+				- each commande in docs
+					- if (commande.etat == 1) 
+						- etat = "Payé"
+					- else if (commande.etat == 2) 
+						- etat = "Annulé"
+					- else if (commande.etat == 0)
+						- etat = "En attente de payement"
+					tr(data-id="#{commande._id}", data-model="commande")
+						td #{commande.ref}
+						td #{commande.membre_id.pseudo}
+						td #{commande.produit_id.salle_id}
+						td #{commande.date.toDateString()}
+						td #{commande.montant}
+						td=etat
+						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
+								img(src="images/icons/modify.png")
+						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
+								img(src="images/icons/erase.png")
+		div.clearfix
+	- else
+		div.alert.alert-info
+			p Pas de commandes à afficher
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

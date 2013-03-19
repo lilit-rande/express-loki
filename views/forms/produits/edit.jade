@@ -24,7 +24,11 @@ form#form-produit.form-produit-edit.form-horizontal(method="post", action="#{act
 	div.control-group
 		label.control-label(for="etat") Etat
 		div.controls
-			input#etat(type="text", name="produitetat").required
+			select#etat(name="produitetat").required
+				option(value="1") Loué
+				option(value="0") Libre
+	//
+		input#etat(type="text", name="produitetat").required
 	div.control-group
 		input#old_promotion_id(type="hidden", name="old_promotion_id")
 		label.control-label.choix(for="select-promotion") Choisir une promotion :

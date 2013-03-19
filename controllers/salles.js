@@ -2,7 +2,7 @@
 var superController = require('../controllers/controller.js'),
 	Model = require('../models/salles.js'),
 	Produits = require('../models/produits.js'),
-	Avis = require('../models/avis.js'),	
+	Commentaire = require('../models/commentaires.js'),	
 	fs = require('fs'),
 	jade = require('jade'),
 	async = require('async'),
@@ -20,7 +20,7 @@ exports.index = function(req, res){
 	Model
 	.find()
 	.populate('produits')
-	.populate('avis')
+	.populate('commentaires')
 	.exec(function(err, docs) {
 		if(err) {
 			throw err;
@@ -34,7 +34,7 @@ exports.index = function(req, res){
 
 //display new salle form
 exports.new = function(req, res) {	
-	var options = {'title':'Ajouter une salle','action':'create','image':'', 'type': 'Ajouter'},
+	var options = {'title':'Ajouter une salle','action':'new','image':'', 'type': 'Ajouter'},
 		html =  renderTpl('views/forms/salles/new.jade', options);
 	
 	res.render('salles/new', {title: 'Ajouter une salle', body: html});
@@ -60,7 +60,8 @@ exports.create = function(req, res) {
 			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér la salle ! Message : " + err.message});
 		} else {
-			res.render('generals/modified', {title: 'Salle ajoutée', body: "La salle a bien été ajoutée."});
+//			res.render('generals/modified', {title: 'Salle ajoutée', body: "La salle a bien été ajoutée."});
+			res.redirect('/salles');
 		}
 	});
 };
@@ -104,7 +105,7 @@ exports.edit = function(req, res) {
 		} else {
 			res.data = doc;
 			
-			var	options = {'title':'Modifier la salle', 'action': 'salles/'+ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
+			var	options = {'title':'Modifier la salle', 'action': 'salles/edit/'+ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
 				html = renderTpl('views/forms/salles/edit.jade', options);
 				res.html = html;
 				res.send({data: doc, html: html});	
@@ -130,7 +131,8 @@ exports.update = function(req, res) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
 		} else {
-			res.render('generals/modified', {title: "Salle modifiée", body: "La salle a bien été modifiée."});
+//			res.render('generals/modified', {title: "Salle modifiée", body: "La salle a bien été modifiée."});
+			res.redirect('salles/');
 		}
 	});
 };
@@ -141,7 +143,7 @@ exports.show = function(req, res) {
 
 	Model.findOne({'_id': ref})
 		.populate('produits')
-		.populate('avis')
+		.populate('commentaires')
 		.exec(function(err, doc){	
 		if(err) {
 			throw err;

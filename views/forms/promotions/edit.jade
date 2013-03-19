@@ -1,0 +1,10 @@
+form.form-horizontal.form-promotion-edit#form-promotion(method="post", action="#{action}", name="form-promotion-edit")
+	input#promotion-reference(type="hidden", name="promotionreference")	
+	div.control-group
+		label.control-label(for="promotion-code") Code promotion
+		div.controls
+			input#promotion-code(type="text", name="promotioncode").required
+	div.control-group
+		label.control-label(for="promotion-reduction") Réduction
+		div.controls
+			input#promotion-reduction.required.digits(type="text", name="promotionreduction")

@@ -1,4 +1,5 @@
 var Membre = require('../models/membres.js');
+var Promocode = require('../models/promotions.js');
 
 
 exports.pseudo =  function(req, res) {
@@ -28,6 +29,22 @@ exports.email = function(req, res) {
 				res.send(JSON.stringify({response: true, msg: 'Cet email existe déjà.'}));
 			} else {
 				res.send(JSON.stringify({response: false, msg: 'Cet email est libre.'}));
+			}
+		}
+	});
+};
+
+exports.promocode = function(req, res) {
+	var promocode = req.body.fieldName;
+	
+	Promocode.count({'code': promocode}, function(err, count){
+		if (err) {
+			res.send(JSON.stringify({response:'error', msg: err}));
+		} else {
+			if(count) {
+				res.send(JSON.stringify({response: true, msg: 'Ce code promo existe déjà.'}));
+			} else {
+				res.send(JSON.stringify({response: false, msg: 'Cet code promo est libre.'}));
 			}
 		}
 	});

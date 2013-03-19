@@ -19,5 +19,5 @@ div.navbar.navbar-inverse
 					- else
 						li
 							a(href="/logout") Déconnexion
-						if (session.pseudo == 'admin')
+						if (session.pseudo && session.pseudo == 'admin')
 							include nav-admin

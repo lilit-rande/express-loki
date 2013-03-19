@@ -1,4 +1,4 @@
-form.form-horizontal#form-inscription(method="post", action="#{action}", name="form-membre-edit")
+form.form-horizontal#form-membre-new(method="post", action="", name="form-membre-edit")
 	div.control-group
 		label.control-label(for="pseudo") Pseudo
 		div.controls
@@ -33,7 +33,7 @@ form.form-horizontal#form-inscription(method="post", action="#{action}", name="f
 	div.control-group
 		label.control-label(for="cp") Code postale
 		div.controls
-			input#cp.required(type="text", placeholder="Code postale", name="cp")
+			input#cp.required.digits(type="text", placeholder="Code postale", name="cp")
 	div.control-group
 		label.control-label(for="adresse") Adresse
 		div.controls
@@ -45,6 +45,3 @@ form.form-horizontal#form-inscription(method="post", action="#{action}", name="f
 				option(value="user") Utilisateur
 				option(value="admin") Administrateur
 				option(value="moder") Modérateur
-	div.control-group
-		div.controls
-			button.btn.btn-primary(type="submit", name="submit-inscription") S'inscrire

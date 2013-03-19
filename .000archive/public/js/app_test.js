@@ -4,7 +4,7 @@ var Salle = require('./models/salles.js'),
 	Produit = require('./models/produits.js'),
 	Promotion = require('./models/promotions.js'),
 	Membre = require('./models/membres.js'),
-	Avis = require('./models/avis.js'),
+	Commentaire = require('./models/commentaire.js'),
 	Commande = require('./models/commandes.js');
 	
 mongoose.connect('mongodb://localhost/lokisalle');
@@ -44,31 +44,30 @@ var
 		'adresse':'244 bd Voltaire',
 		'statut':'membre',
 	});
-512ddf21d6c14661a5000006
-512ddf21d6c14661a5000006
+	
 /******************************/	
 	salle10.save(function(err){	
 		membre2.save(function(err){
-			var avis2 = new Avis({				
+			var commentaire2 = new Commentaire({				
 				'comment':'magnifique',
 				'note':5,
 				'date':new Date('July 31, 2012 09:00:00'),
 				'membre_id': membre2._id,
 				'salle_id' : salle10._id
-			});//avis2
+			});//commentaire2
 			
-			avis2.save(function(err){
+			commentaire2.save(function(err){
 				if (err) console.log(err);
-				Avis
-					.findOne({'_id': avis2._id})
+				Commentaire
+					.findOne({'_id': commentaire2._id})
 					.populate('salle_id')
-					.exec(function(err, avis){
+					.exec(function(err, commentaire){
 						if(err) return handleError(err);
-						console.log(avis.salle_id.title);
-						salle10.avis.push(avis);
+						console.log(commentaire.salle_id.title);
+						salle10.commentaire.push(commentaire);
 						salle10.save();
 						
-						membre2.avis.push(avis);
+						membre2.commentaire.push(commentaire);
 						membre2.save();
 					});
 			});	

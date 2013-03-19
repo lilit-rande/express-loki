@@ -37,7 +37,7 @@ $(document).ready(function() {
 			id = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
 			url = modelName + "s/edit/" + id;
 //		var id = $(this).parent().data("id");
-		
+			
 			$('#modal-edit').data('id', id);
 			$('#modal-edit').data('model', modelName);
 					
@@ -47,7 +47,7 @@ $(document).ready(function() {
 			} else {	
 				var modelData = data.data;
 				var modelObj = {};
-	
+				
 				for ( var d in modelData) {
 					if ( ( d != '_id') && ( d.indexOf('reference') == -1 ) && (d != 'image') ) {
 						modelObj[ modelName + d] = modelData[d];
@@ -59,7 +59,7 @@ $(document).ready(function() {
 						modelObj[ modelName + d + 'visible'] = modelData[d];	// le champs file s'appelle ex salleimage, on n'a pas le droit d'y mettre le chemin récuperé du fichier chargé 
 					}
 				}
-			
+
 				$('.' + modelName + '-edit').html(data.html);
 				$('.form-' + modelName + '-edit').autofill(modelObj);		// autofill permet de remplir automatiquement les champs d'un forumlaire dans le variable data.html par les données data.data, envoyés par le serveur dans notre cas
 				
@@ -105,29 +105,53 @@ $(document).ready(function() {
 							}
 						});
 						$("option[value=" + data.data.statut + "]").attr("selected", "selected");
-						console.log('test');
 					}
 					break;
 				}
-				
-				
-				
-				
-				
-			}
+			}	// endOf else
 		});		//endOf get
 			
 	}).on('click',	'.edit-model-btn', function(){
+		
 		var id = $('#modal-edit').data("id");
 		var model =  $('#modal-edit').data("model");
+		var url = '/' + model + 's/edit/' + id;
+
 		
-		$('#form-'+model).submit();
+		var data = $('#form-' + model).serialize();
+		
+	//	$('#form-'+model).submit();
+		
+//		if ($('#form-' + model).valid()){
+
+		$.post(url, data, function(){
+			location.reload();
+		});
+
+//		}
+		
+		
+		
 	});	//edit bouton clicked
 
 
-
-
-
+	$("body").on("click", ".new-model-btn", function(e){
+		var modelName = $(this).data("model") == null ? $(this).find().data("model") : $(this).data("model");
+		
+		var url = '/' + modelName + 's/new';
+		
+		data = $('#form-' + modelName + '-new').serialize();
+		
+		console.log(data);
+		
+	
+		if($('#form-' + modelName + '-new').valid()) {	// pour jquery.validation
+			$.post(url, data, function(){
+				location.reload();
+			});	
+		}
+	
+	});
 
 //Supprimer le {model}
 	$("body").on("click", ".model-delete-link", function(e){

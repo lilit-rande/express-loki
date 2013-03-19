@@ -5334,6 +5334,9 @@ body #main select {
 body #main button#btn-login {
   margin-right: 20px;
 }
+body #main .add-button {
+  margin-top: 10px;
+}
 body #main .login-form label#remember-me {
   display: inline-block;
 }

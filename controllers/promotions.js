@@ -31,8 +31,8 @@ exports.index = function(req, res){
 
 //display new promo form
 exports.new = function(req, res) {	
-	var options = {'title':'Ajouter un code de promotion','action':'create','image':'', 'type': 'Ajouter'},
-		html =  renderTpl('views/forms/form-promotion.jade', options);
+	var options = {'title':'Ajouter un code de promotion','action':'create'},
+		html =  renderTpl('views/forms/promotions/new.jade', options);
 	
 	res.render('promotions/new', {title: 'Ajouter un code de promotion', body: html});
 }
@@ -55,7 +55,7 @@ exports.create = function(req, res) {
 		}
 	});
 };
-
+/*
 //display delete form
 exports.delete = function(req, res) {
 	var	reference = req.params.id;
@@ -68,6 +68,7 @@ exports.delete = function(req, res) {
 		}
 	});
 };
+*/
 
 //delete a promotion
 exports.destroy = function(req, res) {
@@ -93,8 +94,8 @@ exports.edit = function(req, res) {
 		} else {
 			res.data = doc;
 			
-			var	options = {'title':'Modifier le code promotion', 'action': 'promotions/'+ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
-				html = renderTpl('views/forms/form-promotion.jade', options);
+			var	options = {'title':'Modifier le code promotion', 'action': 'promotions/edit/'+ref, 'image': imagePath + doc.image},
+				html = renderTpl('views/forms/promotions/edit.jade', options);
 				res.html = html;
 				res.send({data: doc, html: html});	
 		}	//fin else
@@ -107,66 +108,14 @@ exports.update = function(req, res) {
 			code: req.body.promotioncode,
 			reduction: req.body.promotionreduction
 		},
-		foreignModels = [],
 		ref = req.params.id;
-		obj[refName] = ref;
-	var modelObj = {};
-	modelObj[ refName ] = ref;
-	
+	console.log(req.body);
 	Model.update({'_id': ref}, promotion, function(err, docs) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
 		} else {
-			if (foreignModels) {
-				for (var fm in foreignModels) {
-					subModel = foreignModels[fm];
-					SMDetails = getModelDetails(subModel);
-
-					//	exemple pour le model Produit les submodels sont Salle, Promotion
-					var SM = require(SMDetails.modelFile),	//	ex. SM = require('../models/salles.js) et ensuite SM = require('../models/promotions.js)
-						SMLower = subModel.toLowerCase(),	//	ex. SMLower = salles, ensuite promotions
-						SMOld = "old_" + SMLower + "_id",	//  ex. SMOld = old_salle_id, et old_promotion_id
-						SMNew = "new_" + SMLower + "_id";	//  ex. SMNew = new_salle_id, et new_promotion_id
-					var old_object = {};
-					var new_object = {};
-					var docs = req.body;
-					
-					// creer deux objets à partir du req.body pour ensuite les utiliser dans findOne
-					// en cas d'un seul model on aurait fait: req.body.old_salle_id et req.body.new_salle_id et dans le findOne:
-					// Salle.findOne({'_id': req.body.old_salle_id}, callback)
-					for ( d in docs) {
-						if ( d == SMOld ) {
-							old_object["_id"] = docs[d];
-						}
-						if ( d == SMNew ) {
-							new_object["_id"] = docs[d];
-						}
-					}
-
-					if (new_object["_id"] !== old_object["_id"] ) {	// si il ya a eu un changement du foreign model id
-						if (old_object["_id"]) {	// cette verification est util notemment pour un produit auquel aucun promotion n'était associé
-							SM.findOne(old_object, function(err, data){
-								// de la liste des produits de cette salle enlever le id (le ref) de ce produit
-								delFromArray(ref, data[modelName]);	// ex. data.produits
-								data.save();
-							});
-						}
-						
-						// enregistrer le id de la salle passée en parametre (TODO faire la verif si il y a changement de l id de la salle avant de faire ca
-						if (new_object["_id"]) {	// cette verification est utile notemment pour un produit auquel on n'asscie plus de promotion
-	//					console.log(new_object["_id"]);
-							SM.findOne(new_object, function(err, data){
-							//	var produits = data.produits;
-								if (!inArray(ref, data[modelName])) {
-									data[modelName].push(ref);
-								}
-								data.save();
-							});
-						}
-					}
-				}	//endOf for
-			}
-			res.render('generals/modified', {title: model + " modifié" + suffix, body: firstToUpper(articleDef) + modelLower + " a bien été modifié" + suffix + "."});
+//			res.render('generals/modified', {title: model + " modifié" + suffix, body: firstToUpper(articleDef) + modelLower + " a bien été modifié" + suffix + "."});
+			res.redirect('promotions/');
 		}
 	});
 };

@@ -1,47 +1,36 @@
-form.form-horizontal(method="post", action="produits/#{action}", name="form-salle-edit")
-	input#sallereference(type="hidden", name="sallereference")
+form#form-produit.form-produit-edit.form-horizontal(method="post", action="", name="form-produit-edit")
+	input#old_salle_id(type="hidden", name="old_salle_id")
 	div.control-group
-		label.control-label(for="salle-title") Titre
+		label.control-label.choix(for="select-salle") Choisir une salle :
 		div.controls
-			input#salle-title.required(type="text", name="salletitle")			
+			select#select-salle(name="new_salle_id").required
+				option
+				- if (foreignModels.salle != null)
+					- each salle in foreignModels.salle
+						option(value="#{salle._id}") #{salle.title} - #{salle.adresse} - #{salle.ville} - #{salle.pays}			
 	div.control-group
-		label.control-label(for="salle-description") Description
+		label.control-label(for="date-arrive") Date d'arrivée
 		div.controls
-			textarea#salle-description(name="salledescription")
+			input#date-arrive.datepicker(type="text", name="produitarrive").required
 	div.control-group
-		label.control-label(for="salle-pays") Pays
+		label.control-label(for="date-depart") Date de départ
 		div.controls
-			input#salle-pays.required(type="text", name="sallepays")
-	div.control-group
-		label.control-label(for="salle-ville") Ville
-		div.controls
-			input#salle-ville.required(type="text", name="salleville")
-	div.control-group
-		label.control-label(for="salle-adresse") Adresse
-		div.controls
-			input#salle-adresse.required(type="text", name="salleadresse")
-	div.control-group
-		label.control-label(for="salle-cp") Code postale
-		div.controls
-			input#salle-cp.required(type="text", name="sallecp")
-	div.control-group
-		label.control-label(for="salle-image-visible") Photo
-		div.controls
-			input#file.required.hide.ie_show(type="file", name="salleimage")
-			div.input-append.ie_hide
-				input#salle-image-visible.input-larget(type="text", onclick="$('input[id=file]').click();")
-				a.btn(onclick="$('input[id=file]').click();") Parcourir
 			//
-				img(src="#{image}")
+				label.petit-label (format 'aaaa-mm-jj hh:mm')	
+			input#date-depart.datepicker(type="text", name="produitdepart").required
 	div.control-group
-		label.control-label(for="salle-capacite") Capacité
+		label.control-label(for="prix") Prix
 		div.controls
-			input#salle-capacite(type="text", name="sallecapacite").required
+			input#prix(type="text", name="produitprix").required €
 	div.control-group
-		label.control-label(for="salle-categorie") Catégorie
+		input#old_promotion_id(type="hidden", name="old_promotion_id")
+		label.control-label.choix(for="select-promotion") Choisir une promotion :
 		div.controls
-			input#salle-categorie(type="text", name="sallecategorie").required
+			select#select-promotion(name="new_promotion_id")
+				option
+				- if (foreignModels.promotion != null)
+					- each promotion in foreignModels.promotion
+						option(value="#{promotion._id}") #{promotion.code} - #{promotion.reduction}
 	div.control-group
-		div.controls
-			input#bt-salle-edit.btn.btn-primary(type="submit", name="bt-salle-edit", value="#{type}")	
-					
+		div.controls			
+			button.btn.btn-info.edit-model-btn #{type}

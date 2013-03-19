@@ -60,16 +60,16 @@
 	div.well.pull-right
 		h2 Commentaires
 		div
-			- each avis in data.avis
+			- each commentaire in data.commentaires
 				p
 					span.titre Note : 
-					span.valeur #{avis.note}
+					span.valeur #{commentaire.note}
 				p
 					span.titre Date : 
-					span.valeur #{avis.date.toDateString()}
+					span.valeur #{commentaire.date.toDateString()}
 				p
 					span.titre Comment : 
-					span.valeur #{avis.comment}
+					span.valeur #{commentaire.comment}
 				hr
 	div.clearfix
 -else 

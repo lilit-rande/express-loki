@@ -22,13 +22,13 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table.cf.table-condensed.table-hover.table-striped.listing.span7#flip-scroll
+		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 			thead
 				tr
 					th Date d'arrivée
 					th Date de départ
 					th Salle
-					th Image salle
+					th.hidden-phone.hidden-tablet Image salle
 					th Promotion
 					th Réduction
 					th Prix
@@ -47,7 +47,7 @@ block content
 						- if (produit.salle_id != null)
 							td
 								a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
-							td
+							td.hidden-phone.hidden-tablet
 								a(href="salles/#{produit.salle_id._id}") 
 									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 						- else
@@ -59,8 +59,8 @@ block content
 							td
 								a(href="produits/#{produit._id}") #{produit.promotion_id.reduction}
 						- else
-							td.model-view-link
-							td.model-view-link
+							td.model-view-link &nbsp;
+							td.model-view-link &nbsp;
 						td.model-view-link #{produit.prix}
 						- if (produit.etat == 1) 
 							- etat = "Loué"
@@ -73,7 +73,9 @@ block content
 		div.clearfix
 	- else
 		div.alert.alert-info
-			p Pas de produit à afficher	
+			p Pas de produit à afficher
+	div.add-button
+		a.btn.btn-info(href="/produits/new") Ajouter un produit
 		
 		
 		

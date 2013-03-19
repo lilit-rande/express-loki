@@ -4,7 +4,7 @@ var Salle = require('./models/salles.js'),
 	Produit = require('./models/produits.js'),
 	Promotion = require('./models/promotions.js'),
 	Membre = require('./models/membres.js'),
-	Avis = require('./models/avis.js'),
+	Commentaire = require('./models/commentaires.js'),
 	Commande = require('./models/commandes.js');
 	
 mongoose.connect('mongodb://localhost/lokisalle');
@@ -427,26 +427,26 @@ var membre1 = new Membre ({
 /******************************/	
 	salle10.save(function(err){	
 		membre2.save(function(err){
-			var avis2 = new Avis({				
+			var commentaire2 = new Commentaire({				
 				'comment':'magnifique',
 				'note':5,
 				'date':new Date('July 31, 2012 09:00:00'),
 				'membre_id': membre2._id,
 				'salle_id' : salle10._id
-			});//avis2
+			});//commentaire2
 			
-			avis2.save(function(err){
+			commentaire2.save(function(err){
 				if (err) console.log(err);
-				Avis
-					.findOne({'_id': avis2._id})
+				Commentaire
+					.findOne({'_id': commentaire2._id})
 					.populate('salle_id')
-					.exec(function(err, avis){
+					.exec(function(err, commentaire){
 						if(err) return handleError(err);
-						console.log(avis.salle_id.title);
-						salle10.avis.push(avis);
+						console.log(commentaire.salle_id.title);
+						salle10.commentaires.push(commentaire);
 						salle10.save();
 						
-						membre2.avis.push(avis);
+						membre2.commentaires.push(commentaire);
 						membre2.save();
 					});
 			});	
@@ -594,26 +594,26 @@ var membre1 = new Membre ({
 				});
 		
 			membre3.save(function(err){
-				var avis2 = new Avis({				
+				var commentaire2 = new Commentaire({				
 					'comment':'Tout ce que j\'attendais. Merci',
 					'note':4,
 					'date':new Date('January 31, 2012 09:00:00'),
 					'membre_id': membre3._id,
 					'salle_id' : salle2._id
-				});//avis2
+				});//commentaire2
 				
-				avis2.save(function(err){
+				commentaire2.save(function(err){
 					if (err) console.log(err);
-					Avis
-						.findOne({'_id': avis2._id})
+					Commentaire
+						.findOne({'_id': commentaire2._id})
 						.populate('salle_id')
-						.exec(function(err, avis){
+						.exec(function(err, commentaire){
 							if(err) return handleError(err);
-							console.log(avis.salle_id.title);
-							salle2.avis.push(avis);
+							console.log(commentaire.salle_id.title);
+							salle2.commentaires.push(commentaire);
 							salle2.save();
 							
-							membre3.avis.push(avis);
+							membre3.commentaires.push(commentaire);
 							membre3.save();
 						});				
 				});
@@ -678,26 +678,26 @@ var membre1 = new Membre ({
 		});	//promotion1
 		
 		membre1.save(function(err){
-			var avis1 = new Avis({				
+			var commentaire1 = new Commentaire({				
 				'comment':'Superbes lieux, idéal pour une conférence au projecteur',
 				'note':5,
 				'date':new Date('May 31, 2012 09:00:00'),
 				'membre_id': membre1._id,
 				'salle_id' : salle1._id
-			});//avis1
+			});//commentaire1
 			
-			avis1.save(function(err){
+			commentaire1.save(function(err){
 				if (err) console.log(err);
-				Avis
-					.findOne({'_id': avis1._id})
+				Commentaire
+					.findOne({'_id': commentaire1._id})
 					.populate('salle_id')
-					.exec(function(err, avis){
+					.exec(function(err, commentaire){
 						if(err) return handleError(err);
-						console.log(avis.salle_id.title);
-						salle1.avis.push(avis);
+						console.log(commentaire.salle_id.title);
+						salle1.commentaires.push(commentaire);
 						salle1.save();
 						
-						membre1.avis.push(avis);
+						membre1.commentaires.push(commentaire);
 						membre1.save();
 					});				
 			});

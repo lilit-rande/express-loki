@@ -1,0 +1,518 @@
+
+/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/utils.js:413
+        throw err;
+              ^
+TypeError: Object #<Object> has no method 'lot'
+    at Promise.exports.index (/Users/lilit/Sites/express-loci/controllers/home.js:13:12)
+    at Promise.addBack (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:128:8)
+    at Promise.EventEmitter.emit (events.js:93:17)
+    at Promise.emit (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:66:38)
+    at Promise.complete (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:77:20)
+    at Promise.resolve (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:144:15)
+    at Promise.addBack (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:128:8)
+    at Promise.EventEmitter.emit (events.js:93:17)
+    at Promise.emit (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:66:38)
+    at Promise.complete (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:77:20)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/utils.js:413
+        throw err;
+              ^
+TypeError: Object #<Object> has no method 'lot'
+    at Promise.exports.index (/Users/lilit/Sites/express-loci/controllers/home.js:13:12)
+    at Promise.addBack (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:128:8)
+    at Promise.EventEmitter.emit (events.js:93:17)
+    at Promise.emit (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:66:38)
+    at Promise.complete (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:77:20)
+    at Promise.resolve (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:144:15)
+    at Promise.addBack (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:128:8)
+    at Promise.EventEmitter.emit (events.js:93:17)
+    at Promise.emit (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:66:38)
+    at Promise.complete (/Users/lilit/Sites/express-loci/node_modules/mongoose/lib/promise.js:77:20)
+sten (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+
+events.js:68
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:769:11)
+    at Server._listen2 (net.js:909:14)
+    at listen (net.js:936:10)
+    at Server.listen (net.js:985:5)
+    at Function.app.listen (/Users/lilit/Sites/express-loci/node_modules/express/lib/application.js:532:24)
+    at Object.<anonymous> (/Users/lilit/Sites/express-loci/app.js:100:5)
+    at Module._compile (module.js:449:26)
+    at Object.Module._extensions..js (module.js:467:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)

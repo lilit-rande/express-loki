@@ -29,15 +29,15 @@ form.form-membre-edit.form-horizontal#form-membre(method="post", action="#{actio
 	div.control-group
 		label.control-label(for="ville") Ville
 		div.controls
-			input#ville.required(type="text", placeholder="Ville", name="ville")
+			input#ville.required(type="text", placeholder="Ville", name="membreville")
 	div.control-group
 		label.control-label(for="cp") Code postale
 		div.controls
-			input#cp.required(type="text", placeholder="Code postale", name="cp")
+			input#cp.required.digits(type="text", placeholder="Code postale", name="membrecp")
 	div.control-group
 		label.control-label(for="adresse") Adresse
 		div.controls
-			input#adresse.required(type="text", placeholder="Adresse", name="adresse")
+			input#adresse.required(type="text", placeholder="Adresse", name="membreadresse")
 	div.control-group
 		label.control-label(for="membre-statut") Statut :
 		div.controls

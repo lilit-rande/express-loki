@@ -1,7 +1,7 @@
 //The salles controller
 var superController = require('../controllers/controller.js'),
 	Model = require('../models/membres.js'),
-	Avis = require('../models/avis.js'),
+	Commentaires = require('../models/commentaires.js'),
 	Commandes = require('../models/commandes.js'),	
 	fs = require('fs'),
 	jade = require('jade'),
@@ -18,7 +18,7 @@ function renderTpl(tplName, tplBody){
 exports.index = function(req, res){
 	Model
 		.find()
-		.populate('avis')
+		.populate('commentaires')
 		.populate('commandes')
 		.exec(function(err, docs) {
 		if(err) {
@@ -36,12 +36,12 @@ exports.new = function(req, res) {
 	var options = {'title':'Ajouter un membre','action':'create', 'type': 'Ajouter'},
 		html =  renderTpl('views/forms/membres/new.jade', options);
 
-	res.render('membres/new', {title: 'Ajouter un membre', body: html});
+//	res.render('membres/new', {title: 'Ajouter un membre', body: html});
 }
 
 //add a member
 exports.create = function(req, res) {
-	membre = { 
+	var membre = { 
 			pseudo : req.body.pseudo,
 			mdp : req.body.mdp,
 			email : req.body.email,
@@ -52,41 +52,31 @@ exports.create = function(req, res) {
 			cp : req.body.cp,
 			adresse : req.body.adresse,
 			statut : req.body.statut
-	};
-	modelObj = new Model(membre);
+		},
+		modelObj = new Model(membre);
 
 	modelObj.save(function(err, data){
 		if(err) {
 			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créer ce membre ! Message : " + err.message});
 		} else {
-			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});
+//			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});
+//			res.redirect('membres/index');
+			res.render('membres/index', {title: 'Membre ajouté', body: "Le produit a bien été ajouté."});
 		}
 	});
 };
 
-//display delete form
-exports.delete = function(req, res) {
-	var	reference = req.params.id;
-		
-	Model.findOne({'_id': reference}, function(err, doc){
-		if (err) {
-			res.render('error', {title: "Echec", body: err});
-		} else {
-			res.render('generals/deletePopup', {title: "Suppression d'un membre", type: 'membre', id: reference, type_datas: doc});
-		}
-	});
-};
 
 //delete a member
 exports.destroy = function(req, res) {
 	var ref = req.params.id;
-	
+
 	Model.remove({'_id': ref}, function(err){
 		if(err) {
 			res.render('generals/error', {title: "Echec de suppression", body: "Il n'y a pas de membre avec un identifient " + ref});
-		} else {
-			res.render('generals/modified', {title: "Membre supprimé", body: "Le membre a bien été supprimé."});
+		}  else {
+			res.render('generals/modified', {title: "Produit supprimé", body: "Le produit a bien été supprimé."});
 		}
 	});
 };
@@ -102,7 +92,7 @@ exports.edit = function(req, res) {
 		} else {
 			res.data = doc;
 			
-			var	options = {'title':'Modifier les donnés du membre', 'action': 'membres/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
+			var	options = {'title':'Modifier les donnés du membre', 'action': 'membres/edit/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier'},
 				html = renderTpl('views/forms/membres/edit.jade', options);
 				res.html = html;
 				res.send({data: doc, html: html});	
@@ -119,14 +109,14 @@ exports.update = function(req, res) {
 			nom: req.body.membrenom,	
 			prenom: req.body.membreprenom,
 			email: req.body.membreemail,
-			sexe: req.body.membresexe,
+			sexe: req.body.sexe,
 			ville: req.body.membreville,
 			cp: req.body.membrecp,
 			adresse: req.body.membreadresse,
 			statut: req.body.membrestatut
 		},
 	ref = req.params.id;
-	
+
 	Model.update({'_id': ref}, membre, function(err, docs) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
@@ -143,7 +133,7 @@ exports.show = function(req, res) {
 		;
 
 	Model.findOne({'_id': ref})
-		.populate('avis')
+		.populate('commentaires')
 		.populate('commandes')
 		.exec(function(err, doc){	
 		if(err) {

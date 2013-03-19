@@ -15,7 +15,7 @@ var membreSchema = new Schema({
 		cp: {type: String, require: true, trim: true},
 		adresse: {type: String, require: true, trim: true},
 		statut: {type: String, require: true, trim: true},
-		avis : [{type: Schema.Types.ObjectId, ref:'Avis', default: null, require: false}],
+		commentaires : [{type: Schema.Types.ObjectId, ref:'Commentaires', default: null, require: false}],
 		commandes : [{type: Schema.Types.ObjectId, ref:'Commandes', default: null, require: false}]
 	});
 
