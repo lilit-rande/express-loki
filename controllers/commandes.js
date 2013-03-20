@@ -2,51 +2,66 @@
 var Model = require('../models/commandes.js'),	
 	Membre =require('../models/membres.js'),
 	Produit = require('../models/produits.js'),	
+	Salle = require('../models/salles.js'),
 	fs = require('fs'),
 	jade = require('jade'),
 	async = require('async');
+	
 
 function renderTpl(tplName, tplBody){
+/*
 	var jadefile = fs.readFileSync(tplName),
 		jadetemplate = jade.compile(jadefile),
 		content = jadetemplate(tplBody);
 	return content;
+*/
 }
 
 function inArray(needle, arr) {
+/*
 	var index = arr.indexOf(needle);
 	var result = (index > -1) ? true : false;
 	
 	return result;
+*/
 }
 
 function delFromArray(needle, arr) {
+/*
 	if (inArray(needle, arr)) {
 		var index = arr.indexOf(needle);		
 		arr.splice(index, 1);
 		return arr;
 	} else return false;	
+*/
 }
 
 
 exports.index = function(req, res){	
 	Model
-		.find()
-		.populate('membre_id')
-		.populate('produit_id')
-		.exec(function(err, docs) {
-		if(err) {
-			throw err;
-		} else if( (docs) && (docs.length) ) {
-			res.render('commandes/index', { title: 'Commandes', docs: docs});
-		} else {
-			res.render('commandes/index', { title: 'Commandes', docs: null});
-			
+	.find()
+	.populate('membre_id produit_id')
+	.exec(function(err, commandes) {
+		var opts = {
+			path: 'produit_id.salle_id', 
+			model: 'Salles'
 		}
+		Model.populate(commandes, opts, function(err, docs){
+			if (err) {
+				throw err; 
+			} else {
+				if( (commandes) && (commandes.length) ) {
+					res.render('commandes/index', { title: 'Commandes', docs: commandes});
+				} else {
+					res.render('commandes/index', { title: 'Commandes', docs: null});
+				}
+			}
+		});
 	});
 }
 
 exports.new = function(req, res) {	
+/*
 //	superController.new(req, res, model);
 	var foreignModels = {};
 
@@ -67,12 +82,12 @@ exports.new = function(req, res) {
 		html =  renderTpl('views/forms/produits/new.jade', options);
 		res.render('produits/new', {title: 'Ajouter un produit', body: html, foreignModels:foreignModels});
 	});
-
+	*/
 }
 
 //add a produit
 exports.create = function(req, res) {
-		
+		/*
 	var produit = {
 		title: req.body.produittitle,
 		arrive: req.body.produitarrive,
@@ -94,11 +109,13 @@ exports.create = function(req, res) {
 			res.redirect('/produits');
 		}
 	});
+	*/
 };
 
 
 //delete a produit
 exports.destroy = function(req, res) {
+/*
 	var ref = req.params.id;
 	
 	Model.remove({'_id': ref}, function(err){
@@ -108,12 +125,14 @@ exports.destroy = function(req, res) {
 			res.render('generals/modified', {title: "Produit supprimé", body: "Le produit a bien été supprimé."});
 		}
 	});
+	*/
 };
 
 
 //OK
 //display edit form
 exports.edit = function(req, res) {
+/*
 	var ref = req.params.id,
 		imagePath = '';
 	
@@ -145,11 +164,12 @@ exports.edit = function(req, res) {
 			});	//end async parallel
 		}	//fin else
 	});
+	*/
 };
 
 //update a produit
 exports.update = function(req, res) {
-		
+/*		
 	var produit = {
 			arrive: req.body.produitarrive,
 			depart: req.body.produitdepart,
@@ -218,10 +238,12 @@ exports.update = function(req, res) {
 			res.redirect('produits/');
 		}
 	});
+*/
 };
 
 //show a produit
 exports.show = function(req, res) {			
+	/*
 	ref = req.params.id;
 
 	Model.findOne({'_id': ref})
@@ -239,6 +261,7 @@ exports.show = function(req, res) {
 			}
 		}
 	});
+	*/
 }
 
 

@@ -8,6 +8,7 @@ header
 			a(href="/inscription") Pas encore membre?
 			a(href="") Mot de passe oublié...
 		- else
-			p Bonjour, #{session.pseudo}
+			p
+				a(href="/profil") Bonjour, #{session.pseudo}
 			a(href="/logout") Déconnexion
 	div.clearfix

@@ -84,8 +84,8 @@ exports.routes = function(app) {
 		//show
 		app.get(prefix + '/:id', prefixObj.show);		
 	};
-	*/
-	
+*/	
+
 	// Routes avec require login
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
@@ -121,7 +121,6 @@ exports.routes = function(app) {
 		}
 	};
 
-	
 
 	
 	//form validation routes
@@ -140,7 +139,13 @@ exports.routes = function(app) {
 	app.post('/connexion/*', login.connect);
 	app.post('/connexion',  login.connect);
 
+	app.get('/profil',  [currentPage], login.profil);
+	app.get('/profil/:id', [currentPage], login.profil);
+	
+/*
+	app.get('/profil', [requireLogin], [currentPage], login.profil);
 	app.get('/profil/:id', [requireLogin], [currentPage], login.profil);
+*/
 	
 	app.get('/reservation', [currentPage], reservation.reservation);
 	app.get('/recherche', [currentPage], search.search);

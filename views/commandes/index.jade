@@ -12,8 +12,6 @@ block content
 					th Date
 					th Montant
 					th Etat
-					th Modifier
-					th Supprimer
 			tbody
 				- each commande in docs
 					- if (commande.etat == 1) 
@@ -24,18 +22,16 @@ block content
 						- etat = "En attente de payement"
 					tr(data-id="#{commande._id}", data-model="commande")
 						td #{commande.ref}
-						td #{commande.membre_id.pseudo}
-						td #{commande.produit_id.salle_id}
+						td 
+							a(href="/membres/#{commande.membre_id._id}") #{commande.membre_id.pseudo}
+						td 
+							a(href="/salles/#{commande.produit_id.salle_id._id}") #{commande.produit_id.salle_id.title}
 						td #{commande.date.toDateString()}
 						td #{commande.montant}
 						td=etat
-						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
-								img(src="images/icons/modify.png")
-						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
-								img(src="images/icons/erase.png")
 		div.clearfix
 	- else
-		div.alert.alert-info
+		div.alert.alert-error.absent
 			p Pas de commandes à afficher
 		
 		

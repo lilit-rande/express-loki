@@ -3,8 +3,7 @@ var Produit = require('../models/produits.js');
 exports.reservation = function(req, res){
 	Produit
 		.find({'etat': 1})
-		.populate('salle_id')
-		.populate('promotion_id')
+		.populate('salle_id promotion_id')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;

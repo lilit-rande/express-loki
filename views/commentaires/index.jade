@@ -13,28 +13,7 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 			
 	h1=title
-	- if (docs != null)
-		table.table.cf.table-condensed.table-hover.table-striped.listing#flip-scroll.table-centered-text
-			thead
-				tr
-					th Membre
-					th Salle
-					th Date
-					th Note					
-					th Commentaire					
-					th Supprimer
-			tbody
-				- each commentaire in docs
-					tr(data-id="#{commentaire._id}", data-model="commentaire")
-						td
-							a(href="membres/#{commentaire.membre_id}") #{commentaire.membre_id.pseudo}
-						td
-							a(href="salles/#{commentaire.salle_id._id}") #{commentaire.salle_id.title}
-						td #{commentaire.date.toDateString()}  
-						td #{commentaire.note}
-						td #{commentaire.comment}
-						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
-							img(src="images/icons/erase.png")
+	include listing
 	-else
-		div.alert.alert-info
+		div.alert.alert-info.absent
 			p Pas de commentaires à afficher

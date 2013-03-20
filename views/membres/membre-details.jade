@@ -1,4 +1,13 @@
 -if (data != null)
+	<!-- Modal edit-->
+	div#modal-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modification de donnés utilisateur		
+		div.modal-body.membre-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
 	h1= title
 	h2 Commandes
 	table.table.table-hover(broder="1")
@@ -11,7 +20,7 @@
 			tr.warning
 				td(colspan="4")	Pas de commande à afficher
 		- each commande in data.commandes
-			tr.(data-id="#{commande._id}", data-model="commande")
+			tr(data-id="#{commande._id}", data-model="commande")
 				td.model-view-link #{commande.ref}
 				td.model-view-link #{commande.date.toDateString()}
 				td.model-view-link #{commande.montant} €
@@ -20,8 +29,8 @@
 				- else
 					etat = "En attente de payement"
 				td.model-view-link=etat	
-	h2 Informations profil
-	div.well.pull-left
+	div.well.pull-left.span2
+		h2 Informations profil
 		table.table.table-condensed
 			tr
 				th Pseudo :
@@ -57,7 +66,9 @@
 			tr
 				th Statut :
 				td #{data.statut}
-	div.well.pull-right
+		- if ( data.pseudo == session.pseudo )
+			button.btn.btn-info.model-edit-link(href="#modal-edit", role="button", data-toggle="modal", data-id="#{data._id}", data-model="membre") Modifier mon profil
+	div.well.pull-right.span4
 		h2 Commentaires
 		div
 			- each commentaire in data.commentaires
@@ -70,10 +81,11 @@
 				p
 					span.titre Comment : 
 					span.valeur #{commentaire.comment}
+				- if ( data.pseudo == session.pseudo )
+					p.text-right
+						a.model-edit-link(href="#modal-edit", role="button", data-toggle="modal", data-id="#{commentaire._id}", data-model="commentaire") Modifier ce commentaire
 				hr
 	div.clearfix
 -else 
-	div.row
-		div.span12					
-			div.error-message
-				span Il n'existe pas de membre avec cet identifiant !
+	div.alert.alert-error.absent
+		p l n'existe pas de membre avec cet identifiant.

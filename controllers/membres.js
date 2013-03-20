@@ -18,8 +18,7 @@ function renderTpl(tplName, tplBody){
 exports.index = function(req, res){
 	Model
 		.find()
-		.populate('commentaires')
-		.populate('commandes')
+		.populate('commentaires commandes')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
@@ -133,8 +132,7 @@ exports.show = function(req, res) {
 		;
 
 	Model.findOne({'_id': ref})
-		.populate('commentaires')
-		.populate('commandes')
+		.populate('commentaires commandes')
 		.exec(function(err, doc){	
 		if(err) {
 			throw err;

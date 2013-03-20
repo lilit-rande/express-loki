@@ -34,9 +34,7 @@ function delFromArray(needle, arr) {
 exports.index = function(req, res){	
 	Model
 		.find()
-		.populate('salle_id')
-		.populate('promotion_id')
-		.populate('commandes')
+		.populate('salle_id promotion_id commandes')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
@@ -228,9 +226,7 @@ exports.show = function(req, res) {
 	ref = req.params.id;
 
 	Model.findOne({'_id': ref})
-		.populate('salle_id')
-		.populate('promotion_id')
-		.populate('commandes')
+		.populate('salle_id promotion_id commandes')
 		.exec(function(err, doc){	
 		if(err) {
 			throw err;

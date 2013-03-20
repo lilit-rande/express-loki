@@ -64,15 +64,30 @@ exports.connect = function(req, res) {
 }
 
 exports.profil = function(req, res) {			
-	var ref = req.params.id;
-
-	Membre.findOne({'_id': ref})
-		.populate('commentaires')
-		.populate('commandes')
-		.exec(function(err, doc){	
+	
+	var ref,
+		field,
+		findObj = {};
+	
+	if (typeof(req.params.id) != 'undefined' && req.params.id !== null) {
+		ref = req.params.id;
+		field = '_id';
+	} else {
+//		ref = 'admin';
+		ref = req.session.pseudo;
+		field = 'pseudo';
+	}
+	
+	findObj[field] = ref;
+	
+	Membre
+	.findOne(findObj)
+	.populate('commentaires commandes')
+	.exec(function(err, doc){	
 		if(err) {
 			throw err;
 		} else {
+			console.log(doc);
 			if (!doc) {
 				res.render('profil', {id: ref, title:'Bonjour ' + doc.pseudo, data:doc});
 			} else {
@@ -80,6 +95,7 @@ exports.profil = function(req, res) {
 			}
 		}
 	});
+	
 
 }
 exports.logout = function(req, res) {

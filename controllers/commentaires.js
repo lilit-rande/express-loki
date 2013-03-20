@@ -17,8 +17,7 @@ function renderTpl(tplName, tplBody){
 exports.index = function(req, res){	
 	Model
 		.find()
-		.populate('salle_id')
-		.populate('membre_id')
+		.populate('salle_id membre_id')
 		.exec(function(err, docs) {
 		if(err) {
 			throw err;
