@@ -1,10 +1,21 @@
 -if (data != null)
 	<!-- Modal edit-->
-	div#modal-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div#modal-membre-edit.modal-profil-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 			h3 Modification de donnés utilisateur		
 		div.modal-body.membre-edit
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-info.edit-model-btn Modifier
+			
+			
+	<!-- Modal edit-->
+	div#modal-commentaire-edit.modal-comment-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Modification du commentaire		
+		div.modal-body.commentaire-edit
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
@@ -67,7 +78,7 @@
 				th Statut :
 				td #{data.statut}
 		- if ( data.pseudo == session.pseudo )
-			button.btn.btn-info.model-edit-link(href="#modal-edit", role="button", data-toggle="modal", data-id="#{data._id}", data-model="membre") Modifier mon profil
+			button.btn.btn-info.model-edit-link(href=".modal-profil-edit", role="button", data-toggle="modal", data-id="#{data._id}", data-model="membre") Modifier mon profil
 	div.well.pull-right.span4
 		h2 Commentaires
 		div
@@ -83,7 +94,7 @@
 					span.valeur #{commentaire.comment}
 				- if ( data.pseudo == session.pseudo )
 					p.text-right
-						a.model-edit-link(href="#modal-edit", role="button", data-toggle="modal", data-id="#{commentaire._id}", data-model="commentaire") Modifier ce commentaire
+						a.model-edit-link(href="#modal-commentaire-edit", role="button", data-toggle="modal", data-id="#{commentaire._id}", data-model="commentaire") Modifier ce commentaire
 				hr
 	div.clearfix
 -else 

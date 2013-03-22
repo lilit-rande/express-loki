@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	<!-- Modal edit-->
-	div#modal-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div#modal-produit-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 			h3 Modifier le produit		
@@ -66,7 +66,7 @@ block content
 							- etat = "Loué"
 						- else etat = "Libre"
 						td.model-view-link=etat
-						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
+						td.model-edit-link(href="#modal-produit-edit", role="button", data-toggle="modal")
 								img(src="images/icons/modify.png")
 						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
 								img(src="images/icons/erase.png")

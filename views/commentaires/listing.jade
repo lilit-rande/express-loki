@@ -12,7 +12,7 @@
 			- each commentaire in docs
 				tr(data-id="#{commentaire._id}", data-model="commentaire")
 					td
-						a(href="membres/#{commentaire.membre_id}") #{commentaire.membre_id.pseudo}
+						a(href="membres/#{commentaire.membre_id._id}") #{commentaire.membre_id.pseudo}
 					td
 						a(href="salles/#{commentaire.salle_id._id}") #{commentaire.salle_id.title}
 					td #{commentaire.date.toDateString()}  

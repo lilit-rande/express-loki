@@ -231,15 +231,28 @@ exports.show = function(req, res) {
 		if(err) {
 			throw err;
 		} else {
-			if (!doc) {
-				res.render('produits/show', {id: ref, title:'Détailles du produit', data:doc});
-			} else {
-				res.render('produits/show', {title: 'Détailles du produit', data: doc});
-			}
+			var opts = {
+					path:'salle_id.commentaires',
+					model: 'Commentaires'
+				}
+			
+			Model.populate(doc, opts, function(err, docs){
+				var options = {
+					path: 'salle_id.commentaires.membre_id',
+					model: 'Membres'
+				}
+				
+				Model.populate(docs, options, function(err, datas){
+					if (!doc) {
+						res.render('produits/show', {id: ref, title:'Détailles du produit', data: datas});
+					} else {
+						res.render('produits/show', {title: 'Détailles du produit', data: datas});
+					}
+				});
+			});
 		}
 	});
 }
-
 
 
 

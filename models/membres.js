@@ -14,7 +14,7 @@ var membreSchema = new Schema({
 		ville: {type: String, require: true, trim: true},
 		cp: {type: String, require: true, trim: true},
 		adresse: {type: String, require: true, trim: true},
-		statut: {type: String, require: true, trim: true},
+		statut: {type: Number, require: true, trim: true},	// 0=user, 1=moderateur, 2=admin
 		commentaires : [{type: Schema.Types.ObjectId, ref:'Commentaires', default: null, require: false}],
 		commandes : [{type: Schema.Types.ObjectId, ref:'Commandes', default: null, require: false}]
 	});

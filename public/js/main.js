@@ -36,10 +36,10 @@ $(document).ready(function() {
 		var modelName = $(this).data("model") == null ? $(this).parent().data("model") : $(this).data("model"),
 			id = $(this).data("id") == null ? $(this).parent().data("id") : $(this).data("id"),
 			url = modelName + "s/edit/" + id;
-//		var id = $(this).parent().data("id");
+
 			
-			$('#modal-edit').data('id', id);
-			$('#modal-edit').data('model', modelName);
+			$('#modal-' + modelName + '-edit .modal-footer').data('id', id);
+			$('#modal-' + modelName + '-edit .modal-footer').data('model', modelName);
 					
 			$.get(url, function(data) {
 			if ( data.error ) {
@@ -47,6 +47,8 @@ $(document).ready(function() {
 			} else {	
 				var modelData = data.data;
 				var modelObj = {};
+				
+				
 				
 				for ( var d in modelData) {
 					if ( ( d != '_id') && ( d.indexOf('reference') == -1 ) && (d != 'image') ) {
@@ -62,7 +64,7 @@ $(document).ready(function() {
 
 				$('.' + modelName + '-edit').html(data.html);
 				$('.form-' + modelName + '-edit').autofill(modelObj);		// autofill permet de remplir automatiquement les champs d'un forumlaire dans le variable data.html par les données data.data, envoyés par le serveur dans notre cas
-				
+								
 				switch(modelName) {
 					case 'produit': {
 						if (data.foreignModels.salle) {
@@ -113,20 +115,23 @@ $(document).ready(function() {
 			
 	}).on('click',	'.edit-model-btn', function(){
 		
-		var id = $('#modal-edit').data("id");
-		var model =  $('#modal-edit').data("model");
-		var url = '/' + model + 's/edit/' + id;
-
+		// les data-id et data-model ont été définis plus haut dans $("body").on("click", ".model-edit-link"...)
 		
+		var id = $(this).parent().data('id');
+		var model = $(this).parent().data('model');		
+
+		var url = '/' + model + 's/edit/' + id;
 		var data = $('#form-' + model).serialize();
 		
 	//	$('#form-'+model).submit();
 		
 //		if ($('#form-' + model).valid()){
 
+
 		$.post(url, data, function(){
 			location.reload();
 		});
+
 
 //		}
 		
@@ -139,10 +144,9 @@ $(document).ready(function() {
 		var modelName = $(this).data("model") == null ? $(this).find().data("model") : $(this).data("model");
 		
 		var url = '/' + modelName + 's/new';
-		
+		console.log(modelName);
 		data = $('#form-' + modelName + '-new').serialize();
-		
-		console.log(data);
+
 		
 	
 		if($('#form-' + modelName + '-new').valid()) {	// pour jquery.validation

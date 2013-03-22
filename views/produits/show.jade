@@ -33,7 +33,15 @@ block content
 				span #{data.depart.toDateString()}
 			p
 				span.separated-header-text Prix : 
-				span #{data.prix}
+				- var prix = data.prix
+				- if (data.promotion_id != null) 
+					- var reduction = data.promotion_id.reduction
+					- var prix_final = prix - reduction
+					span 
+						del #{prix} €
+					span &nbsp;&nbsp;&nbsp; #{prix_final} €
+				- else
+					span #{prix} € 
 				span.italic &nbsp;(hors taxes)
 			p
 				span.separated-header-text Etat : 
@@ -45,30 +53,30 @@ block content
 		div
 			h2 #{data.salle_id.title}
 			p.italic #{data.salle_id.description}
+		div.well
+			h2 Commentaires
+			div 
+				- if (data.salle_id.commentaires != null)
+					- each comment in data.salle_id.commentaires
+						h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
+						p #{comment.comment}
+						hr
+				- if (session.pseudo)
+					form#form-commentaire-new.span6(action="commentaires/new", method="post")
+						fieldset
+							input(type="hidden", value="#{data.salle_id._id}")
+							legend Ajouter un commentaire
+							textarea#commentaire.span3.required(name="commentaire")
+							label(for="note") Note
+							select#note.span3.required(name="note")
+								option
+								-for(var i=1; i<=10; i++)
+									option=i+'/10'
+							br
+							button.btn.btn-primary.new-model-btn(type="submit", name="sousmettre-commentaire", data-model="commentaire") Sousmettre
+					div.clearfix
+				- else	
+					a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour laisser une commentaire >			
 	-else
 		div.alert.alert-error.absent
 			p Ce produit n'existe pas !
-	div.well
-		h2 Commentaires
-		div 
-			h4 Commenteire de toto date etc
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-			hr
-			h4 Commenteire de toto date etc
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-			hr
-			- if (session.pseudo)
-				form(action="commentaires/new", method="post")
-					div.pull-left
-						label(for="commentaire") Ajouter un commentaire
-						textarea#commentaire(name="commentaire")
-					div.pull-left(style="margin-left:40px;")
-						label(for="note") Note
-						select#note(name="note")
-							-for(var i=1; i<=10; i++)
-								option=i+'/10'
-						br
-						input.btn.btn-primary(value="Sousmettre", name="sousmettre-commentaire")
-					div.clearfix
-			- else	
-				a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour laisser une commentaire >

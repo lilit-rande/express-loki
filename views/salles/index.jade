@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	<!-- Modal edit-->
-	div#modal-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div#modal-salle-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 			h3 Modifier la salle		
@@ -55,7 +55,7 @@ block content
 						span #{salle.description}
 				//
 					a.separated-header-text.model-edit-link(href="") Modifier >>
-				a.separated-header-text.model-edit-link(href="#modal-edit", role="button", data-toggle="modal") Modifier >>				
+				a.separated-header-text.model-edit-link(href="#modal-salle-edit", role="button", data-toggle="modal") Modifier >>				
 				br
 				//
 					a.separated-header-text.model-delete-link(href="") Supprimer >>

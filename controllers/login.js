@@ -1,7 +1,7 @@
 var Membre = require('../models/membres.js');
 
 exports.inscription = function(req, res){
-	if (!req.session.pseudo) {
+	if (!req.session.id) {
 		res.render('inscription', {title: 'Inscription'});
 	} else {
 		res.redirect('/');
@@ -20,7 +20,7 @@ exports.create = function(req, res) {
 			ville : req.body.ville,
 			cp : req.body.cp,
 			adresse : req.body.adresse,
-			statut : 'user'
+			statut : '0'
 	};
 	modelObj = new Membre(membre);
 
@@ -29,7 +29,8 @@ exports.create = function(req, res) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
 			req.session.pseudo = req.body.pseudo;
-			console.log(req.session.currentPage);
+			req.session.id = data._id;
+			req.session.statut = 0;
 			res.redirect('profil/' + data._id);
 		}
 	});
@@ -37,23 +38,30 @@ exports.create = function(req, res) {
 
 exports.connect = function(req, res) {
 	var user = {
-		pseudo: req.body.pseudo,
-		mdp: req.body.mdp
-	},
+			pseudo: req.body.pseudo,
+			mdp: req.body.mdp
+		},
 		url = 'profil/';
 	
-	Membre.find(user, 'pseudo mdp', function(err, data){
+	Membre.findOne(user, function(err, data){
 		if (err) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
-			if (data && data.length) {
+			if (data) {
+				console.log(data._id);
 				
 				req.session.pseudo = req.body.pseudo;
+				req.session.user_id = data._id;
+				req.session.statut = data.statut;
+				
+				
+				console.log(req.session);
+				
 				if (req.session.currentPage) {
 					url = req.session.currentPage;
 					res.redirect(url);
 				} else {				
-					res.redirect(url + data[0]._id);
+					res.redirect(url + data._id);
 				}
 			} else {
 				//TODO
@@ -87,7 +95,6 @@ exports.profil = function(req, res) {
 		if(err) {
 			throw err;
 		} else {
-			console.log(doc);
 			if (!doc) {
 				res.render('profil', {id: ref, title:'Bonjour ' + doc.pseudo, data:doc});
 			} else {
@@ -99,7 +106,6 @@ exports.profil = function(req, res) {
 
 }
 exports.logout = function(req, res) {
-	console.log(req.session.pseudo);
 	if (req.session.pseudo) {
 		req.session.destroy(function(){
 		//	res.render('generals/logout', {title: 'A bientôt', body: 'Merci de votre visite.'});

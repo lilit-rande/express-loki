@@ -109,10 +109,13 @@ $(document).ready(function() {
     }, "Ce code promo n'est pas disponible");
     
 	$('#form-salle').validate(validate_options);
+	$('#form-commentaire-new').validate(validate_options);
+	
 	$('#form-produit').validate(validate_options);
 	
 	$('#form-promotion').validate(validate_options);
 	$('#form-promotion-new').validate($.extend(validate_options, promotion_validate_rules));
+
 	
 	$('#form-membre').validate($.extend(validate_options, membre_validate_rules));
 	$('#form-membre-new').validate($.extend(validate_options, membre_validate_rules));

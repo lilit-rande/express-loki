@@ -23,7 +23,7 @@ exports.routes = function(app) {
 				pseudo = req.session.pseudo;
 				
 			User.find({pseudo: pseudo}, function(err, data){
-				if (data[0].statut == 'admin') {
+				if (data[0].statut == '2') {	// admin's statut == 2
 					// User is admin let him in
 					next();
 				} else {

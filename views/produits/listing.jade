@@ -26,7 +26,16 @@ div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-l
 					span #{data.salle_id.ville} - #{data.salle_id.cp}
 				p
 					span.separated-header-text Prix : 
-					span #{data.prix} euros* pour #{data.salle_id.capacite} personnes
+					- var prix = data.prix
+					- if (data.promotion_id != null) 
+						- var reduction = data.promotion_id.reduction
+						- var prix_final = prix - reduction
+						span 
+							del #{prix}
+							span &nbsp;&nbsp;&nbsp;#{prix_final}
+							span &nbsp;euros* pour #{data.salle_id.capacite} personnes
+					- else
+						span #{data.prix} euros* pour #{data.salle_id.capacite} personnes
 				p #{data.salle_id.description.substr(0,100)} ...
 				- if (session.pseudo)
 					a.heading-a(href="/connexion/{id-produit}") Ajouter au panier >

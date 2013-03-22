@@ -42,11 +42,77 @@ exports.destroy = function(req, res) {
 	});
 };
 
-//methodes fictives juste pour que les routes marchent
+exports.edit = function(req, res) {
+	var  ref = req.params.id;
+	
+	Model.findOne({'_id': ref}, function(err, doc){
+		if (err) {
+			res.render('error', {title: "Echec de modification", body: "Ce commentaire n'existe plus !"});
+		} else {
+			res.data = doc;
+			
+			var	options = {'title':'Modifier le commentaire', 'action': 'commentaires/edit/' + ref,  'type': 'Modifier'},
+				html = renderTpl('views/forms/commentaires/edit.jade', options);
+				res.html = html;
+				res.send({data: doc, html: html});	
+		}	//fin else
+	});
+
+};
+
+
+exports.update = function(req, res) {
+	var commentaire = {	
+			comment: req.body.commentairecomment,
+			note: req.body.commentairenote
+		},
+	ref = req.params.id;
+
+	Model.update({'_id': ref}, commentaire, function(err, docs) {
+		if (err) {
+			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
+		} else {
+			res.render('generals/modified', {title: "Membre modifié", body: "Le membre a bien été modifiée."});
+		}
+	});
+};
+
 exports.new = function(req, res) {}
-exports.create = function(req, res) {};
-exports.edit = function(req, res) {};
-exports.update = function(req, res) {};
+
+
+exports.create = function(req, res) {
+
+	console.log('session = ' + req.session);
+	console.log('body = ' + req.body);
+	
+	var comment = { 
+			comment : req.body.commentaire,
+			note : req.body.note,
+			membre_id : req.session.user_id
+		
+
+	},
+	modelObj = new Model(comment);
+
+/*
+	modelObj.save(function(err, data){
+		if(err) {
+			//	console.log(err);
+			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créer ce membre ! Message : " + err.message});
+		} else {
+//			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});
+//			res.redirect('membres/index');
+			res.render('membres/index', {title: 'Membre ajouté', body: "Le produit a bien été ajouté."});
+		}
+	});
+*/
+};
+
+
+
+//methodes fictives juste pour que les routes marchent
+
+
 exports.show = function(req, res) {
 /*
 	var	ref = req.params.id;

@@ -12,7 +12,7 @@ block content
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.new-model-btn(data-model="membre") Ajouter
 	<!-- Modal edit-->
-	div#modal-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div#modal-membre-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 			h3 Modification de donnés utilisateur		
@@ -32,7 +32,6 @@ block content
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
-	- console.log(docs);
 	- if (docs !== 'undefined' && docs != null)
 		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 			thead
@@ -60,7 +59,7 @@ block content
 						td.model-view-link #{member.cp}
 						td.model-view-link #{member.ville}
 						td.model-view-link #{member.statut}
-						td.model-edit-link(href="#modal-edit", role="button", data-toggle="modal")
+						td.model-edit-link(href="#modal-membre-edit", role="button", data-toggle="modal")
 							img(src="images/icons/modify.png")
 						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
 							img(src="images/icons/erase.png")

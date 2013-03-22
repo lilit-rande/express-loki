@@ -277,7 +277,7 @@ var membre1 = new Membre ({
 		'ville':'Paris',
 		'cp':'75011',
 		'adresse':'244 bd Voltaire',
-		'statut':'admin',
+		'statut':'0',
 	}),
 	membre2 = new Membre ({
 		'pseudo' : 'membre',
@@ -289,7 +289,7 @@ var membre1 = new Membre ({
 		'ville':'Paris',
 		'cp':'75011',
 		'adresse':'244 bd Voltaire',
-		'statut':'membre',
+		'statut':'0',
 	}),
 	membre3 = new Membre ({
 		'pseudo' : 'test',
@@ -301,7 +301,7 @@ var membre1 = new Membre ({
 		'ville':'Paris',
 		'cp':'75011',
 		'adresse':'244 bd Voltaire',
-		'statut':'membre',
+		'statut':'0',
 	});
 	
 	
@@ -732,9 +732,5 @@ var membre1 = new Membre ({
 drop all collections
 > use database_name;
 
-> db.getCollectionNames().forEach(function(c) {
-    if(c != 'system.indexes') { 
-        db.getCollection(c).drop();
-    }
-  });
+> db.getCollectionNames().forEach(function(c) {if(c != 'system.indexes') { db.getCollection(c).drop(); } });
   */

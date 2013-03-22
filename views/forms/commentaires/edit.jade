@@ -1,0 +1,14 @@
+form.form-commentaire-edit.form-horizontal#form-commentaire(method="post", action="#{action}", name="form-commentaire-edit")
+	div.control-group
+		label.control-label(for="note") Note
+		div.controls
+			select#note(type="text", name="commentairenote").required
+				- for (var i = 1; i <= 10; i++) {
+					option(value="#{i}")=i
+				- }
+	div.control-group
+		label.control-label(for="comment") Commentaire
+		div.controls
+			textarea#comment(type="text", name="commentairecomment").required
+	//
+		id de salle : commentairesalle_id
