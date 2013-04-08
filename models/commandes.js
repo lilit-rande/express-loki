@@ -6,6 +6,11 @@ var mongoose = require('mongoose'),
 
 var commandeSchema = new Schema({
 	ref: {type: String, require: true, trim: true, unique: true},
+/*
+	membre_id: {type: String, require: true},
+	produit_id: {type: String, require: true},
+*/
+
 	membre_id: {type: Schema.Types.ObjectId, ref: 'Membres', require: true},
 	produit_id: {type: Schema.Types.ObjectId, ref: 'Produits', require: true},
 	date: {type: Date, require: true, trim: true},

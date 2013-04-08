@@ -10,7 +10,7 @@
 				th Supprimer
 		tbody
 			- each commentaire in docs
-				tr(data-id="#{commentaire._id}", data-model="commentaire")
+				tr(data-id="#{commentaire._id}", data-model="commentaire", data-salle="#{commentaire.salle_id._id}", data-member="#{commentaire.membre_id._id}")
 					td
 						a(href="membres/#{commentaire.membre_id._id}") #{commentaire.membre_id.pseudo}
 					td

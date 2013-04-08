@@ -1,5 +1,8 @@
-form#form-produit.form-produit-edit.form-horizontal(method="post", action="", name="form-produit-edit")
-	input#old_salle_id(type="hidden", name="old_salle_id")
+form#form-produit.form-produit-edit.form-horizontal(method="post", action="/produits/create", name="form-produit-edit")
+	div.control-group
+		label.control-label(for="title") Titre
+		div.controls
+			input#title(type="text", name="produittitle").required
 	div.control-group
 		label.control-label.choix(for="select-salle") Choisir une salle :
 		div.controls
@@ -33,4 +36,4 @@ form#form-produit.form-produit-edit.form-horizontal(method="post", action="", na
 						option(value="#{promotion._id}") #{promotion.code} - #{promotion.reduction}
 	div.control-group
 		div.controls			
-			button.btn.btn-info.edit-model-btn #{type}
+			button.btn.btn-info #{type}

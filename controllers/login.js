@@ -47,19 +47,17 @@ exports.connect = function(req, res) {
 		if (err) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
-			if (data) {
-				console.log(data._id);
-				
+			if (data) {				
 				req.session.pseudo = req.body.pseudo;
 				req.session.user_id = data._id;
 				req.session.statut = data.statut;
 				
 				if (req.session.currentPage) {
 					url = req.session.currentPage;
-					res.redirect(url);
 				} else {				
-					res.redirect(url + data._id);
+					url += data._id;
 				}
+				res.redirect(url);
 			} else {
 				//TODO
 				res.send({message: 'Pseudo ou mot de passe érronés.'});

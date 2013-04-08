@@ -56,14 +56,16 @@ block content
 		div.well
 			h2 Commentaires
 			div 
-				- each comment in data.salle_id.commentaires
-					h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
-					p #{comment.comment}
-					hr
+				- if (data.salle_id.commentaires != null)
+					- each comment in data.salle_id.commentaires
+						h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
+						p #{comment.comment}
+						hr
 				- if (session.pseudo)
 					form#form-commentaire-new.span6(action="commentaires/new", method="post")
 						fieldset
 							input(type="hidden", value="#{data.salle_id._id}", name="salle")
+							input(type="hidden", value="#{data._id}", name="prod")
 							legend Ajouter un commentaire
 							textarea#commentaire.span3.required(name="commentaire")
 							label(for="note") Note

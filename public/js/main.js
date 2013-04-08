@@ -132,10 +132,7 @@ $(document).ready(function() {
 			location.reload();
 		});
 
-
 //		}
-		
-		
 		
 	});	//edit bouton clicked
 
@@ -144,17 +141,14 @@ $(document).ready(function() {
 		var modelName = $(this).data("model") == null ? $(this).find().data("model") : $(this).data("model");
 		
 		var url = '/' + modelName + 's/new';
-		console.log(modelName);
-		data = $('#form-' + modelName + '-new').serialize();
 
-		
+		data = $('#form-' + modelName + '-new').serialize();
 	
 		if($('#form-' + modelName + '-new').valid()) {	// pour jquery.validation
 			$.post(url, data, function(){
 				location.reload();
 			});	
 		}
-	
 	});
 
 //Supprimer le {model}
@@ -165,11 +159,38 @@ $(document).ready(function() {
 		$('#modal-delete').data('id', id);
 		$('#modal-delete').data('model', modelName);
 		
-	}).on('click', '.delete-confirm', function(){
-		var id = $('#modal-delete').data("id");
-		var	url = $('#modal-delete').data("model") + "s/destroy/" + id;
+		switch ( modelName ){
+			case 'commentaire':
+				var member = $(this).parent().data("member");
+				var salle = $(this).parent().data("salle");
+				
+				var data = {member: member, salle: salle};
+				
+				$('#modal-delete').data('data', data);
+			break;
+			case 'produit':
+				var promotion = $(this).parent().data("promotion");
+				var salle = $(this).parent().data("salle");
+				
+				var data = {promotion: promotion, salle: salle};
+				
+				$('#modal-delete').data('data', data);
+			break;
+		}
 		
-		$.post(url, function(){
+	}).on('click', '.delete-confirm', function(){
+	
+		var model = $('#modal-delete').data("model");
+		var id = $('#modal-delete').data("id");
+		var data = {};
+		
+		if ($('#modal-delete').data("data")) {
+			data = $('#modal-delete').data("data"); 
+		}
+		
+		var	url = model + "s/destroy/" + id;
+		
+		$.post(url, data, function(){
 			location.reload();
 		});
 	});;

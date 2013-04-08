@@ -37,6 +37,24 @@ function delFromArray(needle, arr) {
 }
 
 
+/*
+exports.index = function(req, res){	
+	Model
+	.find()
+	.exec(function(err, commandes) {
+		console.log(commandes);
+		if (err) {
+			throw err; 
+		} else {
+			if ( (commandes) && (commandes.length) ) {
+				res.render('commandes/index', { title: 'Commandes', docs: commandes});
+			} else {
+				res.render('commandes/index', { title: 'Commandes', docs: null});
+			}
+		}
+	});
+}
+*/
 exports.index = function(req, res){	
 	Model
 	.find()

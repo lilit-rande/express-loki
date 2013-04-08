@@ -37,7 +37,11 @@ block content
 					th Supprimer
 			tbody
 				- each produit in docs
-					tr(data-id="#{produit._id}", data-model="produit")
+					- if (produit.promotion_id != null) 
+						- promo_id = produit.promotion_id._id
+					- else
+						- promo_id = ''
+					tr(data-id="#{produit._id}", data-model="produit", data-salle="#{produit.salle_id._id}", data-promotion="#{promo_id}")
 						td.model-view-link #{produit.arrive.toDateString()} 
 						//
 							#{produit.arrive.toLocaleTimeString()}

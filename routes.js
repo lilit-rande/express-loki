@@ -50,11 +50,7 @@ exports.routes = function(app) {
 		mapRoute(app, prefix);
 	});
 	
-		
-
-
 	// mapping route and controller for models
-/*
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -84,9 +80,10 @@ exports.routes = function(app) {
 		//show
 		app.get(prefix + '/:id', prefixObj.show);		
 	};
-*/	
+
 
 	// Routes avec require login
+/*	
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -94,16 +91,17 @@ exports.routes = function(app) {
 		
 		//index
 		app.get(prefix, [adminOnly], [currentPage], prefixObj.index);
+//		app.get(prefix, [adminOnly], [currentPage], prefixObj.index);
 		
 		//add
 		app.get(prefix + '/new', [adminOnly], [currentPage], prefixObj.new);
-		app.post(prefix + '/new', [adminOnly], [currentPage], prefixObj.create);
+		app.post(prefix + '/new', [adminOnly], prefixObj.create);
 		
 		
 		//edit
 		app.get(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.edit);
-//		app.post(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.update);
-		app.post(prefix + '/edit/:id', [currentPage], prefixObj.update);
+		app.post(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.update);
+//		app.post(prefix + '/edit/:id', [currentPage], prefixObj.update);
 		//edit
 	//	app.get(prefix + '/delete/:id', [currentPage], prefixObj.delete);
 		
@@ -112,6 +110,7 @@ exports.routes = function(app) {
 		
 		//destroy
 		app.post(prefix + '/destroy/:id', [adminOnly], [currentPage], prefixObj.destroy);
+//		app.post(prefix + '/destroy/:id', [currentPage], prefixObj.destroy);
 
 		//show
 		if (prefix != '/produits') {
@@ -122,7 +121,7 @@ exports.routes = function(app) {
 		}
 	};
 
-
+*/
 	
 	//form validation routes
 	app.post('/pseudo', formValidator.pseudo);

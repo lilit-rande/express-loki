@@ -73,39 +73,71 @@ exports.new = function(req, res) {
 
 //add a produit
 exports.create = function(req, res) {
-		
+
+	var salle_id = req.body.new_salle_id,
+		promotion_id = (req.body.new_promotion_id) ? req.body.new_promotion_id : null;
+	
 	var produit = {
 		title: req.body.produittitle,
 		arrive: req.body.produitarrive,
 		depart: req.body.produitdepart,
-		salle_id: req.body.new_salle_id,	
-		promotion_id: (req.body.new_promotion_id) ? req.body.new_promotion_id : null,
+		salle_id: salle_id,	
+		promotion_id: promotion_id,
 		prix: req.body.produitprix,
 		etat: 0,
 	};
 	
 	modelObj = new Model(produit);
-	
+
 	modelObj.save(function(err, data){
 		if(err) {
 			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér ce produit ! Message : " + err.message});
 		} else {
+			Salle.findOne({'_id': salle_id}, function(err, salle){
+				salle.produits.push(data._id);
+				salle.save();				
+			});
+			if (promotion_id != null) {
+				Promotion.findOne({'_id': promotion_id}, function(err, promo){
+					promo.produits.push(data._id);
+					promo.save();
+				});
+			}
 		//	res.render('generals/modified', {title: 'Produit ajouté', body: "Le produit a bien été ajouté."});
 			res.redirect('/produits');
 		}
 	});
+
 };
 
 
 //delete a produit
 exports.destroy = function(req, res) {
-	var ref = req.params.id;
-	
+	var ref = req.params.id,
+		promotion = req.body.promotion,
+		salle = req.body.salle;
+
 	Model.remove({'_id': ref}, function(err){
 		if(err) {
 			res.render('generals/error', {title: "Echec de suppression", body: "Il n'y a pas de produit avec un identifient " + ref});
 		} else {
+			Salle.findOne({'_id': salle}, function(err, salle){
+				var index = salle.produits.indexOf(ref);
+				if (index != -1) {
+					salle.produits.splice(index);
+					salle.save();
+				}				
+			});
+			if (promotion) {
+				Promotion.findOne({'_id': promotion}, function(err, promo){
+					var index = promo.produits.indexOf(ref);
+					if (index != -1) {
+						promo.produits.splice(index);
+						promo.save();
+					}
+				});
+			}
 			res.render('generals/modified', {title: "Produit supprimé", body: "Le produit a bien été supprimé."});
 		}
 	});
@@ -152,6 +184,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
 		
 	var produit = {
+			title: req.body.produittitle,
 			arrive: req.body.produitarrive,
 			depart: req.body.produitdepart,
 			salle_id: req.body.new_salle_id,	
@@ -246,7 +279,6 @@ exports.show = function(req, res) {
 					if (!doc) {
 						res.render('produits/show', {id: ref, title:'Détailles du produit', data: datas});
 					} else {
-						console.log(datas);
 						res.render('produits/show', {title: 'Détailles du produit', data: datas});
 					}
 				});

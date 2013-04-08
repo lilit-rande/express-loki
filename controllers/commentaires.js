@@ -1,7 +1,8 @@
 //The commentaire controller
 var superController = require('../controllers/controller.js'),
 	Model = require('../models/commentaires.js'),
-	Salle = require('../models/salles.js'),	
+	Salle = require('../models/salles.js'),
+	Member = require('../models/membres.js'),
 	fs = require('fs'),
 	jade = require('jade'),
 	async = require('async');
@@ -31,13 +32,45 @@ exports.index = function(req, res){
 
 //delete a comment
 exports.destroy = function(req, res) {
-	var ref = req.params.id;
+	var ref = req.params.id,
+		member = req.body.member,
+		salle = req.body.salle;
+	
 	
 	Model.remove({'_id': ref}, function(err){
 		if(err) {
 			res.render('generals/error', {title: "Echec de suppression", body: "Il n'y a pas d'commentaire avec un identifient " + ref});
 		} else {
-			res.render('generals/modified', {title: "Commentaire supprimé", body: "L'commentaire a bien été supprimé."});
+			async.parallel([
+				function (callback) {
+					return Salle.findOne({'_id': salle}, function(err, salle){
+						var index = salle.commentaires.indexOf(ref);
+						if (index != -1) {
+							salle.commentaires.splice(index);
+							salle.save();
+						}
+						return callback(err);
+					});
+				}, function(callback) {
+					Member.findOne({'_id': member}, function(err, member){
+						var index = member.commentaires.indexOf(ref);
+						if (index != -1) {
+							member.commentaires.splice(index);
+							member.save();
+						}
+						return callback(err);
+					});
+				}
+			], function(err) {
+		//		res.redirect('/commentaires/index');
+		res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
+			});
+
+			
+			
+			
+			
+//			res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
 		}
 	});
 };
@@ -79,40 +112,36 @@ exports.update = function(req, res) {
 
 exports.new = function(req, res) {}
 
-
 exports.create = function(req, res) {
 	var date = Date(),
-		salle_id = req.body.salle;
+		salle_id = req.body.salle,
+		membre_id = req.session.user_id;
 
 	var comment = { 
 			comment : req.body.commentaire,
 			note : req.body.note,
-			membre_id : req.session.user_id,
+			membre_id : membre_id,
 			date : date, //	TODO
 			salle_id: salle_id
 	},
 	modelObj = new Model(comment),
 	url = req.session.currentPage ? req.session.currentPage : '/' ;
-	
 
 	modelObj.save(function(err, data){
 		if(err) {
-			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible d'ajouter ce commentaire ! Message : " + err.message});
 		} else {
-		
-			console.log(data);
-	
-						
 			Salle.findOne({'_id': salle_id}, function(err, salle){
 				salle.commentaires.push(data._id);
-				salle.save();
-				res.redirect(url);
+				salle.save();				
 			});
+			Member.findOne({'_id': membre_id}, function(err, member){
+				member.commentaires.push(data._id);
+				member.save();
+			});
+			res.redirect(url);
 		}
 	});
-	
-
 };
 
 
