@@ -46,6 +46,7 @@ exports.index = function(req, res){
 			path: 'produit_id.salle_id', 
 			model: 'Salles'
 		}
+		console.log(commandes);
 		Model.populate(commandes, opts, function(err, docs){
 			if (err) {
 				throw err; 

@@ -54,9 +54,6 @@ exports.connect = function(req, res) {
 				req.session.user_id = data._id;
 				req.session.statut = data.statut;
 				
-				
-				console.log(req.session);
-				
 				if (req.session.currentPage) {
 					url = req.session.currentPage;
 					res.redirect(url);

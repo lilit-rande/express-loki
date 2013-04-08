@@ -56,22 +56,21 @@ block content
 		div.well
 			h2 Commentaires
 			div 
-				- if (data.salle_id.commentaires != null)
-					- each comment in data.salle_id.commentaires
-						h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
-						p #{comment.comment}
-						hr
+				- each comment in data.salle_id.commentaires
+					h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
+					p #{comment.comment}
+					hr
 				- if (session.pseudo)
 					form#form-commentaire-new.span6(action="commentaires/new", method="post")
 						fieldset
-							input(type="hidden", value="#{data.salle_id._id}")
+							input(type="hidden", value="#{data.salle_id._id}", name="salle")
 							legend Ajouter un commentaire
 							textarea#commentaire.span3.required(name="commentaire")
 							label(for="note") Note
 							select#note.span3.required(name="note")
 								option
 								-for(var i=1; i<=10; i++)
-									option=i+'/10'
+									option(value="#{i}")=i+'/10'
 							br
 							button.btn.btn-primary.new-model-btn(type="submit", name="sousmettre-commentaire", data-model="commentaire") Sousmettre
 					div.clearfix

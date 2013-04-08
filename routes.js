@@ -102,7 +102,8 @@ exports.routes = function(app) {
 		
 		//edit
 		app.get(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.edit);
-		app.post(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.update);
+//		app.post(prefix + '/edit/:id', [adminOnly], [currentPage], prefixObj.update);
+		app.post(prefix + '/edit/:id', [currentPage], prefixObj.update);
 		//edit
 	//	app.get(prefix + '/delete/:id', [currentPage], prefixObj.delete);
 		

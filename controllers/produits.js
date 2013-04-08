@@ -246,6 +246,7 @@ exports.show = function(req, res) {
 					if (!doc) {
 						res.render('produits/show', {id: ref, title:'Détailles du produit', data: datas});
 					} else {
+						console.log(datas);
 						res.render('produits/show', {title: 'Détailles du produit', data: datas});
 					}
 				});

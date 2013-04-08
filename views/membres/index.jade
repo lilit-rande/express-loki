@@ -58,7 +58,13 @@ block content
 						td.model-view-link #{member.adresse}
 						td.model-view-link #{member.cp}
 						td.model-view-link #{member.ville}
-						td.model-view-link #{member.statut}
+						case member.statut
+							when 2
+								td.model-view-link admin
+							when 1
+								td.model-view-link moder
+							when 0
+								td.model-view-link user
 						td.model-edit-link(href="#modal-membre-edit", role="button", data-toggle="modal")
 							img(src="images/icons/modify.png")
 						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")

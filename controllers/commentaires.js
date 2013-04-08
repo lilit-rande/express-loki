@@ -81,31 +81,38 @@ exports.new = function(req, res) {}
 
 
 exports.create = function(req, res) {
+	var date = Date(),
+		salle_id = req.body.salle;
 
-	console.log('session = ' + req.session);
-	console.log('body = ' + req.body);
-	
 	var comment = { 
 			comment : req.body.commentaire,
 			note : req.body.note,
-			membre_id : req.session.user_id
-		
-
+			membre_id : req.session.user_id,
+			date : date, //	TODO
+			salle_id: salle_id
 	},
-	modelObj = new Model(comment);
+	modelObj = new Model(comment),
+	url = req.session.currentPage ? req.session.currentPage : '/' ;
+	
 
-/*
 	modelObj.save(function(err, data){
 		if(err) {
 			//	console.log(err);
-			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créer ce membre ! Message : " + err.message});
+			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible d'ajouter ce commentaire ! Message : " + err.message});
 		} else {
-//			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});
-//			res.redirect('membres/index');
-			res.render('membres/index', {title: 'Membre ajouté', body: "Le produit a bien été ajouté."});
+		
+			console.log(data);
+	
+						
+			Salle.findOne({'_id': salle_id}, function(err, salle){
+				salle.commentaires.push(data._id);
+				salle.save();
+				res.redirect(url);
+			});
 		}
 	});
-*/
+	
+
 };
 
 

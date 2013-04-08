@@ -277,7 +277,7 @@ var membre1 = new Membre ({
 		'ville':'Paris',
 		'cp':'75011',
 		'adresse':'244 bd Voltaire',
-		'statut':'0',
+		'statut':'2',
 	}),
 	membre2 = new Membre ({
 		'pseudo' : 'membre',
