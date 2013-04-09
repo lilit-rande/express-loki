@@ -37,7 +37,7 @@ div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-l
 					- else
 						span #{data.prix} euros* pour #{data.salle_id.capacite} personnes
 				p #{data.salle_id.description.substr(0,100)} ...
-				- if (session.pseudo)
+				- if (session.user_id)
 					a.heading-a(href="/connexion/{id-produit}") Ajouter au panier >
 				- else
 					a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Ajouter au panier >

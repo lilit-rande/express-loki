@@ -113,7 +113,7 @@ exports.update = function(req, res) {
 exports.new = function(req, res) {}
 
 exports.create = function(req, res) {
-	var date = Date(),
+	var 
 		salle_id = req.body.salle,
 		membre_id = req.session.user_id;
 
@@ -121,7 +121,6 @@ exports.create = function(req, res) {
 			comment : req.body.commentaire,
 			note : req.body.note,
 			membre_id : membre_id,
-			date : date, //	TODO
 			salle_id: salle_id
 	},
 	modelObj = new Model(comment),

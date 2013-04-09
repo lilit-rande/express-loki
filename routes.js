@@ -8,7 +8,7 @@ exports.routes = function(app) {
 		
 	// Middleware for limited access
 	function requireLogin (req, res, next) {
-		if (req.session.pseudo) {
+		if (req.session.user_id) {
 			// User is authenticated, let him in
 			next();
 		} else {
@@ -17,12 +17,12 @@ exports.routes = function(app) {
 	}
 	
 	function adminOnly (req, res, next) {
-		if (req.session.pseudo) {
+		if (req.session.user_id) {
 			// User is authenticated
 			var User = require('./models/membres.js'),
-				pseudo = req.session.pseudo;
+				id = req.session.user_id;
 				
-			User.find({pseudo: pseudo}, function(err, data){
+			User.find({_id: id}, function(err, data){
 				if (data[0].statut == '2') {	// admin's statut == 2
 					// User is admin let him in
 					next();
@@ -51,6 +51,7 @@ exports.routes = function(app) {
 	});
 	
 	// mapping route and controller for models
+	/*
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -63,7 +64,7 @@ exports.routes = function(app) {
 		app.get(prefix + '/new', prefixObj.new);
 		
 		//create
-		app.post(prefix + '/create', prefixObj.create);
+		app.post(prefix + '/new', prefixObj.create);
 		
 		//edit
 		app.get(prefix + '/edit/:id', prefixObj.edit);
@@ -81,9 +82,9 @@ exports.routes = function(app) {
 		app.get(prefix + '/:id', prefixObj.show);		
 	};
 
-
+*/
 	// Routes avec require login
-/*	
+
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -121,7 +122,9 @@ exports.routes = function(app) {
 		}
 	};
 
-*/
+
+
+
 	
 	//form validation routes
 	app.post('/pseudo', formValidator.pseudo);

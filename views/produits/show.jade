@@ -7,12 +7,21 @@ block content
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
 			h3 Connexion
 		div.modal-body
-			p Connectez-vous pour l'ajouter au panier
 			include ../forms/connetion-modal
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.submit Connexion
-		
+			
+	<!-- Modal ajout panier-->
+	div#modal-panier.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="ajouterPanier", aria-hidden="true")
+		div.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+			h3 Ajouter au panier
+		div.modal-body
+			p Le produit a bien été ajouté à votre panier
+		div.modal-footer
+			button.btn(data-dismiss="modal", aria-hidden="true") Continuer mes achats
+			a.btn.btn-info.submit(href="/panier") Voir mon panier
 	-if (data != null)
 		h1= title
 		div.pull-left.detailles
@@ -49,6 +58,12 @@ block content
 					- etat = "Loué"
 				- else etat = "A louer" 
 				span.valeur #{etat}
+				- session.test = 'dsfsdfdsfsd'
+			- if (session.user_id)
+				a.btn.btn-info#add-to-cart(href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier
+			- else 
+				a.btn.btn-info(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour ajouter au panier
+			p #{session.test}
 		div.clearfix
 		div
 			h2 #{data.salle_id.title}
@@ -58,23 +73,18 @@ block content
 			div 
 				- if (data.salle_id.commentaires != null)
 					- each comment in data.salle_id.commentaires
-						h4.separated-header-text Commenteire de #{comment.membre_id.pseudo} #{comment.date.toDateString()} #{comment.note}/10
+						h4 
+							span.separated-header-text Commenteire de 
+							span #{comment.membre_id.pseudo} 
+							span.separated-header-text Date 
+							span #{comment.date.toDateString()} 
+						p
+							span.separated-header-text Note 
+							span #{comment.note}/10
 						p #{comment.comment}
 						hr
-				- if (session.pseudo)
-					form#form-commentaire-new.span6(action="commentaires/new", method="post")
-						fieldset
-							input(type="hidden", value="#{data.salle_id._id}", name="salle")
-							input(type="hidden", value="#{data._id}", name="prod")
-							legend Ajouter un commentaire
-							textarea#commentaire.span3.required(name="commentaire")
-							label(for="note") Note
-							select#note.span3.required(name="note")
-								option
-								-for(var i=1; i<=10; i++)
-									option(value="#{i}")=i+'/10'
-							br
-							button.btn.btn-primary.new-model-btn(type="submit", name="sousmettre-commentaire", data-model="commentaire") Sousmettre
+				- if (session.user_id)
+					include ../forms/commentaires/new
 					div.clearfix
 				- else	
 					a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour laisser une commentaire >			

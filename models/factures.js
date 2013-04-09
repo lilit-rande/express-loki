@@ -18,6 +18,9 @@ var factureSchema = new Schema({
 	produit_title: {type: String, require: true, trim: true, unique: false},
 	salle_title: {type: String, require: true, trim: true},
 	commande_ref: {type: String, require: true, trim: true, unique: true},
+	membre_details: {type: String, require; true, trim: true},
+	montant_totel: {type: Number, require: true, trim: true}
+	/*
 	membre_pseudo: {type: String, require: true, trim: true, unique: true},
 	membre_nom: {type: String, require: true, trim: true},	
 	membre_prenom: {type: String, require: true, trim: true},
@@ -26,5 +29,6 @@ var factureSchema = new Schema({
 	membre_cp: {type: String, require: true, trim: true},
 	membre_adresse: {type: String, require: true, trim: true},
 	membre_statut: {type: Number, require: true, trim: true},	// 0=user, 1=moderateur, 2=admin
+	*/
 });
 module.exports = mongoose.model('Factures', commandeSchema);

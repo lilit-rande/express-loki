@@ -3,32 +3,32 @@ form#form-produit.form-produit-edit.form-horizontal(method="post", action="#{act
 	div.control-group
 		label.control-label.choix(for="select-salle") Choisir une salle :
 		div.controls
-			select#select-salle(name="new_salle_id").required
+			select#select-salle(name="new_salle_id")
 				- if (foreignModels.salle != null)
 					- each salle in foreignModels.salle
 						option(value="#{salle._id}") #{salle.title} - #{salle.adresse} - #{salle.ville} - #{salle.pays}			
 	div.control-group
 		label.control-label(for="date-arrive") Date d'arrivée
 		div.controls
-			input#date-arrive.datepicker(type="text", name="produitarrive").required
+			input#date-arrive.datepicker(type="text", name="produitarrive")
 	div.control-group
 		label.control-label(for="date-depart") Date de départ
 		div.controls
 			//
 				label.petit-label (format 'aaaa-mm-jj hh:mm')	
-			input#date-depart.datepicker(type="text", name="produitdepart").required
+			input#date-depart.datepicker(type="text", name="produitdepart")
 	div.control-group
 		label.control-label(for="prix") Prix
 		div.controls
-			input#prix(type="text", name="produitprix").required €
+			input#prix(type="text", name="produitprix") €
 	div.control-group
 		label.control-label(for="etat") Etat
 		div.controls
-			select#etat(name="produitetat").required
+			select#etat(name="produitetat")
 				option(value="1") Loué
 				option(value="0") Libre
 	//
-		input#etat(type="text", name="produitetat").required
+		input#etat(type="text", name="produitetat")
 	div.control-group
 		input#old_promotion_id(type="hidden", name="old_promotion_id")
 		label.control-label.choix(for="select-promotion") Choisir une promotion :

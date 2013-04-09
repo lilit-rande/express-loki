@@ -3,7 +3,7 @@ header
 		a Lokisalle
 			p.tagline Location de salles de réunion
 	div#header-form.pull-right
-		- if (!session.pseudo)
+		- if (!session.user_id)
 			include ../forms/connexion
 			a(href="/inscription") Pas encore membre?
 			a(href="") Mot de passe oublié...

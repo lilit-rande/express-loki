@@ -77,7 +77,7 @@
 			tr
 				th Statut :
 				td #{data.statut}
-		- if ( data.pseudo == session.pseudo )
+		- if ( data._id == session.user_id )
 			button.btn.btn-info.model-edit-link(href=".modal-profil-edit", role="button", data-toggle="modal", data-id="#{data._id}", data-model="membre") Modifier mon profil
 	div.well.pull-right.span4
 		h2 Commentaires
@@ -92,7 +92,7 @@
 				p
 					span.titre Comment : 
 					span.valeur #{commentaire.comment}
-				- if ( data.pseudo == session.pseudo )
+				- if ( data._id == session.user_id )
 					p.text-right
 						a.model-edit-link(href="#modal-commentaire-edit", role="button", data-toggle="modal", data-id="#{commentaire._id}", data-model="commentaire") Modifier ce commentaire
 				hr

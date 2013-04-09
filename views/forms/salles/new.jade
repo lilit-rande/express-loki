@@ -3,7 +3,7 @@ form.form-horizontal(method="post", action="salles/#{action}", name="form-salle-
 	div.control-group
 		label.control-label(for="salle-title") Titre
 		div.controls
-			input#salle-title.required(type="text", name="salletitle")			
+			input#salle-title(type="text", name="salletitle")			
 	div.control-group
 		label.control-label(for="salle-description") Description
 		div.controls
@@ -11,23 +11,23 @@ form.form-horizontal(method="post", action="salles/#{action}", name="form-salle-
 	div.control-group
 		label.control-label(for="salle-pays") Pays
 		div.controls
-			input#salle-pays.required(type="text", name="sallepays")
+			input#salle-pays(type="text", name="sallepays")
 	div.control-group
 		label.control-label(for="salle-ville") Ville
 		div.controls
-			input#salle-ville.required(type="text", name="salleville")
+			input#salle-ville(type="text", name="salleville")
 	div.control-group
 		label.control-label(for="salle-adresse") Adresse
 		div.controls
-			input#salle-adresse.required(type="text", name="salleadresse")
+			input#salle-adresse(type="text", name="salleadresse")
 	div.control-group
 		label.control-label(for="salle-cp") Code postale
 		div.controls
-			input#salle-cp.required(type="text", name="sallecp")
+			input#salle-cp(type="text", name="sallecp")
 	div.control-group
 		label.control-label(for="salle-image-visible") Photo
 		div.controls
-			input#file.required.hide.ie_show(type="file", name="salleimage")
+			input#file.hide.ie_show(type="file", name="salleimage")
 			div.input-append.ie_hide
 				input#salle-image-visible.input-larget(type="text", onclick="$('input[id=file]').click();")
 				a.btn(onclick="$('input[id=file]').click();") Parcourir
@@ -36,11 +36,11 @@ form.form-horizontal(method="post", action="salles/#{action}", name="form-salle-
 	div.control-group
 		label.control-label(for="salle-capacite") Capacité
 		div.controls
-			input#salle-capacite(type="text", name="sallecapacite").required
+			input#salle-capacite(type="text", name="sallecapacite")
 	div.control-group
 		label.control-label(for="salle-categorie") Catégorie
 		div.controls
-			input#salle-categorie(type="text", name="sallecategorie").required
+			input#salle-categorie(type="text", name="sallecategorie")
 	div.control-group
 		div.controls
 			input#bt-salle-edit.btn.btn-primary(type="submit", name="bt-salle-edit", value="#{type}")	

@@ -16,18 +16,63 @@ $(document).ready(function() {
 
 	var membre_validate_rules = {
 		rules : {
-			'pseudo' : {'validate_pseudo' : true},
-			'email': {'validate_email' : true}
+			'pseudo' : {'validate_pseudo' : true, required: true},
+			'mdp' : {required: true, minlength: 4},
+			'email': {'validate_email' : true, maxlength : 100, email : true},
+			'nom' : {required: true},
+			'prenom' : {required: true},
+			'sexe' : {required: true},
+			'ville' : {required: true},
+			'cp' : {required: true, number:true},
+			'adresse' : {required: true},
+			'statut' : {required: true}
 		}
 	}
-
+				
 	var promotion_validate_rules = {
 		rules : {
-			'promotioncode' : {'validate_promocode': true}
+			'promotioncode' : {'validate_promocode': true, required: true},
+			'promotionreduction' : {required: true, number: true}
 		}
 	}
 
+	var produit_validate_rules = {
+		rules : {
+			'new_salle_id' : {required: true},
+			'produitarrive' : {required: true},
+			'produitdepart' : {required: true},
+			'produitprix' : {required: true},
+			'produitetat' : {required: true}
+		}
+	}		
+		
+	var commentaire_validate_rules = {
+		rules: {
+			'note' : { required: true},
+			'commentaire' : { required: true},
+			
+		}
+	}	
+	var form_salle_rules = {
+		rules: {
+			'salletitle' : { required: true},
+			'sallepays' : { required: true},
+			'salleville' : { required: true},
+			'salleadresse' : { required: true},
+			'sallecp' : { required: true},
+			'salleimage' : { required: true},
+			'sallecapacite' : { required: true, number: true},
+			'sallecategorie' : { required: true, number: true}
+		}
+	}
 	
+	var connexion_validate_rules = {
+		rules : {
+			'pseudo' : {required: true},
+			'mdp' : {required: true}
+		}
+	}			
+				
 	var errorMessage = '';
     function isValueOk(value, url, fieldName){
 	    var retVal = false,
@@ -108,17 +153,19 @@ $(document).ready(function() {
 		return returnValue;
     }, "Ce code promo n'est pas disponible");
     
-	$('#form-salle').validate(validate_options);
-	$('#form-commentaire-new').validate(validate_options);
+	$('#form-salle').validate($.extend(validate_options, form_salle_rules));
+	$('#form-commentaire-new').validate($.extend(validate_options, commentaire_validate_rules));
 	
-	$('#form-produit').validate(validate_options);
+	$('#form-produit').validate($.extend(validate_options, produit_validate_rules));
 	
-	$('#form-promotion').validate(validate_options);
+	$('#form-promotion').validate($.extend(validate_options, promotion_validate_rules));
 	$('#form-promotion-new').validate($.extend(validate_options, promotion_validate_rules));
 
 	
 	$('#form-membre').validate($.extend(validate_options, membre_validate_rules));
 	$('#form-membre-new').validate($.extend(validate_options, membre_validate_rules));
 	$('#form-inscription').validate($.extend(validate_options, membre_validate_rules));
+	
+	$('#modal-connexion-form').validate($.extend(validate_options, connexion_validate_rules));
 
 });

@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 //create Commentaires model
 var commentaireSchema = new Schema({
-		date: {type: Date, require: true, trim: true},
+		date: {type: Date, require: true, trim: true, default: Date.now},
 		salle_id: {type: Schema.Types.ObjectId, ref: 'Salles'},	
 		membre_id: {type: Schema.Types.ObjectId, ref: 'Membres'},
 		note: {type: Number, require: true, trim: true},

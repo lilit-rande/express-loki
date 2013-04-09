@@ -103,16 +103,16 @@ exports.edit = function(req, res) {
 //update a member
 exports.update = function(req, res) {
 	var membre = {	
-			pseudo: req.body.membrepseudo,
-			mdp: req.body.membremdp,
-			nom: req.body.membrenom,	
-			prenom: req.body.membreprenom,
-			email: req.body.membreemail,
+			pseudo: req.body.pseudo,
+			mdp: req.body.mdp,
+			nom: req.body.nom,	
+			prenom: req.body.prenom,
+			email: req.body.email,
 			sexe: req.body.sexe,
-			ville: req.body.membreville,
-			cp: req.body.membrecp,
-			adresse: req.body.membreadresse,
-			statut: req.body.membrestatut
+			ville: req.body.ville,
+			cp: req.body.cp,
+			adresse: req.body.adresse,
+			statut: req.body.statut
 		},
 	ref = req.params.id;
 

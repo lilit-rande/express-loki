@@ -1,24 +1,24 @@
 form.form-membre-edit.form-horizontal#form-membre(method="post", action="#{action}", name="form-membre-edit")
 	div.control-group
-		label.control-label(for="membre-pseudo") Pseudo
+		label.control-label(for="pseudo") Pseudo
 		div.controls
-			input#membre-pseudo(type="text", name="membrepseudo").required
+			input#pseudo(type="text", name="pseudo")
 	div.control-group
-		label.control-label(for="membre-mdp") Mot de passe
+		label.control-label(for="mdp") Mot de passe
 		div.controls
-			input#membre-mdp(type="text", name="membremdp").required
+			input#mdp(type="text", name="mdp")
 	div.control-group
-		label.control-label(for="membre-nom") Nom
+		label.control-label(for="nom") Nom
 		div.controls
-			input#membre-nom(type="text", name="membrenom").required
+			input#nom(type="text", name="nom")
 	div.control-group
-		label.control-label(for="membre-prenom") Prénom
+		label.control-label(for="prenom") Prénom
 		div.controls
-			input#membre-prenom(type="text", name="membreprenom").required
+			input#prenom(type="text", name="prenom")
 	div.control-group
-		label.control-label(for="membre-email") Email
+		label.control-label(for="email") Email
 		div.controls
-			input#membre-email(type="text", name="membreemail").required
+			input#email(type="text", name="email")
 	div.control-group
 		label.control-label(for="fem") Sexe
 		div.controls
@@ -29,19 +29,19 @@ form.form-membre-edit.form-horizontal#form-membre(method="post", action="#{actio
 	div.control-group
 		label.control-label(for="ville") Ville
 		div.controls
-			input#ville.required(type="text", placeholder="Ville", name="membreville")
+			input#ville(type="text", placeholder="Ville", name="ville")
 	div.control-group
 		label.control-label(for="cp") Code postale
 		div.controls
-			input#cp.required.digits(type="text", placeholder="Code postale", name="membrecp")
+			input#cp(type="text", placeholder="Code postale", name="cp")
 	div.control-group
 		label.control-label(for="adresse") Adresse
 		div.controls
-			input#adresse.required(type="text", placeholder="Adresse", name="membreadresse")
+			input#adresse(type="text", placeholder="Adresse", name="adresse")
 	div.control-group
-		label.control-label(for="membre-statut") Statut :
+		label.control-label(for="statut") Statut :
 		div.controls
-			select#select-membre-statut(name="membrestatut").required
+			select#select-membre-statut(name="statut")
 				option(value="2") Administrateur
 				option(value="1") Moderateur
 				option(value="0") Membre

@@ -1,7 +1,8 @@
 var Membre = require('../models/membres.js');
 
 exports.inscription = function(req, res){
-	if (!req.session.id) {
+	console.log(req.session.user_id);
+	if (!req.session.user_id) {
 		res.render('inscription', {title: 'Inscription'});
 	} else {
 		res.redirect('/');
@@ -29,7 +30,7 @@ exports.create = function(req, res) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
 			req.session.pseudo = req.body.pseudo;
-			req.session.id = data._id;
+			req.session.user_id = data._id;
 			req.session.statut = 0;
 			res.redirect('profil/' + data._id);
 		}
@@ -37,6 +38,7 @@ exports.create = function(req, res) {
 };
 
 exports.connect = function(req, res) {
+console.log(req.body.pseudo);	
 	var user = {
 			pseudo: req.body.pseudo,
 			mdp: req.body.mdp
@@ -48,10 +50,10 @@ exports.connect = function(req, res) {
 			res.render('generals/error', {title: "Echec de création", body: "Une erreur s'est produit, merci de réessayer plus tard. Message : " + err.message});
 		} else {
 			if (data) {				
-				req.session.pseudo = req.body.pseudo;
 				req.session.user_id = data._id;
+				req.session.pseudo = req.body.pseudo;
 				req.session.statut = data.statut;
-				
+			
 				if (req.session.currentPage) {
 					url = req.session.currentPage;
 				} else {				
@@ -71,14 +73,13 @@ exports.profil = function(req, res) {
 	var ref,
 		field,
 		findObj = {};
-	
+	field = '_id';
 	if (typeof(req.params.id) != 'undefined' && req.params.id !== null) {
-		ref = req.params.id;
-		field = '_id';
+		ref = req.params.id;		
 	} else {
 //		ref = 'admin';
-		ref = req.session.pseudo;
-		field = 'pseudo';
+		ref = req.session.user_id;
+//		field = 'pseudo';
 	}
 	
 	findObj[field] = ref;
@@ -101,7 +102,7 @@ exports.profil = function(req, res) {
 
 }
 exports.logout = function(req, res) {
-	if (req.session.pseudo) {
+	if (req.session.user_id) {
 		req.session.destroy(function(){
 		//	res.render('generals/logout', {title: 'A bientôt', body: 'Merci de votre visite.'});
 			res.redirect('/');

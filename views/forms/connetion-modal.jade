@@ -3,12 +3,12 @@ form.form-horizontal#modal-connexion-form(method="post", action="connexion")
 	div.control-group
 		label.control-label(for="pseudo") Pseudo
 		div.controls
-			input#pseudo.required(type="text", placeholder="Pseudo", name="pseudo")
+			input#pseudo(type="text", placeholder="Pseudo", name="pseudo")
+			input#test(type="test", placeholder="test", name="test")
 	div.control-group
 		label.control-label(for="mdp") Mot de passe
 		div.controls
-			input#mdp.required(type="text", placeholder="Mot de passe", name="mdp")
+			input#mdp(type="text", placeholder="Mot de passe", name="mdp")
 			p
 				a.fine-texte(href="/inscription") Pas encore membre?
 				a.fine-texte(href="") Mot de passe oublié..
-				

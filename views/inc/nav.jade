@@ -13,11 +13,11 @@ div.navbar.navbar-inverse
 						a(href="/reservation") Réservation
 					li
 						a(href="/recherche") Recherche
-					- if (!session.pseudo)
+					- if (!session.user_id)
 						li
 							a(href="/inscription") Inscription
 					- else
 						li
 							a(href="/logout") Déconnexion
-						if (session.pseudo && session.pseudo == 'admin')
+						if (session.user_id && session.statut == 2)
 							include nav-admin

@@ -1,0 +1,18 @@
+form#form-commentaire-new.form-horizontal(action="commentaires/new", method="post")
+	input(type="hidden", value="#{data.salle_id._id}", name="salle")
+	input(type="hidden", value="#{data._id}", name="prod")
+	legend Ajouter un commentaire
+	div.control-group
+		label.control-label(for="commentaire") Commentaire
+		div.controls
+			textarea#commentaire.span3(name="commentaire")
+	div.control-group
+		label.control-label(for="note") Note
+		div.controls
+			select#note.span3(name="note")
+				option
+				-for(var i=1; i<=10; i++)
+					option(value="#{i}")=i+'/10'
+	div.control-group
+		div.controls
+			button.btn.btn-primary.new-model-btn(type="submit", name="sousmettre-commentaire", data-model="commentaire") Sousmettre

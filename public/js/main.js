@@ -11,7 +11,7 @@ $(document).ready(function() {
 			
 */	
 
-
+	// TODO
 	//input(type="file") du modal salle-edit
 	$('input[id=file]').change(function() {
 		$('#salle-image-visible').val($(this).val().replace("C:\\fakepath\\", ""));
@@ -47,8 +47,6 @@ $(document).ready(function() {
 			} else {	
 				var modelData = data.data;
 				var modelObj = {};
-				
-				
 				
 				for ( var d in modelData) {
 					if ( ( d != '_id') && ( d.indexOf('reference') == -1 ) && (d != 'image') ) {
@@ -197,9 +195,17 @@ $(document).ready(function() {
 	
 	$("#modal-connect").on("click", ".submit", function(e){
 //		e.preventDefault();
+		/*
+		console.log($('#pseudo').val());
+		console.log($('#mdp').val());
+		*/
 		$('#modal-connexion-form').submit();
+		
 //		window.location.href = history.back();
 	});
+
+// PANIER
+
 
 
     // Datepicker
