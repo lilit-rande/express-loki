@@ -48,7 +48,6 @@ exports.create = function(req, res) {
 	
 	modelObj.save(function(err, data){
 		if(err) {
-			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér cette promotion ! Message : " + err.message});
 		} else {
 			res.render('generals/modified', {title: 'Code de promotion ajouté', body: "Le code de promotion a bien été ajouté."});
@@ -109,7 +108,6 @@ exports.update = function(req, res) {
 			reduction: req.body.promotionreduction
 		},
 		ref = req.params.id;
-	console.log(req.body);
 	Model.update({'_id': ref}, promotion, function(err, docs) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});

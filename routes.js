@@ -142,15 +142,9 @@ exports.routes = function(app) {
 	app.post('/connexion/*', login.connect);
 	app.post('/connexion',  login.connect);
 
-	app.get('/profil',  [currentPage], login.profil);
-	app.get('/profil/:id', [currentPage], login.profil);
-	
-/*
 	app.get('/profil', [requireLogin], [currentPage], login.profil);
 	app.get('/profil/:id', [requireLogin], [currentPage], login.profil);
-*/
 	
-	app.get('/reservation', [currentPage], reservation.reservation);
 	app.get('/recherche', [currentPage], search.search);
 
 	//routes footer
@@ -169,7 +163,36 @@ exports.routes = function(app) {
 	app.get('/contact', [currentPage], function(req, res){
 		res.render('contact', {title: 'Contact'});
 	}); 
+
+
+	//gestion panier / reservation
+	app.get('/reservation', [currentPage], reservation.reservation);
+	app.get('/reservation/*', [currentPage], reservation.reservation);
+
+	app.post('/ajouter-panier', [currentPage], reservation.ajouter_panier);
+	app.get('/retirer-panier/:id', [currentPage], reservation.retirer_panier);
 	
+	app.get('/vider-panier', [currentPage], reservation.vider_panier);
+
+
+
+	app.get('/panier', [currentPage], function(req, res){
+		res.render('panier', {title: 'Mon panier'});
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 };

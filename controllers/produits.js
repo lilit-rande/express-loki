@@ -91,7 +91,6 @@ exports.create = function(req, res) {
 
 	modelObj.save(function(err, data){
 		if(err) {
-			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér ce produit ! Message : " + err.message});
 		} else {
 			Salle.findOne({'_id': salle_id}, function(err, salle){
@@ -143,8 +142,6 @@ exports.destroy = function(req, res) {
 	});
 };
 
-
-//OK
 //display edit form
 exports.edit = function(req, res) {
 	var ref = req.params.id,
@@ -236,7 +233,6 @@ exports.update = function(req, res) {
 						
 						// enregistrer le id de la salle passée en parametre (TODO faire la verif si il y a changement de l id de la salle avant de faire ca
 						if (new_object["_id"]) {	// cette verification est utile notemment pour un produit auquel on n'asscie plus de promotion
-	//					console.log(new_object["_id"]);
 							SM.findOne(new_object, function(err, data){
 							//	var produits = data.produits;
 								if (!inArray(ref, data['produits'])) {

@@ -1,7 +1,7 @@
 var Membre = require('../models/membres.js');
 
 exports.inscription = function(req, res){
-	console.log(req.session.user_id);
+
 	if (!req.session.user_id) {
 		res.render('inscription', {title: 'Inscription'});
 	} else {
@@ -38,7 +38,7 @@ exports.create = function(req, res) {
 };
 
 exports.connect = function(req, res) {
-console.log(req.body.pseudo);	
+		
 	var user = {
 			pseudo: req.body.pseudo,
 			mdp: req.body.mdp

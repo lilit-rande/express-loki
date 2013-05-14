@@ -56,7 +56,6 @@ exports.create = function(req, res) {
 
 	modelObj.save(function(err, data){
 		if(err) {
-			//	console.log(err);
 			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créer ce membre ! Message : " + err.message});
 		} else {
 //			res.render('generals/modified', {title: 'Membre ajouté', body: "Le membre a bien été ajouté."});

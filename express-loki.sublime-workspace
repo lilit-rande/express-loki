@@ -1,0 +1,1084 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"data",
+				"data_text"
+			],
+			[
+				"prod",
+				"produit"
+			],
+			[
+				"req",
+				"req"
+			],
+			[
+				"prix",
+				"prix_final"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"retu",
+				"returnValue"
+			],
+			[
+				"selec",
+				"selected"
+			],
+			[
+				"valid",
+				"validate"
+			],
+			[
+				"typ",
+				"typeValue"
+			],
+			[
+				"ele",
+				"elementId"
+			],
+			[
+				"erro",
+				"errorID"
+			],
+			[
+				"formI",
+				"formID"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"respons",
+				"responseField"
+			],
+			[
+				"respo",
+				"responseField"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "controllers/produits.js",
+			"settings":
+			{
+				"buffer_size": 8897,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/produits/show.jade",
+			"settings":
+			{
+				"buffer_size": 2229,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/produits/listing.jade",
+			"settings":
+			{
+				"buffer_size": 1533,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/produits/add-cart-link.jade",
+			"settings":
+			{
+				"buffer_size": 682,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/panier.jade",
+			"settings":
+			{
+				"buffer_size": 63,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/main.js",
+			"settings":
+			{
+				"buffer_size": 6795,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/produits/add-cart-modal.jade",
+			"settings":
+			{
+				"buffer_size": 454,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes.js",
+			"settings":
+			{
+				"buffer_size": 5161,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/forms/produits/new.jade",
+			"settings":
+			{
+				"buffer_size": 1555,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "controllers/reservation.js",
+			"settings":
+			{
+				"buffer_size": 411,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/reservation.jade",
+			"settings":
+			{
+				"buffer_size": 65,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/produits.js",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/main.less",
+			"settings":
+			{
+				"buffer_size": 5133,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/bootstrap/less/variables.less",
+			"settings":
+			{
+				"buffer_size": 9142,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 247.0,
+		"selected_items":
+		[
+			[
+				"html",
+				"Tidy HTML"
+			],
+			[
+				"tid",
+				"Tidy HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/lilit/Sites/express-loci/views/produits/add-cart.jade",
+		"/Users/lilit/Sites/express-loci/routes.js",
+		"/Users/lilit/Sites/express-loci/controllers/login.js",
+		"/Users/lilit/Sites/express-loci/views/forms/connetion-modal.jade",
+		"/Users/lilit/Sites/express-loci/app.js",
+		"/Users/lilit/Sites/express-loci/views/inc/header.jade",
+		"/Users/lilit/Sites/express-loci/views/connexion.jade",
+		"/Users/lilit/Sites/express-loci/views/produits/add-card.jade",
+		"/Users/lilit/Sites/express-loci/vendor/main.less",
+		"/Users/lilit/Sites/express-loci/views/reservation.jade",
+		"/Users/lilit/Sites/sfa/pages/cvtheque.php",
+		"/Users/lilit/Sites/sfa/admin/index.php",
+		"/Users/lilit/Sites/sfa/pages/emplois_detail.php",
+		"/Users/lilit/Sites/sfa/pages/emplois_home.php",
+		"/Users/lilit/Sites/sfa/js/main.js",
+		"/Users/lilit/Sites/sfa/pages/exposants.php",
+		"/Users/lilit/Sites/sfa/index.php",
+		"/Users/lilit/Sites/sfa/logs/errors_log.xml",
+		"/Users/lilit/Sites/sfa/pages/newsletter_subscribe.php",
+		"/Users/lilit/Sites/sfa/pages/newsletter_unsubscribe.php",
+		"/Users/lilit/Sites/sfa/pages/zephyr_widget.php",
+		"/Users/lilit/Sites/sfa/cache/cache_23d661ec62e9ca8b3c7863a6b77f506e_f3d1cca880141a4f1bd3313e714b7d37",
+		"/Users/lilit/Sites/sfa/pages/espace_pro.php",
+		"/Users/lilit/Sites/sfa/pages/presentation_en.php",
+		"/Users/lilit/Sites/sfa/pages/news_planet_corporate.php",
+		"/Users/lilit/Sites/sfa/pages/home_div.php",
+		"/Users/lilit/Sites/sfa/pages/custumer_update.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_custumer_form.php",
+		"/Users/lilit/Sites/sfa/pages/cv_alert_add_form.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_cv_alert_form.php",
+		"/Users/lilit/Sites/sfa/pages/cv_alert_update.php",
+		"/Users/lilit/Sites/sfa/pages/job_ads_listing.php",
+		"/Users/lilit/Sites/sfa/admin/errors_log.php",
+		"/Users/lilit/Sites/sfa/pages/cvtheque_listing.php",
+		"/Users/lilit/Sites/sfa/pages/cv_add.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_candidate_form.php",
+		"/Users/lilit/Sites/sfa/apply_form.php",
+		"/Users/lilit/Sites/sfa/ca_pwd_form.php",
+		"/Users/lilit/Sites/sfa/inc/data.inc.php",
+		"/Users/lilit/Sites/sfa/pages/home.php",
+		"/Users/lilit/Sites/sfa/inc/prepend.php",
+		"/Users/lilit/Sites/sfa/pages/blog.php",
+		"/Users/lilit/Sites/sfa/pages/colloques.php",
+		"/Users/lilit/Sites/sfa/pages/job_update.php",
+		"/Users/lilit/Sites/sfa/pages/job_add.php",
+		"/Users/lilit/Sites/sfa/pages/job_add_form.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_newsletter_candidates.php",
+		"/Users/lilit/Sites/sfa/atos/auto_response.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_job_form.php",
+		"/Users/lilit/Sites/sfa/pro_pwd_form.php",
+		"/Users/lilit/Sites/sfa/inc/Classes/DataObjects/Job_ads.php",
+		"/Users/lilit/Sites/sfa/contact_form.php",
+		"/Users/lilit/Sites/sfa/contact_cv_form.php",
+		"/Users/lilit/Sites/sfa/css/salon.css",
+		"/Users/lilit/Sites/sfa/cv_display.php",
+		"/Users/lilit/Sites/sfa/sources/sql/101007.sql",
+		"/Users/lilit/Sites/sfa/sources/sql/290413.sql",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_job_alert_form.php",
+		"/Users/lilit/Sites/sfa/pages/job_alert_add_form.php",
+		"/Users/lilit/Sites/sfa/pages/job_alert_update.php",
+		"/Users/lilit/Sites/sfa/pages/job_alert_add.php",
+		"/Users/lilit/Sites/premiercercle/htdocs/js/registration.js",
+		"/Users/lilit/Sites/sfa/pages/job_ads_manage.php",
+		"/Users/lilit/Sites/sfa/pages/cv_update.php",
+		"/Users/lilit/Sites/sfa/pages/cv_alert_add.php",
+		"/Users/lilit/Sites/sfa/sources/sql/090911.sql",
+		"/Users/lilit/Sites/sfa/sfa.sublime-project",
+		"/Users/lilit/Sites/sfa/sfa.sublime-workspace",
+		"/Users/lilit/Sites/jms/application/views/2013/fun_home.php",
+		"/Users/lilit/Sites/jms/application/controllers/2013/fun.php",
+		"/Users/lilit/Sites/jms/application/controllers/2012/fun.php",
+		"/Users/lilit/Sites/sfa/pages/conferences.php",
+		"/Users/lilit/Sites/sfa/comment_add.php",
+		"/Users/lilit/Sites/sfa/js/corporate.js",
+		"/Users/lilit/Sites/jms/application/controllers/2013/support.php",
+		"/Users/lilit/Sites/sfa/inc/Templates/tpl_corporate_ao_form.php",
+		"/Users/lilit/Sites/sfa/fckeditor/editor/dialog/fck_form.html",
+		"/Users/lilit/Sites/sfa/admin/ao_corporate.php",
+		"/Users/lilit/Sites/sfa/admin/error.php",
+		"/Users/lilit/Sites/sfa/css/formstyle.css",
+		"/Users/lilit/Library/Application Support/Sublime Text 2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt",
+		"/Users/lilit/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"-admin/*, -fckeditor/*, -js/*, -demo/*",
+			"-admin/*, -fckeditor/*, -js/*",
+			"-admin",
+			"-admin, -fckeditor, -js/vendor",
+			"-admin",
+			"-admin, -fckeditor, -js/vendor",
+			"-admin,-fckeditor, -js/vendor",
+			"-admin",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"toto",
+			"\n								prix: #{data.prix},",
+			"add-to-cart",
+			"connexion",
+			"lightwindow\nlightwindow",
+			"captcha",
+			"<script",
+			"validate",
+			"<script",
+			"lightwindow_action",
+			"#fc",
+			"Pour créer un compte dès maintenant",
+			"lilit@creative-area.net",
+			"$ad->is_online",
+			"Cette offre n'est pas publiée",
+			"formoffer",
+			"#fc ul li",
+			"#fc ul li {\n    padding: 5px;\n    width: 98%;\n}",
+			"contac",
+			"displayCV\ndisplayCV",
+			"record",
+			"ADS_FREE",
+			"setAdRef",
+			"ref_int",
+			"country_code",
+			"formoffer",
+			"formcandidate",
+			"formalert",
+			"var formValidation = new Validation('form-account-new', {useTitles:true});",
+			"form-account-exists",
+			"ightwindow",
+			"a class=\"lightwindow\"",
+			"<script",
+			"json",
+			"			// function aoContinue(formID, errorID, corp) {\n			// 	$(errorID).removeClassName('error');\n			// 	try {\n			// 		var typeValue = Form.getInputs(formID,'radio','ao_project').find(function(radio) { return radio.checked; }).value;\n			// 	} catch(e) {\n			// 		typeValue = null;\n			// 	}\n			// 	if (typeValue === null) {\n			// 		$(errorID).addClassName('error');\n			// 	} else {\n			// 		displayAppelOffresMB(typeValue, corp);\n			// 	}\n			// }",
+			"select",
+			"class='mbselect'",
+			"class=\"mbselect\"",
+			"mbselect",
+			"title=\"ce champ est obligatoire\"",
+			"<script",
+			"blog",
+			"<script",
+			"output",
+			"validate",
+			"exposants\nexposants",
+			"side "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 12,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "controllers/produits.js",
+					"settings":
+					{
+						"buffer_size": 8897,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8867,
+								8867
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1099.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/produits/show.jade",
+					"settings":
+					{
+						"buffer_size": 2229,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1192,
+								1192
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 292.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/produits/listing.jade",
+					"settings":
+					{
+						"buffer_size": 1533,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								956,
+								956
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/produits/add-cart-link.jade",
+					"settings":
+					{
+						"buffer_size": 682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								148,
+								148
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/panier.jade",
+					"settings":
+					{
+						"buffer_size": 63,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/js/main.js",
+					"settings":
+					{
+						"buffer_size": 6795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6552,
+								6541
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2875.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/produits/add-cart-modal.jade",
+					"settings":
+					{
+						"buffer_size": 454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								454,
+								454
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "routes.js",
+					"settings":
+					{
+						"buffer_size": 5161,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4906,
+								4914
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1093.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/forms/produits/new.jade",
+					"settings":
+					{
+						"buffer_size": 1555,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "controllers/reservation.js",
+					"settings":
+					{
+						"buffer_size": 411,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								118,
+								118
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "views/reservation.jade",
+					"settings":
+					{
+						"buffer_size": 65,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "models/produits.js",
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "vendor/main.less",
+					"settings":
+					{
+						"buffer_size": 5133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2484,
+								2484
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2263.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "vendor/bootstrap/less/variables.less",
+					"settings":
+					{
+						"buffer_size": 9142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1714,
+								1727
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 569.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 38.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"main",
+				"vendor/main.less"
+			],
+			[
+				"rout",
+				"routes.js"
+			],
+			[
+				"cvt",
+				"pages/cvtheque.php"
+			],
+			[
+				"inde",
+				"index.php"
+			],
+			[
+				"empo",
+				"pages/emplois_detail.php"
+			],
+			[
+				"emp",
+				"pages/emplois_home.php"
+			],
+			[
+				"emplois",
+				"pages/emplois_detail.php"
+			],
+			[
+				"error",
+				"logs/errors_log.xml"
+			],
+			[
+				"erro",
+				"logs/errors_log.xml"
+			],
+			[
+				"ind",
+				"index.php"
+			],
+			[
+				"cv_aler",
+				"pages/cv_alert_update.php"
+			],
+			[
+				"tpl_cv",
+				"inc/Templates/tpl_cv_alert_form.php"
+			],
+			[
+				"cv_alert",
+				"pages/cv_alert_add_form.php"
+			],
+			[
+				"tpl_cu",
+				"inc/Templates/tpl_custumer_form.php"
+			],
+			[
+				"job_ads",
+				"pages/job_ads_listing.php"
+			],
+			[
+				"errors",
+				"admin/errors_log.php"
+			],
+			[
+				"ex",
+				"pages/exposants.php"
+			],
+			[
+				"prepen",
+				"inc/prepend.php"
+			],
+			[
+				"home",
+				"pages/home.php"
+			],
+			[
+				"data",
+				"inc/data.inc.php"
+			],
+			[
+				"m",
+				"js/main.js"
+			],
+			[
+				"tpl_candi",
+				"inc/Templates/tpl_candidate_form.php"
+			],
+			[
+				"cv_add",
+				"pages/cv_add.php"
+			],
+			[
+				"cvth",
+				"pages/cvtheque_listing.php"
+			],
+			[
+				"apply",
+				"apply_form.php"
+			],
+			[
+				"emploi",
+				"pages/emplois_detail.php"
+			],
+			[
+				"tpl_job",
+				"inc/Templates/tpl_job_form.php"
+			],
+			[
+				"job_add",
+				"pages/job_add_form.php"
+			],
+			[
+				"job",
+				"pages/job_add.php"
+			],
+			[
+				"cusumer",
+				"pages/custumer_update.php"
+			],
+			[
+				"job_up",
+				"pages/job_update.php"
+			],
+			[
+				"tpl",
+				"inc/Templates/tpl_candidate_form.php"
+			],
+			[
+				"tpl_c",
+				"inc/Templates/tpl_candidate_form.php"
+			],
+			[
+				"tpl_custom",
+				"inc/Templates/tpl_custumer_form.php"
+			],
+			[
+				"cv_a",
+				"pages/cv_add.php"
+			],
+			[
+				"salon",
+				"css/salon.css"
+			],
+			[
+				"conta",
+				"contact_form.php"
+			],
+			[
+				"contact_cv",
+				"contact_cv_form.php"
+			],
+			[
+				"cv_",
+				"cv_display.php"
+			],
+			[
+				"cv_disp",
+				"cv_display.php"
+			],
+			[
+				"cvtheque",
+				"pages/cvtheque_listing.php"
+			],
+			[
+				"tpl_cus",
+				"inc/Templates/tpl_custumer_form.php"
+			],
+			[
+				"ca_pwd",
+				"ca_pwd_form.php"
+			],
+			[
+				"pro_pwd_fo",
+				"pro_pwd_form.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"job_alert_u",
+				"pages/job_alert_update.php"
+			],
+			[
+				"tpl_job_al",
+				"inc/Templates/tpl_job_alert_form.php"
+			],
+			[
+				"job_alert",
+				"pages/job_alert_add.php"
+			],
+			[
+				"tpl_can",
+				"inc/Templates/tpl_candidate_form.php"
+			],
+			[
+				"tpl_cand",
+				"inc/Templates/tpl_candidate_form.php"
+			],
+			[
+				"cv_up",
+				"pages/cv_update.php"
+			],
+			[
+				"cont",
+				"sfa/contact_form.php"
+			],
+			[
+				"corpo",
+				"sfa/js/corporate.js"
+			],
+			[
+				"tpl_corp",
+				"sfa/inc/Templates/tpl_corporate_ao_form.php"
+			],
+			[
+				"ao_f",
+				"sfa/pages/ao_form.php"
+			],
+			[
+				"au_form",
+				"sfa/inc/Templates/tpl_custumer_form.php"
+			],
+			[
+				"tpl_cor",
+				"sfa/inc/Templates/tpl_corporate_ao_form.php"
+			],
+			[
+				"form",
+				"sfa/css/formstyle.css"
+			],
+			[
+				"ao_fo",
+				"sfa/pages/ao_form.php"
+			],
+			[
+				"pages/corpo",
+				"sfa/pages/corporate.php"
+			],
+			[
+				"sal",
+				"css/salon.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/lilit/Sites/premiercercle/premiercercle.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 316.0,
+	"status_bar_visible": true
+}

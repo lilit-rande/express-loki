@@ -132,7 +132,6 @@ async.parallel([
   }
 ], function(err) {
   return res.json(performers);
-  console.log(performers);
 });
 *
 //	 .done(callback).when(callback)
@@ -150,7 +149,6 @@ Deferred.when([
   }
 ], function(err) {
   return res.json(performers);
-  console.log(performers);
 }).then(function(){});
 */
  /*
@@ -171,7 +169,7 @@ Deferred.when([
 				if(err) {
 					throw err;
 				} else if( (docs) && (docs.length) ) {
-				//	console.log(docs);
+			
 					res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 				} else {
 					res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
@@ -188,7 +186,6 @@ Deferred.when([
 						if(err) {
 							throw err;
 						} else if( (docs) && (docs.length) ) {
-					//		console.log(docs);			
 							
 							res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 						} else {
@@ -225,7 +222,6 @@ Deferred.when([
 		if(err) {
 			throw err;
 		} else if( (docs) && (docs.length) ) {
-		//	console.log(docs);
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 		} else {
 			res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
@@ -236,8 +232,6 @@ Deferred.when([
 			if(err) {
 				throw err;
 			} else if( (docs) && (docs.length) ) {
-		//		console.log(docs);			
-				
 				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: docs});
 			} else {
 				res.render(modelName+'/index', { title: firstToUpper(modelName), docs: null});
@@ -302,7 +296,6 @@ exports.create = function(req, res, model, obj) {
 		
 		modelObj.save(function(err, data){
 			if(err) {
-			//	console.log(err);
 				res.render('error', {title: "Echec de création", body: "Il n'est pas possible de créér " + articleDef + model.toLowerCase() + " ! Message : " + err.message});
 			} else {
 				res.render('generals/modified', {title: model + ' ajouté'+ suffix, body: firstToUpper(articleDef) + model.toLowerCase() +" a bien été ajouté" + suffix + "."});
@@ -318,7 +311,6 @@ exports.create = function(req, res, model, obj) {
 				
 		modelObj.save(function(err, data){
 			if(err) {
-			//	console.log(err);
 				res.render('error', {title: "Echec de création", body: "Il n'est pas possible de créér " + articleDef + model.toLowerCase() + " ! Message : " + err.message});
 			} else {
 				res.render('generals/modified', {title: model + ' ajouté'+ suffix, body: firstToUpper(articleDef) + model.toLowerCase() +" a bien été ajouté" + suffix + "."});
@@ -435,7 +427,6 @@ exports.update = function(req, res, model, obj, foreignModels) {
 						
 						// enregistrer le id de la salle passée en parametre (TODO faire la verif si il y a changement de l id de la salle avant de faire ca
 						if (new_object["_id"]) {	// cette verification est utile notemment pour un produit auquel on n'asscie plus de promotion
-	//					console.log(new_object["_id"]);
 							SM.findOne(new_object, function(err, data){
 							//	var produits = data.produits;
 								if (!inArray(ref, data[modelName])) {
@@ -479,7 +470,6 @@ exports.show = function(req, res, model) {
 			if (!doc) {
 				res.render(modelName + '/show', {id: ref, title:'Détailles ' + article + modelLower, data:doc});
 			} else {
-		//		console.log(doc);
 				res.render(modelName + '/show', {title: 'Détailles ' + article + modelLower, data: doc});
 			}
 		}

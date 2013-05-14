@@ -5260,6 +5260,9 @@ a.badge:focus {
 .italic {
   font-style: italic;
 }
+.underlined-link {
+  text-decoration: underline;
+}
 .separated-text {
   color: #488979;
   font-style: italic;
@@ -5347,6 +5350,7 @@ a.badge:focus {
 body {
   background: url("../images/bgr_main.jpg") repeat-x scroll 0 0 #f6f6f6;
   color: #919191;
+  font-family: 'Open Sans', Tahoma, Arial, Helvetica, sans-serif;
 }
 body h1,
 body h2,
@@ -5378,6 +5382,9 @@ body a:hover {
 body a.heading-a {
   color: #2b6462;
   font-weight: bold;
+}
+body del {
+  font-size: 11.9px;
 }
 body header {
   margin-top: 20px;

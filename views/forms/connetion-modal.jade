@@ -1,14 +1,21 @@
-form.form-horizontal#modal-connexion-form(method="post", action="connexion")
-	input#id(name="produit-id", type="hidden", value="produit id a inserer ici")
-	div.control-group
-		label.control-label(for="pseudo") Pseudo
-		div.controls
-			input#pseudo(type="text", placeholder="Pseudo", name="pseudo")
-			input#test(type="test", placeholder="test", name="test")
-	div.control-group
-		label.control-label(for="mdp") Mot de passe
-		div.controls
-			input#mdp(type="text", placeholder="Mot de passe", name="mdp")
-			p
-				a.fine-texte(href="/inscription") Pas encore membre?
-				a.fine-texte(href="") Mot de passe oublié..
+div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	div.modal-header
+		button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
+		h3 Connexion
+	div.modal-body
+		form.form-horizontal#modal-connexion-form(method="post", action="connexion")
+			input#id(name="produit-id", type="hidden", value="produit id a inserer ici")
+			div.control-group
+				label.control-label(for="pseudo") Pseudo
+				div.controls
+					input#pseudo(type="text", placeholder="Pseudo", name="pseudo")
+			div.control-group
+				label.control-label(for="mdp") Mot de passe
+				div.controls
+					input#mdp(type="text", placeholder="Mot de passe", name="mdp")
+					p
+						a.fine-texte(href="/inscription") Pas encore membre?
+						a.fine-texte(href="") Mot de passe oublié..
+	div.modal-footer
+		button.btn(data-dismiss="modal", aria-hidden="true") Close
+		button.btn.btn-info.submit Connexion

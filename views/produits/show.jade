@@ -2,26 +2,9 @@ extends ../layout
 
 block content
 	<!-- Modal connection-->
-	div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-		div.modal-header
-			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Connexion
-		div.modal-body
-			include ../forms/connetion-modal
-		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
-			button.btn.btn-info.submit Connexion
-			
+	include ../forms/connetion-modal
 	<!-- Modal ajout panier-->
-	div#modal-panier.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="ajouterPanier", aria-hidden="true")
-		div.modal-header
-			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Ajouter au panier
-		div.modal-body
-			p Le produit a bien été ajouté à votre panier
-		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Continuer mes achats
-			a.btn.btn-info.submit(href="/panier") Voir mon panier
+	include add-cart-modal
 	-if (data != null)
 		h1= title
 		div.pull-left.detailles
@@ -43,27 +26,26 @@ block content
 			p
 				span.separated-header-text Prix : 
 				- var prix = data.prix
+				- var prix_final = prix
+				- var reduction = 0
 				- if (data.promotion_id != null) 
-					- var reduction = data.promotion_id.reduction
-					- var prix_final = prix - reduction
+					- reduction = data.promotion_id.reduction
 					span 
 						del #{prix} €
-					span &nbsp;&nbsp;&nbsp; #{prix_final} €
-				- else
-					span #{prix} € 
+				- prix_final = prix - reduction
+				span #{prix_final} € 
 				span.italic &nbsp;(hors taxes)
 			p
 				span.separated-header-text Etat : 
 				- if (data.etat == 1)
 					- etat = "Loué"
 				- else etat = "A louer" 
-				span.valeur #{etat}
-				- session.test = 'dsfsdfdsfsd'
+				span.valeur #{etat}			
 			- if (session.user_id)
-				a.btn.btn-info#add-to-cart(href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier
+				- var data_class = "btn btn-info"				
+				include add-cart-link
 			- else 
 				a.btn.btn-info(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour ajouter au panier
-			p #{session.test}
 		div.clearfix
 		div
 			h2 #{data.salle_id.title}

@@ -194,19 +194,54 @@ $(document).ready(function() {
 	});;
 	
 	$("#modal-connect").on("click", ".submit", function(e){
-//		e.preventDefault();
-		/*
-		console.log($('#pseudo').val());
-		console.log($('#mdp').val());
-		*/
 		$('#modal-connexion-form').submit();
-		
-//		window.location.href = history.back();
 	});
 
 // PANIER
+	$('body').on('click', '.add-to-cart', function(e){
+		var url = 'ajouter-panier',
+			id = $(this).data('id'),
+			data_text = $('textarea#datas-json-' + id).val(),
+			that = $(this);
 
+		$(this).data('produit', data_text);
 
+		var json_data = JSON.parse($(this).data('produit'));
+		console.log(json_data);
+
+		$.ajax({
+			type: 'post',
+			url: url,
+			data: json_data,
+			dataType: 'json',
+			success: function(data){
+				$('#modal-panier .modal-body #message').html(data.message);
+				that.html('Retirer du panier >');
+				that.removeClass('add-to-cart');
+				that.addClass('remove-from-cart');
+			//	that.attr('href', 'retirer-panier/' + id);
+				$('#nb_articles').html(data.count);
+			}
+		});
+	});
+
+	$('body').on('click', '.remove-from-cart', function(e){
+	//	e.preventDefault();
+		var id = $(this).data('id'),
+			that = $(this),
+			url = 'retirer-panier/' + id;
+			
+		$.ajax({
+			dataType: 'json',
+			url: url,
+			success: function(data) {
+				console.log(data);
+				that.html('Ajouter au panier >');
+				that.addClass('add-to-cart');
+				that.removeClass('remove-from-cart');
+				$('#nb_articles').html(data.count);
+			}})
+		});
 
     // Datepicker
     $('.datepicker').datepicker({

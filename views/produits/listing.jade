@@ -1,14 +1,7 @@
 <!-- Modal connection-->
-div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-	div.modal-header
-		button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-		h3 Connexion
-	div.modal-body
-		p Connectez-vous pour l'ajouter au panier
-		include ../forms/connetion-modal
-	div.modal-footer
-		button.btn(data-dismiss="modal", aria-hidden="true") Close
-		button.btn.btn-info.submit Connexion
+include ../forms/connetion-modal
+<!-- Modal ajout panier-->
+include add-cart-modal
 - if (docs != null)	
 	- each data in docs		
 		div.annonce(data-model="produit", data-id="#{data._id}")
@@ -24,23 +17,21 @@ div#modal-connect.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-l
 				p 
 					span.separated-header-text Ville :  
 					span #{data.salle_id.ville} - #{data.salle_id.cp}
+				p #{session.test}
 				p
 					span.separated-header-text Prix : 
 					- var prix = data.prix
+					- var prix_final = prix
+					- var reduction = 0
 					- if (data.promotion_id != null) 
-						- var reduction = data.promotion_id.reduction
-						- var prix_final = prix - reduction
+						- reduction = data.promotion_id.reduction
 						span 
-							del #{prix}
-							span &nbsp;&nbsp;&nbsp;#{prix_final}
-							span &nbsp;euros* pour #{data.salle_id.capacite} personnes
-					- else
-						span #{data.prix} euros* pour #{data.salle_id.capacite} personnes
+							del #{prix} 
+					- prix_final = prix - reduction
+					span  #{prix_final} euros* pour #{data.salle_id.capacite} personnes
 				p #{data.salle_id.description.substr(0,100)} ...
-				- if (session.user_id)
-					a.heading-a(href="/connexion/{id-produit}") Ajouter au panier >
-				- else
-					a.heading-a(href="#modal-connect", role="button", data-toggle="modal") Ajouter au panier >
+				- var data_class = "heading-a"
+				include add-cart-link
 				p.clearfix
 	div.pager
 		a.pred <<
