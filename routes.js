@@ -4,8 +4,43 @@ exports.routes = function(app) {
 		
 		home = require('./controllers/home'),
 		reservation = require('./controllers/reservation'),
+		panier = require('./controllers/panier'),
 		search = require('./controllers/search')
-		
+/* 
+session {
+	cookie: { 
+		path: '/',
+		_expires: null,
+		originalMaxAge: null,
+		httpOnly: true 
+	},
+	currentPage: req.url,
+	user_id: ObjectId,
+	pseudo: pseudo,
+	statut: statut,
+
+	panier: [ { produit_id: '5191075f44a6e40000000005',
+		produit_title: '4646',
+		arrive: '2013-05-26T22:00:00.000Z',
+		depart: '2013-05-28T22:00:00.000Z',
+		prix: '85',
+		promotion_id: '5162b10874c37fe12a000019',
+		promotion_code: 'KL214J',
+		promotion_reduction: '60',
+		salle_id: '5162b10874c37fe12a000006',
+		salle_title: 'Salle Delaroche',
+		salle_adresse: '10 rue Adresse',
+		salle_capacite: '20',
+		salle_categorie: 'réunion',
+		salle_cp: '75',
+		salle_image: 'vignette_ph_15.jpg',
+		salle_pays: 'France',
+		salle_ville: 'Paris' 
+	} ],
+	panier_count: 0 
+}
+*/
+
 	// Middleware for limited access
 	function requireLogin (req, res, next) {
 		if (req.session.user_id) {
@@ -34,6 +69,53 @@ exports.routes = function(app) {
 			res.redirect('/');
 		}
 	}
+
+	// function loadPanier(req, res, next) {
+	// 	var Panier = require('./models/panier.js');
+
+	// 	if (req.cookies.sId) {
+	// 		var sId = req.cookies.sId;
+
+	// 		Panier
+	// 		.findOne({'sid': sId})
+	// 		.populate('membre_id produit_id promotion_id salle_id')
+	// 		.exec(function(err, panier){
+	// 			if (panier != null) {
+	// 				req.session.panier = [];
+	// 				var panier_obj = {};
+
+	// 				panier_obj.produit_id = panier.produit_id._id;
+	// 				panier_obj.produit_title = panier.produit_id.title;
+	// 				panier_obj.arrive = panier.produit_id.arrive;
+	// 				panier_obj.depart = panier.produit_id.depart;
+	// 				panier_obj.prix = panier.produit_id.prix;
+
+	// 				panier_obj.promotion_id = (panier.promotion_id) ? panier.promotion_id._id : '';
+	// 				panier_obj.promotion_code = (panier.promotion_id) ? panier.promotion_id.code : '';
+	// 				panier_obj.promotion_reduction = (panier.promotion_id) ? panier.promotion_id.reduction : 0;
+
+	// 				panier_obj.salle_id = panier.salle_id._id;
+	// 				panier_obj.salle_title = panier.salle_id.title;
+	// 				panier_obj.salle_adresse= panier.salle_id.adresse;
+	// 				panier_obj.salle_capacite = panier.salle_id.capacite;
+	// 				panier_obj.salle_categorie = panier.salle_id.categorie;
+	// 				panier_obj.salle_cp = panier.salle_id.cp;
+	// 				panier_obj.salle_image = panier.salle_id.image;
+	// 				panier_obj.salle_pays = panier.salle_id.pays;
+	// 				panier_obj.salle_ville = panier.salle_id.ville;
+	// 				panier_obj.date_creation = panier.dateCreation;
+
+	// 				req.session.panier.push(panier_obj);
+	// 				req.session.panier_count = panier.count;
+
+
+
+					
+	// 			} 
+	// 		});
+	// 	}
+	// 	next();
+	// }
 	
 	// dans ce middleware on enregistre l'url en cours dans session pour rediriger correcement les pages en cas de connexion
 	function currentPage (req, res, next) {
@@ -165,20 +247,20 @@ exports.routes = function(app) {
 	}); 
 
 
-	//gestion panier / reservation
+	// reservation
 	app.get('/reservation', [currentPage], reservation.reservation);
 	app.get('/reservation/*', [currentPage], reservation.reservation);
 
-	app.post('/ajouter-panier', [currentPage], reservation.ajouter_panier);
-	app.get('/retirer-panier/:id', [currentPage], reservation.retirer_panier);
-	
-	app.get('/vider-panier', [currentPage], reservation.vider_panier);
+	// gestion panier
+	app.get('/panier', [currentPage], panier.index);
+	app.get('/panier/*', [currentPage], panier.index);
+
+	app.post('/ajouter-panier', [currentPage], panier.ajouter_panier);
+	app.get('/retirer-panier/:id', [currentPage], panier.retirer_panier);
+	app.get('/vider-panier', [currentPage], panier.vider_panier);
 
 
 
-	app.get('/panier', [currentPage], function(req, res){
-		res.render('panier', {title: 'Mon panier'});
-	});
 
 
 

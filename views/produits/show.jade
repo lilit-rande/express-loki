@@ -40,12 +40,9 @@ block content
 				- if (data.etat == 1)
 					- etat = "Loué"
 				- else etat = "A louer" 
-				span.valeur #{etat}			
-			- if (session.user_id)
-				- var data_class = "btn btn-info"				
-				include add-cart-link
-			- else 
-				a.btn.btn-info(href="#modal-connect", role="button", data-toggle="modal") Connectez-vous pour ajouter au panier
+				span.valeur #{etat}
+			- var data_class = "btn btn-info"				
+			include add-cart-link
 		div.clearfix
 		div
 			h2 #{data.salle_id.title}

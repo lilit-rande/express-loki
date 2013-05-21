@@ -1,0 +1,10 @@
+p
+	- var nb = 0
+	- if (session.panier)
+		- nb = session.panier_count
+	a#panier_link.underlined-link(href="/panier") 
+		| Mon panier ( 
+		span#nb_articles #{nb}
+		|  article(s) )
+
+	

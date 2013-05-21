@@ -3,14 +3,7 @@ header
 		a Lokisalle
 			p.tagline Location de salles de réunion
 	div#header-form.pull-right
-		p
-			- var nb = 0
-			- if (session.panier)
-				- nb = session.panier_count
-			a#panier_link.underlined-link(href="/panier") 
-				| Mon panier ( 
-				span#nb_articles #{nb}
-				|  article(s) )
+		include panier
 		- if (!session.user_id)
 			include ../forms/connexion
 			a(href="/inscription") Pas encore membre?

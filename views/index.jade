@@ -3,12 +3,13 @@ extends layout
 block content
 	div
 		h1= title
+		- console.log(cookies.sId)
 		p Pour vos réunions, vos séminaires, vos formations, Lokisalle vous ouvre des espaces "centres d’affaires" dédiés spécialement aux entreprises.
 		p 
 			span.separated-text Accueil personnalisé 
-			de vos visiteurs, équipements et aménagements sur mesure des salles de réunion ou salles de formation, services de confort pour les pauses et repas… La qualité des espaces et le professionnalisme des équipes vous assurent la réussite de vos évènements.
+			| de vos visiteurs, équipements et aménagements sur mesure des salles de réunion ou salles de formation, services de confort pour les pauses et repas… La qualité des espaces et le professionnalisme des équipes vous assurent la réussite de vos évènements.
 		p Tous les centres d’affaires Lokisalle sont situés à des adresses stratégiques, 
 			span.separated-text valorisantes 
-			pour votre entreprise et facile d’accès.
+			| pour votre entreprise et facile d’accès.
 		h2 Nos trois derniers offres
 		include produits/listing

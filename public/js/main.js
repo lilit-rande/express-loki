@@ -207,8 +207,6 @@ $(document).ready(function() {
 		$(this).data('produit', data_text);
 
 		var json_data = JSON.parse($(this).data('produit'));
-		console.log(json_data);
-
 		$.ajax({
 			type: 'post',
 			url: url,
@@ -235,7 +233,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			url: url,
 			success: function(data) {
-				console.log(data);
+				$('#modal-panier .modal-body #message').html(data.message);
 				that.html('Ajouter au panier >');
 				that.addClass('add-to-cart');
 				that.removeClass('remove-from-cart');

@@ -4,16 +4,64 @@
 		"selected_items":
 		[
 			[
+				"panier",
+				"panier_obj"
+			],
+			[
+				"produit",
+				"produit_id"
+			],
+			[
+				"session",
+				"sessionID"
+			],
+			[
+				"prod",
+				"produit"
+			],
+			[
+				"panie",
+				"panier_count"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"add",
+				"add_or_remove"
+			],
+			[
+				"pani",
+				"panier"
+			],
+			[
+				"requi",
+				"requireLogin"
+			],
+			[
+				"promotion",
+				"promotion_code"
+			],
+			[
+				"promotio",
+				"promotion_id"
+			],
+			[
+				"promo",
+				"promotion_id"
+			],
+			[
+				"salle",
+				"salle_id"
+			],
+			[
 				"font",
 				"font-size"
 			],
 			[
 				"data",
 				"data_text"
-			],
-			[
-				"prod",
-				"produit"
 			],
 			[
 				"req",
@@ -72,58 +120,10 @@
 	"buffers":
 	[
 		{
-			"file": "controllers/produits.js",
+			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 8897,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/produits/show.jade",
-			"settings":
-			{
-				"buffer_size": 2229,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/produits/listing.jade",
-			"settings":
-			{
-				"buffer_size": 1533,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/produits/add-cart-link.jade",
-			"settings":
-			{
-				"buffer_size": 682,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/panier.jade",
-			"settings":
-			{
-				"buffer_size": 63,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/js/main.js",
-			"settings":
-			{
-				"buffer_size": 6795,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/produits/add-cart-modal.jade",
-			"settings":
-			{
-				"buffer_size": 454,
+				"buffer_size": 3380,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,55 +131,39 @@
 			"file": "routes.js",
 			"settings":
 			{
-				"buffer_size": 5161,
+				"buffer_size": 7670,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/forms/produits/new.jade",
+			"file": "controllers/panier.js",
 			"settings":
 			{
-				"buffer_size": 1555,
+				"buffer_size": 2740,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "controllers/reservation.js",
+			"file": "views/index.jade",
 			"settings":
 			{
-				"buffer_size": 411,
+				"buffer_size": 754,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/reservation.jade",
+			"file": "controllers/produits.js",
 			"settings":
 			{
-				"buffer_size": 65,
+				"buffer_size": 8827,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "models/produits.js",
+			"file": "controllers/home.js",
 			"settings":
 			{
-				"buffer_size": 781,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/main.less",
-			"settings":
-			{
-				"buffer_size": 5133,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/bootstrap/less/variables.less",
-			"settings":
-			{
-				"buffer_size": 9142,
+				"buffer_size": 397,
 				"line_ending": "Unix"
 			}
 		}
@@ -224,16 +208,46 @@
 	},
 	"file_history":
 	[
-		"/Users/lilit/Sites/express-loci/views/produits/add-cart.jade",
-		"/Users/lilit/Sites/express-loci/routes.js",
-		"/Users/lilit/Sites/express-loci/controllers/login.js",
-		"/Users/lilit/Sites/express-loci/views/forms/connetion-modal.jade",
-		"/Users/lilit/Sites/express-loci/app.js",
+		"/Users/lilit/Sites/express-loci/controllers/reservation.js",
 		"/Users/lilit/Sites/express-loci/views/inc/header.jade",
+		"/Users/lilit/Sites/express-loci/views/inc/panier.jade",
+		"/Users/lilit/Sites/express-loci/models/panier.js",
+		"/Users/lilit/Sites/express-loci/models/session.js",
+		"/Users/lilit/Sites/express-loci/routes.js",
+		"/Users/lilit/Sites/express-loci/package.json",
+		"/Users/lilit/Sites/express-loci/controllers/produits.js",
+		"/Users/lilit/Sites/express-loci/views/produits/show.jade",
+		"/Users/lilit/Sites/express-loci/views/produits/index.jade",
+		"/Users/lilit/Sites/express-loci/controllers/login.js",
+		"/Users/lilit/Sites/express-loci/views/produits/add-cart-link.jade",
+		"/Users/lilit/Sites/express-loci/views/produits/listing.jade",
+		"/Users/lilit/Sites/express-loci/public/js/main.js",
+		"/Users/lilit/Sites/express-loci/app-populate-dbs.js",
+		"/Users/lilit/Sites/express-loci/models/produits.js",
+		"/Users/lilit/Sites/express-loci/models/commandes.js",
+		"/Users/lilit/Sites/express-loci/views/panier.jade",
+		"/Users/lilit/Sites/express-loci/vendor/main.less",
+		"/Users/lilit/Sites/express-loci/views/forms/connetion-modal.jade",
+		"/Users/lilit/Sites/express-loci/views/produits/add-cart-modal.jade",
+		"/Users/lilit/Sites/express-loci/views/index.jade",
+		"/Users/lilit/Sites/express-loci/controllers/home.js",
+		"/Users/lilit/Sites/express-loci/models/promotions.js",
+		"/Users/lilit/Sites/express-loci/app.js",
+		"/Users/lilit/Sites/express-loci/controllers/old produits.js",
+		"/Users/lilit/Sites/express-loci/controllers/promotions.js",
+		"/Users/lilit/Sites/express-loci/public/js/validation-addons.js",
+		"/Users/lilit/Sites/express-loci/public/js/vendor/jquery-ui.js",
+		"/Users/lilit/Sites/express-loci/controllers/controller.js",
+		"/Users/lilit/Sites/express-loci/controllers/salles.js",
+		"/Users/lilit/Sites/express-loci/controllers/membres.js",
+		"/Users/lilit/Sites/express-loci/controllers/commandes.js",
+		"/Users/lilit/Sites/express-loci/views/commentaires/listing.jade",
+		"/Users/lilit/Sites/express-loci/views/forms/produits/new.jade",
+		"/Users/lilit/Sites/express-loci/views/reservation.jade",
+		"/Users/lilit/Sites/express-loci/vendor/bootstrap/less/variables.less",
+		"/Users/lilit/Sites/express-loci/views/produits/add-cart.jade",
 		"/Users/lilit/Sites/express-loci/views/connexion.jade",
 		"/Users/lilit/Sites/express-loci/views/produits/add-card.jade",
-		"/Users/lilit/Sites/express-loci/vendor/main.less",
-		"/Users/lilit/Sites/express-loci/views/reservation.jade",
 		"/Users/lilit/Sites/sfa/pages/cvtheque.php",
 		"/Users/lilit/Sites/sfa/admin/index.php",
 		"/Users/lilit/Sites/sfa/pages/emplois_detail.php",
@@ -316,6 +330,8 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"-node_modules/*",
+			"",
 			"-admin/*, -fckeditor/*, -js/*, -demo/*",
 			"-admin/*, -fckeditor/*, -js/*",
 			"-admin",
@@ -332,6 +348,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"panier",
+			"	\n",
+			"console.log",
+			"underline",
+			"console.log",
+			"req.session",
 			"toto",
 			"\n								prix: #{data.prix},",
 			"add-to-cart",
@@ -383,12 +405,12 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
 		],
 		"reverse": false,
-		"show_context": true,
+		"show_context": false,
 		"use_buffer2": true,
 		"whole_word": false,
 		"wrap": true
@@ -396,23 +418,23 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "controllers/produits.js",
+					"file": "app.js",
 					"settings":
 					{
-						"buffer_size": 8897,
+						"buffer_size": 3380,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8867,
-								8867
+								2614,
+								2614
 							]
 						],
 						"settings":
@@ -421,58 +443,57 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1099.0,
+						"translation.y": 1006.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "views/produits/show.jade",
+					"file": "routes.js",
 					"settings":
 					{
-						"buffer_size": 2229,
+						"buffer_size": 7670,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1192,
-								1192
+								3616,
+								3616
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 292.0,
+						"translation.y": 1233.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "views/produits/listing.jade",
+					"file": "controllers/panier.js",
 					"settings":
 					{
-						"buffer_size": 1533,
+						"buffer_size": 2740,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								956,
-								956
+								1764,
+								1776
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -482,150 +503,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "views/produits/add-cart-link.jade",
+					"file": "views/index.jade",
 					"settings":
 					{
-						"buffer_size": 682,
+						"buffer_size": 754,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								148,
-								148
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "views/panier.jade",
-					"settings":
-					{
-						"buffer_size": 63,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14,
-								14
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "public/js/main.js",
-					"settings":
-					{
-						"buffer_size": 6795,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6552,
-								6541
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2875.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/produits/add-cart-modal.jade",
-					"settings":
-					{
-						"buffer_size": 454,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								454,
-								454
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "routes.js",
-					"settings":
-					{
-						"buffer_size": 5161,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4906,
-								4914
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1093.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "views/forms/produits/new.jade",
-					"settings":
-					{
-						"buffer_size": 1555,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								88,
-								88
+								63,
+								74
 							]
 						],
 						"settings":
@@ -640,64 +529,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "controllers/reservation.js",
+					"buffer": 4,
+					"file": "controllers/produits.js",
 					"settings":
 					{
-						"buffer_size": 411,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								118,
-								118
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "views/reservation.jade",
-					"settings":
-					{
-						"buffer_size": 65,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								65,
-								65
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "models/produits.js",
-					"settings":
-					{
-						"buffer_size": 781,
+						"buffer_size": 8827,
 						"regions":
 						{
 						},
@@ -714,60 +550,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 274.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "vendor/main.less",
+					"buffer": 5,
+					"file": "controllers/home.js",
 					"settings":
 					{
-						"buffer_size": 5133,
+						"buffer_size": 397,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2484,
-								2484
+								264,
+								317
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2263.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "vendor/bootstrap/less/variables.less",
-					"settings":
-					{
-						"buffer_size": 9142,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1714,
-								1727
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 569.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -806,6 +616,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 112.0
+	},
 	"replace":
 	{
 		"height": 0.0
@@ -816,6 +630,34 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"pa",
+				"package.json"
+			],
+			[
+				"app.js",
+				"app.js"
+			],
+			[
+				"produits/sho",
+				"views/produits/show.jade"
+			],
+			[
+				"main.le",
+				"vendor/main.less"
+			],
+			[
+				"index",
+				"views/index.jade"
+			],
+			[
+				"add-card",
+				"views/produits/add-cart-link.jade"
+			],
+			[
+				"listin",
+				"views/produits/listing.jade"
+			],
 			[
 				"main",
 				"vendor/main.less"
@@ -993,10 +835,6 @@
 				"pro_pwd_form.php"
 			],
 			[
-				"index",
-				"index.php"
-			],
-			[
 				"job_alert_u",
 				"pages/job_alert_update.php"
 			],
@@ -1070,7 +908,7 @@
 		[
 			[
 				"",
-				"/Users/lilit/Sites/premiercercle/premiercercle.sublime-project"
+				"/Users/lilit/Sites/agorabiz/agorabiz.sublime-project"
 			]
 		],
 		"width": 380.0

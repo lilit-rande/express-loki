@@ -33,7 +33,8 @@ var app = module.exports = express();
 Les sessions avec Express fonctionnent de manière habituelle: 
 	un ID de session est affecté à un visiteur et stocké dans un cookie. 
 	Côté serveur, on stock des données dans un « store » variable (mémoire, fichiers, base de données…) affectées à cet ID, avec un petit garbage collector qui va bien. 
-	Rien de d'étonnant, néanmoins comme par défaut il n’y a aucun parsing des headers de la requête HTTP, il faut tout de même prévoir quelques opérations ne serait-ce que pour savoir lire le cookie.
+	Rien de d'étonnant, néanmoins comme par défaut il n’y a aucun parsing des headers de la requête HTTP, 
+	il faut tout de même prévoir quelques opérations ne serait-ce que pour savoir lire le cookie.
 	
 	On va donc utiliser deux « middlewares »: un pour parser les cookies, un autre pour gérer les sessions: express.cookieParser et express.session
 */
@@ -41,33 +42,56 @@ app.configure(function(){
 	this.set('views', __dirname + '/views');
 	this.set('view engine', 'jade');
 	
-	// Allow parsing form data
+	// Allow parsing json, x-www-form-urlencoded and multipart/form-data
 	this.use(express.bodyParser({uploadDir:'./uploads'}));
+
 	this.use(express.methodOverride());
-  
-	// Allow parsing cookies from request headers
-	this.use(express.cookieParser());
+
+	// Allow parsing cookies from request headers		
+	this.use(express.cookieParser('PNquG656yQc4'));  
   
 	// Session management
 	this.use(express.session({ 
 			// Grâce à ça chaque requête est enrichie d’un objet « session » qu’on peut manipuler. 
 		  	// Private crypting key
-		  	'secret' : 'your secret here'
-		  	
+		  	'secret' : 'PNquG656yQc4',
 		  	// Internal session data storage engine, this is the default engine embedded with connect.
 		    // Much more can be found as external modules (Redis, Mongo, Mysql, file...). look at "npm search connect session store"
-	//	    'store' : new express.session.MemoryStore({ reapInterval : 60000 * 10})
+		    'store' : new express.session.MemoryStore({ reapInterval : 60000 * 10})
 		})
 	);
-		
+
+
 	// save the user pseudo on locals for use in jade templates
 	// in express 3.x the res.locals replaces the app.dynamicHelpers of express 2.x
 	this.use(function(req, res, next){
 		res.locals.session = req.session;
-		next();
-	});	
+
+		if ( ! req.cookies.panier ) {
+			// res.cookie('sId', req.sessionID, { maxAge: 1000*60*60*24*30*3 });
 		
-	this.use(require('stylus').middleware({ src: __dirname + '/public' }));
+			var obj = [];
+			var count = 0;
+
+			if ( req.session.panier) {
+				obj = req.session.panier;
+				count = req.session.count;
+			}
+			
+			res.cookie('panier', { obj : obj, count : count }, { maxAge: 1000*60*60*24*30*3 });
+		} else {
+			if (req.cookies.panier.obj.length > 0) { 
+				req.session.panier = req.cookies.panier.obj;
+				req.session.panier_count = req.cookies.panier.count;
+			}
+	
+		}
+		
+
+		res.locals.cookies = req.cookies;
+	//	console.log(req.session);
+		next();
+	});		
 	
 	this.use(app.router);
 	
