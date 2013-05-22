@@ -25,6 +25,7 @@ block content
 		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 			thead
 				tr
+					th Nom produit
 					th Date d'arrivée
 					th Date de départ
 					th Salle
@@ -42,6 +43,7 @@ block content
 					- else
 						- promo_id = ''
 					tr(data-id="#{produit._id}", data-model="produit", data-salle="#{produit.salle_id._id}", data-promotion="#{promo_id}")
+						td.model-view-link #{produit.title} 
 						td.model-view-link #{produit.arrive.toDateString()} 
 						//
 							#{produit.arrive.toLocaleTimeString()}

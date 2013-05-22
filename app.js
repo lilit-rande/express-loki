@@ -66,30 +66,29 @@ app.configure(function(){
 	// in express 3.x the res.locals replaces the app.dynamicHelpers of express 2.x
 	this.use(function(req, res, next){
 		res.locals.session = req.session;
+		var maxAge = 1000*60*60*24*30*3 ;
 
-		if ( ! req.cookies.panier ) {
-			// res.cookie('sId', req.sessionID, { maxAge: 1000*60*60*24*30*3 });
-		
-			var obj = [];
-			var count = 0;
+		// if ( ! req.cookies.panier ) {
+		// 	// res.cookie('sId', req.sessionID, { maxAge: 1000*60*60*24*30*3 });
 
-			if ( req.session.panier) {
-				obj = req.session.panier;
-				count = req.session.count;
-			}
-			
-			res.cookie('panier', { obj : obj, count : count }, { maxAge: 1000*60*60*24*30*3 });
-		} else {
-			if (req.cookies.panier.obj.length > 0) { 
-				req.session.panier = req.cookies.panier.obj;
-				req.session.panier_count = req.cookies.panier.count;
-			}
+		// } else {
 	
-		}
+		// }
 		
+		if (req.cookies.panier) {
+		//	req.session.
+		}
+
+		// if (!req.cookies.panier) {
+		// 	if (req.session.panier) {
+		// 		res.cookie('panier', {obj: req.session.panier, count: req.session.panier_count}, {maxAge: maxAge});
+		// 	}
+		// } else {
+		// 	req.session.panier = req.cookies.obj;
+		// 	req.session.panier_count = req.cookies.count;
+		// }
 
 		res.locals.cookies = req.cookies;
-	//	console.log(req.session);
 		next();
 	});		
 	

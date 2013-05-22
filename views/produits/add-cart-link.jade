@@ -8,4 +8,6 @@
 	a.remove-from-cart(class="#{data_class}", data-id="#{data._id}") Retirer du panier >
 - else
 	a.add-to-cart(class="#{data_class}", data-id="#{data._id}", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier
-textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}
+textarea.datas-json(id="datas-json-"+"#{data._id}") #{data_json}
+//
+	textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}

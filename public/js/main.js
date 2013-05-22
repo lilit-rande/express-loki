@@ -232,11 +232,13 @@ $(document).ready(function() {
 		$.ajax({
 			dataType: 'json',
 			url: url,
+			type: 'post',
 			success: function(data) {
+				console.log(data);
 				$('#modal-panier .modal-body #message').html(data.message);
 				that.html('Ajouter au panier >');
-				that.addClass('add-to-cart');
 				that.removeClass('remove-from-cart');
+				that.addClass('add-to-cart');				
 				$('#nb_articles').html(data.count);
 			}})
 		});

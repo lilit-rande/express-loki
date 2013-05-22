@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"pani",
+				"panier_obj"
+			],
+			[
 				"panier",
 				"panier_obj"
 			],
@@ -30,10 +34,6 @@
 			[
 				"add",
 				"add_or_remove"
-			],
-			[
-				"pani",
-				"panier"
 			],
 			[
 				"requi",
@@ -123,7 +123,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 3380,
+				"buffer_size": 3684,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,7 +131,7 @@
 			"file": "routes.js",
 			"settings":
 			{
-				"buffer_size": 7670,
+				"buffer_size": 7635,
 				"line_ending": "Unix"
 			}
 		},
@@ -139,16 +139,18 @@
 			"file": "controllers/panier.js",
 			"settings":
 			{
-				"buffer_size": 2740,
+				"buffer_size": 3185,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/index.jade",
+			"contents": "Searching 455 files for \"date_creation\" (regex)\n\n/Users/lilit/Sites/express-loci/routes.js:\n  106: 	// 				panier_obj.date_creation = panier.dateCreation;\n\n/Users/lilit/Sites/express-loci/controllers/panier.js:\n   44: 		panier_obj.date_creation = Date.now();\n\n2 matches across 2 files\n",
 			"settings":
 			{
-				"buffer_size": 754,
-				"line_ending": "Unix"
+				"buffer_size": 285,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
 			}
 		},
 		{
@@ -164,6 +166,14 @@
 			"settings":
 			{
 				"buffer_size": 397,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/main.js",
+			"settings":
+			{
+				"buffer_size": 7493,
 				"line_ending": "Unix"
 			}
 		}
@@ -208,6 +218,8 @@
 	},
 	"file_history":
 	[
+		"/Users/lilit/Sites/express-loci/app.js",
+		"/Users/lilit/Sites/express-loci/views/index.jade",
 		"/Users/lilit/Sites/express-loci/controllers/reservation.js",
 		"/Users/lilit/Sites/express-loci/views/inc/header.jade",
 		"/Users/lilit/Sites/express-loci/views/inc/panier.jade",
@@ -229,10 +241,8 @@
 		"/Users/lilit/Sites/express-loci/vendor/main.less",
 		"/Users/lilit/Sites/express-loci/views/forms/connetion-modal.jade",
 		"/Users/lilit/Sites/express-loci/views/produits/add-cart-modal.jade",
-		"/Users/lilit/Sites/express-loci/views/index.jade",
 		"/Users/lilit/Sites/express-loci/controllers/home.js",
 		"/Users/lilit/Sites/express-loci/models/promotions.js",
-		"/Users/lilit/Sites/express-loci/app.js",
 		"/Users/lilit/Sites/express-loci/controllers/old produits.js",
 		"/Users/lilit/Sites/express-loci/controllers/promotions.js",
 		"/Users/lilit/Sites/express-loci/public/js/validation-addons.js",
@@ -348,6 +358,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"			",
+			"date_creation",
 			"panier",
 			"	\n",
 			"console.log",
@@ -418,7 +430,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -426,15 +438,15 @@
 					"file": "app.js",
 					"settings":
 					{
-						"buffer_size": 3380,
+						"buffer_size": 3684,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2614,
-								2614
+								2132,
+								2132
 							]
 						],
 						"settings":
@@ -443,7 +455,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1006.0,
+						"translation.y": 748.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -453,15 +465,15 @@
 					"file": "routes.js",
 					"settings":
 					{
-						"buffer_size": 7670,
+						"buffer_size": 7635,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3616,
-								3616
+								1067,
+								1067
 							]
 						],
 						"settings":
@@ -470,7 +482,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1233.0,
+						"translation.y": 385.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -480,47 +492,68 @@
 					"file": "controllers/panier.js",
 					"settings":
 					{
-						"buffer_size": 2740,
+						"buffer_size": 3185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1764,
-								1776
+								1782,
+								1782
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 649.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "views/index.jade",
 					"settings":
 					{
-						"buffer_size": 754,
+						"buffer_size": 285,
 						"regions":
 						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										118,
+										131
+									],
+									[
+										231,
+										244
+									]
+								],
+								"scope": ""
+							}
 						},
 						"selection":
 						[
 							[
-								63,
-								74
+								240,
+								240
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -581,6 +614,33 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/js/main.js",
+					"settings":
+					{
+						"buffer_size": 7493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1048,
+								1048
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 323.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -631,6 +691,10 @@
 		"selected_items":
 		[
 			[
+				"main",
+				"public/js/main.js"
+			],
+			[
 				"pa",
 				"package.json"
 			],
@@ -657,10 +721,6 @@
 			[
 				"listin",
 				"views/produits/listing.jade"
-			],
-			[
-				"main",
-				"vendor/main.less"
 			],
 			[
 				"rout",

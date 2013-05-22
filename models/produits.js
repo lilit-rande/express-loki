@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 //create Produit model
 
 var produitSchema = new Schema({
-	title: {type: String, require: true, trim: true, unique: true},
+	title: {type: String, require: true, trim: true, unique: false},
 	arrive: {type: Date, require: true, trim: true},
 	depart: {type: Date, require: true, trim: true},
 	salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', default: null, require: true},	

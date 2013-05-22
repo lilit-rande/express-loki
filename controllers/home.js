@@ -2,7 +2,7 @@ var Produit = require('../models/produits.js');
 
 exports.index = function(req, res){
 	Produit
-		.find({'etat': 1})
+		.find({'etat': 0})
 		.populate('salle_id promotion_id')
 		.limit(3)
 		.exec(function(err, docs) {

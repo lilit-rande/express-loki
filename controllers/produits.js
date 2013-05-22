@@ -196,6 +196,7 @@ exports.update = function(req, res) {
 	Model.update({'_id': ref}, produit, function(err, docs) {
 		if (err) {
 			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
+			console.log(err);
 		} else {
 			if (foreignModels) {
 				for (var fm in foreignModels) {

@@ -256,7 +256,7 @@ session {
 	app.get('/panier/*', [currentPage], panier.index);
 
 	app.post('/ajouter-panier', [currentPage], panier.ajouter_panier);
-	app.get('/retirer-panier/:id', [currentPage], panier.retirer_panier);
+	app.post('/retirer-panier/:id', [currentPage], panier.retirer_panier);
 	app.get('/vider-panier', [currentPage], panier.vider_panier);
 
 
