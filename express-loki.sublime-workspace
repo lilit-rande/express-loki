@@ -5,7 +5,23 @@
 		[
 			[
 				"pani",
-				"panier_obj"
+				"panier"
+			],
+			[
+				"pr",
+				"produit_id"
+			],
+			[
+				"pan",
+				"panier_count"
+			],
+			[
+				"sess",
+				"session"
+			],
+			[
+				"sessio",
+				"session_object"
 			],
 			[
 				"panier",
@@ -123,7 +139,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 3684,
+				"buffer_size": 3614,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,7 +147,7 @@
 			"file": "routes.js",
 			"settings":
 			{
-				"buffer_size": 7635,
+				"buffer_size": 7636,
 				"line_ending": "Unix"
 			}
 		},
@@ -139,25 +155,23 @@
 			"file": "controllers/panier.js",
 			"settings":
 			{
-				"buffer_size": 3185,
+				"buffer_size": 4593,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 455 files for \"date_creation\" (regex)\n\n/Users/lilit/Sites/express-loci/routes.js:\n  106: 	// 				panier_obj.date_creation = panier.dateCreation;\n\n/Users/lilit/Sites/express-loci/controllers/panier.js:\n   44: 		panier_obj.date_creation = Date.now();\n\n2 matches across 2 files\n",
+			"file": "views/produits/add-cart-link.jade",
 			"settings":
 			{
-				"buffer_size": 285,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
+				"buffer_size": 655,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "controllers/produits.js",
+			"file": "views/index.jade",
 			"settings":
 			{
-				"buffer_size": 8827,
+				"buffer_size": 754,
 				"line_ending": "Unix"
 			}
 		},
@@ -173,7 +187,15 @@
 			"file": "public/js/main.js",
 			"settings":
 			{
-				"buffer_size": 7493,
+				"buffer_size": 7516,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "controllers/salles.js",
+			"settings":
+			{
+				"buffer_size": 4307,
 				"line_ending": "Unix"
 			}
 		}
@@ -218,41 +240,44 @@
 	},
 	"file_history":
 	[
+		"/Users/lilit/Sites/express-loci/controllers/salles.js",
+		"/Users/lilit/Sites/express-loci/views/produits/listing.jade",
+		"/Users/lilit/Sites/express-loci/controllers/produits.js",
+		"/Users/lilit/Sites/express-loci/models/salles.js",
+		"/Users/lilit/Sites/express-loci/models/promotions.js",
+		"/Users/lilit/Sites/express-loci/models/produits.js",
+		"/Users/lilit/Sites/express-loci/models/commentaires.js",
+		"/Users/lilit/Sites/express-loci/controllers/reservation.js",
+		"/Users/lilit/Sites/express-loci/views/produits/index.jade",
+		"/Users/lilit/Sites/express-loci/views/forms/produits/new.jade",
+		"/Users/lilit/Sites/express-loci/views/forms/produits/edit.jade",
 		"/Users/lilit/Sites/express-loci/app.js",
 		"/Users/lilit/Sites/express-loci/views/index.jade",
-		"/Users/lilit/Sites/express-loci/controllers/reservation.js",
 		"/Users/lilit/Sites/express-loci/views/inc/header.jade",
 		"/Users/lilit/Sites/express-loci/views/inc/panier.jade",
 		"/Users/lilit/Sites/express-loci/models/panier.js",
 		"/Users/lilit/Sites/express-loci/models/session.js",
 		"/Users/lilit/Sites/express-loci/routes.js",
 		"/Users/lilit/Sites/express-loci/package.json",
-		"/Users/lilit/Sites/express-loci/controllers/produits.js",
 		"/Users/lilit/Sites/express-loci/views/produits/show.jade",
-		"/Users/lilit/Sites/express-loci/views/produits/index.jade",
 		"/Users/lilit/Sites/express-loci/controllers/login.js",
 		"/Users/lilit/Sites/express-loci/views/produits/add-cart-link.jade",
-		"/Users/lilit/Sites/express-loci/views/produits/listing.jade",
 		"/Users/lilit/Sites/express-loci/public/js/main.js",
 		"/Users/lilit/Sites/express-loci/app-populate-dbs.js",
-		"/Users/lilit/Sites/express-loci/models/produits.js",
 		"/Users/lilit/Sites/express-loci/models/commandes.js",
 		"/Users/lilit/Sites/express-loci/views/panier.jade",
 		"/Users/lilit/Sites/express-loci/vendor/main.less",
 		"/Users/lilit/Sites/express-loci/views/forms/connetion-modal.jade",
 		"/Users/lilit/Sites/express-loci/views/produits/add-cart-modal.jade",
 		"/Users/lilit/Sites/express-loci/controllers/home.js",
-		"/Users/lilit/Sites/express-loci/models/promotions.js",
 		"/Users/lilit/Sites/express-loci/controllers/old produits.js",
 		"/Users/lilit/Sites/express-loci/controllers/promotions.js",
 		"/Users/lilit/Sites/express-loci/public/js/validation-addons.js",
 		"/Users/lilit/Sites/express-loci/public/js/vendor/jquery-ui.js",
 		"/Users/lilit/Sites/express-loci/controllers/controller.js",
-		"/Users/lilit/Sites/express-loci/controllers/salles.js",
 		"/Users/lilit/Sites/express-loci/controllers/membres.js",
 		"/Users/lilit/Sites/express-loci/controllers/commandes.js",
 		"/Users/lilit/Sites/express-loci/views/commentaires/listing.jade",
-		"/Users/lilit/Sites/express-loci/views/forms/produits/new.jade",
 		"/Users/lilit/Sites/express-loci/views/reservation.jade",
 		"/Users/lilit/Sites/express-loci/vendor/bootstrap/less/variables.less",
 		"/Users/lilit/Sites/express-loci/views/produits/add-cart.jade",
@@ -340,6 +365,8 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"-node_modules/*, -vendor/*, -css/*",
+			"-node_modules/*, -vendor/*",
 			"-node_modules/*",
 			"",
 			"-admin/*, -fckeditor/*, -js/*, -demo/*",
@@ -358,6 +385,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sId",
+			"count",
+			"maxAge",
+			"obj",
+			"sessionID",
+			"res",
+			"produits/listing",
+			"hidden",
 			"			",
 			"date_creation",
 			"panier",
@@ -430,7 +465,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -438,15 +473,15 @@
 					"file": "app.js",
 					"settings":
 					{
-						"buffer_size": 3684,
+						"buffer_size": 3614,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2132,
-								2132
+								2883,
+								2883
 							]
 						],
 						"settings":
@@ -455,7 +490,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 748.0,
+						"translation.y": 904.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -465,15 +500,15 @@
 					"file": "routes.js",
 					"settings":
 					{
-						"buffer_size": 7635,
+						"buffer_size": 7636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1067,
-								1067
+								7489,
+								7489
 							]
 						],
 						"settings":
@@ -482,7 +517,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 385.0,
+						"translation.y": 3760.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -492,15 +527,15 @@
 					"file": "controllers/panier.js",
 					"settings":
 					{
-						"buffer_size": 3185,
+						"buffer_size": 4593,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1782,
-								1782
+								4481,
+								4481
 							]
 						],
 						"settings":
@@ -509,51 +544,30 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 649.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "views/produits/add-cart-link.jade",
 					"settings":
 					{
-						"buffer_size": 285,
+						"buffer_size": 655,
 						"regions":
 						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										118,
-										131
-									],
-									[
-										231,
-										244
-									]
-								],
-								"scope": ""
-							}
 						},
 						"selection":
 						[
 							[
-								240,
-								240
+								533,
+								533
 							]
 						],
 						"settings":
 						{
-							"detect_indentation": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -563,27 +577,27 @@
 				},
 				{
 					"buffer": 4,
-					"file": "controllers/produits.js",
+					"file": "views/index.jade",
 					"settings":
 					{
-						"buffer_size": 8827,
+						"buffer_size": 754,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								728,
+								728
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 274.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -600,8 +614,8 @@
 						"selection":
 						[
 							[
-								264,
-								317
+								112,
+								112
 							]
 						],
 						"settings":
@@ -620,15 +634,15 @@
 					"file": "public/js/main.js",
 					"settings":
 					{
-						"buffer_size": 7493,
+						"buffer_size": 7516,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1048,
-								1048
+								6745,
+								6745
 							]
 						],
 						"settings":
@@ -637,7 +651,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 323.0,
+						"translation.y": 3283.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "controllers/salles.js",
+					"settings":
+					{
+						"buffer_size": 4307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2418,
+								2430
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 971.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -690,6 +731,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"listing",
+				"views/produits/listing.jade"
+			],
 			[
 				"main",
 				"public/js/main.js"

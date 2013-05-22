@@ -1,6 +1,5 @@
 var Produit = require('../models/produits.js');
-var Panier = require('../models/panier.js');
-var maxAge = 1000*60*60*24*30*3;
+var Session = require('../models/session.js');
 
 exports.index = function(req, res) {
 	res.render('panier', {title: 'Mon panier'});
@@ -11,9 +10,8 @@ exports.index = function(req, res) {
 exports.ajouter_panier =  function(req, res){
 		
 		var panier_obj = {};
-
-
 		var exists = false;
+		var sId = '';
 
 		if (!req.session.panier || req.session.panier[0] == null) {
 			req.session.panier = [];
@@ -39,58 +37,123 @@ exports.ajouter_panier =  function(req, res){
 		panier_obj.salle_image = req.body.salle_id.image;
 		panier_obj.salle_pays = req.body.salle_id.pays;
 		panier_obj.salle_ville = req.body.salle_id.ville;
+	
+		req.session.panier.push(panier_obj);
+		req.session.panier_count++;
 
-	//	panier_obj.date_creation = Date.now();
-		
+		if (req.cookies.sId) {
+			sId = req.cookies.sId;
+		} else {
+			sId = req.sessionId;
+		}
 
+		var session_object = {
+			sId: sId,
+			panier: req.session.panier,
+			count: req.session.panier_count
+		};
 
-			req.session.panier.push(panier_obj);
-			req.session.panier_count++;
-
-//		 	res.cookie('panier', { obj : req.session.panier, count : req.session.panier_count }, { maxAge: 1000*60*60*24*30*3 });
-
-		 	console.log("SESSION PANIER = " + req.session.panier + "COUNT PANIER = " + req.session.panier_count);
-			res.send({response: 'ok', message: 'Le produit a été ajouté au panier.', count: req.session.panier_count});
+		Session
+		.findOne({'sId': sId})
+		.exec(function(err, data){
+			if (data == null){
+				var s_obj = new Session(session_object);
+				s_obj.save(function(err, save_data){
+					if (err) {
+						console.log(err);
+						res.send({response: 'error', message: err, count: req.session.panier_count});
+					} else {
+						res.send({response: 'ok', message: 'Le produit a été ajouté au panier.', count: req.session.panier_count});
+					}
+				});
+			} else {
+				Session.update({'sId': sId}, session_object, function(err, update_data) {
+					if(err) {
+						console.log(err);
+						res.send({response: 'error', message: err, count: req.session.panier_count});
+					} else {
+						res.send({response: 'ok', message: 'Le produit a été ajouté au panier.', count: req.session.panier_count});
+					}
+				});
+			}
+		});
 	}
 
 exports.retirer_panier = function(req, res) {
+	
+	var id = req.params.id;
+	var sId = '';
+
 	if (req.session.panier && req.session.panier.length > 0 && req.session.panier != null) {
-		for (var i=0; i<req.session.panier.length; i++) {
-		//	if(req.session.panier[i] != null) {		
+	
+		for(var i = 0; i<req.session.panier.length; i++) {
+			if ( req.session.panier[i].produit_id == id) {
+				req.session.panier.splice(i,1);
 
-			console.log('ID = ****** = ' + req.params.id);
-			console.log('SESSION.PANIER[i] = ******** = ' + req.session.panier[i]);
-
-			console.log('SESSION.PANIER[i].produit_id = ******** = ' + req.session.panier[i].produit_id);
-				if (req.session.panier[i].produit_id == req.params.id) {
-					
-					req.session.panier.splice(i,1);
-
-					if (req.session.panier_count != 0) {
-						req.session.panier_count--;
-					
-					} 
-					var obj = req.session.panier;
-					var count = req.session.panier_count;
-
-//					res.cookie('panier', { obj : obj, count : count }, { maxAge: 1000*60*60*24*30*3 });
-					console.log("SESSION PANIER = " + req.session.panier + "COUNT PANIER = " + req.session.panier_count);
-					res.send({response: 'ok', message: 'Le produit a bien été retiré du panier.', count: req.session.panier_count});
-				} else {
-					res.send({response: 'non', message: 'Il n\'y a pas de tel produit dans le panier.', count: req.session.panier_count});
+				if (req.session.panier_count != 0) {
+					req.session.panier_count--;
 				}
-	//		}
+			}
 		}
-	} else {
-		res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.'});
+
+		if (req.cookies.sId) {
+			sId = req.cookies.sId;
+		} else {
+			sId = req.sessionId;
+		}
+
+		var session_object = {
+			sId: sId,
+			panier: req.session.panier,
+			count: req.session.panier_count
+		};
+
+		Session
+		.findOne({'sId' : sId})
+		.exec(function(err, data){
+			if (data == null){
+				var s_obj = new Session(session_object);
+				s_obj.save(function(err, save_data){
+					if (err) {
+						res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: req.session.panier_count});
+					} else {
+						res.send({response: 'ok', message: 'Le produit a été retiré du panier.', count: req.session.panier_count});
+					}
+				});
+			} else {
+				Session.update({'sId': sId}, session_object, function(err, update_data) {
+					if(err) {
+						res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: req.session.panier_count});
+					} else {
+						res.send({response: 'ok', message: 'Le produit a été retiré du panier.', count: req.session.panier_count});
+					}
+				});
+			}
+		});
 	}
 }
 
 exports.vider_panier = function (req, res) {
-	
 	req.session.panier = [];
-//	res.clearCookie('panier');
+	req.session.panier_count = 0;
+	var sId = req.cookies.sId;
 
-	console.log("SESSION PANIER = " + req.session);
-	res.send({response: 'Ok', message: 'Votre panier a bien été vidé.'});
+	Session
+	.findOne({'sId': sId})
+	.exec(function(err, data){
+		if (data != null) {
+			Session
+			.remove({'sId': sId})
+			.exec(function(err, doc){
+				if(err) {
+					res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: req.session.panier_count});
+				} else {
+					res.send({response: 'Ok', message: 'Votre panier a bien été vidé.'});
+				}
+			});
+		}
+	});
+
+	console.log("SESSION PANIER = " + req.session.panier);
+	console.log("COUNT = " + req.session.panier_count);
 }

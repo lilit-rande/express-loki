@@ -61,36 +61,30 @@ app.configure(function(){
 		})
 	);
 
-
 	// save the user pseudo on locals for use in jade templates
 	// in express 3.x the res.locals replaces the app.dynamicHelpers of express 2.x
 	this.use(function(req, res, next){
 		res.locals.session = req.session;
 		var maxAge = 1000*60*60*24*30*3 ;
+		var Session = require('./models/session.js');
 
-		// if ( ! req.cookies.panier ) {
-		// 	// res.cookie('sId', req.sessionID, { maxAge: 1000*60*60*24*30*3 });
-
-		// } else {
-	
-		// }
-		
-		if (req.cookies.panier) {
-		//	req.session.
+		if ( ! req.cookies.sId ) {
+			res.cookie('sId', req.sessionID, { maxAge: maxAge });
+		//	res.cookie('panier', { obj: [], count: 0 }, { maxAge: maxAge });
+		} else {
+			Session
+			.findOne({'sId': req.cookies.sId})
+			.exec(function(err, data){
+				if(data != null) {
+					req.session.panier = data.panier;
+					req.session.panier_count = data.count;
+				}
+			});
 		}
-
-		// if (!req.cookies.panier) {
-		// 	if (req.session.panier) {
-		// 		res.cookie('panier', {obj: req.session.panier, count: req.session.panier_count}, {maxAge: maxAge});
-		// 	}
-		// } else {
-		// 	req.session.panier = req.cookies.obj;
-		// 	req.session.panier_count = req.cookies.count;
-		// }
-
 		res.locals.cookies = req.cookies;
 		next();
-	});		
+	});
+
 	
 	this.use(app.router);
 	

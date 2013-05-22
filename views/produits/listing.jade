@@ -5,7 +5,7 @@ include add-cart-modal
 - if (docs != null)	
 	- each data in docs		
 		div.annonce(data-model="produit", data-id="#{data._id}")
-			h2 #{data.salle_id.title}
+			h2 #{data.salle_id.title} #{data.title}
 				a.heading-a(href="/produits/#{data._id}") Voir les détailles >
 			div
 				img.pull-left(src="../images/vignettes/#{data.salle_id.image}")

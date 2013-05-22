@@ -230,7 +230,6 @@ $(document).ready(function() {
 			url = 'retirer-panier/' + id;
 			
 		$.ajax({
-			dataType: 'json',
 			url: url,
 			type: 'post',
 			success: function(data) {
