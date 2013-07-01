@@ -23,6 +23,7 @@ Thumbs.db
 nbproject
 *.sublime-project
 *.sublime-workspace
+express-loki.sublime-workspace
 
 # Komodo
 *.komodoproject
