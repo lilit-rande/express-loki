@@ -729,6 +729,9 @@ var membre1 = new Membre ({
 		});*/
 /*
 
+
+mongo localhost/lokisalle
+
 drop all collections
 > use database_name;
 

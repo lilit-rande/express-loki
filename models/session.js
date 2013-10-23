@@ -14,7 +14,8 @@ var sessionSchema = new Schema({
 		prix: {type: Number, require: true, trim: true},
 
 		promotion_id: {type: Schema.Types.ObjectId, ref: 'Promotions', require: false},
-		promotion_code: {type: String, require:true, trim:true, unique:true },
+		promotion_code: {type: String, require:true, trim:true },
+		// promotion_code: {type: String, require:true, trim:true, unique:true },
 		promotion_reduction: {type: Number, require: true, trim:true},
 
 		salle_id: {type: Schema.Types.ObjectId, ref: 'Salles', require: true},

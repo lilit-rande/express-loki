@@ -1,13 +1,11 @@
 - var data_json = JSON.stringify( data );
 - var add_or_remove = 'add'
-- if (session.panier && session.panier != null)
+- if (session.panier && session.panier != null)	
 	- each panier_obj in session.panier	
-		- if (panier_obj != null && panier_obj.produit_id == data._id)
+		- if (panier_obj != null && panier_obj.produit_id == data.id)
 			- add_or_remove = 'remove'
 - if (add_or_remove == 'remove')
 	a.remove-from-cart(class="#{data_class}", data-id="#{data._id}") Retirer du panier >
 - else
-	a.add-to-cart(class="#{data_class}", data-id="#{data._id}", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier
-textarea.datas-json(id="datas-json-"+"#{data._id}") #{data_json}
-//
-	textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}
+	a.add-to-cart(class="#{data_class}", data-id="#{data._id}", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier >
+textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}

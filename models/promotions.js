@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 //create Promotion model
 var promotionSchema = new Schema({
-	code: {type: String, require:true, trim:true, unique:true },
+	code: {type: String, require:true, trim:true, index: {sparse: true, unique:true}  },
 	reduction: {type: Number, require: true, trim:true},
 	produits : [{type: Schema.Types.ObjectId, ref:'Produits', default: null, require: false}]
 });

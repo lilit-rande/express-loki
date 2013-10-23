@@ -44,10 +44,10 @@ block content
 						- promo_id = ''
 					tr(data-id="#{produit._id}", data-model="produit", data-salle="#{produit.salle_id._id}", data-promotion="#{promo_id}")
 						td.model-view-link #{produit.title} 
-						td.model-view-link #{produit.arrive.toDateString()} 
+						td.model-view-link #{moment(produit.arrive).format('DD/MM/YYYY HH:mm')}
 						//
 							#{produit.arrive.toLocaleTimeString()}
-						td.model-view-link #{produit.depart.toDateString()} 
+						td.model-view-link #{moment(produit.depart).format('DD/MM/YYYY HH:mm')}
 						//
 							#{produit.depart.toLocaleTimeString()}
 						- if (produit.salle_id != null)

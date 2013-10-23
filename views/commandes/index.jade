@@ -26,7 +26,7 @@ block content
 							a(href="/membres/#{commande.membre_id._id}") #{commande.membre_id.pseudo}
 						td 
 							a(href="/salles/#{commande.produit_id.salle_id._id}") #{commande.produit_id.salle_id.title}
-						td #{commande.date.toDateString()}
+						td #{moment(commande.date).format('DD/MM/YYYY HH:mm')}
 						td #{commande.montant}
 						td=etat
 		div.clearfix

@@ -85,6 +85,7 @@ app.configure(function(){
 		next();
 	});
 
+	this.locals.moment = require('moment');
 	
 	this.use(app.router);
 	
