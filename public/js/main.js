@@ -213,16 +213,12 @@ $(document).ready(function() {
 			data: json_data,
 			dataType: 'json',
 			success: function(data){
-				console.log(data);
-				
 				$('#modal-panier .modal-body #message').html(data.message);
 				that.html('Retirer du panier >');
 				that.removeClass('add-to-cart');
 				that.addClass('remove-from-cart');
-			//	that.attr('href', 'retirer-panier/' + id);
-				console.log(data.count);
-				$('#nb_articles').html(data.count);
-				// console.log('NB ARTICLES = ' + data.count);
+			//	that.attr('href', 'retirer-panier/' + id);				
+				$('#nb_articles').html(data.count);				
 			}
 		});
 	});
@@ -237,7 +233,6 @@ $(document).ready(function() {
 			url: url,
 			type: 'post',
 			success: function(data) {
-				console.log(data);
 				$('#modal-panier .modal-body #message').html(data.message);
 				that.html('Ajouter au panier >');
 				that.removeClass('remove-from-cart');

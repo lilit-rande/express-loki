@@ -52,10 +52,10 @@ exports.ajouter_panier =  function(req, res){
 	req.session.panier.push(panier_obj);
 	req.session.panier_count++;
 
-	console.log('/*************************/');
-	console.log('Add page');
-	console.log(req.session);
-	console.log('/*************************/');
+	// console.log('/*************************/');
+	// console.log('Add page');
+	// console.log(req.session);
+	// console.log('/*************************/');
 	var session_object = {
 		sId: sId,
 		panier: req.session.panier,
@@ -65,6 +65,8 @@ exports.ajouter_panier =  function(req, res){
 	Session
 	.findOne({'sId': sId})
 	.exec(function(err, data){
+		console.log('Sesssion');
+		console.log(data);
 		if (data == null){
 			var s_obj = new Session(session_object);
 			s_obj.save(function(err, save_data){
@@ -146,6 +148,8 @@ exports.retirer_panier = function(req, res) {
 			}
 		});
 	}
+
+	
 }
 
 exports.vider_panier = function (req, res) {
