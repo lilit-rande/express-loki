@@ -235,11 +235,12 @@ $(document).ready(function() {
 		})
 	});
 
-	$('body').on('click', '#empty_cart', function(){
-		$.post('vider-panier', function(data){
+	$('body').on('click', '#empty_cart', function(e){
+		e.preventDefault();
+		url = $(this).attr('href');
+		$.post(url, function(data){
 			if ( data.response == 'ok' ) {
-				console.log(data);
-			//	$('#nb_articles').html(data.count);
+				location.reload();
 			}
 		});
 	});

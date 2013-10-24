@@ -7,6 +7,33 @@ exports.index = function(req, res) {
 	res.render('panier', {title: 'Mon panier', panier_datas : req.session.panier, panier_count: req.session.panier_count});
 }
 
+function saveCart( _sId, session_object, res, _message ) {
+	Session
+	.findOne({'sId': _sId})
+	.exec(function(err, data){
+		if (data == null){
+			var s_obj = new Session(session_object);
+			s_obj.save(function(err, save_data){
+				if (err) {
+					console.log(err);
+					res.send({response: 'error', message: err, count: session_object.count});
+				} else {
+					res.send({response: 'ok', message: _message, count: session_object.count});
+				}
+			});
+		} else {
+			Session.update({'sId': _sId}, session_object, function(err, update_data) {
+				if(err) {
+					console.log(err);
+					res.send({response: 'error', message: err, count: session_object.count});
+				} else {
+					res.send({response: 'ok', message: _message, count: session_object.count});
+				}
+			});
+		}
+	});
+}
+
 exports.ajouter_panier =  function(req, res){
 		
 	var exists = false;
@@ -17,7 +44,7 @@ exports.ajouter_panier =  function(req, res){
 		req.session.panier_count = 0;
 	}
 
-	console.log(req.body.promotion_id);
+	
 	var panier_obj = {
 		"produit_id" : req.body._id,
 		"produit_title" : req.body.title,
@@ -52,30 +79,7 @@ exports.ajouter_panier =  function(req, res){
 		count: req.session.panier_count
 	};
 
-	Session
-	.findOne({'sId': sId})
-	.exec(function(err, data){
-		if (data == null){
-			var s_obj = new Session(session_object);
-			s_obj.save(function(err, save_data){
-				if (err) {
-					console.log(err);
-					res.send({response: 'error', message: err, count: session_object.count});
-				} else {
-					res.send({response: 'ok', message: 'Le produit a été ajouté au panier.', count: session_object.count});
-				}
-			});
-		} else {
-			Session.update({'sId': sId}, session_object, function(err, update_data) {
-				if(err) {
-					console.log(err);
-					res.send({response: 'error', message: err, count: session_object.count});
-				} else {
-					res.send({response: 'ok', message: 'Le produit a été ajouté au panier.', count: session_object.count});
-				}
-			});
-		}
-	});
+	saveCart(sId, session_object, res, 'Le produit a été ajouté au panier.');
 }
 
 exports.retirer_panier = function(req, res) {
@@ -100,39 +104,13 @@ exports.retirer_panier = function(req, res) {
 		} else {
 			sId = req.sessionId;
 		}
-
 		var session_object = {
 			sId: sId,
 			panier: req.session.panier,
 			count: req.session.panier_count
 		};
-
-		Session
-		.findOne({'sId' : sId})
-		.exec(function(err, data){
-
-			if (data == null){
-				var s_obj = new Session(session_object);
-				s_obj.save(function(err, save_data){
-					if (err) {
-						res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: session_object.count});
-					} else {
-						res.send({response: 'ok', message: 'Le produit a été retiré du panier.', count: session_object.count});
-					}
-				});
-			} else {
-				Session.update({'sId': sId}, session_object, function(err, update_data) {
-					if(err) {
-						res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: session_object.count});
-					} else {
-						res.send({response: 'ok', message: 'Le produit a été retiré du panier.', count: session_object.count});
-					}
-				});
-			}
-		});
+		saveCart( sId, session_object, res, 'Le produit a été retiré du panier.' );
 	}
-
-	
 }
 
 exports.vider_panier = function (req, res) {
@@ -150,7 +128,7 @@ exports.vider_panier = function (req, res) {
 				if(err) {
 					res.send({response: 'error', message: 'Une erreur s\'est produit, merci de réessayer plus tard.', count: req.session.panier_count});
 				} else {
-					res.send({response: 'Ok', message: 'Votre panier a bien été vidé.'});
+					res.send({response: 'ok', message: 'Votre panier a bien été vidé.'});
 				}
 			});
 		}

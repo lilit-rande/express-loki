@@ -2,6 +2,8 @@ extends layout
 
 block content
 	h1= title
+	- console.log('PANIER')
+	- console.log(session.panier)
 	table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 		thead
 			tr
@@ -28,16 +30,4 @@ block content
 						td 
 							a.remove-from-cart(data-id="#{data.produit_id}")
 								img(src="images/icons/erase.png")
-	a#empty_cart.btn.btn-info Vider le panier
-//
-	- var data_json = JSON.stringify( data );
-	- var add_or_remove = 'add'
-	- if (session.panier && session.panier != null)	
-		- each panier_obj in session.panier	
-			- if (panier_obj != null && panier_obj.produit_id == data.id)
-				- add_or_remove = 'remove'
-	- if (add_or_remove == 'remove')
-		a.remove-from-cart(class="#{data_class}", data-id="#{data._id}") Retirer du panier >
-	- else
-		a.add-to-cart(class="#{data_class}", data-id="#{data._id}", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier >
-	textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}
+	a#empty_cart.btn.btn-info(href="vider-panier") Vider le panier

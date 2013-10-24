@@ -87,7 +87,7 @@ exports.new = function(req, res) {
 		res.render('produits/new', {title: 'Ajouter un produit', body: html, foreignModels:foreignModels});
 	});
 
-// ASYNC PARALLEL module, remplacé par JQDeferred
+	// ASYNC PARALLEL, remplacé par JQDeferred
 	// async.parallel([
 	// 	function (callback) {
 	// 		return Salle.find({}, function(err, result){	// la liste de toutes les salles
