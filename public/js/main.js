@@ -120,18 +120,11 @@ $(document).ready(function() {
 
 		var url = '/' + model + 's/edit/' + id;
 		var data = $('#form-' + model).serialize();
-		
-	//	$('#form-'+model).submit();
-		
-//		if ($('#form-' + model).valid()){
-
 
 		$.post(url, data, function(){
 			location.reload();
 		});
 
-//		}
-		
 	});	//edit bouton clicked
 
 
@@ -224,7 +217,7 @@ $(document).ready(function() {
 	});
 
 	$('body').on('click', '.remove-from-cart', function(e){
-	//	e.preventDefault();
+		//	e.preventDefault();
 		var id = $(this).data('id'),
 			that = $(this),
 			url = 'retirer-panier/' + id;
@@ -238,8 +231,18 @@ $(document).ready(function() {
 				that.removeClass('remove-from-cart');
 				that.addClass('add-to-cart');				
 				$('#nb_articles').html(data.count);
-			}})
+			}
+		})
+	});
+
+	$('body').on('click', '#empty_cart', function(){
+		$.post('vider-panier', function(data){
+			if ( data.response == 'ok' ) {
+				console.log(data);
+			//	$('#nb_articles').html(data.count);
+			}
 		});
+	});
 
     // Datepicker
     $('.datepicker').datepicker({

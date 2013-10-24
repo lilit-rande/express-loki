@@ -125,7 +125,7 @@ session {
 	
 	app.get('/', [currentPage], home.index);
 	
-	var prefixes = ['salles','promotions','produits','commentaires','membres', 'commandes'];
+	var prefixes = ['salles','promotions','produits','commentaires', 'membres', 'commandes'];
 	
 	//map route to controller
 	prefixes.forEach(function(prefix) {

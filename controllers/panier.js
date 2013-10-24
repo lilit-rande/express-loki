@@ -2,20 +2,13 @@ var Produit = require('../models/produits.js');
 var Session = require('../models/session.js');
 
 exports.index = function(req, res) {
-	console.log('/*************************/');
-	console.log('Panier page');
-	console.log(req.session);
-	console.log('/*************************/');
 	var panier_objects = req.session.panier;
 	var count = req.session.panier_count;
-
 	res.render('panier', {title: 'Mon panier', panier_datas : req.session.panier, panier_count: req.session.panier_count});
-
 }
 
 exports.ajouter_panier =  function(req, res){
 		
-	var panier_obj = {};
 	var exists = false;
 	var sId = '';
 
@@ -23,26 +16,27 @@ exports.ajouter_panier =  function(req, res){
 		req.session.panier = [];
 		req.session.panier_count = 0;
 	}
-	
-	panier_obj.produit_id = req.body._id;
-	panier_obj.produit_title = req.body.title;
-	panier_obj.arrive = req.body.arrive;
-	panier_obj.depart = req.body.depart;
-	panier_obj.prix = req.body.prix;
 
-	panier_obj.promotion_id = (req.body.promotion_id) ? req.body.promotion_id._id : '';
-	panier_obj.promotion_code = (req.body.promotion_id) ? req.body.promotion_id.code : '';
-	panier_obj.promotion_reduction = (req.body.promotion_id) ? req.body.promotion_id.reduction : 0;
-
-	panier_obj.salle_id = req.body.salle_id._id;
-	panier_obj.salle_title = req.body.salle_id.title;
-	panier_obj.salle_adresse= req.body.salle_id.adresse;
-	panier_obj.salle_capacite = req.body.salle_id.capacite;
-	panier_obj.salle_categorie = req.body.salle_id.categorie;
-	panier_obj.salle_cp = req.body.salle_id.cp;
-	panier_obj.salle_image = req.body.salle_id.image;
-	panier_obj.salle_pays = req.body.salle_id.pays;
-	panier_obj.salle_ville = req.body.salle_id.ville;
+	console.log(req.body.promotion_id);
+	var panier_obj = {
+		"produit_id" : req.body._id,
+		"produit_title" : req.body.title,
+		"arrive" : req.body.arrive,
+		"depart" : req.body.depart,
+		"prix" : req.body.prix,
+		"promotion_id" : (req.body.promotion_id) ? req.body.promotion_id._id : '',
+		"promotion_code" : (req.body.promotion_id) ? req.body.promotion_id.code : '',
+		"promotion_reduction" : (req.body.promotion_id) ? req.body.promotion_id.reduction : 0,
+		"salle_id" : req.body.salle_id._id,
+		"salle_title" : req.body.salle_id.title,
+		"salle_adresse" :req.body.salle_id.adresse,
+		"salle_capacite" : req.body.salle_id.capacite,
+		"salle_categorie" : req.body.salle_id.categorie,
+		"salle_cp" : req.body.salle_id.cp,
+		"salle_image" : req.body.salle_id.image,
+		"salle_pays" : req.body.salle_id.pays,
+		"salle_ville" : req.body.salle_id.ville
+	};
 
 	if (req.cookies.sId) {
 		sId = req.cookies.sId;
@@ -52,10 +46,6 @@ exports.ajouter_panier =  function(req, res){
 	req.session.panier.push(panier_obj);
 	req.session.panier_count++;
 
-	// console.log('/*************************/');
-	// console.log('Add page');
-	// console.log(req.session);
-	// console.log('/*************************/');
 	var session_object = {
 		sId: sId,
 		panier: req.session.panier,
@@ -65,8 +55,6 @@ exports.ajouter_panier =  function(req, res){
 	Session
 	.findOne({'sId': sId})
 	.exec(function(err, data){
-		console.log('Sesssion');
-		console.log(data);
 		if (data == null){
 			var s_obj = new Session(session_object);
 			s_obj.save(function(err, save_data){
@@ -94,11 +82,6 @@ exports.retirer_panier = function(req, res) {
 	
 	var id = req.params.id;
 	var sId = '';
-
-	console.log('/*************************/');
-	console.log('Delete page');
-	console.log(req.session);
-	console.log('/*************************/');
 
 	if (req.session.panier && req.session.panier.length > 0 && req.session.panier != null) {
 	
@@ -172,7 +155,4 @@ exports.vider_panier = function (req, res) {
 			});
 		}
 	});
-
-	console.log("SESSION PANIER = " + req.session.panier);
-	console.log("COUNT = " + req.session.panier_count);
 }

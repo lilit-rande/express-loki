@@ -6,6 +6,7 @@ var superController = require('../controllers/controller.js'),
 	fs = require('fs'),
 	jade = require('jade'),
 	async = require('async');
+var Deferred = require('JQDeferred');
 
 function renderTpl(tplName, tplBody){
 	var jadefile = fs.readFileSync(tplName),
@@ -30,7 +31,40 @@ exports.index = function(req, res){
 	});
 }
 
-//delete a comment
+function find_salle(_id, ref) {
+	return Deferred(function(dfd) {
+		Salle.findOne({'_id' : _id}, function(err, salle){
+			if (err) {
+				return dfd.reject(err);
+			} else {
+				var index = salle.commentaires.indexOf(ref);
+				if (index != -1) {
+					salle.commentaires.splice(index);
+					salle.save();
+				}
+				return dfd.resolve(salle);
+			}
+		});
+	}).promise();
+}
+function find_member(_id, ref) {
+	return Deferred(function(dfd){
+		Member.findOne({'_id':_id}, function(err, member){
+			if (err){
+				return dfd.reject(err);
+			} else {
+				var index = member.commentaires.indexOf(ref);
+				if (index != -1) {
+					member.commentaires.splice(index);
+					member.save();
+				}
+				return dfd.resolve(member);
+			}
+		});
+	}).promise();
+}
+
+// delete a comment
 exports.destroy = function(req, res) {
 	var ref = req.params.id,
 		member = req.body.member,
@@ -41,36 +75,36 @@ exports.destroy = function(req, res) {
 		if(err) {
 			res.render('generals/error', {title: "Echec de suppression", body: "Il n'y a pas d'commentaire avec un identifient " + ref});
 		} else {
-			async.parallel([
-				function (callback) {
-					return Salle.findOne({'_id': salle}, function(err, salle){
-						var index = salle.commentaires.indexOf(ref);
-						if (index != -1) {
-							salle.commentaires.splice(index);
-							salle.save();
-						}
-						return callback(err);
-					});
-				}, function(callback) {
-					Member.findOne({'_id': member}, function(err, member){
-						var index = member.commentaires.indexOf(ref);
-						if (index != -1) {
-							member.commentaires.splice(index);
-							member.save();
-						}
-						return callback(err);
-					});
-				}
-			], function(err) {
-		//		res.redirect('/commentaires/index');
-		res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
+
+			Deferred.when(find_salle(salle, ref), find_member(member, ref)).done(function(salle, member){
+				res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
 			});
 
-			
-			
-			
-			
-//			res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
+			// async parallel remplacé par jquery deferred
+			// async.parallel([
+			// 	function (callback) {
+			// 		return Salle.findOne({'_id': salle}, function(err, salle){
+			// 			var index = salle.commentaires.indexOf(ref);
+			// 			if (index != -1) {
+			// 				salle.commentaires.splice(index);
+			// 				salle.save();
+			// 			}
+			// 			return callback(err);
+			// 		});
+			// 	}, function(callback) {
+			// 		Member.findOne({'_id': member}, function(err, member){
+			// 			var index = member.commentaires.indexOf(ref);
+			// 			if (index != -1) {
+			// 				member.commentaires.splice(index);
+			// 				member.save();
+			// 			}
+			// 			return callback(err);
+			// 		});
+			// 	}
+			// ], function(err) {
+			// 	//		res.redirect('/commentaires/index');
+			// 	res.render('generals/modified', {title: "Commentaire supprimé", body: "Le commentaire a bien été supprimé."});
+			// });
 		}
 	});
 };
@@ -146,8 +180,6 @@ exports.create = function(req, res) {
 
 
 //methodes fictives juste pour que les routes marchent
-
-
 exports.show = function(req, res) {
 /*
 	var	ref = req.params.id;

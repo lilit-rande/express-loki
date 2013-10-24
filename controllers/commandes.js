@@ -4,8 +4,7 @@ var Model = require('../models/commandes.js'),
 	Produit = require('../models/produits.js'),	
 	Salle = require('../models/salles.js'),
 	fs = require('fs'),
-	jade = require('jade'),
-	async = require('async');
+	jade = require('jade');
 	
 
 function renderTpl(tplName, tplBody){

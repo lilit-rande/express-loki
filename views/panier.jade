@@ -2,8 +2,6 @@ extends layout
 
 block content
 	h1= title
-	- console.log('PANIER')
-	- console.log(session.panier)
 	table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 		thead
 			tr
@@ -30,7 +28,7 @@ block content
 						td 
 							a.remove-from-cart(data-id="#{data.produit_id}")
 								img(src="images/icons/erase.png")
-	a.btn.btn-info(href="vider-panier") Vider le panier
+	a#empty_cart.btn.btn-info Vider le panier
 //
 	- var data_json = JSON.stringify( data );
 	- var add_or_remove = 'add'

@@ -5,8 +5,9 @@ var superController = require('../controllers/controller.js'),
 	Promotion = require('../models/promotions.js'),
 	Commande = require('../models/commandes.js'),	
 	fs = require('fs'),
-	jade = require('jade'),
-	async = require('async');
+	jade = require('jade');
+//	async = require('async'),
+	Deferred = require ('JQDeferred');
 
 function renderTpl(tplName, tplBody){
 	var jadefile = fs.readFileSync(tplName),
@@ -47,27 +48,63 @@ exports.index = function(req, res){
 	});
 }
 
+function salles () {
+	return Deferred(function(defer){
+
+		Salle.find({}, function(err, result){
+			if (err) {
+				defer.reject(err);
+			} else {
+				defer.resolve(result);
+			}
+		});
+	}).promise();
+}
+
+function promotions () {
+	return Deferred(function(defer){
+
+		Promotion.find({}, function(err, result){
+			if (err) {
+				defer.reject(err);
+			} else {
+				defer.resolve(result);
+			}
+		});
+	}).promise();
+}
+
 exports.new = function(req, res) {	
 //	superController.new(req, res, model);
 	var foreignModels = {};
 
-	async.parallel([
-		function (callback) {
-			return Salle.find({}, function(err, result){	// la liste de toutes les salles
-				foreignModels.salle = result;
-				return callback(err);
-			});
-		}, function(callback) {
-			return Promotion.find({}, function(err, result){	// la liste de toutes les promotions
-				foreignModels.promotion = result;
-				return callback(err);
-			});
-		}
-	], function(err) {
+	Deferred.when(salles(), promotions()).then(function(salle_list, promo_list){
+		foreignModels.salle = salle_list;
+		foreignModels.promotion = promo_list;
+
 		options = {'title':'Ajouter un produit','action':'create','image':'', 'type': 'Ajouter', 'foreignModels':foreignModels};
 		html =  renderTpl('views/forms/produits/new.jade', options);
 		res.render('produits/new', {title: 'Ajouter un produit', body: html, foreignModels:foreignModels});
 	});
+
+// ASYNC PARALLEL module, remplacé par JQDeferred
+	// async.parallel([
+	// 	function (callback) {
+	// 		return Salle.find({}, function(err, result){	// la liste de toutes les salles
+	// 			foreignModels.salle = result;
+	// 			return callback(err);
+	// 		});
+	// 	}, function(callback) {
+	// 		return Promotion.find({}, function(err, result){	// la liste de toutes les promotions
+	// 			foreignModels.promotion = result;
+	// 			return callback(err);
+	// 		});
+	// 	}
+	// ], function(err) {
+	// 	options = {'title':'Ajouter un produit','action':'create','image':'', 'type': 'Ajouter', 'foreignModels':foreignModels};
+	// 	html =  renderTpl('views/forms/produits/new.jade', options);
+	// 	res.render('produits/new', {title: 'Ajouter un produit', body: html, foreignModels:foreignModels});
+	// });
 
 }
 
@@ -154,25 +191,40 @@ exports.edit = function(req, res) {
 			res.data = doc;
 			
 			var foreignModels = {};
-			async.parallel([
-				function(callback) {
-					return Salle.find({}, function(err, result) {	//la liste de toutes les salles existantes
-						foreignModels.salle = result;
-							return callback(err);
-					});
-				}, function(callback) {
-					return Promotion.find({}, function(err, result) {	//la liste de toutes les promotions existantes
-						foreignModels.promotion = result;
-						return callback(err);
-					});
-				}
-			], function(err) {
-			var	options = {'title':'Modifier le produit', 'action': 'produits/edit/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier', 'foreignModels':foreignModels},
+
+			Deferred.when(salles(), promotions()).then(function(salle_list, promo_list){
+				foreignModels.salle = salle_list;
+				foreignModels.promotion = promo_list;
+
+				var	options = {'title':'Modifier le produit', 'action': 'produits/edit/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier', 'foreignModels':foreignModels},
 				html = renderTpl('views/forms/produits/edit.jade', options);
 				res.html = html;
 				res.foreignModels = foreignModels;
 				res.send({data: doc, html: html, foreignModels: foreignModels});
-			});	//end async parallel
+			});
+
+			// ASYNC PARALLEL module, remplacé par JQDeferred
+			// async.parallel([
+			// 	function(callback) {
+			// 		return Salle.find({}, function(err, result) {	//la liste de toutes les salles existantes
+			// 			foreignModels.salle = result;
+			// 				return callback(err);
+			// 		});
+			// 	}, function(callback) {
+			// 		return Promotion.find({}, function(err, result) {	//la liste de toutes les promotions existantes
+			// 			foreignModels.promotion = result;
+			// 			return callback(err);
+			// 		});
+			// 	}
+			// ], function(err) {
+			// var	options = {'title':'Modifier le produit', 'action': 'produits/edit/' + ref, 'image': imagePath + doc.image, 'type': 'Modifier', 'foreignModels':foreignModels},
+			// 	html = renderTpl('views/forms/produits/edit.jade', options);
+			// 	res.html = html;
+			// 	res.foreignModels = foreignModels;
+			// 	res.send({data: doc, html: html, foreignModels: foreignModels});
+			// });	//end async parallel
+
+
 		}	//fin else
 	});
 };
@@ -195,8 +247,7 @@ exports.update = function(req, res) {
 	
 	Model.update({'_id': ref}, produit, function(err, docs) {
 		if (err) {
-			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});
-			console.log(err);
+			res.render('generals/error',{title: "Problème avec la mise à jour: ", body: 'Message : ' + err});			
 		} else {
 			if (foreignModels) {
 				for (var fm in foreignModels) {

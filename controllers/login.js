@@ -103,7 +103,7 @@ exports.profil = function(req, res) {
 }
 exports.logout = function(req, res) {
 	if (req.session.user_id) {
-		req.session.destroy(function(){
+		req.session.destroy(function(){			
 		//	res.render('generals/logout', {title: 'A bientôt', body: 'Merci de votre visite.'});
 			res.redirect('/');
 		});

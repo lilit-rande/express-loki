@@ -67,19 +67,20 @@ app.configure(function(){
 		res.locals.session = req.session;
 		var maxAge = 1000*60*60*24*30*3 ;
 		var Session = require('./models/session.js');
-
 		if ( ! req.cookies.sId ) {
 			res.cookie('sId', req.sessionID, { maxAge: maxAge });
 		//	res.cookie('panier', { obj: [], count: 0 }, { maxAge: maxAge });
 		} else {
-			Session
-			.findOne({'sId': req.cookies.sId})
-			.exec(function(err, data){
-				if(data != null) {
-					req.session.panier = data.panier;
-					req.session.panier_count = data.count;
-				}
-			});
+			if ( !req.session.panier && req.session.user_id ) {				
+				Session
+				.findOne({'sId': req.cookies.sId})
+				.exec(function(err, data){
+					if(data != null && req.session) {
+						req.session.panier = data.panier;
+						req.session.panier_count = data.count;
+					}
+				});
+			} 
 		}
 		res.locals.cookies = req.cookies;
 		next();
@@ -118,8 +119,3 @@ route.routes(app);
 app.listen(port);
 //http.createServer(app).listen(3000);
 console.log("Express server listening on port %d in %s mode", port, app.settings.env);
-
-
-
-
-
