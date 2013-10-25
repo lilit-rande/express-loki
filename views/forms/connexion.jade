@@ -1,4 +1,6 @@
-form.form-inline(method="post", action="connexion")
-	input.input-sm(type='text', placeholder="login", name="pseudo")
-	input.input-sm(type='password', placeholder="password", name="mdp")
-	button.btn.btn-inverse(type="submit") OK
+form.form-inline(method="post", action="connexion", role="form")
+	div.form-group
+		input.form-control.input-sm(type="text", placeholder="login", name="pseudo")
+	div.form-group
+		input.form-control.input-sm(type="password", placeholder="password", name="mdp")
+	button.btn.btn-default.btn-sm(type="submit") OK

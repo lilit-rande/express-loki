@@ -1,43 +1,46 @@
-form.form-horizontal#form-inscription(method="post", action="login/create")
-	div.control-group
+form#form-inscription.form-horizontal(method="post", action="login/create")
+	div.form-group
 		label.control-label(for="pseudo") Pseudo
 		div.controls
-			input#pseudo(type="text", placeholder="Pseudo", name="pseudo")
-	div.control-group
+			input.form-control#pseudo(type="text", placeholder="Pseudo", name="pseudo")
+	div.form-group
 		label.control-label(for="mdp") Mot de passe
 		div.controls
-			input#mdp(type="text", placeholder="Mot de passe", name="mdp")
-	div.control-group
+			input.form-control#mdp(type="text", placeholder="Mot de passe", name="mdp")
+	div.form-group
 		label.control-label(for="email") Email
 		div.controls
-			input#email(type="text", placeholder="Email", name="email")
-	div.control-group
+			input.form-control#email(type="text", placeholder="Email", name="email")
+	div.form-group
 		label.control-label(for="nom") Nom
 		div.controls
-			input#nom(type="text", placeholder="Nom", name="nom")
-	div.control-group
+			input.form-control#nom(type="text", placeholder="Nom", name="nom")
+	div.form-group
 		label.control-label(for="prenom") Prénom
 		div.controls
-			input#prenom(type="text", placeholder="Prénom", name="prenom")
-	div.control-group
+			input.form-control#prenom(type="text", placeholder="Prénom", name="prenom")
+	div.form-group
 		label.control-label(for="fem") Sexe
-		div.controls
-			label.radio Femme
+		div.checkbox
+			label 
 				input#fem(type="radio", name="sexe", value="f")
-			label.radio Homme
+				| &nbsp;Femme
+		div.checkbox
+			label
 				input#masc(type="radio", name="sexe", value="m")
-	div.control-group
+				| &nbsp;Homme
+	div.form-group
 		label.control-label(for="ville") Ville
 		div.controls
-			input#ville(type="text", placeholder="Ville", name="ville")
-	div.control-group
+			input.form-control#ville(type="text", placeholder="Ville", name="ville")
+	div.form-group
 		label.control-label(for="cp") Code postale
 		div.controls
-			input#cp(type="text", placeholder="Code postale", name="cp")
-	div.control-group
+			input.form-control#cp(type="text", placeholder="Code postale", name="cp")
+	div.form-group
 		label.control-label(for="adresse") Adresse
 		div.controls
-			input#adresse(type="text", placeholder="Adresse", name="adresse")
-	div.control-group
+			input.form-control#adresse(type="text", placeholder="Adresse", name="adresse")
+	div.form-group
 		div.controls
 			button.btn.btn-primary(type="submit", name="submit-inscription") S'inscrire
