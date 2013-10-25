@@ -8,7 +8,7 @@ block content
 			h3 Modifier le produit		
 		div.modal-body.produit-edit
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
 	<!-- Modal delete-->	
 	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
@@ -18,18 +18,18 @@ block content
 		div.modal-body
 			p Êtes-vous sûr de vouloir supprimer ce produit ?
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
+		table.flip-scroll.cf.table-condensed.table-hover.table-striped.listing.col-md-7
 			thead
 				tr
 					th Nom produit
 					th Date d'arrivée
 					th Date de départ
 					th Salle
-					th.hidden-phone.hidden-tablet Image salle
+					th.hidden-sm.hidden-md Image salle
 					th Promotion
 					th Réduction
 					th Prix
@@ -53,7 +53,7 @@ block content
 						- if (produit.salle_id != null)
 							td
 								a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
-							td.hidden-phone.hidden-tablet
+							td.hidden-sm.hidden-md
 								a(href="salles/#{produit.salle_id._id}") 
 									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 						- else

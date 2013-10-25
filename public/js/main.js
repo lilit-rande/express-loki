@@ -17,10 +17,6 @@ $(document).ready(function() {
 		$('#salle-image-visible').val($(this).val().replace("C:\\fakepath\\", ""));
 	});
 
-	//draggable
-	$(function() {
-	    $( ".draggable" ).draggable();
-	});
 	
 	//click sur le lien "View {le model}"
 	$("body").on("click", ".model-view-link", function(e){
@@ -219,19 +215,23 @@ $(document).ready(function() {
 	$('body').on('click', '.remove-from-cart', function(e){
 		//	e.preventDefault();
 		var id = $(this).data('id'),
-			that = $(this),
+			$_that = $(this),
 			url = 'retirer-panier/' + id;
 			
 		$.ajax({
 			url: url,
 			type: 'post',
 			success: function(data) {
-				$('#modal-panier .modal-body #message').html(data.message);
-				that.html('Ajouter au panier >');
-				that.removeClass('remove-from-cart');
-				that.addClass('add-to-cart');				
+				if ( $_that.data('type') == 'listing' ) {
+					$('#modal-panier .modal-body #message').html(data.message);
+					$_that.html('Ajouter au panier >');
+					$_that.removeClass('remove-from-cart');
+					$_that.addClass('add-to-cart');
+				} else {
+					location.reload();
+				}
 				$('#nb_articles').html(data.count);
-			}
+			} 
 		})
 	});
 
@@ -246,9 +246,13 @@ $(document).ready(function() {
 	});
 
     // Datepicker
-    $('.datepicker').datepicker({
-    	inline: true
-    });
-    
+    // $('.datepicker').datepicker({
+    // 	inline: true
+    // });
+   
+	//draggable
+	// $(function() {
+	//     $( ".draggable" ).draggable();
+	// }); 
     
 });

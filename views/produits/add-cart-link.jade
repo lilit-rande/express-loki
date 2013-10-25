@@ -5,7 +5,7 @@
 		- if (panier_obj != null && panier_obj.produit_id == data.id)
 			- add_or_remove = 'remove'
 - if (add_or_remove == 'remove')
-	a.remove-from-cart(class="#{data_class}", data-id="#{data._id}") Retirer du panier >
+	a.remove-from-cart(class="#{data_class}", data-id="#{data._id}", data-type="listing") Retirer du panier >
 - else
-	a.add-to-cart(class="#{data_class}", data-id="#{data._id}", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier >
+	a.add-to-cart(class="#{data_class}", data-id="#{data._id}", data-type="listing", href="#modal-panier", role="button", data-toggle="modal") Ajouter au panier >
 textarea.datas-json.hidden(id="datas-json-"+"#{data._id}") #{data_json}

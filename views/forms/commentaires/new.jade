@@ -5,11 +5,11 @@ form#form-commentaire-new.form-horizontal(action="commentaires/new", method="pos
 	div.control-group
 		label.control-label(for="commentaire") Commentaire
 		div.controls
-			textarea#commentaire.span3(name="commentaire")
+			textarea#commentaire.col-md-3(name="commentaire")
 	div.control-group
 		label.control-label(for="note") Note
 		div.controls
-			select#note.span3(name="note")
+			select#note.col-md-3(name="note")
 				option
 				-for(var i=1; i<=10; i++)
 					option(value="#{i}")=i+'/10'

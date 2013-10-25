@@ -29,8 +29,8 @@ form.form-horizontal(method="post", action="salles/#{action}", name="form-salle-
 		div.controls
 			input#file.hide.ie_show(type="file", name="salleimage")
 			div.input-append.ie_hide
-				input#salle-image-visible.input-larget(type="text", onclick="$('input[id=file]').click();")
-				a.btn(onclick="$('input[id=file]').click();") Parcourir
+				input#salle-image-visible.input-lg(type="text", onclick="$('input[id=file]').click();")
+				a.btn.btn-default(onclick="$('input[id=file]').click();") Parcourir
 			//
 				img(src="#{image}")
 	div.control-group

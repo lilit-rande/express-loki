@@ -9,7 +9,7 @@ block content
 		div.modal-body
 			include ../forms/membres/new
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.new-model-btn(data-model="membre") Ajouter
 	<!-- Modal edit-->
 	div#modal-membre-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
@@ -18,7 +18,7 @@ block content
 			h3 Modification de donnés utilisateur		
 		div.modal-body.membre-edit
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
 			
 	<!-- Modal delete-->	
@@ -33,7 +33,7 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs !== 'undefined' && docs != null)
-		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
+		table.flip-scroll.cf.table-condensed.table-hover.table-striped.listing.col-md-7
 			thead
 				tr
 					th Pseudo

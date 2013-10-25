@@ -4,30 +4,52 @@ block content
 	h1= title
 	- console.log('PANIER')
 	- console.log(session.panier)
-	table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
-		thead
-			tr
-				th.hidden-phone.hidden-tablet Image salle
-				th Salle
-				th Date d'arrivée
-				th Date de départ
-				th Promotion
-				th Réduction
-				th Prix
-				th Supprimer
-		tbody
-			- if (session.panier)
+	- if ( session.panier && session.panier.length > 0 )
+		- var price = 0
+		- var discount = 0
+		- var total_price = 0
+		table#cart-table.cf.table-condensed.table-hover.table-striped.listing.flip-scroll.col-md-7
+			thead
+				tr
+					th.hidden-sm.hidden-md Image salle
+					th Salle
+					th Date d'arrivée
+					th Date de départ
+					th Promotion
+					th Réduction
+					th Prix
+					th Supprimer
+			tbody
 				- each data in session.panier
+					- price += parseFloat(data.prix)
+					- discount += data.promotion_reduction ? parseFloat(data.promotion_reduction) : 0
 					tr(data-salle_id="#{data.salle_id}", data-produit_id="#{data.produit_id}", data-promotion_id="#{data.promotion_id}")
-						td.hidden-phone.hidden-tablet 
+						td.hidden-sm.hidden-md 
 							img(src="../images/vignettes/#{data.salle_image}", width="50", height="50")
 						td #{data.salle_title}
 						td #{moment(data.arrive).format('DD/MM/YYYY HH:mm')}
 						td #{moment(data.depart).format('DD/MM/YYYY HH:mm')}
 						td #{data.promotion_code}
-						td #{data.promotion_reduction} €
-						td #{data.prix} €
+						td #{parseFloat(data.promotion_reduction).toFixed(2)} €
+						td #{parseFloat(data.prix).toFixed(2)} €
 						td 
 							a.remove-from-cart(data-id="#{data.produit_id}")
 								img(src="images/icons/erase.png")
-	a#empty_cart.btn.btn-info(href="vider-panier") Vider le panier
+				- total_price = ( ( (price - discount) * 100 ) / 100 ).toFixed(2)
+				tr.text-right
+					td(colspan="7")
+						b Prix :
+					td #{price} €
+				tr.text-right
+					td(colspan="7")
+						b Réduction :
+					td #{discount} €
+				tr.text-right
+					td(colspan="7")
+						b Total :
+					td 
+						b #{total_price} €
+		a#empty_cart.btn.btn-info(href="vider-panier") Vider le panier
+	- else
+		div.alert.alert-error.absent
+			p Votre panier est vide

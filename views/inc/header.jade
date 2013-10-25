@@ -10,6 +10,8 @@ header
 			a(href="") Mot de passe oublié...
 		- else
 			p
-				a(href="/profil") Bonjour, #{session.pseudo}
-			a(href="/logout") Déconnexion
+				a(href="/profil") Bonjour, #{session.name}
+				a(href="/logout") 
+					i.glyphicon .glyphicon-search 
+					| Déconnexion
 	div.clearfix

@@ -3,7 +3,7 @@ extends ../layout
 block content
 	-if (data != null)
 		div.row
-			div.span12			
+			div.col-md-12			
 				h1= title			
 				div.annonce-bloc.one-column
 					img(src="../../images/vignettes/#{data.salle_id.image}", width="200px", height="200px", class="img-polaroid")
@@ -14,7 +14,7 @@ block content
 					br
 					a.italic(href="")>Ajouter au panier
 		div.row
-			div.span6
+			div.col-md-6
 				div.annonce-bloc
 					h2 Informations complémentaires
 					p
@@ -45,7 +45,7 @@ block content
 						- else etat = "A louer" 
 						span.valeur #{etat}
 					p.italic *Ce prix est hors taxes.
-			div.span6
+			div.col-md-6
 				div.annonce-bloc
 					h2 Avis
 					form
@@ -62,6 +62,6 @@ block content
 						div.clear
 	-else 
 		div.row
-			div.span12					
+			div.col-md-12					
 				div.error-message
 					span La salle avec identifiant #{id} n'existe pas !

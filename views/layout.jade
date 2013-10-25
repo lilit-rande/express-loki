@@ -9,36 +9,48 @@ html
 	head
 		title= title
 		base(href='http://localhost:3000', target="_self")
+		//
+			link(href='/stylesheets/css/main.css', rel='stylesheet')
+			link(href='/stylesheets/css/main-responsive.css', rel='stylesheet')
+		
 		link(href='/css/main.css', rel='stylesheet')
 		link(href='/css/main-responsive.css', rel='stylesheet')
-		link(href="/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
 		//
+			link(href="/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
 			link(href="/favicon.ico", rel="shortcut icon", type="text/css")
 		link(rel="icon", type="image/png", href="/favicon.png")
 		link(href="/apple-touch-icon-144-precomposed.png", rel="apple-touch-icon-precomposed", sizes="144x144")
 		link(href="/apple-touch-icon-114-precomposed.png", rel="apple-touch-icon-precomposed", sizes="114x114")
 		link(href="/apple-touch-icon-72-precomposed.png", rel="apple-touch-icon-precomposed", sizes="72x72")
 		link(href="/apple-touch-icon-57-precomposed.png", rel="apple-touch-icon-precomposed", sizes="57x57")
-		script(src="/js/vendor/jquery-1.9.0.min.js")
-		script(src="/js/vendor/jquery-ui-1.10.0.custom.min.js")
-		script(src="/js/vendor/jquery.validate.min.js")
+		
+		script(src="/bower_components/jquery/jquery.js")
+		script(src="/bower_components/jquery-validation/jquery.validate.js")
 		script(src="/bower_components/moment/moment.js")
+		script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+		script(src="/js/plugin/jquery.formautofill.min.js")
+
+		//
+			script(src="/js/vendor/jquery-1.9.0.min.js")
+			ui à remplacer par pickadate
+			script(src="/js/vendor/jquery-ui-1.10.0.custom.min.js")
+			script(src="/js/vendor/jquery.validate.min.js")
+			script(src="/js/vendor/bootstrap.min.js")
+			script(src="/js/plugins.js")
+		script(src="/js/validation-addons.js")
+		script(src="/js/main.js")
 	body
 		div.container
 			include inc/header
 			div.row
-				div.span8
+				div.col-md-8
 					div#main
 						include inc/nav
 						div.hero-unit
 							p
 								img(src="../images/hero-unit.png")
 						block content
-				div.span4
+				div.col-md-4
 					include inc/aside
 			include inc/footer
-		script(src="/js/vendor/jquery.formautofill.min.js")
-		script(src="/js/vendor/bootstrap.min.js")
-		script(src="/js/plugins.js")
-		script(src="/js/validation-addons.js")
-		script(src="/js/main.js")

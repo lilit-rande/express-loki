@@ -6,7 +6,7 @@
 			h3 Modification de donnés utilisateur		
 		div.modal-body.membre-edit
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
 			
 			
@@ -17,7 +17,7 @@
 			h3 Modification du commentaire		
 		div.modal-body.commentaire-edit
 		div.modal-footer
-			button.btn(data-dismiss="modal", aria-hidden="true") Close
+			button.btn.btn-default(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
 	h1= title
 	h2 Commandes
@@ -40,7 +40,7 @@
 				- else
 					etat = "En attente de payement"
 				td.model-view-link=etat	
-	div.well.pull-left.span2
+	div.well.pull-left.col-md-2
 		h2 Informations profil
 		table.table.table-condensed
 			tr
@@ -79,7 +79,7 @@
 				td #{data.statut}
 		- if ( data._id == session.user_id )
 			button.btn.btn-info.model-edit-link(href=".modal-profil-edit", role="button", data-toggle="modal", data-id="#{data._id}", data-model="membre") Modifier mon profil
-	div.well.pull-right.span4
+	div.well.pull-right.col-md-4
 		h2 Commentaires
 		div
 			- each commentaire in data.commentaires

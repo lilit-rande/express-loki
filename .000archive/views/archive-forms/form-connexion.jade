@@ -1,10 +1,10 @@
-form.login-form.well.span4(method="post", action="connextion")
+form.login-form.well.col-md-4(method="post", action="connextion")
 	fieldset
 		p.subheading Connectez-vous s'il vous plaît
 		label(for="login") Login
-		input#login.class.span4.required(type="text", name="user")
+		input#login.class.col-md-4.required(type="text", name="user")
 		label(for="password") Mot de passe
-		input#password.span4.required(type="password",name="mdp")
+		input#password.col-md-4.required(type="password",name="mdp")
 		button#btn-login.btn.btn-primary(type="submit") Connexion
 		label#remember-me.checkbox Se souvenir de moi
 			input(type="checkbox", checked="checked")

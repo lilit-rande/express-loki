@@ -1,0 +1,29 @@
+{
+  "name": "express-loci",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lilit-rande/express-loki",
+  "authors": [
+    "Lilit Randé <lilit@creative-area.net>"
+  ],
+  "description": "lokisalle in node.js",
+  "main": "app.js",
+  "keywords": [
+    "node.js",
+    "express.js",
+    "mongodb",
+    "mongoose"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.x",
+    "jquery": "~2.0.x",
+    "jquery-validation": "~1.11.x",
+    "moment": "~2.3.x",
+    "modernizr": "~2.6.2"
+  }
+}
