@@ -9,12 +9,13 @@ html
 	head
 		title= title
 		base(href='http://localhost:3000', target="_self")
+	
+		link(href='/stylesheets/css/main.css', rel='stylesheet')
+		link(href='/stylesheets/css/main-responsive.css', rel='stylesheet')
+	
 		//
-			link(href='/stylesheets/css/main.css', rel='stylesheet')
-			link(href='/stylesheets/css/main-responsive.css', rel='stylesheet')
-		
-		link(href='/css/main.css', rel='stylesheet')
-		link(href='/css/main-responsive.css', rel='stylesheet')
+			link(href='/css/main.css', rel='stylesheet')
+			link(href='/css/main-responsive.css', rel='stylesheet')
 		//
 			link(href="/css/custom-theme/jquery-ui-1.10.0.custom.css", rel="stylesheet", type="text/css")
 			link(href="/favicon.ico", rel="shortcut icon", type="text/css")
@@ -47,7 +48,7 @@ html
 				div.col-md-8
 					div#main
 						include inc/nav
-						div.hero-unit
+						div.jumbotron
 							p
 								img(src="../images/hero-unit.png")
 						block content

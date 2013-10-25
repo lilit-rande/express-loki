@@ -1,23 +1,25 @@
-div.navbar.navbar-inverse
-	div.navbar-inner
-		div.container
-			a.btn.navbar-btn(data-toggle="collapse", data-target=".navbar-collapse")
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			div.navbar-collapse.collapse
-				ul.nav
-					li.active
-						a(href="/") Accueil
-					li
-						a(href="/reservation") Réservation
-					li
-						a(href="/recherche") Recherche
-					- if (!session.user_id)
-						li
-							a(href="/inscription") Inscription
-					- else
-						li
-							a(href="/logout") Déconnexion
-						if (session.user_id && session.statut == 2)
-							include nav-admin
+nav.navbar.navbar-inverse(role="navigation")
+	div.navbar-header
+		button.navbar-toggle(data-toggle="collapse", data-target=".navbar-collapse", type="button")
+			span.sr-only Toggle navigation
+			span.icon-bar
+			span.icon-bar
+			span.icon-bar
+	div.navbar-collapse.collapse
+		ul.nav.navbar-nav
+			li.active
+				a(href="/") Accueil
+			li
+				a(href="/reservation") Réservation
+			li
+				a(href="/recherche") Recherche
+			- if (!session.user_id)
+				li
+					a(href="/inscription") Inscription
+			- else
+				li
+					a(href="/logout") Déconnexion
+				if (session.user_id && session.statut == 2)
+					include nav-admin
+
+
