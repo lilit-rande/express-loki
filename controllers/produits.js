@@ -87,7 +87,7 @@ exports.create = function(req, res) {
 		etat: 0,
 	};
 	
-	modelObj = new Model(produit);
+	var modelObj = new Model(produit);
 
 	modelObj.save(function(err, data){
 		if(err) {

@@ -133,7 +133,7 @@ session {
 	});
 	
 	// mapping route and controller for models
-	/*
+	
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -164,9 +164,9 @@ session {
 		app.get(prefix + '/:id', prefixObj.show);		
 	};
 
-*/
-	// Routes avec require login
 
+	// Routes avec require login
+/*
 	function mapRoute(app, prefix) {
 		prefix = '/' + prefix;
 	//	'/salles/new'
@@ -204,7 +204,7 @@ session {
 		}
 	};
 
-
+*/
 
 
 	

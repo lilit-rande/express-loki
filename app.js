@@ -23,7 +23,37 @@ mongoose.connection.on('open', function(err){
 	}
 });
 
-	
+// var	Schema = mongoose.Schema;
+
+// var Any = new Schema({
+// 	any: Schema.Types.Mixed
+// 	// code: {type: String, require:true, trim:true, index: {sparse: true, unique:true}  },
+// 	// reduction: {type: Number, require: true, trim:true},
+// 	// produits : [{type: Schema.Types.ObjectId, ref:'Produits', default: null, require: false}]
+// });
+
+// var Person = mongoose.model('Any', Any);
+// var person = new Person;
+
+// person.any = { x: [3, 4, { y: "changed" }] };
+// person.markModified('any');
+// person.save(function(err, data){
+// 	if (err) {
+// 		console.log(err)
+// 	} else {
+// 		console.log(data);
+// 	}
+// }); // anything will now get saved
+// person.any = { x: [3, 4, { y: "changed", z:'changed' }] };
+
+// person.save(function(err, data){
+// 	if (err) {
+// 		console.log(err)
+// 	} else {
+// 		console.log(data);
+// 	}
+// }); // anything will now get saved
+
 var app = module.exports = express();
 
 //var app = module.exports = express.createServer(form({ keepExtensions: true, uploadDir:'./uploads' }));

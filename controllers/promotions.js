@@ -41,18 +41,28 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 	var promotion = {
 		code: req.body.promotioncode,
-		reduction: req.body.promotionreduction
+		reduction: req.body.promotionreduction,
+		test: 'TOTO'
 	};
 	
-	modelObj = new Model(promotion);
+	Model.any = {
+		code: req.body.promotioncode,
+		reduction: req.body.promotionreduction,
+		test: 'TOTO'
+	};
 	
-	modelObj.save(function(err, data){
-		if(err) {
-			res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér cette promotion ! Message : " + err.message});
-		} else {
-			res.render('generals/modified', {title: 'Code de promotion ajouté', body: "Le code de promotion a bien été ajouté."});
-		}
-	});
+	Model.markModified('any');
+	Model.save();
+	// modelObj = new Model(promotion);
+	
+	
+	// modelObj.save(function(err, data){
+	// 	if(err) {
+	// 		res.render('generals/error', {title: "Echec de création", body: "Il n'est pas possible de créér cette promotion ! Message : " + err.message});
+	// 	} else {
+	// 		res.render('generals/modified', {title: 'Code de promotion ajouté', body: "Le code de promotion a bien été ajouté."});
+	// 	}
+	// });
 };
 /*
 //display delete form
