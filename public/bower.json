@@ -1,0 +1,25 @@
+{
+  "name": "Locisalle",
+  "version": "0.0.1",
+  "homepage": "https://github.com/lilit-rande/express-loki-backbone",
+  "authors": [
+    "Lilit Miskaryan-Randé <lilit@creative-area.net>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.3.1",
+    "jquery": "~2.1.1",
+    "backbone": "~1.1.2",
+    "jquery-validate": "~1.13.0"
+  }
+}
