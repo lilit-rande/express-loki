@@ -5,7 +5,7 @@ block content
 	div#modal-new.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Ajouter un nouveau utilisateur		
+			h3 Ajouter un nouveau utilisateur
 		div.modal-body
 			include ../forms/membres/new
 		div.modal-footer
@@ -15,13 +15,13 @@ block content
 	div#modal-membre-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Modification de donnés utilisateur		
+			h3 Modification de donnés utilisateur
 		div.modal-body.membre-edit
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
-			
-	<!-- Modal delete-->	
+
+	<!-- Modal delete-->
 	div#modal-delete.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
@@ -33,7 +33,7 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs !== 'undefined' && docs != null)
-		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
+		table.flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 			thead
 				tr
 					th Pseudo
@@ -48,7 +48,7 @@ block content
 					th Editer
 					th Supprimer
 			tbody
-				- each member in docs			
+				- each member in docs
 					tr(data-id="#{member._id}", data-model="membre")
 						td.model-view-link #{member.pseudo}
 						td.model-view-link #{member.mdp}

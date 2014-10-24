@@ -1,12 +1,12 @@
 - if (docs != null)
-	table.table.cf.table-condensed.table-hover.table-striped.listing#flip-scroll.table-centered-text
+	table.table.cf.table-condensed.table-hover.table-striped.listing.flip-scroll.table-centered-text
 		thead
 			tr
 				th Membre
 				th Salle
 				th Date
-				th Note					
-				th Commentaire					
+				th Note
+				th Commentaire
 				th Supprimer
 		tbody
 			- each commentaire in docs
@@ -15,7 +15,7 @@
 						a(href="membres/#{commentaire.membre_id._id}") #{commentaire.membre_id.pseudo}
 					td
 						a(href="salles/#{commentaire.salle_id._id}") #{commentaire.salle_id.title}
-					td #{commentaire.date.toDateString()}  
+					td #{commentaire.date.toDateString()}
 					td #{commentaire.note}
 					td #{commentaire.comment}
 					td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")

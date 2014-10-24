@@ -1,22 +1,23 @@
 {
-    "name": "application-name"
-  , "version": "1.1.63"
-  , "private": true
-  , "dependencies": {
-    "async": ">= 0.1.x"
-    , "connect-form": ">= 0.2.x"
-    , "email": ">= 0.2.x"
-    , "express": "3.x"
-    , "fs": ">= 0.0.x"
-    , "jade": ">= 0.28.x"
-    , "JQDeferred": ">= 1.5.x"
-    , "moment": ">= 1.7.x"
-    , "mongodb": ">= 1.1.x"
-    , "mongoose": ">= 3.6.x"
-    , "mongoose-autoincr": ">= 0.0.x"
-    , "stylus": ">= 0.0.x"
-    , "validations": ">= 0.0.x"
-    , "underscore": ">= 1.4.4"
-    , "underscore.string": ">= 2.3.1"
+  "name": "application-name",
+  "version": "1.1.63",
+  "private": true,
+  "dependencies": {
+    "JQDeferred": ">= 1.5.x",
+    "async": ">= 0.1.x",
+    "backbone": "^1.1.2",
+    "connect-form": ">= 0.2.x",
+    "email": ">= 0.2.x",
+    "express": "3.x",
+    "fs": ">= 0.0.x",
+    "jade": ">= 0.28.x",
+    "moment": ">= 1.7.x",
+    "mongodb": ">= 1.1.x",
+    "mongoose": ">= 3.6.x",
+    "mongoose-autoincr": ">= 0.0.x",
+    "stylus": ">= 0.0.x",
+    "underscore": ">= 1.4.4",
+    "underscore.string": ">= 2.3.1",
+    "validations": ">= 0.0.x"
   }
 }

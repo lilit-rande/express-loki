@@ -4,7 +4,7 @@ block content
 	h1= title
 	- console.log('PANIER')
 	- console.log(session.panier)
-	table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
+	table.flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 		thead
 			tr
 				th.hidden-phone.hidden-tablet Image salle
@@ -19,7 +19,7 @@ block content
 			- if (session.panier)
 				- each data in session.panier
 					tr(data-salle_id="#{data.salle_id}", data-produit_id="#{data.produit_id}", data-promotion_id="#{data.promotion_id}")
-						td.hidden-phone.hidden-tablet 
+						td.hidden-phone.hidden-tablet
 							img(src="../images/vignettes/#{data.salle_image}", width="50", height="50")
 						td #{data.salle_title}
 						td #{moment(data.arrive).format('DD/MM/YYYY HH:mm')}
@@ -27,7 +27,7 @@ block content
 						td #{data.promotion_code}
 						td #{data.promotion_reduction} €
 						td #{data.prix} €
-						td 
+						td
 							a.remove-from-cart(data-id="#{data.produit_id}")
 								img(src="images/icons/erase.png")
 	a#empty_cart.btn.btn-info(href="vider-panier") Vider le panier

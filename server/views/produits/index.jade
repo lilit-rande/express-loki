@@ -5,12 +5,12 @@ block content
 	div#modal-produit-edit.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Modifier le produit		
+			h3 Modifier le produit
 		div.modal-body.produit-edit
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.edit-model-btn Modifier
-	<!-- Modal delete-->	
+	<!-- Modal delete-->
 	div#modal-delete.modal.hide.fade.draggable(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
@@ -22,7 +22,7 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table#flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
+		table.flip-scroll.cf.table-condensed.table-hover.table-striped.listing.span7
 			thead
 				tr
 					th Nom produit
@@ -38,12 +38,12 @@ block content
 					th Supprimer
 			tbody
 				- each produit in docs
-					- if (produit.promotion_id != null) 
+					- if (produit.promotion_id != null)
 						- promo_id = produit.promotion_id._id
 					- else
 						- promo_id = ''
 					tr(data-id="#{produit._id}", data-model="produit", data-salle="#{produit.salle_id._id}", data-promotion="#{promo_id}")
-						td.model-view-link #{produit.title} 
+						td.model-view-link #{produit.title}
 						td.model-view-link #{moment(produit.arrive).format('DD/MM/YYYY HH:mm')}
 						//
 							#{produit.arrive.toLocaleTimeString()}
@@ -54,13 +54,13 @@ block content
 							td
 								a(href="salles/#{produit.salle_id._id}") #{produit.salle_id.title}
 							td.hidden-phone.hidden-tablet
-								a(href="salles/#{produit.salle_id._id}") 
+								a(href="salles/#{produit.salle_id._id}")
 									img(src="images/vignettes/#{produit.salle_id.image}", height="50", width="50")
 						- else
-							td.model-view-link 
 							td.model-view-link
-						- if (produit.promotion_id != null) 
-							td 
+							td.model-view-link
+						- if (produit.promotion_id != null)
+							td
 								a(href="produits/#{produit._id}") #{produit.promotion_id.code}
 							td
 								a(href="produits/#{produit._id}") #{produit.promotion_id.reduction}
@@ -68,7 +68,7 @@ block content
 							td.model-view-link &nbsp;
 							td.model-view-link &nbsp;
 						td.model-view-link #{produit.prix}
-						- if (produit.etat == 1) 
+						- if (produit.etat == 1)
 							- etat = "Loué"
 						- else etat = "Libre"
 						td.model-view-link=etat

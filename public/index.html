@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Produits</title>
+        <!-- <base href="" target="_self"> -->
+        <link rel="stylesheet" href="stylesheets/css/main.css">
+        <link rel="stylesheet" href="stylesheets/css/main-responsive.css">
+        <link rel="stylesheet" href="favicon.png" rel="icon" type="image/png">
+        <link rel="stylesheet" href="stylesheets/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+        <link rel="stylesheet" href="apple-touch-icon-114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+        <link rel="stylesheet" href="apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+        <link rel="stylesheet" href="apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed" sizes="57x57">
+    </head>
+    <body>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/jquery-validate/dist/jquery.validate.min.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="js/lib/jquery.formautofill.min.js"></script>
+        <!-- TODO basculer bootstrap in bower compontents -->
+        <script src="../vendor/bootstrap/js/bootstrap-affix.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-alert.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-button.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-carousel.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-collapse.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-dropdown.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-modal.js"></script>
+        <!-- <script src="../vendor/bootstrap/js/bootstrap-popover.js"></script> -->
+        <script src="../vendor/bootstrap/js/bootstrap-scrollspy.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-tab.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-tooltip.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-transition.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap-typeahead.js"></script>
+        <script src="js/lib/validation-addons.js"></script>
+
+        <div class="container">
+            <header>
+                <h1 id="header-logo" class="pull-left">
+                    <a href="#">Lokisalle</a>
+                    <p class="tagline">Location de salles de réunion</p>
+                </h1>
+                <div id="header-form" class="pull-right">
+                    <p>
+                        <a href="/panier" id="panier_link" class="underlined-link">Mon panier</a>
+                        <!-- Panier
+                            - var nb = 0
+                            - if (session.panier)
+                                - nb = session.panier_count
+                            a#panier_link.underlined-link(href="/panier")
+                                | Mon panier (
+                                span#nb_articles #{nb}
+                                |  article(s) )
+                         -->
+                    </p>
+                    <!-- - if (!session.user_id) -->
+                    <!-- include ../forms/connexion -->
+                    <form method="post" action="connexion" class="form-inline">
+                        <input type="text" class="input-small" placeholder="login" name="pseudo">
+                        <input type="text" class="input-small" placeholder="password" name="mdp">
+                        <button class="btn btn-inverse" type="submit">OK</button>
+                    </form>
+                    <a href="/inscription">Pas encore membre?</a>
+                    <a href="">Mot de passe oublié...</a>
+                    <!-- - else
+                        p
+                            a(href="/profil") Bonjour, #{session.pseudo}
+                        a(href="/logout") Déconnexion
+                    -->
+                </div>
+                <div class="clearfix"></div>
+            </header>
+            <div class="row">
+                <div class="span8">
+                    <div id="main">
+                        <div class="navbar navbar-inverse">
+                            <div class="navbar-inner">
+                                <div class="container">
+                                    <a href="#" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </a>
+                                    <div class="nav-collapse collapse">
+                                        <ul class="nav">
+                                            <li class="active"><a href="/">Accueil</a></li>
+                                            <li class="active"><a href="/reservation">Réservation</a></li>
+                                            <li class="active"><a href="/recherche">Recherche</a></li>
+                                            <!-- - if (!session.user_id) -->
+                                            <li class="active"><a href="/inscription">Inscription</a></li>
+                                            <!-- - else -->
+                                            <li class="active"><a href="/logout">Déconnexion</a></li>
+                                            <!-- if (session.user_id && session.statut == 2) -->
+                                            <li class="dropdown clearfix" id="nav-admin">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu" role="menu">
+                                                    <li class="dropdown-submenu">
+                                                        <a href="/" tabindex="-1">Gestion des salles</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="/salles/new">Ajouter une salle</a></li>
+                                                            <li><a href="/salles">Afficher les salles</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="dropdown-submenu">
+                                                        <a href="/" tabindex="-1">Gestion des produits</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="/produits/new">Ajouter un produit</a></li>
+                                                            <li><a href="/produits">Afficher les produits</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/membres" tabindex="-1">Gestion des membres</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="/membres/new">Ajouter un membre</a></li>
+                                                            <li><a href="/membres">Afficher les membres</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/promotions" tabindex="-1">Gestion des codes promo</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="/promotions/new">Ajouter un code promo</a></li>
+                                                            <li><a href="/promotions">Afficher les codes promo</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="/commandes" tabindex="-1">Gestion des commandes</a></li>
+                                                    <li><a href="/commentaires" tabindex="-1">Gestion des commentaires</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="/" tabindex="-1">Envoyer la newsletter</a></li>
+                                                    <li><a href="/" tabindex="-1">Statistiques</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-unit"><p><img src="images/hero-unit.png" alt=""></p></div>
+
+                        <section id="produitapp">
+                            <header id="header">
+                                <h2>Produits</h2>
+                            </header>
+                            <section id="main">
+                                <table id="produit-list" class="cf flip-scroll table-condensed table-hover table-striped listing span7">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom produit</th>
+                                            <th>Date d'arrivée</th>
+                                            <th>Date de départ</th>
+                                            <th>Salle</th>
+                                            <th class="hidden-phone hidden-tablet">Image salle</th>
+                                            <th>Promotion</th>
+                                            <th>Réduction</th>
+                                            <th>Prix</th>
+                                            <th>Etat</th>
+                                            <th>Modifier</th>
+                                            <th>Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="produit-lignt"></tbody>
+                                </table>
+                                <div class="produit-lignt"></div>
+                                <div id="add" class="add-button"><a href="/produits/new" class="btn btn-info"> Ajouter un produit</a></div>
+                            </section>
+                        </section>
+
+                    </div><!-- </main> -->
+                </div>
+                <div class="span4">
+                    <aside>
+                        <div class="aside-block">
+                            <h2>Produits</h2>
+                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit...<a href="">Lire la suite...</a></p>
+                        </div>
+                        <div>
+                            <p class="social-networks">
+                                <a href="" title="Flux RSS" alt="flux rss"><img src="images/icons/button_rss.png"></a>
+                                <a href="https://twitter.com/Lilit_Rande" title="Suivez-moi sur twitter" alt="twitter"><img src="images/icons/button_twitter.png"></a>
+                                <a href="http://www.facebook.com/lilit.rande" title="facebook" alt="facebook icon"><img src="images/icons/button_facebook.png"></a>
+                                <a href="newsletter" title="Inscrivez vous au newsletter" alt="inscription au newsletter"><img src="images/icons/button_newsletter.png"></a>
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <footer class="row">
+                <div id="footer">
+                    <ul>
+                        <li><a href="/mentions/">Mentions légales</a></li>
+                        <li><a href="/cgv/"> C. G. V</a></li>
+                        <li><a href="/plan/"> Plan du site</a></li>
+                        <li><a href="/inscription-newsletter/"> S'inscrire à la newsletter</a></li>
+                        <li><a href="/contact/"> Contact</a></li>
+                    </ul>
+                </div>
+                <p id="copyright">© Copyright Information Goes Here. All Rights Reserved.</p>
+            </footer>
+        </div>
+
+        <script type="text/template" id="produitTemplate">
+            <td><%= title %></td>
+            <td><%= moment(arrive).format('DD/MM/YYYY') %></td>
+            <td><%= moment(depart).format('DD/MM/YYYY') %></td>
+            <td></td>
+            <td class="hidden-phone hidden-tablet"></td>
+            <td></td>
+            <td></td>
+            <td><%= prix %></td>
+            <% if (etat == 1 ) { %>
+                <td>Loué</td>
+            <% } else { %>
+                <td>Libre</td>
+            <% } %>
+            <td class="model-edit-link" href="#modal-produit-edit" role="button" data-toggle="modal"><img src="images/icons/modify.png"></td>
+            <td class="model-delete-link" href="#modal-delete" role="button" data-toggle="modal"><img src="images/icons/erase.png"></td>
+        </script>
+
+        <script src="js/models/produit.js"></script>
+        <script src="js/collections/produitList.js"></script>
+        <script src="js/views/produit.js"></script>
+        <script src="js/views/produitList.js"></script>
+        <script src="js/routers/router.js"></script>
+        <script src="js/app.js"></script>
+
+    </body>
+</html>

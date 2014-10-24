@@ -1,27 +1,27 @@
 extends ../layout
-			
+
 block content
 	<!-- Modal new-->
 	div#modal-new.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Ajouter un code promo	
+			h3 Ajouter un code promo
 		div.modal-body
 			include ../forms/promotions/new
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
 			button.btn.btn-info.new-model-btn(data-model="promotion") Ajouter
-			
+
 	<!-- Modal edit-->
 	div#modal-promotion-edit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
-			h3 Modification de code promo		
+			h3 Modification de code promo
 		div.modal-body.promotion-edit
 		div.modal-footer
 			button.btn(data-dismiss="modal", aria-hidden="true") Close
-			button.btn.btn-info.edit-model-btn Modifier			
-	<!-- Modal delete-->	
+			button.btn.btn-info.edit-model-btn Modifier
+	<!-- Modal delete-->
 	div#modal-delete.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 		div.modal-header
 			button.close(type="button", data-dismiss="modal", aria-hidden="true") ×
@@ -33,7 +33,7 @@ block content
 			button.btn.btn-info.delete-confirm Supprimer
 	h1=title
 	- if (docs != null)
-		table.table.cf.table-condensed.table-hover.table-striped.listing#flip-scroll.table-centered-text
+		table.table.cf.table-condensed.table-hover.table-striped.listing.flip-scroll.table-centered-text
 			thead
 				tr
 					th Code Promotion
@@ -43,7 +43,7 @@ block content
 				- each promo in docs
 					tr.model-edit-link(data-id="#{promo._id}", data-model="promotion")
 						td(href="#modal-promotion-edit", role="button", data-toggle="modal") #{promo.code}
-						td(href="#modal-promotion-edit", role="button", data-toggle="modal") #{promo.reduction} €						
+						td(href="#modal-promotion-edit", role="button", data-toggle="modal") #{promo.reduction} €
 						td.model-delete-link(href="#modal-delete", role="button", data-toggle="modal")
 							img(src="images/icons/erase.png")
 		div.clearfix
